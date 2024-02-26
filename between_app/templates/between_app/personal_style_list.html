@@ -7,6 +7,6 @@
 <p>A space to think about your therapeutic style.</p>
 
 {%for item in style_list %}
-    <p>{{item.pk}}, {{user.username}}</p>
+    <a href={% url 'between_app:results' item.pk %}>{{item.pk}}, {{user.username}}</a>
 {% endfor%}
 {% endblock content%}

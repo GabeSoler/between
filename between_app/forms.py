@@ -1,5 +1,5 @@
 from django import forms
-from models import Personal_Style
+from .models import Personal_Style
 
 
 

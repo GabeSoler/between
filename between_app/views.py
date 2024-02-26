@@ -1,10 +1,20 @@
 from django.shortcuts import render
 from .models import Personal_Style
-from django.views.generic import ListView, DetailView,TemplateView
+from django.views.generic import ListView, DetailView,TemplateView,CreateView
+from .forms import StyleForm
 
 # Create your views here.
 
-class index_View(ListView):
+class index_View(TemplateView):
+    template_name = 'index.html'
+
+class takeTestView(CreateView):
+    model = Personal_Style
+    form = StyleForm
+    template_name = 'profile_test'
+    success_url = '/form_list/'
+
+class resultsList(ListView):
     model = Personal_Style
     context_object_name = 'style_list'
 

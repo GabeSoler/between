@@ -2,11 +2,35 @@
 
 {% block title%} Results {% endblock title %}
 
+{%block page_header %}<h1>Results</h1> {%endblock page_header%}
+
+
 {% block content %}
-<h1>Results</h1>
 
 <p>A space to think about your therapeutic style.</p>
 
-<p>Compassionate : {{results.compassionate}}, </br> Playful: {{results.playful}}, </br> Inquisitive: {{Results.inquisitive}}, </br> Changer: {{resutls.changer}}, </p>
+<h2>Profile: </h2>
+<p>Position: {{style_detail.calProfile.main_position}}</p>
+    {% if style_detail.calProfile.main_position == 'compassionate' %}
+        <p>Compassionate therapists are usually close and quiet</p>
+    {% elif style_detail.calProfile.main_position == 'playful' %}
+        <p>Playful Therapist are usually proposing new things to try</p>
+    {% elif style_detail.calProfile.main_position == 'inquisitive' %}
+        <p>inquisitive therapist try to find clues and discover secrets</p>
+    {% elif style_detail.calProfile.main_position == 'changer' %}
+        <p>Changer therapist have a tookbox of activities to challenge your ways</p>            
+    {% else %}
+        <p>Function error </p>
+    {% endif %}
+<p>Path: {{style_detail.calProfile.main_path}}</p>
+    {% if style_detail.calProfile.main_path == 'dreamer' %}
+    <p>Dreamer are usually ethereal and like metaphors</p>
+    {% elif style_detail.calProfile.main_path == 'sage' %}
+    <p>Sage therapist like abstractions and to know every detail</p>
+    {% else %}
+    <p>Need to write </p>
+    {% endif %}
+<p>Relationship with tradition: {{style_detail.calProfile.main_tradition}}</p>
 
+</br>
 {% endblock content%}
