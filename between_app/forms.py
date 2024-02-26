@@ -1,5 +1,6 @@
 from django import forms
 from .models import Personal_Style
+from django_bootstrap5.widgets import RadioSelectButtonGroup
 
 
 
@@ -24,8 +25,7 @@ class StyleForm(forms.ModelForm):
                   "individuation_1":"I think that people are fundamentally individuals and need help to find their singularity.",
                   "belonging_1":"I think that people are fundamentally collective and need help to find a group of belonging."
                   }
-        widgets = {"text":forms.RadioSelect()}
-
+        widget=RadioSelectButtonGroup
 
 
 

@@ -70,4 +70,6 @@ class Personal_Style(models.Model):
                         'main_path':main_path,
                         'main_tradition':main_tradRel}
         return profile_dict
-    
+
+    def get_absolute_url(self):
+        return reverse("results", kwargs={"pk": self.pk})

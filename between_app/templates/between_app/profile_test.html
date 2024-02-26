@@ -1,4 +1,4 @@
-{%extends 'learning_logs/base.html'%}
+{%extends 'between_app/_base.html'%}
 {% load django_bootstrap5 %}
 
 {% block page_header%}
@@ -10,10 +10,10 @@
 
 {%block content%}
 
-  <form action="{% url 'learning_logs:profile_test' %}" method='post'>
+  <form action="{% url 'between_app:profile_test' %}" method='post'>
     {% csrf_token %}
     {% bootstrap_form form %}
-    {% bootstrap_button button_type='submit' content= 'Submit Profile' %}
+    {% bootstrap_button button_type='submit' content='Submit Profile' %}
   </form>
 
 {% endblock content %}

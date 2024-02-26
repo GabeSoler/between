@@ -14,8 +14,8 @@
 
 <nav class='navbar navbar-expand-md navbar-light bg-light mb-4 boder'>
     <div class='container-fluid'>
-        <a class='navbar-brand' href="{% url 'learning_logs:index' %}">
-            Learning Log </a>
+        <a class='navbar-brand' href="{% url 'between_app:index' %}">
+            Therapy Profiles </a>
 
         <button class='navbar-toggler' type='button' data-bs-toggle='collapse'
         data-bs-target='#navbarCollapse' aria-controls='navbarCollapse'
@@ -27,8 +27,8 @@
         <div class='collapse navbar-collapse' id='navbarCollapse'>
             <ul class='navbar-nav me-auto mb2 mb-md-0'> <!-- 'me' refers to left, and 'ms' to right -->
                 <li class='nav-item'>
-                    <a class='nav-link' href="{% url 'learning_logs:topics' %}">
-                        Topics </a></li>
+                    <a class='nav-link' href="{% url 'between_app:results_list' %}">
+                        Tests </a></li>
             </ul><!-- End of links on left side of nvbar -->
             
             <!-- Account related links-->
@@ -39,9 +39,9 @@
                     </span></li>
                 {% else %}
                 <li class='nav-item'>
-                    <a class='nav-link' href="{% url 'accounts:register' %}">Register</a></li>
+                    <a class='nav-link' href="{% url 'accounts:signup'%}">Signup</a></li>
                 <li class='nav-item'>
-                    <a class='nav-link' href="{% url 'accounts:login'    %}">Log in</a></li>
+                    <a class='nav-link' href="{% url 'accounts:login' %}">Log in</a></li>
                 {% endif %}
             </ul> 
                 {% if user.is_authenticated %}
@@ -62,10 +62,12 @@
 
 <main class='container'>
     <div class='pb-2 mb-2 border-bottom'>
-        {% block page_header %}{% endblock page_header %} </div>
-        
+        <h1>{% block page_header %}{% endblock page_header %} </h1>
+    </div>
+
     <div> 
-        {% block content %} {% endblock content %}      </div>
+        {% block content %} {% endblock content %}      
+    </div>
     
     
 </main>

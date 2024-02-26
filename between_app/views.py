@@ -2,17 +2,29 @@ from django.shortcuts import render
 from .models import Personal_Style
 from django.views.generic import ListView, DetailView,TemplateView,CreateView
 from .forms import StyleForm
+from django.contrib.auth import get_user_model
+from django.http import HttpResponseRedirect
+from django.urls import reverse_lazy
 
 # Create your views here.
 
 class index_View(TemplateView):
-    template_name = 'index.html'
+    template_name = 'between_app/index.html'
 
 class takeTestView(CreateView):
     model = Personal_Style
-    form = StyleForm
-    template_name = 'profile_test'
-    success_url = '/form_list/'
+    form_class = StyleForm
+    template_name = 'between_app/profile_test.html'
+    success_url = 'between_app/results/'
+    def post(self, request, *args, **kwargs):
+            form = StyleForm(request.POST)
+            user = get_user_model().objects.get(pk=request.user.id)
+            if form.is_valid():
+                profile_test = form.save(commit=False)
+                profile_test.user = user
+                profile_test.save()
+                return HttpResponseRedirect(reverse_lazy('between_app:results', args=[profile_test.pk]))
+            return render(request, 'between_app/profile_test.html', {'form': form})
 
 class resultsList(ListView):
     model = Personal_Style
@@ -20,20 +32,15 @@ class resultsList(ListView):
 
 class formDetailView(DetailView):
     model = Personal_Style
-    context_object_name = 'style_detail'
-
+    context_object_name ='style_detail'
 
 
 class resultsView(DetailView):
     model = Personal_Style
-    template_name = 'results.html'
-    context_object_name = 'results'
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        style = Personal_Style.objects.get(pk=self.kwargs['pk'])
-        style = style.cal_Style
-        context["style"] = style["compassionate"]
-        return context
+    template_name = 'between_app/results.html'
+    context_object_name = 'style_detail'
+
+
 
     
 
