@@ -2,6 +2,7 @@
 
 from django.urls import path
 from . import views
+import uuid
 
 app_name = 'between_app'
 

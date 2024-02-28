@@ -2,8 +2,13 @@ from django.db import models
 from django.contrib.auth import get_user_model
 from .choices import Response_Choices
 from django.urls import reverse
+import uuid
+from django.utils.timezone import datetime
+
 
 class Personal_Style(models.Model):
+    created_at = models.DateTimeField(auto_now_add=True, editable=False)
+    updated_at = models.DateTimeField(auto_now=True, editable=False)
     user = models.ForeignKey(get_user_model(),on_delete=models.PROTECT)
     follower_1 = models.IntegerField(choices=Response_Choices.choices, default=1)
     propositive_1 = models.IntegerField(choices=Response_Choices.choices, default=1)
@@ -17,6 +22,10 @@ class Personal_Style(models.Model):
     development_1 = models.IntegerField(choices=Response_Choices.choices, default=1)
     individuation_1 = models.IntegerField(choices=Response_Choices.choices, default=1)
     belonging_1 = models.IntegerField(choices=Response_Choices.choices, default=1)
+    def __str__(self):
+        new_name = f"{self.user}:{self.updated_at}"
+        return new_name
+    
 
     @property
     def calPosition(self):

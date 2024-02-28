@@ -7,5 +7,5 @@ from .forms import CustomUserCreationForm
 
 class SignupPageView(CreateView):
     form_class = CustomUserCreationForm
-    success_url = reverse_lazy('login')
+    success_url = reverse_lazy('accounts:login')
     template_name = 'registration/signup.html'
