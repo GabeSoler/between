@@ -25,7 +25,6 @@ class StyleForm(forms.ModelForm):
                   "individuation_1":"I think that people are fundamentally individuals and need help to find their singularity.",
                   "belonging_1":"I think that people are fundamentally collective and need help to find a group of belonging."
                   }
-        widget=RadioSelectButtonGroup
 
 
 

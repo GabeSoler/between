@@ -35,6 +35,7 @@ INSTALLED_APPS = [
     'between_app',
     'learning_logs',
     'accounts.apps.AccountsConfig',
+    'pages',
 
     #third party apps
     'django_bootstrap5',

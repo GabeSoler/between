@@ -3,7 +3,6 @@ from django.contrib.auth import get_user_model
 from .choices import Response_Choices
 from django.urls import reverse
 import uuid
-from django.utils.timezone import datetime
 
 
 class Personal_Style(models.Model):
@@ -82,3 +81,24 @@ class Personal_Style(models.Model):
 
     def get_absolute_url(self):
         return reverse("results", kwargs={"pk": self.pk})
+    
+
+
+
+class ContentSection(models.Model):
+    """for the profile section, like personal profile, thinking I may expand to other sections"""
+    name = models.CharField(max_length=100)
+
+class ContentGroup(models.Model):
+    """for the group, like position, path, tradition"""
+    section = models.ForeignKey(ContentSection, on_delete=models.CASCADE)
+    name = models.CharField(max_length=100)
+
+class ContentProperties(models.Model):
+    """for the individual parts like compassionate, playful"""
+    group = models.ForeignKey(ContentGroup, on_delete=models.CASCADE)
+    name = models.CharField(max_length=200)
+    description = models.TextField(default='')
+    shadow = models.TextField(default='')
+    traditions = models.TextField(default='')
+    authors = models.TextField(default='')
