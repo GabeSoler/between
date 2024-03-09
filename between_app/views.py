@@ -6,7 +6,7 @@ from django.contrib.auth import get_user_model
 from django.http import HttpResponseRedirect
 from django.urls import reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.utils import timezone
+from .content import Content
 # Create your views here.
 
 #Start classes with caps
@@ -43,6 +43,7 @@ class resultsList(LoginRequiredMixin, ListView):
 class formDetailView(DetailView):
     model = Personal_Style
     context_object_name ='style_detail'
+    template_name = "personal_style_detail.html"
 
 
 class resultsView(DetailView):
@@ -52,11 +53,22 @@ class resultsView(DetailView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context["now"] = "timezone.now()"
+        position = Content.position
+        path = Content.path
+        tradition = Content.tradition
+        context["content"] = {'position':position,'path':path,'tradition':tradition}
         return context
 
 
-    
+class contentView(TemplateView):
+    template_name = 'between_app/content.html'
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        position = Content.position
+        path = Content.path
+        tradition = Content.tradition
+        context["content"] = {'position':position,'path':path,'tradition':tradition}
+        return context
 
     
 

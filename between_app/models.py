@@ -85,13 +85,11 @@ class Personal_Style(models.Model):
 
 
 
-class ContentSection(models.Model):
-    """for the profile section, like personal profile, thinking I may expand to other sections"""
-    name = models.CharField(max_length=100)
+
 
 class ContentGroup(models.Model):
     """for the group, like position, path, tradition"""
-    section = models.ForeignKey(ContentSection, on_delete=models.CASCADE)
+    section = models.ForeignKey(Personal_Style, on_delete=models.CASCADE)
     name = models.CharField(max_length=100)
 
 class ContentProperties(models.Model):

@@ -1,0 +1,20 @@
+{% extends 'between_app/_base.html' %}
+{%block title%} List {%endblock title %}
+
+{% block content %}
+<h1>Therapist Style: categories explained</h1>
+
+<p>A space to delve in more styles </p>
+{% for c, i in content.items %}
+<H1>{{c|title}}</H1>
+    {% for e, ee in i.items %}
+        <h2>{{e|title}}</h2>
+        <ul>
+        {%for a, aa in ee.items %}
+            <li><b><p>{{a|title}}</b>:{{aa}}</p></li>
+                {% endfor %}
+        </ul>
+    {% endfor %}
+
+{% endfor %}
+{% endblock content%}

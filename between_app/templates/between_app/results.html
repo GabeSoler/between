@@ -8,108 +8,45 @@
 {% block content %}
 
 
-<h3>Therapeutic Position:</h3>
-<p>Therapeutic positions are a way of conceptualising client work. We all move through positions in life. Different schools stress some positions more than others, and also the personality of the therapist makes them tend towards one position more often.</p>
-<p>My idea is that we need to learn from the different therapeutic positions to overcome their 'shadows', the parts that become hidden of our personality and tradition.</p>
+<h3>Therapeutic Styles:</h3>
+<p>Therapeutic styles are a way of conceptualising human difference. We all move through positions and roles in life, some being more familiar than others to us. Different cultures, families, subcultures stress some positions more than others.</p>
+<p>My idea is that we need to learn from the different positions to overcome their 'shadows', the parts that become hidden of our personality and tradition.</p>
 <p>Many new traditions are placed in-between positions, making the current landscape more fluid. This model aims to help therapist and clients to identify the positions where they feel more comfortable and which ones feel harder.</p>
 </br>
+{% comment %}Loop that searches through responses and assings a description {% endcomment %}
+{% for section_key, section_value in content.items %}
+<H1>{{section_key|title}}</H1>
+    {% for group_key, group_values in section_value.items %}
+        {% for results in style_detail.calProfile.values %}
+            {% if group_key == results %}
 
-<p>{{now}}</p>
+            <div class="card mb-3">
+                <div class="card-body">
+
+                <h2 class="card-title">{{group_key|title}}</h2>
+                
+                {%for properties_keys, properties_values in group_values.items %}
+                <p class="card-text"><b>{{properties_keys|title}}</b>:{{properties_values}}</p>
+                {% endfor %}
+
+                </div>
+            </div>
+            {% endif %}
+        {% endfor %}
+
+{% endfor %}
+{% endfor %}
 
 <div class="card mb-3">
-    <img src="..." class="card-img-top" alt="...">
     <div class="card-body">
-      <h5 class="card-title">Your Position: {{style_detail.calProfile.main_position|title}}</h5>
-  {% if style_detail.calProfile.main_position == 'compassionate' %}
-      <p class="card-text">The Compassionate position make us feel close to other's feelings and suffering, giving lots of space to express other people's feelings. In this position we follow the rhytm of the other person avoiging interruptions</p>
-      <p class="card-text">Shadow: When we polarise into it we may have difficulties with setting boundaries, which means that we tend to put others before ourselves.</p>
-      <p class="card-text">Traditions: Person Centred, Focusing, Relational Psychoanalisis.</p>    
-  {% elif style_detail.calProfile.main_position == 'playful' %}
-      <p class="card-text" >The Playful position makes us prone to propose activities that will help others to open up, and to experience new angles of themselves.</p>
-      <p class="card-text">Shadow: We sometimes get carried away by our playful position and can ennact unconcious dynamics from our unconcious or someone else's.</p>
-      <p class="card-text">Traditions: Gestalt, Psychodrama, Play Therapy, Art Therapies, Humanistic Therapies.</p>
-  {% elif style_detail.calProfile.main_position == 'changer' %}
-      <p class="card-text">The Changer position make us have a tookbox of activities to help others (and ourselves) to overcome their problems, using exercises, socratic dialogue, workbooks and information.</p>
-      <p class="card-text">Shadow: We sometimes get carried away and may have a tendency to control the relational space, forgeting to give space for other's individuality and deeper emotional connections.</p>
-      <p class="card-text">Traditions: Cognitive Behavioural (first and second generations).</p>
-   {% elif style_detail.calProfile.main_position == 'inquisitive' %}
-      <p class="card-text">The Inquisitive position invite us to listen carefully to find patterns and hidden truths in others dynamics. We try to go deeper into unknown areas of the self</p>
-      <p class="card-text">Shadow: We sometimes get too much into thinking complexities and we become detached and fixated into our tought process.</p>
-      <p class="card-text">Traditions: Psychoanalisis, psychodynamic Therapies, Deep Psychology, Jungian therapy.</p>           
-  {% else %}
-      <p class="card-text">Function error </p>
-  {% endif %}
-  <p>Scores: <emp>Compassionate: {{style_detail.calPosition.compassionate}}; Playful: {{style_detail.calPosition.playful}}; Inquisitive: {{style_detail.calPosition.inquisitive}}; Changer: {{style_detail.calPosition.changer}}.</emp></p>
-
+        <h3>Your scores</h3>
+<p class="card-text"><b>Compassionate:</b> {{style_detail.calPosition.compassionate}}; <b>Playful:</b> {{style_detail.calPosition.playful}}; <b>Inquisitive:</b> {{style_detail.calPosition.inquisitive}}; <b>Changer:</b> {{style_detail.calPosition.changer}}.</p>
+<p class="card-text"><b>Dreamer:</b> {{style_detail.calPath.dreamer}}; <b>Sage:</b> {{style_detail.calPath.sage}}; <b>Carer:</b> {{style_detail.calPath.carer}}; <b>Explorer:</b> {{style_detail.calPath.explorer}}.</p>
+<p class="card-text"><b>Artist:</b> {{style_detail.calTradition.artist}}; <b>Warrior:</b> {{style_detail.calTradition.warrior}}; <b>Lider:</b> {{style_detail.calTradition.lider}}; <b>Coach:</b> {{style_detail.calTradition.coach}}.</p>
     </div>
+</div>
 
-    </div>
-
-<h3>Personal Path:</h3>
-    <p>Paths is a second group of differentiations that show us where our passion lays. It helps to see deeper into ourselves.</p>
-    <p>We have different values and ways of growing, and this distinctions helps me to see where someone's deeper motivations are placed.</p>
-    <p>This paths can be mixed up, and we benefit by learning from the different angles of the other paths. Sometimes we may change where our curiosity is leading us over time.</p>
-</br>
-   
-    <div class="card mb-3">
-        <img src="..." class="card-img-top" alt="...">
-        <div class="card-body">
-          <h5 class="card-title">Your Path: {{style_detail.calProfile.main_path|title}}</h5>
-          <h3>Your Path: {{style_detail.calProfile.main_path|title}}</h3>
-    {% if style_detail.calProfile.main_path == 'dreamer' %}
-        <p class='card-text'>Dreamers are usually ethereal and like metaphors, dreams, art in general. They tend to prioritise inconcious dynamics, seeing that any deep change happens in the changing sands of the dream-like experience</p>
-        <p class='card-text'>Shadow: Dreamers can go deep into the unconcious and lose their sense of reality, putting too much emphasis into spiritual realms.</p>
-        <p class='card-text'>Traditions: Junguian analysis, dream analysis, Psychoanalysis (object relations).</p> 
-    {% elif style_detail.calProfile.main_path == 'sage' %}
-        <p class='card-text'>Sages like abstractions and to know every detail, they feel that categorising and clasifying experience will lead to a clearer mind.</p>
-        <p class='card-text'>Shadow: the need to analysie everything may become obsessive, and they may get trapped into the work of building a model that may solve all problems</p>
-        <p class='card-text'>Traditions: CBT, Psychoanalysis (Lacan, Bion), Integral and Integrative approaches.    
-    {% elif style_detail.calProfile.main_path == 'carer' %}
-        <p class='card-text'>Carers are always seeing what other people, also plants and animals, may be feeling or needing. Carers are connected to life and life cycles. They are careful and tender towards the world</p>
-        <p class='card-text'>Shadow: their closeness to suffering makes them forget their capacity to fight for themselves, becoming submissive and passive.</p>
-        <p class='card-text'>Traditions: Person Centred, Relational Psychoanalysis, humanistic approaches.</p>
-    {% elif style_detail.calProfile.main_path == 'explorer' %}
-        <p class='card-text'>Explorers want to find something in the world, they want knowlege, they want experience. They are motivated and like moving forward, thinking that is the way knoledge grows.</p>
-        <p class='card-text'>Shadow: they may become extremely passionate for their quest for knowledge and lose their natural rythms, in a constant search for something better </P>    
-        <p class='card-text'>Traditions: CBT, Gestalt, experiencial approaches.</p>    
-    {% else %}
-        <p class='card-text'>Function error </p>
-    {% endif %}
-    <p>Scores: <emp>Dreamer: {{style_detail.calPath.dreamer}}; Sage: {{style_detail.calPath.sage}}; Carer: {{style_detail.calPath.carer}}; Explorer: {{style_detail.calPath.explorer}}. </emp></p>
-
-        </div>
-      </div>
-
-<h3>Your relationship with traditions</h3>
-<p>I propose this area to help us think about how we relate to other and ourselves. It show us where our centre is, personal or collective. </p>
-      
-      <div class="card mb-3">
-        <img src="..." class="card-img-top" alt="...">
-        <div class="card-body">
-            <h5 class="card-title">Your Relationship with tradition: {{style_detail.calProfile.main_tradition|title}}</h5>
-    {% if style_detail.calProfile.main_tradition == 'artist' %}
-    <p class='card-text'>People in an artist position are usually sensual, explorative, aiming to feel and experience as much as they can</p>
-    <p class='card-text'>Shadow: becoming too close to pleasure in experiences can lead to addiction, distaincing themselves from others and other types of pleasure</p>
-    {% elif style_detail.calProfile.main_tradition == 'warrior' %}
-    <p class='card-text'>People in a warrior position are sharp and determined, doing effort to be better, improve and conquer any challenge</p>
-    <p class='card-text'>Shadow: becoming too obssesed with personal growth they can stay in a fight of flyght possition and become dettached from human contact</p>
-    {% elif style_detail.calProfile.main_tradition == 'lider' %}
-    <p class='card-text'>People in the lider position are more gregarious and are looking for a lider, or wanting to be one. They tend to move with their collective and would like to arrive all together to any goal</p>
-    <p class='card-text'>Shadow: the lider can guide passionately but also can create a cult dynamic where there is not differenciations between the mind of the lider and the individuals of the group.</p>
-    {% elif style_detail.calProfile.main_tradition == 'coach' %}
-    <p class='card-text'>People in the coach position are usually looking for a coach or wanting to be one. They like to have someone who knows what they are doing and can guide them step by step.</p>
-    <p class='card-text'>Shadow: the relationship with the coach can become authoritarian, without spcace for expression and with the coach becoming a despot who knows best than anyone.</p>
-    {% else %}
-    <p class='card-text'>Function error</p>
-    {% endif %}
-    <p>Scores: <emp>Artist: {{style_detail.calTradition.artist}}; Warrior: {{style_detail.calTradition.warrior}}; Lider: {{style_detail.calTradition.lider}}; Coach: {{style_detail.calTradition.coach}}. </emp></p>
-
-        </div>
-      </div>
-
-
-</br>
-<a href={%url 'between_app:personal_style_detail' style_detail.pk %}>The scores</a>
+<a href={%url 'between_app:content' %}>Explore the other styles</a>
 
 
 {% endblock content%}
