@@ -7,7 +7,7 @@
 <p>A space to think about your therapeutic style.</p>
 <ul>
 {%for item in style_list %}
-    <li><a href={% url 'between_app:results' item.pk %}>{{item.user}}'s Therapist Profile: {{item.updated_at|date:'D,m,Y'}}</a></li>
+    <li><a href={% url 'between_app:results' item.pk %}>{{item.user}}'s Therapist Profile: {{item.updated_at|date:'d,m,Y'}}</a></li>
 {% endfor%}
 </ul>
 {% endblock content%}

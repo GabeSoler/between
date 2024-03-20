@@ -21,10 +21,10 @@ class Personal_Style(models.Model):
     development_1 = models.IntegerField(choices=Response_Choices.choices, default=1)
     individuation_1 = models.IntegerField(choices=Response_Choices.choices, default=1)
     belonging_1 = models.IntegerField(choices=Response_Choices.choices, default=1)
+    
     def __str__(self):
         new_name = f"{self.user}:{self.updated_at}"
         return new_name
-    
 
     @property
     def calPosition(self):
@@ -80,7 +80,7 @@ class Personal_Style(models.Model):
         return profile_dict
 
     def get_absolute_url(self):
-        return reverse("results", kwargs={"pk": self.pk})
+        return reverse("between_app:results", kwargs={"pk": self.pk})
     
 
 

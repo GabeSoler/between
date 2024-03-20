@@ -16,8 +16,8 @@ class PersonalStyleTests(TestCase):
         )
 
         cls.profile = Personal_Style.objects.create(
-                created_at = timezone.now(),
-                updated_at = timezone.now(),
+                created_at = "2024-03-14 11:14:07.738883+00:00",
+                updated_at = "2024-03-14 11:14:07.738883+00:00",
                 user = cls.user,
                 follower_1 = 1,
                 propositive_1 = 2,
@@ -35,12 +35,12 @@ class PersonalStyleTests(TestCase):
     def test_Profile_creation(self):
         self.assertEqual(f"{self.profile.follower_1}",'1')
         self.assertEqual(f"{self.profile.containment_1}",'1')
-        self.assertEqual(f"{self.profile.created_at}",timezone.now())
+        self.assertEqual(f"{self.profile.created_at}","2024-03-14 11:14:07.738883+00:00")
 
     def test_profile_list_view(self):
-        response = self.client.get(reverse('results_list'))
+        response = self.client.get(reverse('between_app:results_list'), follow=True)
         self.assertEqual(response.status_code,200)
-        self.assertContains(response,timezone.now())
+        self.assertContains(response,"14,03,2024")
         self.assertTemplateUsed(response,'between_app/personalstyle_list.html')
     
     def test_profile_detail_view(self):

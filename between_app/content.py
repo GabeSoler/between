@@ -11,7 +11,7 @@ class Content():
         },
         "playful" : {
         "description" : "The Playful position invite us to create activities that can mobilise ours and the others emotions, so we can process them.",
-        "shadow" : "When we polarise into it we may have problems with enactments, risking our unconcious to engangle and bring forth old dynamics.",
+        "shadow" : "When we polarise into it we may have problems with enactments, risking our unconcious to engangle and bring forth primitive dynamics.",
         "traditions" : "Gestalt, Psychodrama, Play Therapy, Art therapies.",
         "authors" : "Perls, Moreno, Winnicott"
         },
@@ -31,8 +31,8 @@ class Content():
 
     path = {
         "dreamer" : {
-        "description" : "The Dreamer path is an invitation towards the magic of poetry, metaphor, art, and daydreaming. This path feels deeply and believes the deepths of ourselves happen in dreamind.",
-        "shadow" : "When we polarise into it we may find ourselves over indulging in psychodelic activities and delirius thinking.",
+        "description" : "The Dreamer path is an invitation towards the magic of poetry, metaphor, art, and daydreaming. This path feels deeply and believes dream brings deeper truths.",
+        "shadow" : "When we polarise into it we may find ourselves forgeting the concrete world over fantasy.",
         "traditions" : "Jungian analysis, Psychoanalysis.",
         "authors" : "Jung"
     },
@@ -72,7 +72,7 @@ class Content():
     },
         "lider" : {
         "description" : "The Lider has a group approach where they want to find an inspiration that may take them and others to a better place.",
-        "shadow" : "When we polarise into it we may become too embedded in our group ideals and develop a cult like behaviour, forgeting individuality and rejecting the other's opinions.",
+        "shadow" : "When we polarise into it we may become too embedded in our group ideals and develop a cult like behaviour, rejecting external opinions.",
         "traditions" : "Confesional therapies",
         "authors" : "Freud when making seven rings"
         },
@@ -83,3 +83,39 @@ class Content():
         "authors" : "Beck, Ellis, Opazo, Wilber" 
     }
     }
+
+
+"""
+Function to add content to the migration's 'run_python'. 
+first create a custom migration, then pass the function. I do not know why it failed before, it created it but logged error.
+
+def create_content():
+    try: 
+        ContentGroup = apps.get_model('between_app', 'ContentGroup')
+        ContentProperties = apps.get_model('between_app', 'ContentProperties')
+        Personal_Style = apps.get_model('between_app', 'Personal_Style')
+    except: LookupError
+
+    Position = ContentGroup.objects.create(name='position',section=Personal_Style)
+    Path = ContentGroup.objects.create(name='path',section=Personal_Style)
+    Tradition = ContentGroup.objects.create(name='tradition',section=Personal_Style)
+
+    add = {Position:Content.position,
+         Path:Content.path,
+         Tradition:Content.tradition}
+    for a, i in add.values:
+       ContentProperties.objects.create(
+            group = a,
+            name = i['name'],
+            description = i['description'],
+            shadow = i['shadow'],
+            traditions = i['traditions'],
+            authors = i['authors'],
+            )
+
+
+
+
+
+
+"""
