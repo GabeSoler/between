@@ -21,7 +21,13 @@ class takeTestView(CreateView):
 
     def post(self, request, *args, **kwargs):
         form = StyleForm(request.POST)
-        user = get_user_model().objects.get(pk=request.user.id)
+        try:
+            user = get_user_model().objects.get(pk=request.user.id)
+        except:
+            try:
+                user = get_user_model().objects.get(username='guest')
+            except:
+                user = get_user_model().objects.create_user(email='guest@guest.guest',username='guest' )
         if form.is_valid():
             profile_test = form.save(commit=False)
             profile_test.user = user
