@@ -24,7 +24,7 @@
         {% for results in style_detail.calProfile.values %}
             {% if group_key == results %}
 
-            <div class="card mb-3">
+            <div class="card bg-active mb-3">
                 <div class="card-body">
 
                 <h2 class="card-title">{{group_key|title}}</h2>
@@ -52,10 +52,12 @@
 <p class="card-text"><b>Compassionate:</b> {{style_detail.calPosition.compassionate}}; <b>Playful:</b> {{style_detail.calPosition.playful}}; <b>Inquisitive:</b> {{style_detail.calPosition.inquisitive}}; <b>Changer:</b> {{style_detail.calPosition.changer}}.</p>
 <p class="card-text"><b>Dreamer:</b> {{style_detail.calPath.dreamer}}; <b>Sage:</b> {{style_detail.calPath.sage}}; <b>Carer:</b> {{style_detail.calPath.carer}}; <b>Explorer:</b> {{style_detail.calPath.explorer}}.</p>
 <p class="card-text"><b>Artist:</b> {{style_detail.calTradition.artist}}; <b>Warrior:</b> {{style_detail.calTradition.warrior}}; <b>Lider:</b> {{style_detail.calTradition.lider}}; <b>Coach:</b> {{style_detail.calTradition.coach}}.</p>
-    </div>
+<a href={%url 'between_app:content' %}>Explore the other styles</a>
+    
 </div>
 
-<a href={%url 'between_app:content' %}>Explore the other styles</a>
+</div>
+
 
 
 {% endblock content%}
