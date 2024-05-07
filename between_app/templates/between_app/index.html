@@ -1,5 +1,5 @@
 {% extends 'between_app/_base.html' %}
-
+{% load static %}
 {%block title%}PsyProfile{%endblock title%}
 
 {%block page_header%}Take the test to see your therapeutic style {%endblock page_header%}
@@ -11,7 +11,6 @@
 <p>They aim to move between the old traditions, in a context where therapist and clients are learning from multiple points of view and mixing ideas and practices from many sources becomes the new norm.</p>
 
 <a href={% url 'between_app:profile_test' %}>Take the test </a>
-
 
 
 {%endblock content%}

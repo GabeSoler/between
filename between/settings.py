@@ -129,8 +129,8 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
-STATIC_URL = 'static/'
-STATIC_ROOT = "static/" #change when knowing the reall address, plus change url patterns
+STATIC_URL = '.static/'
+STATIC_ROOT = ".static/" #change when knowing the reall address, plus change url patterns
 
 
 MEDIA_URL = 'media/'
@@ -150,8 +150,8 @@ LOGIN_URL = 'accounts:login'
 AUTH_USER_MODEL = 'accounts.CustomUser'
 
 
-BOOTSTRAP5 = {
-    "theme_url": 'static/theme/css/bootstrap.css',
-}
+
+
+
 
 

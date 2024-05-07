@@ -2,11 +2,15 @@
 
 {% block title%} Results {% endblock title %}
 
+{% load static %}
+
+
+
 {%block page_header %}<h1>Results</h1> {%endblock page_header%}
 
 
 {% block content %}
-
+<link rel="stylesheet" href="{% static 'between_app/css/image.css' %}">
 
 <h3>Therapeutic Styles:</h3>
 <p>Therapeutic styles are a way of conceptualising human difference. We all move through positions and roles in life, some being more familiar than others to us. Different cultures, families, subcultures stress some positions more than others.</p>
@@ -26,7 +30,12 @@
                 <h2 class="card-title">{{group_key|title}}</h2>
                 
                 {%for properties_keys, properties_values in group_values.items %}
-                <p class="card-text"><b>{{properties_keys|title}}</b>:{{properties_values}}</p>
+                
+                {% if properties_keys == 'image' %}
+                <image src="{% static properties_values %}" class='card-img-right posImage'>
+                    {% else %}
+                    <p class="card-text posText"><b>{{properties_keys|title}}</b>:{{properties_values}}</p>
+                    {% endif %}
                 {% endfor %}
 
                 </div>

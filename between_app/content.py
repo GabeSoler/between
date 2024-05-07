@@ -4,28 +4,37 @@
 class Content():
     position = {
         "compassionate" : {
+        "image" : "between_app/images/compasionate.jpg",
+
         "description" : "The Compassionate position make us feel close to other's feelings and suffering, giving lots of space to express other people's feelings. In this position we follow the rhytm of the other person avoiging interruptions",
         "shadow" : "When we polarise into it we may have difficulties with setting boundaries, which means that we tend to put others before ourselves.",
         "traditions" : "Person Centred, Focusing, Relational Psychoanalisis.",
-        "authors" : 'Rogers, Jung, Stolorow, Orange'
+        "authors" : 'Rogers, Jung, Stolorow, Orange',
+
         },
         "playful" : {
+        "image" : "between_app/images/playful.jpg",
+
         "description" : "The Playful position invite us to create activities that can mobilise ours and the others emotions, so we can process them.",
         "shadow" : "When we polarise into it we may have problems with enactments, risking our unconcious to engangle and bring forth primitive dynamics.",
         "traditions" : "Gestalt, Psychodrama, Play Therapy, Art therapies.",
-        "authors" : "Perls, Moreno, Winnicott"
+        "authors" : "Perls, Moreno, Winnicott",
         },
         "inquisitive" : {
+        "image" : "between_app/images/inquisitive.jpg",
+
         "description" : "The Inquisitive position invite us to analyse and collect information to find clues of deeper conflicts and underlying dynamics.",
         "shadow" : "When we polarise into it we may find ourselves over-thinking and detached from the present emotional dynamic.",
         "traditions" : "Traditional Psychoanalysis, Lacanian psychoanalysis, Jungian analysis.",
-        "authors" : "Freud, Klein, Bion, Kernberg"    
+        "authors" : "Freud, Klein, Bion, Kernberg",
     },
         "changer" : {
+        "image" : "between_app/images/changer.jpg",
+
         "description" : "The Changer position invite us to encurage change in our clients by directly finding solutions, new behaviours, or exercises.",
         "shadow" : "When we polarise into it we may become controlling, not giving enough space for the other to express their deeper feelings.",
         "traditions" : "Cognitive Behavioural, Integrative approaches",
-        "authors" : "Beck, Elis"    
+        "authors" : "Beck, Elis",
     }
     }
 
