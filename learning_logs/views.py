@@ -4,6 +4,7 @@ from .models import Topic,Entry
 from .forms import TopicForm,EntryForm
 from django.contrib.auth.decorators import login_required
 from django.http import Http404
+import uuid
 
 #Functions
 def check_topic_owner(topic_owner,request_user):
@@ -11,9 +12,13 @@ def check_topic_owner(topic_owner,request_user):
         raise Http404
 
 #Views
+
+@login_required
 def index(request):
-    """the home page for Learning Log."""
-    return render(request,'learning_logs/index.html')
+    """show all topics"""
+    topics = Topic.objects.filter(owner=request.user).order_by('date_added')
+    context = {'topics':topics}
+    return render(request,'learning_logs/index.html',context)
 
 @login_required
 def topics(request):
@@ -43,7 +48,7 @@ def new_topic(request):
         form = TopicForm(data=request.POST)
         if form.is_valid():
             new_topic = form.save(commit=False)
-            new_topic.owner = request.user 
+            new_topic.owner = request.user
             new_topic.save()
             return redirect('learning_logs:topics')
     #display a blank or invalid form
@@ -91,3 +96,20 @@ def edit_entry(request,entry_id):
 
 
 
+@login_required
+def afterQuestions(request):
+    """add new topic"""
+    if request.method !='POST':
+        #no data submitted; create a blank form
+        form = TopicForm()
+    else:
+        #POST data submitted; process data
+        form = TopicForm(data=request.POST)
+        if form.is_valid():
+            new_topic = form.save(commit=False)
+            new_topic.owner = request.user 
+            new_topic.save()
+            return redirect('learning_logs:index')
+    #display a blank or invalid form
+    context = {'form':form}
+    return render(request,'learning_logs/afterQuestions.html',context)

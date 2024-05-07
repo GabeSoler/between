@@ -1,12 +1,15 @@
 {% extends 'between_app/_base.html' %}
 {% block content%}
+{% load django_bootstrap5 %}
 <p>
     <a href= "{%url 'learning_logs:topic' topic.id%}">{{topic}}</a></p>
 <p>Add new entry</p>
 <form action="{%url 'learning_logs:new_entry' topic.id%}" method='post'>
     {%csrf_token%}
-    {{form.as_div}}
-    <button name='submit'>Add entry</button>
+    {% bootstrap_form form %}
+    {% bootstrap_button button_type='submit' content='New Entry' %}
 </form>
 
 {%endblock content%}
+
+
