@@ -15,7 +15,7 @@
 <nav class="navbar navbar-expand-lg bg-primary" data-bs-theme="dark">
     <div class='container-fluid'>
         <a class='navbar-brand' href="{% url 'between_app:index' %}">
-            Therapy Profiles </a>
+            CreaTherapy</a>
 
         <button class='navbar-toggler' type='button' data-bs-toggle='collapse'
         data-bs-target='#navbarCollapse' aria-controls='navbarCollapse'
@@ -28,10 +28,13 @@
             <ul class='navbar-nav me-auto mb2 mb-md-0'> <!-- 'me' refers to left, and 'ms' to right -->
                 <li class='nav-item'>
                     <a class='nav-link' href="{% url 'between_app:results_list' %}">
-                        My Tests </a></li>
+                        My Tests</a></li>
                 <li class='nav-item'>
                     <a class='nav-link' href="{% url 'learning_logs:index' %}">
-                        My Journal </a></li>
+                        My Journal</a></li>
+                <li class='nav-item'>
+                    <a class='nav-link' href="{% url 'pages:index' %}">
+                        Theory</a></li>
             </ul><!-- End of links on left side of nvbar -->
             
             <!-- Account related links-->
@@ -55,7 +58,6 @@
                 {% endif %}
              <!-- End of account related links -->
 
-
         </div> <!-- Closes collapsible parts of navbar -->
     </div><!-- closes navbar container-->
 </nav><!-- end of navbar -->
@@ -63,9 +65,13 @@
 <!-- Main section -->
 
 <main class='container'>
-    <div class='pb-2 mb-2 border-bottom'>
-        <h1>{% block page_header %}{% endblock page_header %} </h1>
-    </div>
+      
+    <!-- As a heading with display -->
+
+    <h1 class="display-6">{% block page_header %}{% endblock page_header %}</h1>
+
+
+
 
     <div> 
         {% block content %} {% endblock content %}      
