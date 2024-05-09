@@ -40,6 +40,7 @@ INSTALLED_APPS = [
 
     #third party apps
     'django_bootstrap5',
+    'floppyforms',
 
 
 #defoult apps

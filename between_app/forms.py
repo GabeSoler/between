@@ -1,6 +1,6 @@
 from django import forms
-from .models import Personal_Style
-from django_bootstrap5.widgets import RadioSelectButtonGroup
+from .models import Personal_Style,BigTraditions,Components
+import floppyforms.__future__ as forms
 
 
 
@@ -26,5 +26,60 @@ class StyleForm(forms.ModelForm):
                   "belonging_1":"I think that people are fundamentally collective and need help to find a group of belonging."
                   }
 
+class ComponentsForm(forms.ModelForm):
+    class Meta:
+        model= Components
+        widget = forms.RangeInput()
+        fields = ("body","feelings","expression","thoughts","narrative",
+                 "dreaming","re_prog","subliminal","subparts","spiritual",
+                 "relational","systems","setup","transOb","family",
+                 "antropology","arts","politics","philosophy","worldview",
+                 "individuation","sex_gender","values","belonging","roles",)
+        labels = {
+            "body":"Use of body techniques for the therapeutic process",
+            "feelings":"Use of feelings techniques for the therepeutic process",
+            "expression":"Use of expression techniques for the therepeutic process",
+            "thoughts":"Use of thoughts thechniques for the therepeutic process",
+            "narrative":"Use of narrative techniques for the therepeutic process",
+
+            "dreaming":"Use of narrative techniques for the therepeutic process",
+            "re_prog":"Use of reprograming techniques (re-associations and repetitions) for the therapeutic process",
+            "subliminal":"Use of subliminal techniques for the therapeutic process",
+            "subparts":"Use of sub-parts techniques for the therapeutic process",
+            "spiritual":"Use of spiritual techniques for the therapeutic process",
+
+            "relational":"Use of relational techniques for the therapeutic process",
+            "systems":"Use of systemic and cybernetic techniques for the therapeutic process",
+            "setup":"Use of setup techniques (including reinforcements and punishments) for the therapeutic process",
+            "transOb":"Use of transitional objects techniques (objects between fantasy and reality) for the therapeutic process",
+            "family":"Use of family dynamics techniques for the therapeutic process",
+
+            "antropology":"Use of antropological knoledge (understanding of culture from the inside of different groups) for the therapeutic process",
+            "arts":"Use of arts techniques for the therapeutic process",
+            "politics":"Use of knoledge about politics and power dynamics techniques for the therapeutic process",
+            "philosophy":"Use of philosophy knoledge (understanding different conceptual ontologies) for the therapeutic process",
+            "worldview":"Use of knoledge about different worldviews (including religions) for the therapeutic process",
+
+            "individuation":"Use of the individuation process for the therapeutic process",
+            "sex_gender":"Use of understanding of the dynamics of sex and gender for the therapeutic process",
+            "values":"Use of understanding of the role of values and value systems for the therapeutic process",
+            "belonging":"Use of understanding of belonging and groups pertenence for the therapeutic process",
+            "roles":"Use of understanding of roles in groups and society for the therapeutic process",
+    }
+        def get_context(self, name, value, attrs):
+            ctx = super(ComponentsForm, self).get_context(name, value, attrs)
+            ctx['attrs']['class'] = "form-range"
+            return ctx
+
+class BigTradForm(forms.ModelForm):
+    class Meta:
+        model= BigTraditions
+        fields = ("hemeneutic","phenomenological","cybernetic","spiritual", "scientific")
+        labels = {"hemeneutic" : "I believe we can understan hiden patterns in the words and comunications of others and we make inferences from it",
+                  "phenomenological" : "I believe we understand beter by exploring the experience of the other and our own as it presents to us",
+                  "cybernetic" : "I believe we can describe operations and processes inside and in the context of others, exploring parallels between mind and context",
+                  "spiritual" : "I believe there are biger forces inside that guide the process and we need to create a space for that to emerge more fluently",
+                  "scientific" : "I believe we need to fragment phenomenons in their parts and find reliable knoledge to explain each of the parts"
+        }
 
 

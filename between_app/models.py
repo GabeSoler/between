@@ -3,6 +3,7 @@ from django.contrib.auth import get_user_model
 from .choices import Response_Choices
 from django.urls import reverse
 import uuid
+import floppyforms.__future__ as forms
 
 
 class Personal_Style(models.Model):
@@ -84,6 +85,48 @@ class Personal_Style(models.Model):
     def get_absolute_url(self):
         return reverse("between_app:results", kwargs={"pk": self.pk})
     
+
+class Components(models.Model):
+    """therapeutic components"""
+    #Subjective
+    body = models.IntegerField(default=0)
+    feelings = models.IntegerField(default=0)
+    expression = models.IntegerField(default=0)
+    thoughts = models.IntegerField(default=0)
+    narrative = models.IntegerField(default=0)
+    #extended awareness
+    dreaming = models.IntegerField(default=0)
+    re_prog = models.IntegerField(default=0)
+    subliminal = models.IntegerField(default=0)
+    subparts = models.IntegerField(default=0)
+    spiritual = models.IntegerField(default=0)
+    #Context work
+    relational = models.IntegerField(default=0)
+    systems = models.IntegerField(default=0)
+    setup = models.IntegerField(default=0)
+    transOb = models.IntegerField(default=0)
+    family = models.IntegerField(default=0)
+    #Culture
+    antropology = models.IntegerField(default=0)
+    arts = models.IntegerField(default=0)
+    politics = models.IntegerField(default=0)
+    philosophy = models.IntegerField(default=0)
+    worldview = models.IntegerField(default=0)
+    #identity
+    individuation = models.IntegerField(default=0)
+    sex_gender = models.IntegerField(default=0)
+    values = models.IntegerField(default=0)
+    belonging = models.IntegerField(default=0)
+    roles = models.IntegerField(default=0)
+    
+
+class BigTraditions(models.Model):
+    hemeneutic = models.IntegerField(choices=Response_Choices.choices, default=1)
+    phenomenological = models.IntegerField(choices=Response_Choices.choices, default=1)
+    cybernetic = models.IntegerField(choices=Response_Choices.choices, default=1)
+    spiritual = models.IntegerField(choices=Response_Choices.choices, default=1)
+    scientific = models.IntegerField(choices=Response_Choices.choices, default=1)
+
 
 
 
