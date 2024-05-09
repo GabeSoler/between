@@ -88,6 +88,7 @@ class Personal_Style(models.Model):
 
 class Components(models.Model):
     """therapeutic components"""
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     #Subjective
     body = models.IntegerField(default=0)
     feelings = models.IntegerField(default=0)
@@ -121,6 +122,8 @@ class Components(models.Model):
     
 
 class BigTraditions(models.Model):
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    #Big five traditions
     hemeneutic = models.IntegerField(choices=Response_Choices.choices, default=1)
     phenomenological = models.IntegerField(choices=Response_Choices.choices, default=1)
     cybernetic = models.IntegerField(choices=Response_Choices.choices, default=1)
