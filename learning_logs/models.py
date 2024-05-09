@@ -32,6 +32,7 @@ class Entry(models.Model):
 
 class AfterJournal(models.Model):
     """A log of reflections after therapy sessions"""
+    owner = models.ForeignKey(get_user_model(),on_delete=models.CASCADE)
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     question = models.CharField(max_length=500, default=None)
     text = models.TextField(default="")

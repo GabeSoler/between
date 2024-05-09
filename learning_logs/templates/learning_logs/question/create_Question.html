@@ -4,25 +4,26 @@
 {% load static %}
 {% load django_bootstrap5 %}
   <h2> After Session Questions </h2>
-    <p>A space to reflect after a therapy session, for therapist and clients journaling</p>
+  <a href={% url 'learning_logs:after_answer_date' %}>After session questions</a>
+
+    <p>Press the button to get an after session prompt</p>
   <div class="card mb-3 bg-light">
     <div class="card-body">
   <div id='questionWidget'>
     <p class='card-text' id='text'><i>Get a question pressing bellow</i></p>
-    {% bootstrap_button class='btn button-primary' id='addTopic' onclick='inputQuestion()' content='Add to Topic' %}
-    {% bootstrap_button class='btn button-primary' id='getQuestion' onclick='printQuestion()' content='Get New Questions' %}
+    {% bootstrap_button class='btn button-primary' id='getQuestion' onclick='printQuestion()' content='Get New Questions' %}    
+    {% bootstrap_button class='btn button-primary' id='addTopic' onclick='inputQuestion()' content='Add as Title' %}
   </div>
     </div> 
   </div>
 </br>
-  <form action="{% url 'learning_logs:afterQuestions' %}" method='post'>
+  <form action="{% url 'learning_logs:new_question' %}" method='post'>
     {% csrf_token %}
     {% bootstrap_form form %}
     {% bootstrap_button button_type='submit' content='Create Topic' %}
   </form>
 
 
-  <script src="{% static 'question-widget.js' %}"></script>
 
 
 <script>
@@ -60,7 +61,7 @@ const afterQuestions = [
 
 // Create object with a div id
 var questionDiv = document.getElementById("questionWidget").firstChild;
-const inputDiv = document.getElementById("id_text");
+const inputDiv = document.getElementById("id_question");
 
 
 // Create a function that calls a random element of the array
@@ -77,10 +78,6 @@ function printQuestion() {
 function inputQuestion() {
     inputDiv.value = questionDiv.textContent;
   }
-
-
-
-
 
 </script>
 
