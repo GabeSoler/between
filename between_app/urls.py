@@ -14,6 +14,13 @@ urlpatterns = [
     path('profile_test/',views.takeTestView.as_view(),name='profile_test'),
     path('content/',views.contentView.as_view(),name='content'),
 
+#Compnents
+
+    path('components_test/',views.takeComponentstView.as_view(),name='components_test'),
+
+#Traditions
+    path('traditions_test/',views.takeTraditionsView.as_view(),name='traditions_test'),
+
 
     ]
 

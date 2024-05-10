@@ -6,7 +6,7 @@ class Content():
         "compassionate" : {
         "image" : "between_app/images/compasionate.jpg",
 
-        "description" : "The Compassionate position make us feel close to other's feelings and suffering, giving lots of space to express other people's feelings. In this position we follow the rhytm of the other person avoiging interruptions",
+        "description" : "The Compassionate position make us feel close to other's feelings and suffering, giving lots of space to express other people's experience. In this position we follow the rhytm of the other person avoiging interruptions",
         "shadow" : "When we polarise into it we may have difficulties with setting boundaries, which means that we tend to put others before ourselves.",
         "traditions" : "Person Centred, Focusing, Relational Psychoanalisis.",
         "authors" : 'Rogers, Jung, Stolorow, Orange',
@@ -15,7 +15,7 @@ class Content():
         "playful" : {
         "image" : "between_app/images/playful.jpg",
 
-        "description" : "The Playful position invite us to create activities that can mobilise ours and the others emotions, so we can process them.",
+        "description" : "The Playful position invite us to create activities that can mobilise emotions, so we can process them.",
         "shadow" : "When we polarise into it we may have problems with enactments, risking our unconcious to engangle and bring forth primitive dynamics.",
         "traditions" : "Gestalt, Psychodrama, Play Therapy, Art therapies.",
         "authors" : "Perls, Moreno, Winnicott",
@@ -42,7 +42,7 @@ class Content():
         "dreamer" : {
         "image" : "between_app/images/dreamer.jpg",
 
-        "description" : "The Dreamer path is an invitation towards the magic of poetry, metaphor, art, and daydreaming. This path feels deeply and believes dream brings deeper truths.",
+        "description" : "The Dreamer path is an invitation towards the magic of poetry, metaphor, art, and daydreaming. People in this path feels deeply and believes dream brings deeper truths.",
         "shadow" : "When we polarise into it we may find ourselves forgeting the concrete world over fantasy.",
         "traditions" : "Jungian analysis, Psychoanalysis.",
         "authors" : "Jung"

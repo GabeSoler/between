@@ -2,18 +2,16 @@
 {% load django_bootstrap5 %}
 
 {% block page_header%}
-<h2> New Profile test </h2>
-
+<h2>Components</h2>
 {% endblock page_header%}
-
-
-
 {%block content%}
-
-  <form action="{% url 'between_app:profile_test' %}" method='post'>
+<p> Please slide an approximation of how much you identify with these areas of work</p>
+<div class="card bg-active p-2 mb-3">
+  <form action="{% url 'between_app:components_test' %}" method='post'>
     {% csrf_token %}
     {% bootstrap_form form %}
     {% bootstrap_button button_type='submit' content='Submit Profile' %}
-  </form>
+  </form></div>
 
+ <script></script> 
 {% endblock content %}

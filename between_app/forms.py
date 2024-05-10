@@ -3,6 +3,21 @@ from .models import Personal_Style,BigTraditions,Components
 import floppyforms.__future__ as forms
 
 
+def applyWidget(fields_list:list,widget_name:object):
+    """for filling same widget in a group of fields"""
+    widget_dic = {}
+    for field in fields_list:
+        widget_dic[field] = widget_name
+    return widget_dic
+
+class RangeBooted(forms.RangeInput):
+    def get_context(self, name, value, attrs):
+        ctx = super(RangeBooted, self).get_context(name, value, attrs)
+        ctx['attrs']['class'] = "form-range bg-secondary rounded shadow w-75 p-2"
+        ctx['attrs']['min'] = "0"
+        ctx['attrs']['max'] = "100"
+        ctx['attrs']['step'] = "2.5"
+        return ctx
 
 
 class StyleForm(forms.ModelForm):
@@ -29,12 +44,12 @@ class StyleForm(forms.ModelForm):
 class ComponentsForm(forms.ModelForm):
     class Meta:
         model= Components
-        widget = forms.RangeInput()
         fields = ("body","feelings","expression","thoughts","narrative",
                  "dreaming","re_prog","subliminal","subparts","spiritual",
                  "relational","systems","setup","transOb","family",
                  "antropology","arts","politics","philosophy","worldview",
                  "individuation","sex_gender","values","belonging","roles",)
+        widgets = applyWidget(fields,RangeBooted)
         labels = {
             "body":"Use of body techniques for the therapeutic process",
             "feelings":"Use of feelings techniques for the therepeutic process",
@@ -66,10 +81,16 @@ class ComponentsForm(forms.ModelForm):
             "belonging":"Use of understanding of belonging and groups pertenence for the therapeutic process",
             "roles":"Use of understanding of roles in groups and society for the therapeutic process",
     }
-        def get_context(self, name, value, attrs):
-            ctx = super(ComponentsForm, self).get_context(name, value, attrs)
-            ctx['attrs']['class'] = "form-range"
-            return ctx
+        
+        
+    #custom widget with range and bootstrap
+    def get_context(self, name, value, attrs):
+        ctx = super(ComponentsForm, self).get_context(name, value, attrs)
+        ctx['attrs']['class'] = "form-range"
+        ctx['attrs']['min'] = '0'
+        ctx['attrs']['max'] = '100'
+        ctx['attrs']['step'] = '5'
+        return ctx
 
 class BigTradForm(forms.ModelForm):
     class Meta:

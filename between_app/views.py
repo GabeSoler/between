@@ -1,7 +1,7 @@
 from django.shortcuts import render
-from .models import Personal_Style
+from .models import Personal_Style, Components,BigTraditions
 from django.views.generic import ListView, DetailView,TemplateView,CreateView
-from .forms import StyleForm
+from .forms import StyleForm,ComponentsForm,BigTradForm
 from django.contrib.auth import get_user_model
 from django.http import HttpResponseRedirect
 from django.urls import reverse_lazy
@@ -77,5 +77,49 @@ class contentView(TemplateView):
         return context
 
     
+#Components Views
 
+class takeComponentstView(CreateView):
+    model = Components
+    form_class = ComponentsForm
+    template_name = 'between_app/Components/components_test.html'
+    success_url = 'between_app/results/'
+
+    def post(self, request, *args, **kwargs):
+        form = StyleForm(request.POST)
+        try:
+            user = get_user_model().objects.get(pk=request.user.id)
+        except NameError:
+                user = get_user_model().objects.get(username='guest')
+        except:
+                user = get_user_model().objects.create_user(email='guest@guest.guest',username='guest' )
+        if form.is_valid():
+            profile_test = form.save(commit=False)
+            profile_test.user = user
+            profile_test.save()
+            return HttpResponseRedirect(reverse_lazy('between_app:index'))
+        return render(request, 'between_app/Components/components_test.html', {'form': form})
+    
+
+#Big traditions Views
+class takeTraditionsView(CreateView):
+    model = BigTraditions
+    form_class = BigTradForm
+    template_name = 'between_app/BitTraditions/traditions_test.html'
+    success_url = 'between_app/results/'
+
+    def post(self, request, *args, **kwargs):
+        form = StyleForm(request.POST)
+        try:
+            user = get_user_model().objects.get(pk=request.user.id)
+        except NameError:
+            user = get_user_model().objects.get(username='guest')
+        except:
+            user = get_user_model().objects.create_user(email='guest@guest.guest',username='guest' )
+        if form.is_valid():
+            profile_test = form.save(commit=False)
+            profile_test.user = user
+            profile_test.save()
+            return HttpResponseRedirect(reverse_lazy('between_app:index'))
+        return render(request, 'between_app/BitTraditions/traditions_test.html', {'form': form})
     
