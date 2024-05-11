@@ -6,5 +6,7 @@ app_name = 'pages'
 urlpatterns = [
     #page for the topics of blogs
     path('',views.homeView.as_view(),name='index'),
+    path('/creation/',views.creationView.as_view(),name='creation'),
+
 
 ]

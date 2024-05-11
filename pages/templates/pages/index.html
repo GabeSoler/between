@@ -7,17 +7,19 @@
 
 {%block page_header%}{%endblock page_header%}
 {%block content%}
+{% load static %}
 
 
+<!-- side table of contents -->
 <div class="row">
     <div class="col-2">
 <nav id="navbar-example3" class="navbar navbar-light bg-light flex-column align-items-stretch p-3">
-    <a class="navbar-brand" href="#">CreaTherapy</a>
+    <a class="navbar-brand" href="#">Content</a>
     <nav class="nav nav-pills flex-column">
-      <a class="nav-link" href="#item-1">Item 1</a>
+      <a class="nav-link" href="#item-1">Introduction</a>
       <nav class="nav nav-pills flex-column">
-        <a class="nav-link ms-3 my-1" href="#item-1-1">Item 1-1</a>
-        <a class="nav-link ms-3 my-1" href="#item-1-2">Profiles</a>
+        <a class="nav-link ms-3 my-1" href="#item-1-1">Eagle's eye</a>
+        <a class="nav-link ms-3 my-1" href="#item-1-2">Goals</a>
       </nav>
       <a class="nav-link" href="#item-2">Item 2</a>
       <a class="nav-link" href="#item-3">Item 3</a>
@@ -28,18 +30,53 @@
     </nav>
   </nav>
 </div>
-  <div class="col-8">
+ <!-- Content from here -->   
+ <div class="col-8">
 
   <div data-bs-spy="scroll" data-bs-target="#navbar-example3" data-bs-offset="0" tabindex="0">
+
     <h1 class='display bg display-5 mb-4'>CreaTherapy: Theory</h1>
 
     <h1 id="item-1">Introduction</h1>
-    <p>CreaTherapy aims to create a bridge between traditions and to look foward to a new way of thinking therapy</p>
+    <p>Have you ever worndered how to learn from different traditions and practitioners?</p>
+    <p>Have you ever wanted that what you learn can feel coherent with your values and to feel like it comes from your voice and not like it comes from somebody else?</p>
+    <p>CreaTherapy aims to help you understand and make your own therapeutic knoledge, and in that process to feel it like something that emerges from your own life and inner wisdom.</p>
+
     
+    <h3 id="item-1-1">Eagle's Eye</h3>
+
+    <p>When we look at an approach in academia we analyse a few components, like  what is the idea of reality, how do we learn from that reality and how do we relate to that reality in practice</p>
+    <p>Therapy is a different phenomenon, because theory and practice are interlinked, and when they separate too much it damages the practice.</p>
+    <p>This emerges from a therapeutic fact, how we relate and how we are, are always impacting what happens in session. Furthermore, what we think and how we it is palpable in the room.</p>
+    <p>As someone who enjoys learning new models and practices, I find myself in trouble when I use something too literaly, when it is not fully 'digested' by my unconcious, my thinking and my relating.</p>
+    <p>Trouble may be a strong word: what happens is that my interventino feels stiff and disconnected to the procss and relationship.</p>
+    <p>So lets observe from avobe how I see my construction of a particular practice. We can understand a therapeutic sytle by working five areas</p>
+    <ul>
+      <li>Tradition: as a coherent languaje, values, comunity and tecniques,</li>
+      <li>Person of the therapist: as someone and their cirscumtances, life decisions, learnings, experiences.</li>
+      <li>Philosophical Assumptions: Ideas about reality, change, learning, life.</li>
+      <li>Practical Theory: as a groups of ideas that connect experence, theory and practice.</li>
+      <li>Components: Areas of expertice and concrete practices in therapy.</li>
+    </ul>
     
-    <h5 id="item-1-1">Item 1-1</h5>
-    <p>...</p>
-    
+    <image class="rounded w-75 mb-2" src="{% static 'pages/images/eagle_eye.png' %}" alt='Image showing the five parts with the tradition as a colum to the left and the person as a colum to the right'>
+    <p>As an image, when we can learn moving between these parts, we can digest knoledge in a more coherent way. The traditions bring a language and give context. They also bring some asumptions in the middle section that needs to dialogue with the person's assumtions.</p>
+    <p>There is therefore a needed space for you to reflect on your learning. Inside traditions there are usually sub-groups, that share the language, but also may have other reality assumptions and sub-models (ie compare Winnicott, Lacan and Bion in psychoanalisis).</p>
+    <p>By giving yourself space to procses, you may also find likeminded authors and colleagues. You may also find small adjustments to the theory, the practice, or to the reality assumptions that may make things fit you better.</p> 
+  </br>
+
+
+      <h3 id="item-1-2">Goals</h3>
+      <p>CreaTherapy aims to be different than other 'meta' projects (ie integrative, eclectic or pluralist). The goals that make it different are:</p>
+      <ul>
+        <li>to be more a template for therapeutic thinking than another tradiiton,</li>
+        <li>to be compatible with therapeutic traditions of different origin,</li>
+        <li>promote personal creation, by seeing theory as a creative/developmental process, and</li>
+        <li>to create a language for mutual understanding in a space of multiplicity of thinking.</li>    
+      </ul>
+      <p>Other meta projects tend to defoult into a new tradition, and to multiply as traditions do. This project aims to be an approach between (a concept I tend to use theoretically).</p>
+      <p></p>
+
     
     <h5 id="item-1-2">Profiles:</h5>
     <p>Therapeutic Profiles is a project to help therapist and clients to find their unique needs, having names to organise the complexities of human beings.</p>

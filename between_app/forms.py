@@ -96,11 +96,11 @@ class BigTradForm(forms.ModelForm):
     class Meta:
         model= BigTraditions
         fields = ("hemeneutic","phenomenological","cybernetic","spiritual", "scientific")
-        labels = {"hemeneutic" : "I believe we can understan hiden patterns in the words and comunications of others and we make inferences from it",
-                  "phenomenological" : "I believe we understand beter by exploring the experience of the other and our own as it presents to us",
-                  "cybernetic" : "I believe we can describe operations and processes inside and in the context of others, exploring parallels between mind and context",
-                  "spiritual" : "I believe there are biger forces inside that guide the process and we need to create a space for that to emerge more fluently",
-                  "scientific" : "I believe we need to fragment phenomenons in their parts and find reliable knoledge to explain each of the parts"
+        labels = {"hemeneutic" : "I believe we can understan hiden patterns in the words and comunications of others and we understand by inferences.",
+                  "phenomenological" : "I believe we understand beter by exploring the direct experience (other's and our own).",
+                  "cybernetic" : "I believe we can describe operations and processes, exploring parallels between mind and context.",
+                  "spiritual" : "I believe there are biger forces inside every being that guide the process and we need to create a space for that to emerge more fluently.",
+                  "scientific" : "I believe we must explore phenomenons in their parts and find reliable knoledge to explain each of the parts."
         }
 
 

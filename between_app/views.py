@@ -105,7 +105,7 @@ class takeComponentstView(CreateView):
 class takeTraditionsView(CreateView):
     model = BigTraditions
     form_class = BigTradForm
-    template_name = 'between_app/BitTraditions/traditions_test.html'
+    template_name = 'between_app/BigTraditions/traditions_test.html'
     success_url = 'between_app/results/'
 
     def post(self, request, *args, **kwargs):

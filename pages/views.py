@@ -6,3 +6,5 @@ from django.views.generic import TemplateView
 class homeView(TemplateView):
     template_name = 'pages/index.html'
 
+class creationView(TemplateView):
+    template_name = 'pages/creation.html'
