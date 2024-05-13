@@ -1,0 +1,33 @@
+
+{% extends 'between_app/_base.html' %}
+
+{% block content %}
+
+<p>Answers after Session</p>
+
+<p>
+  <a href="{%url 'learning_logs:new_question'%}">Add new question reflexion</a>
+</p>
+
+<ul>
+  {% for answer in answers%}
+    <li>
+      <p>{{answer.date_added|date:'M d,Y H:i'}} </p>
+      <p>{{answer.question}} </p>
+      <p>{{answer.text|linebreaks}}</p>
+      <p><a href="{%url 'learning_logs:edit_question' answer.id %}">
+        Edit entry</a></p>
+    </li>
+
+    {% empty %}
+    <li>There are no entries for this topic yet. </li>
+  </ul>
+  {% endfor %}
+
+
+
+
+
+
+
+{% endblock content %}

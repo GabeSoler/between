@@ -150,3 +150,56 @@ def edit_question(request,question_id):
             return redirect('learning_logs:topic',topic_id=topic.id)
     context = {'question':AfterQuestion,'form':form}
     return render(request,'learning_logs/question/edit_Question.html',context)
+
+
+#Creation's CRUD
+
+@login_required
+def creation_by_date(request):
+    """show all answers by date"""
+    answers_by_date = AfterJournal.objects.filter(owner=request.user).order_by('-date_added')
+    context = {'answers':answers_by_date}
+    return render(request,'learning_logs/question/after_by_date.html',context)
+
+@login_required
+def creation_by_title(request):
+    """show all answers by question"""
+    answers_by_question = AfterJournal.objects.filter(owner=request.user).order_by('question','date_added')
+    context = {'answers':answers_by_question}
+    return render(request,'learning_logs/question/after_by_question.html',context)
+
+@login_required
+def new_creation(request):
+    """add new question"""
+    if request.method !='POST':
+        #no data submitted; create a blank form
+        form = AfterForm()
+    else:
+        #POST data submitted; process data
+        form = AfterForm(data=request.POST)
+        if form.is_valid():
+            new_question = form.save(commit=False)
+            new_question.owner = request.user 
+            new_question.save()
+            return redirect('learning_logs:index')
+    #display a blank or invalid form
+    context = {'form':form}
+    return render(request,'learning_logs/question/create_Question.html',context)
+
+
+@login_required
+def edit_creation(request,question_id):
+    """edit an existing entry"""
+    AfterQuestion = AfterJournal.objects.get(id=question_id)
+    check_owner(AfterQuestion.owner,request.user)
+    if request.method != 'POST':
+        #initial request;pre-fill form with the current entry
+        form = AfterForm(instance=AfterQuestion)
+    else:
+        #POST data submitted; process data
+        form = AfterForm(instance=AfterQuestion,data=request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('learning_logs:topic',topic_id=topic.id)
+    context = {'question':AfterQuestion,'form':form}
+    return render(request,'learning_logs/question/edit_Question.html',context)

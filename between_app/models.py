@@ -138,21 +138,3 @@ class BigTraditions(models.Model):
     spiritual = models.IntegerField(choices=Response_Choices.choices, default=1)
     scientific = models.IntegerField(choices=Response_Choices.choices, default=1)
 
-
-
-
-
-
-class ContentGroup(models.Model):
-    """for the group, like position, path, tradition"""
-    section = models.ForeignKey(Personal_Style, on_delete=models.CASCADE)
-    name = models.CharField(max_length=100)
-
-class ContentProperties(models.Model):
-    """for the individual parts like compassionate, playful"""
-    group = models.ForeignKey(ContentGroup, on_delete=models.CASCADE)
-    name = models.CharField(max_length=200)
-    description = models.TextField(default='')
-    shadow = models.TextField(default='')
-    traditions = models.TextField(default='')
-    authors = models.TextField(default='')
