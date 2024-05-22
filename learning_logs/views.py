@@ -1,7 +1,7 @@
 from django.shortcuts import render,redirect
 
-from .models import Topic,Entry,AfterJournal
-from .forms import TopicForm,EntryForm,AfterForm
+from .models import Topic,Entry,AfterJournal,Creation,Shadow
+from .forms import TopicForm,EntryForm,AfterForm,CreationForm,ShadowForm
 from django.contrib.auth.decorators import login_required
 from django.http import Http404
 import uuid
@@ -10,7 +10,13 @@ import uuid
 def check_owner(topic_owner,request_user):
     if topic_owner != request_user:
         raise Http404
-
+def save_form(request,form,send):
+        """saves a form and adds a user as owner"""
+        if form.is_valid():
+            new = form.save(commit=False)
+            new.owner = request.user 
+            new.save()
+            return redirect(send)
 
 #Views
 
@@ -50,11 +56,7 @@ def new_topic(request):
     else:
         #POST data submitted; process data
         form = TopicForm(data=request.POST)
-        if form.is_valid():
-            new_topic = form.save(commit=False)
-            new_topic.owner = request.user
-            new_topic.save()
-            return redirect('learning_logs:topics')
+        save_form(request,form,'learning_logs:topics')
     #display a blank or invalid form
     context = {'form':form}
     return render(request,'learning_logs/topic/new_topic.html',context)
@@ -124,11 +126,7 @@ def new_question(request):
     else:
         #POST data submitted; process data
         form = AfterForm(data=request.POST)
-        if form.is_valid():
-            new_question = form.save(commit=False)
-            new_question.owner = request.user 
-            new_question.save()
-            return redirect('learning_logs:index')
+        save_form(request,form,'learning_logs:after_answer_date')
     #display a blank or invalid form
     context = {'form':form}
     return render(request,'learning_logs/question/create_Question.html',context)
@@ -153,53 +151,116 @@ def edit_question(request,question_id):
 
 
 #Creation's CRUD
+@login_required
+def creation_item(request,creation_pk):
+    """show an item of creation"""
+    CreationItem = Creation.objects.get(pk=creation_pk)
+    check_owner(CreationItem.owner,request.user)
+    context = {'creations':CreationItem}
+    return render(request,'learning_logs/creating/creation_item.html',context)
+
 
 @login_required
 def creation_by_date(request):
     """show all answers by date"""
-    answers_by_date = AfterJournal.objects.filter(owner=request.user).order_by('-date_added')
-    context = {'answers':answers_by_date}
-    return render(request,'learning_logs/question/after_by_date.html',context)
+    answers_by_date = Creation.objects.filter(owner=request.user).order_by('-date_added')
+    context = {'creations':answers_by_date}
+    return render(request,'learning_logs/creating/creation_by_date.html',context)
 
 @login_required
 def creation_by_title(request):
     """show all answers by question"""
-    answers_by_question = AfterJournal.objects.filter(owner=request.user).order_by('question','date_added')
-    context = {'answers':answers_by_question}
-    return render(request,'learning_logs/question/after_by_question.html',context)
+    answers_by_question = Creation.objects.filter(owner=request.user).order_by('question','date_added')
+    context = {'creations':answers_by_question}
+    return render(request,'learning_logs/creating/creation_by_question.html',context)
 
 @login_required
 def new_creation(request):
     """add new question"""
     if request.method !='POST':
         #no data submitted; create a blank form
-        form = AfterForm()
+        form = CreationForm()
     else:
         #POST data submitted; process data
-        form = AfterForm(data=request.POST)
-        if form.is_valid():
-            new_question = form.save(commit=False)
-            new_question.owner = request.user 
-            new_question.save()
-            return redirect('learning_logs:index')
+        form = CreationForm(data=request.POST)
+        save_form(request,form,'learning_logs:index')
     #display a blank or invalid form
     context = {'form':form}
-    return render(request,'learning_logs/question/create_Question.html',context)
+    return render(request,'learning_logs/creating/create_reflection.html',context)
 
 
 @login_required
-def edit_creation(request,question_id):
+def edit_creation(request,creation_id):
     """edit an existing entry"""
-    AfterQuestion = AfterJournal.objects.get(id=question_id)
-    check_owner(AfterQuestion.owner,request.user)
+    Creations = AfterJournal.objects.get(id=creation_id)
+    check_owner(Creations.owner,request.user)
     if request.method != 'POST':
         #initial request;pre-fill form with the current entry
-        form = AfterForm(instance=AfterQuestion)
+        form = AfterForm(instance=Creation)
     else:
         #POST data submitted; process data
-        form = AfterForm(instance=AfterQuestion,data=request.POST)
+        form = Creation(instance=CreationForm,data=request.POST)
         if form.is_valid():
             form.save()
-            return redirect('learning_logs:topic',topic_id=topic.id)
-    context = {'question':AfterQuestion,'form':form}
-    return render(request,'learning_logs/question/edit_Question.html',context)
+            return redirect('learning_logs:topic',creation_id=Creations.id)
+    context = {'creations':Creations,'form':form}
+    return render(request,'learning_logs/creating/edit_creation.html',context)
+
+
+#Shadow's CRUD
+
+
+@login_required
+def shadow_item(request,shadow_pk):
+    """show an item of shadow"""
+    ShadowItem = Shadow.objects.get(pk=shadow_pk)
+    check_owner(ShadowItem.owner,request.user)
+    context = {'shadows':ShadowItem}
+    return render(request,'learning_logs/shadow/shadow_item.html',context)
+
+
+@login_required
+def shadow_by_date(request):
+    """show all answers by date"""
+    answers_by_date = Shadow.objects.filter(owner=request.user).order_by('-date_added')
+    context = {'answers':answers_by_date}
+    return render(request,'learning_logs/shadow/after_by_date.html',context)
+
+@login_required
+def shadow_by_title(request):
+    """show all answers by question"""
+    answers_by_question = Shadow.objects.filter(owner=request.user).order_by('question','date_added')
+    context = {'answers':answers_by_question}
+    return render(request,'learning_logs/shadow/after_by_question.html',context)
+
+@login_required
+def new_shadow(request):
+    """add new question"""
+    if request.method !='POST':
+        #no data submitted; create a blank form
+        form = ShadowForm()
+    else:
+        #POST data submitted; process data
+        form = ShadowForm(data=request.POST)
+        save_form(request,form,'learning_logs:index')
+    #display a blank or invalid form
+    context = {'form':form}
+    return render(request,'learning_logs/shadow/create_Question.html',context)
+
+
+@login_required
+def edit_shadow(request,shadow_id):
+    """edit an existing entry"""
+    Shadows = Shadow.objects.get(id=shadow_id)
+    check_owner(Shadows.owner,request.user)
+    if request.method != 'POST':
+        #initial request;pre-fill form with the current entry
+        form = ShadowForm(instance=Shadow)
+    else:
+        #POST data submitted; process data
+        form = ShadowForm(instance=Shadow,data=request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('learning_logs:shadow_by_date',shadow_id=Shadows.id)
+    context = {'shadow':Shadows,'form':form}
+    return render(request,'learning_logs/shadow/edit_Shadow.html',context)

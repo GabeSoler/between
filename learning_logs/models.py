@@ -63,7 +63,7 @@ class Creation(models.Model):
     text_craft = models.TextField(default="")
 
     class Meta:
-        verbose_name_plural = 'Journals'
+        verbose_name_plural = 'Creations'
     
     def __str__(self):
         """return a string representation of the entry"""
@@ -92,7 +92,7 @@ class Shadow(models.Model):
     text_care_plan = models.TextField(default="")
 
     class Meta:
-        verbose_name_plural = 'Journals'
+        verbose_name_plural = 'Shadows'
     
     def __str__(self):
         """return a string representation of the entry"""

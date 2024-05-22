@@ -24,15 +24,37 @@ urlpatterns = [
 #After questions CRUD
     #page to see all answers
     path('after_answers/', views.after_answer_date, name = 'after_answer_date'),
-
     #Detail page for a single answer
     path('after_answer/<uuid:topic_id>/', views.after_answer_question, name='after_answer_question'),
-
-
     #page adding an after session question
     path('new_question/',views.new_question,name='new_question'),
-
-    
     #page for editing an entry
     path('edit_question/<uuid:entry_id>/',views.edit_question,name='edit_question'),
+    
+
+#creating CRUD
+    #page to see all creations by date
+    path('creation_by_date/', views.creation_by_date, name = 'creations_by_date'),
+    #page to see all creations by title
+    path('creation_by_title/', views.creation_by_title, name = 'creations_by_title'),
+    #Detail page for a single creation
+    path('creation/<uuid:creation_id>/', views.creation_item, name='creation_item'),
+    #page adding an after session question
+    path('new_creation/',views.new_creation,name='new_creation'),
+    #page for editing an entry
+    path('edit_creation/<uuid:creation_id>/',views.edit_creation,name='edit_creation'),
+    
+#Shadow's CRUD
+#creating CRUD
+    #page to see all shadows by date
+    path('shadows_by_date/', views.shadow_by_date, name = 'creations_by_date'),
+    #page to see all creations by title
+    path('shadows_by_title/', views.shadow_by_title, name = 'creations_by_title'),
+    #Detail page for a single creation
+    path('shadow/<uuid:creation_id>/', views.shadow_item, name='creation_item'),
+    #page adding an after session question
+    path('new_shadow/',views.new_shadow,name='new_shadow'),
+    #page for editing an entry
+    path('edit_shadow/<uuid:creation_id>/',views.edit_shadow,name='edit_shadow'),
+    
     ]
