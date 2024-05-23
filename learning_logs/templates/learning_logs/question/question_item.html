@@ -1,0 +1,20 @@
+{% extends 'between_app/_base.html' %}
+{% block title%}{{question.title}}{%endblock title%}
+
+{% block page_header %}{{question.title}}{% endblock page_header%}
+
+{% block content %}
+<div class="card" style="width: 18rem;">
+    <div class="card-body">
+      <h5 class="card-title">{{question.question}}</h5>
+      <h6 class="card-subtitle mb-2 text-body-secondary">My question: {{question.date_added|date}}</h6>
+      <Goal class="card-text">My answer: {{question.text}} </P>
+      <a href="{% url 'learning_log:question_by_date' %}" class="card-link">Back to question</a>
+      <a href="{% url 'learning_log:index' %}" class="card-link">Back to Journaling home</a>
+    </div>
+  </div>
+
+
+
+
+{%endblock content%}

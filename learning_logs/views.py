@@ -10,13 +10,8 @@ import uuid
 def check_owner(topic_owner,request_user):
     if topic_owner != request_user:
         raise Http404
-def save_form(request,form,send):
-        """saves a form and adds a user as owner"""
-        if form.is_valid():
-            new = form.save(commit=False)
-            new.owner = request.user 
-            new.save()
-            return redirect(send)
+    
+
 
 #Views
 
@@ -25,8 +20,11 @@ def save_form(request,form,send):
 @login_required
 def index(request):
     """show all topics"""
-    topics = Topic.objects.filter(owner=request.user).order_by('date_added')
-    context = {'topics':topics}
+    topics = Topic.objects.filter(owner=request.user).order_by('date_added')[:3]
+    questions = AfterJournal.objects.filter(owner=request.user).order_by('date_added')[:3]
+    creations = Creation.objects.filter(owner=request.user).order_by('date_added')[:3]
+    shadows = Shadow.objects.filter(owner=request.user).order_by('date_added')[:3]
+    context = {'topics':topics,'questions':questions,'creations':creations,'shadows':shadows}
     return render(request,'learning_logs/index.html',context)
 
 #Topic's CRUD
@@ -56,7 +54,11 @@ def new_topic(request):
     else:
         #POST data submitted; process data
         form = TopicForm(data=request.POST)
-        save_form(request,form,'learning_logs:topics')
+        if form.is_valid():
+            new = form.save(commit=False)
+            new.owner = request.user 
+            new.save()
+            return redirect('learning_logs:topics')
     #display a blank or invalid form
     context = {'form':form}
     return render(request,'learning_logs/topic/new_topic.html',context)
@@ -102,6 +104,14 @@ def edit_entry(request,entry_id):
 
 
 #After question's CRUD
+@login_required
+def question_item(request,question_pk):
+    """show an item of creation"""
+    QuestionItem = AfterJournal.objects.get(pk=question_pk)
+    check_owner(QuestionItem.owner,request.user)
+    context = {'question':QuestionItem}
+    return render(request,'learning_logs/creating/creation_item.html',context)
+
 
 @login_required
 def after_answer_date(request):
@@ -126,7 +136,11 @@ def new_question(request):
     else:
         #POST data submitted; process data
         form = AfterForm(data=request.POST)
-        save_form(request,form,'learning_logs:after_answer_date')
+        if form.is_valid():
+            new = form.save(commit=False)
+            new.owner = request.user 
+            new.save()
+            return redirect('learning_logs:after_answer_date')
     #display a blank or invalid form
     context = {'form':form}
     return render(request,'learning_logs/question/create_Question.html',context)
@@ -183,7 +197,11 @@ def new_creation(request):
     else:
         #POST data submitted; process data
         form = CreationForm(data=request.POST)
-        save_form(request,form,'learning_logs:index')
+        if form.is_valid():
+            new = form.save(commit=False)
+            new.owner = request.user 
+            new.save()
+            return redirect('learning_logs:index')
     #display a blank or invalid form
     context = {'form':form}
     return render(request,'learning_logs/creating/create_reflection.html',context)
@@ -224,14 +242,14 @@ def shadow_by_date(request):
     """show all answers by date"""
     answers_by_date = Shadow.objects.filter(owner=request.user).order_by('-date_added')
     context = {'answers':answers_by_date}
-    return render(request,'learning_logs/shadow/after_by_date.html',context)
+    return render(request,'learning_logs/shadow/shadow_by_date.html',context)
 
 @login_required
 def shadow_by_title(request):
     """show all answers by question"""
     answers_by_question = Shadow.objects.filter(owner=request.user).order_by('question','date_added')
     context = {'answers':answers_by_question}
-    return render(request,'learning_logs/shadow/after_by_question.html',context)
+    return render(request,'learning_logs/shadow/shadow_by_question.html',context)
 
 @login_required
 def new_shadow(request):
@@ -242,10 +260,14 @@ def new_shadow(request):
     else:
         #POST data submitted; process data
         form = ShadowForm(data=request.POST)
-        save_form(request,form,'learning_logs:index')
+        if form.is_valid():
+            new = form.save(commit=False)
+            new.owner = request.user 
+            new.save()
+            return redirect('learning_logs:index')
     #display a blank or invalid form
     context = {'form':form}
-    return render(request,'learning_logs/shadow/create_Question.html',context)
+    return render(request,'learning_logs/shadow/new_shadow.html',context)
 
 
 @login_required
@@ -263,4 +285,4 @@ def edit_shadow(request,shadow_id):
             form.save()
             return redirect('learning_logs:shadow_by_date',shadow_id=Shadows.id)
     context = {'shadow':Shadows,'form':form}
-    return render(request,'learning_logs/shadow/edit_Shadow.html',context)
+    return render(request,'learning_logs/shadow/edit_shadow.html',context)

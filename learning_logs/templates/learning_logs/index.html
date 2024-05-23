@@ -5,17 +5,14 @@
 
 <p>Learning Log helps you keep track of your learning, for any topic you are interested in.</p>
 
-<a href={% url 'learning_logs:after_answer_date' %}>After session questions</a>
 
-</br></br>
+<!--Topics-->
+<div class="card mb-3 bg-light"> 
+      <div class="card-body">
 
+  <h2 class='card-title'>Topics</h2>
 
-<div class="card mb-3 bg-light">
-    <div class="card-body">
-
-<h2 class='card-title'>Topics</h2>
-
-<ul class='list-group'>
+  <ul class='list-group'>
   {% for topic in topics %}
     <li class='list-group-item'> 
         <a href="{% url 'learning_logs:topic' topic.id %}">
@@ -25,12 +22,83 @@
     <li class='list-group-item'> No topics have been added yet </li>
   {% endfor %}
 
-</ul>
-</br>
+  </ul>
+  </br>
+  <a href="{% url 'learning_logs:new_topic'%}">Add a new topic</a></br>
+  <a href={% url 'learning_logs:after_answer_date' %}>See the whole list</a>
 
-<a href="{% url 'learning_logs:new_topic'%}">Add a new topic</a>
+  </div>
+  </div>
 
-</div>
-</div>
 
+
+<div class="card mb-3 bg-light"> <!-- After questions -->
+  <div class="card-body">
+
+  <h2 class='card-title'>After session questions</h2>
+
+  <ul class='list-group'>
+  {% for question in questions %}
+    <li class='list-group-item'> 
+        <a href="{% url 'learning_logs:question_item' question.pk %}">
+        {{question.text}} </a></li>
+        </li>
+  {% empty %}
+    <li class='list-group-item'> No topics have been added yet </li>
+  {% endfor %}
+    </ul>
+    </br>
+
+    <a href="{% url 'learning_logs:new_question'%}">Add a new question</a></br>
+    <a href="{% url 'learning_logs:after_answer_date'%}">See the whole list</a>
+
+    </div>
+    </div>
+
+<div class="card mb-3 bg-light"> <!-- Creations -->
+  <div class="card-body">
+
+  <h2 class='card-title'>Creation journal</h2>
+
+  <ul class='list-group'>
+  {% for creation in creations %}
+    <li class='list-group-item'> 
+        <a href="{% url 'learning_logs:creation_item' creation.pk %}">
+        {{creation.title}} </a></li>
+        </li>
+  {% empty %}
+    <li class='list-group-item'> No entries have been added yet </li>
+  {% endfor %}
+    </ul>
+    </br>
+
+    <a href="{% url 'learning_logs:new_creation'%}">Add a new creation</a></br>
+    <a href="{% url 'learning_logs:creations_by_date'%}">Add a new creation</a>
+
+    </div>
+    </div>
+
+ 
+<div class="card mb-3 bg-light"> <!-- Shadow -->
+  <div class="card-body">
+
+  <h2 class='card-title'>Shadow Journal</h2>
+
+  <ul class='list-group'>
+  {% for shadow in shadows %}
+    <li class='list-group-item'> 
+        <a href="{% url 'learning_logs:shadow_item' shadow.pk %}">
+        {{shadow.title}} </a></li>
+        </li>
+  {% empty %}
+    <li class='list-group-item'> No entries have been added yet </li>
+  {% endfor %}
+    </ul>
+    </br>
+
+    <a href="{% url 'learning_logs:new_shadow'%}">Add a new shadow journal</a></br>
+    <a href="{% url 'learning_logs:shadows_by_date'%}">See the whole list</a>
+
+    </div>
+    </div>   
 {% endblock content%}

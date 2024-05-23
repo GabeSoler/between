@@ -29,7 +29,7 @@ class CreationForm(forms.ModelForm):
                   'text_sensation':'Explore how this goal feels in your body, what comes to your senses, internal and external. Try to write a description of what you have expereinced.',
                   'text_conection':"Now, without losing this feeling, see if you can associate it with people, a group or someone, allow the sensation to guide you. Write down who did you think about.",
                   'text_metaphore':"Keeping the feelings of the connection now relax your mind and allow your new sensations to guide you into an imaginative space, where metaphore and dream guide your associations. Write it down, maybe in poetic form",
-                  'text_concepts':"After an image has taken place, you can now describe it with words and concepts, and try to make sense of it with your mind, and write it down.",
+                  'text_concepts':"After an image has taken place, you can now describe it with words and concepts, and try to make sense of it with your mind. Try writing it down.",
                   'text_craft':"Imagine something you could do with these feelings, images and ideas, something concrete that can combine the different aspects of these journey.",
                   'title':"Lets end with a title for these piece of work, so you can remember it later (it will appear as a link)"}
         widgets = {'text_sensation':forms.Textarea(attrs={'cols':80}),
@@ -43,7 +43,7 @@ class ShadowForm(forms.ModelForm):
         model = Shadow
         fields = ['goal','text_opossite_style','text_opposite_sex','text_oppossite_elements','text_transf_characters','text_furor_curandis','text_trauma_history','text_trauma_triggers','text_care_plan','title']
         labels = {'goal':"Please write your goal for this exploration (as a starting point that can change)",
-                  'text_opossite_style':"Reflect on the profile you have and the areas that you scored the lowest, these are your opposite style and may say something about your shadow",
+                  'text_opossite_style':"Reflect on the profile you have and the areas that you scored the lowest, or styles you know feel dificult or annoying. These are your opposite style and may say something about your shadow",
                   'text_opposite_sex':"Reflect on your sexual orientation and gender, try to imagine how would you be if on an opposite side, how would that feel?(This give us clues about our Anima and Animus)",
                   'text_oppossite_elements':"Reflect on what are your prefered essoteric elements and what are your opposites. Here fire is connected with intuition, air with reason, water with emotions and earth with sensations (Junguian personalities)",
                   'text_transf_characters':"Here explore what type of characters appear in your transference and countertransference, who do you tend to embody, which type of parent, which type of child?",

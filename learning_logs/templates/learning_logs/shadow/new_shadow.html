@@ -2,14 +2,14 @@
 
 {%block content%}
 {% load django_bootstrap5 %}
-  <h2> After Session Questions </h2>
+  <h2> Creation Reflections </h2>
   <a href={% url 'learning_logs:index' %}>Creations</a>
 
 
-  <form action="{% url 'learning_logs:new_creation' %}" method='post'>
+  <form action="{% url 'learning_logs:new_shadow' %}" method='post'>
     {% csrf_token %}
     {% bootstrap_form form %}
-    {% bootstrap_button button_type='submit' content='New Creation' %}
+    {% bootstrap_button button_type='submit' content='New Shadow Journal' %}
   </form>
 
   {% endblock content %}

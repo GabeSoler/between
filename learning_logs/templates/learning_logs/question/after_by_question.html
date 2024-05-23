@@ -15,7 +15,7 @@
         <p>{{answer.question|title}} </p>
         <p>{{answer.date_added|date:'M d,Y H:i'}} </p>
         <p>{{answer.text|linebreaks}}</p>
-        <p><a href="{%url 'learning_logs:edit_entry' entry.id %}">
+        <p><a href="{%url 'learning_logs:edit_question' question.pk %}">
           Edit entry</a></p>
       </li>
 
