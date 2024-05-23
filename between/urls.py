@@ -26,6 +26,7 @@ urlpatterns = [
     path('accounts/',include('accounts.urls')),
     path('learning/',include('learning_logs.urls')),
     path('pages/',include('pages.urls')),
+    path('tools/',include('tools.urls')),
     path('',include('between_app.urls')),
 
     ]+ static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
