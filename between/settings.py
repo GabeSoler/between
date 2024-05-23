@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'learning_logs',
     'accounts.apps.AccountsConfig',
     'pages',
+    'tools',
 
     #third party apps
     'django_bootstrap5',
