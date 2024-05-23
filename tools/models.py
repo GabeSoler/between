@@ -23,6 +23,7 @@ class Client(models.Model):
 
 
 class Session(models.Model):
+    user = models.ForeignKey(get_user_model(),on_delete=models.CASCADE)
     client = models.ForeignKey(Client,on_delete=models.CASCADE)
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     created_at = models.DateTimeField(auto_now_add=True, editable=False)

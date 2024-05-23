@@ -4,7 +4,6 @@ from .models import Topic,Entry,AfterJournal,Creation,Shadow
 from .forms import TopicForm,EntryForm,AfterForm,CreationForm,ShadowForm
 from django.contrib.auth.decorators import login_required
 from django.http import Http404
-import uuid
 
 #Functions
 def check_owner(topic_owner,request_user):
