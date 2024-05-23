@@ -2,7 +2,7 @@
 {%block title%} List {%endblock title %}
 
 {% block content %}
-<h1>Therapist Style</h1>
+
 
 <p>A space to think about your therapeutic style.</p>
 <ul class='list-group bg-light'>
@@ -10,4 +10,6 @@
     <li class='list-group-item'><a href={% url 'between_app:results' item.pk %}>{{item.user}}'s Therapist Profile: {{item.updated_at|date:'d,m,Y'}}</a></li>
 {% endfor%}
 </ul>
+
+
 {% endblock content%}

@@ -177,8 +177,8 @@ def creation_item(request,creation_pk):
 @login_required
 def creation_by_date(request):
     """show all answers by date"""
-    answers_by_date = Creation.objects.filter(owner=request.user).order_by('-date_added')
-    context = {'creations':answers_by_date}
+    creations_by_date = Creation.objects.filter(owner=request.user).order_by('-date_added')
+    context = {'creations':creations_by_date}
     return render(request,'learning_logs/creating/creation_by_date.html',context)
 
 @login_required

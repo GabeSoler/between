@@ -1,0 +1,23 @@
+{% extends 'between_app/_base.html' %}
+{%block title%} List {%endblock title %}
+
+{% block content %}
+<h1>Therapist Style</h1>
+
+<div class="card mb-3">
+    <div class="card-body">
+<h2 class="card-title">Profile: </h2>
+<p class="card-text">Therapeutic Profiles is a project to help therapist and clients to find their unique needs, having names to organise the complexities of human beings.</p>
+<p class="card-text">They will help you to recognise your unique style and positions towards helping others and yourself.</p>
+<a class="badge bg-primary p-2 m-2" href={% url 'pages:index' %}>Read the theory </a>
+<a class="badge bg-primary p-2 m-2" href={% url 'between_app:profile_test' %}>Take the test </a></br>
+
+</div>
+</div>
+
+<a class="badge bg-primary p-2 m-2" href={% url 'between_app:components_test' %}>Therapy components test</a>
+<a class="badge bg-primary p-2 m-2" href={% url 'between_app:traditions_test' %}>Big traditions test </a>
+
+
+
+{% endblock content%}

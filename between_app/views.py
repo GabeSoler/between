@@ -6,12 +6,47 @@ from django.contrib.auth import get_user_model
 from django.http import HttpResponseRedirect
 from django.urls import reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.decorators import login_required
+
 from .content import Content
 # Create your views here.
 
 #Start classes with caps
 class index_View(TemplateView):
     template_name = 'between_app/index.html'
+
+        
+@login_required
+def test_home(request):
+    """show all tests"""
+    try:
+        positions = Personal_Style.objects.filter(user=request.user).latest('updated_at')
+    except Personal_Style.DoesNotExist:
+        positions = None
+    try:
+        bigTrad = BigTraditions.objects.filter(user=request.user).latest('updated_at')
+    except BigTraditions.DoesNotExist:
+        bigTrad = None
+    try:
+        components = Components.objects.filter(user=request.user).latest('updated_at')
+    except Components.DoesNotExist:
+        components = None
+    context = {'positions':positions,'BigTrad':bigTrad,'components':components}
+    return render(request,'between_app/test-home.html',context)
+
+
+#Therapeutic Positions
+class PositionListView(LoginRequiredMixin, ListView):
+    model = Personal_Style
+    context_object_name = 'style_list'
+    template_name = 'between_app/positions_list.html'
+
+    def get_queryset(self):
+        # original qs
+        qs = super().get_queryset() 
+        # filter by user
+        return qs.filter(user=self.request.user.id)
+
 
 class takeTestView(CreateView):
     model = Personal_Style
@@ -35,16 +70,7 @@ class takeTestView(CreateView):
             return HttpResponseRedirect(reverse_lazy('between_app:results', args=[profile_test.pk]))
         return render(request, 'between_app/profile_test.html', {'form': form})
 
-class resultsList(LoginRequiredMixin, ListView):
-    model = Personal_Style
-    context_object_name = 'style_list'
-    template_name = 'personalstyle_list'
 
-    def get_queryset(self):
-        # original qs
-        qs = super().get_queryset() 
-        # filter by a variable captured from url, for example
-        return qs.filter(user=self.request.user.id)
 
 class formDetailView(DetailView):
     model = Personal_Style

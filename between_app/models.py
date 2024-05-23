@@ -24,10 +24,6 @@ class Personal_Style(models.Model):
     development_1 = models.IntegerField(choices=Response_Choices.choices, default=1)
     individuation_1 = models.IntegerField(choices=Response_Choices.choices, default=1)
     belonging_1 = models.IntegerField(choices=Response_Choices.choices, default=1)
-    
-    def __str__(self):
-        new_name = f"{self.user}:{self.updated_at}"
-        return new_name
 
     @property
     def calPosition(self):
@@ -84,7 +80,12 @@ class Personal_Style(models.Model):
 
     def get_absolute_url(self):
         return reverse("between_app:results", kwargs={"pk": self.pk})
-    
+        
+    def __str__(self):
+        new_name = f"{self.user}:{self.updated_at}"
+        return new_name
+    class Meta():
+        get_latest_by = 'updated_at'
 
 class Components(models.Model):
     """therapeutic components"""
