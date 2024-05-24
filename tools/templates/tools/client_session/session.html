@@ -1,0 +1,21 @@
+{% extends 'between_app/_base.html' %}
+{% block title%}{{shadows.title}}{%endblock title%}
+
+{% block page_header %}{{shadows.title}}{% endblock page_header%}
+
+{% block content %}
+<div class="card" style="width: 18rem;">
+    <div class="card-body">
+      <h5 class="card-title">{{session.client__code}}</h5>
+      <h6 class="card-subtitle mb-2 text-body-secondary">{{session.date_added|date:'M d,Y H:i'}}</h6>
+      <Goal class="card-text">Session Titile: {{session.title}} </P>
+      <My class="card-text">My Notes: {{session.notes|linebreaks}} </p>
+      <My class="card-text">Attendance: {{session.attended}}</p>
+      <p class="card-text">Paid?: {{session.paid}} </p>
+      <a href="{% url 'tools:session_list' %}" class="card-link">Back to sessions</a>
+      <a href="{% url 'tools:index' %}" class="card-link">Back to Tools</a>
+    </div>
+  </div>
+
+
+{%endblock content%}

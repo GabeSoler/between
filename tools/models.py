@@ -1,7 +1,6 @@
 from django.db import models
 from django.core.validators import MinValueValidator,MaxValueValidator
 from django.contrib.auth import get_user_model
-from django.urls import reverse
 import uuid
 from .choices import ATTENDANCE,CLIENT_TYPE
 # Create your models here.
@@ -20,10 +19,9 @@ class Client(models.Model):
     rel = models.TextField(default='') # for a relationship description
     goal = models.TextField(default='') # Things you agree to work
     strategy = models.TextField(default='') # what you are thinking you could do
-
+    active = models.BooleanField(default=True)
 
 class Session(models.Model):
-    user = models.ForeignKey(get_user_model(),on_delete=models.CASCADE)
     client = models.ForeignKey(Client,on_delete=models.CASCADE)
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     created_at = models.DateTimeField(auto_now_add=True, editable=False)

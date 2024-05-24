@@ -16,7 +16,7 @@ class RangeBooted(forms.RangeInput):
         ctx['attrs']['class'] = "form-range bg-secondary rounded shadow w-75 p-2"
         ctx['attrs']['min'] = "0"
         ctx['attrs']['max'] = "100"
-        ctx['attrs']['step'] = "2.5"
+        ctx['attrs']['step'] = "2"
         return ctx
 
 
@@ -80,17 +80,9 @@ class ComponentsForm(forms.ModelForm):
             "values":"Use of understanding of the role of values and value systems for the therapeutic process",
             "belonging":"Use of understanding of belonging and groups pertenence for the therapeutic process",
             "roles":"Use of understanding of roles in groups and society for the therapeutic process",
-    }
-        
-        
-    #custom widget with range and bootstrap
-    def get_context(self, name, value, attrs):
-        ctx = super(ComponentsForm, self).get_context(name, value, attrs)
-        ctx['attrs']['class'] = "form-range"
-        ctx['attrs']['min'] = '0'
-        ctx['attrs']['max'] = '100'
-        ctx['attrs']['step'] = '5'
-        return ctx
+            }
+
+    
 
 class BigTradForm(forms.ModelForm):
     class Meta:

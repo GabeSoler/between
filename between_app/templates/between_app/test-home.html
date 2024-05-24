@@ -15,9 +15,95 @@
 </div>
 </div>
 
-<a class="badge bg-primary p-2 m-2" href={% url 'between_app:components_test' %}>Therapy components test</a>
 <a class="badge bg-primary p-2 m-2" href={% url 'between_app:traditions_test' %}>Big traditions test </a>
 
 
 
-{% endblock content%}
+
+<h2>Components</h2>
+<!--component button-->
+<a class="badge bg-primary p-2 m-2" href={% url 'between_app:components_test' %}>Therapy components test</a>
+<!--Components results in bars-->
+
+  <div class="progress"><!--Start of subjective section-->
+    <div class="progress-bar progress-bar-striped" role="progressbar" style="width: {{components.body}}%" aria-valuenow="{{components.body}}" aria-valuemin="0" aria-valuemax="100">Body</div>
+  </div>
+  <div class="progress">
+    <div class="progress-bar progress-bar-striped bg-success" role="progressbar" style="width: {{components.feelings}}%" aria-valuenow="{{components.feelings}}" aria-valuemin="0" aria-valuemax="100">Feelings</div>
+  </div>
+  <div class="progress">
+    <div class="progress-bar progress-bar-striped bg-info" role="progressbar" style="width: {{components.expression}}%" aria-valuenow="{{components.expression}}" aria-valuemin="0" aria-valuemax="100">expression</div>
+  </div>
+  <div class="progress">
+    <div class="progress-bar progress-bar-striped bg-warning" role="progressbar" style="width: {{components.thoughts}}%" aria-valuenow="{{components.thoughts}}" aria-valuemin="0" aria-valuemax="100">Thoughts</div>
+  </div>
+  <div class="progress">
+    <div class="progress-bar progress-bar-striped bg-danger" role="progressbar" style="width: {{components.narrative}}%" aria-valuenow="{{components.narrative}}" aria-valuemin="0" aria-valuemax="100">Narrative</div>
+  </div>
+<!--end of subjective section-->
+<div class="progress"><!--Start of extended awareness section-->
+    <div class="progress-bar progress-bar-striped" role="progressbar" style="width: {{components.dreaming}}%" aria-valuenow="{{components.dreaming}}" aria-valuemin="0" aria-valuemax="100">Dreaming</div>
+  </div>
+  <div class="progress">
+    <div class="progress-bar progress-bar-striped bg-success" role="progressbar" style="width: {{components.re_prog}}%" aria-valuenow="{{components.re_prog}}" aria-valuemin="0" aria-valuemax="100">Re-Programation</div>
+  </div>
+  <div class="progress">
+    <div class="progress-bar progress-bar-striped bg-info" role="progressbar" style="width: {{components.subliminal}}%" aria-valuenow="{{components.subliminal}}" aria-valuemin="0" aria-valuemax="100">Subliminal</div>
+  </div>
+  <div class="progress">
+    <div class="progress-bar progress-bar-striped bg-warning" role="progressbar" style="width: {{components.subparts}}%" aria-valuenow="{{components.subparts}}" aria-valuemin="0" aria-valuemax="100">Sub-Parts</div>
+  </div>
+  <div class="progress">
+    <div class="progress-bar progress-bar-striped bg-danger" role="progressbar" style="width: {{components.spiritual}}%" aria-valuenow="{{components.spiritual}}" aria-valuemin="0" aria-valuemax="100">Spiritual</div>
+  </div><!--end of extended awareness-->
+
+  <div class="progress"><!--Start of context work section-->
+    <div class="progress-bar progress-bar-striped" role="progressbar" style="width: {{components.relational}}%" aria-valuenow="{{components.relational}}" aria-valuemin="0" aria-valuemax="100">Relational</div>
+  </div>
+  <div class="progress">
+    <div class="progress-bar progress-bar-striped bg-success" role="progressbar" style="width: {{components.systems}}%" aria-valuenow="{{components.systems}}" aria-valuemin="0" aria-valuemax="100">Systems</div>
+  </div>
+  <div class="progress">
+    <div class="progress-bar progress-bar-striped bg-info" role="progressbar" style="width: {{components.setup}}%" aria-valuenow="{{components.setup}}" aria-valuemin="0" aria-valuemax="100">Set-up and Rewards</div>
+  </div>
+  <div class="progress">
+    <div class="progress-bar progress-bar-striped bg-warning" role="progressbar" style="width: {{components.transOb}}%" aria-valuenow="{{components.transOb}}" aria-valuemin="0" aria-valuemax="100">Transitional Objects</div>
+  </div>
+  <div class="progress">
+    <div class="progress-bar progress-bar-striped bg-danger" role="progressbar" style="width: {{components.famiily}}%" aria-valuenow="{{components.family}}" aria-valuemin="0" aria-valuemax="100">Family</div>
+  </div> <!--end of context -->
+
+  <div class="progress"><!--Start of culture section-->
+    <div class="progress-bar progress-bar-striped" role="progressbar" style="width: {{components.antropology}}%" aria-valuenow="{{components.antropology}}" aria-valuemin="0" aria-valuemax="100">Antropology</div>
+  </div>
+  <div class="progress">
+    <div class="progress-bar progress-bar-striped bg-success" role="progressbar" style="width: {{components.arts}}%" aria-valuenow="{{components.antropology}}" aria-valuemin="0" aria-valuemax="100">Arts</div>
+  </div>
+  <div class="progress">
+    <div class="progress-bar progress-bar-striped bg-info" role="progressbar" style="width: {{components.politics}}%" aria-valuenow="{{components.politics}}" aria-valuemin="0" aria-valuemax="100">Politics</div>
+  </div>
+  <div class="progress">
+    <div class="progress-bar progress-bar-striped bg-warning" role="progressbar" style="width: {{components.philosophy}}%" aria-valuenow="{{components.philosophy}}" aria-valuemin="0" aria-valuemax="100">Philosophy</div>
+  </div>
+  <div class="progress">
+    <div class="progress-bar progress-bar-striped bg-danger" role="progressbar" style="width: {{components.worldview}}%" aria-valuenow="{{components.worldview}}" aria-valuemin="0" aria-valuemax="100">Wroldviews</div>
+  </div> <!--end of culture -->
+
+  <div class="progress"><!--Start of identity section-->
+    <div class="progress-bar progress-bar-striped" role="progressbar" style="width: {{components.individuation}}%" aria-valuenow="{{components.individuation}}" aria-valuemin="0" aria-valuemax="100">Individuation</div>
+  </div>
+  <div class="progress">
+    <div class="progress-bar progress-bar-striped bg-success" role="progressbar" style="width: {{components.sex_gender}}%" aria-valuenow="{{components.sex_gender}}" aria-valuemin="0" aria-valuemax="100">Sex and Gender</div>
+  </div>
+  <div class="progress">
+    <div class="progress-bar progress-bar-striped bg-info" role="progressbar" style="width: {{components.values}}%" aria-valuenow="{{components.values}}" aria-valuemin="0" aria-valuemax="100">Values</div>
+  </div>
+  <div class="progress">
+    <div class="progress-bar progress-bar-striped bg-warning" role="progressbar" style="width: {{components.belonging}}%" aria-valuenow="{{components.belonging}}" aria-valuemin="0" aria-valuemax="100">Belonging</div>
+  </div>
+  <div class="progress">
+    <div class="progress-bar progress-bar-striped bg-danger" role="progressbar" style="width: {{components.roles}}%" aria-valuenow="{{components.roles}}" aria-valuemin="0" aria-valuemax="100">Roles</div>
+  </div> <!--end of identity -->
+
+</br>
+  {% endblock content%}

@@ -18,7 +18,7 @@ urlpatterns = [
     path('add_session/', views.add_session, name='add_session'),
     path('client_list/', views.clients, name='client_list'),
     path('session_list/', views.sessions, name='session_list'),
-    path('edit_client/', views.session_home, name='edit_client'),
-    path('edit_session/', views.session_home, name='edit_session'),
+    path('edit_client/', views.edit_client, name='edit_client'),
+    path('edit_session/', views.edit_session, name='edit_session'),
 
 ]

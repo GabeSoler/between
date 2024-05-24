@@ -1,5 +1,4 @@
 from django.shortcuts import render,redirect
-
 from .models import Topic,Entry,AfterJournal,Creation,Shadow
 from .forms import TopicForm,EntryForm,AfterForm,CreationForm,ShadowForm
 from django.contrib.auth.decorators import login_required
@@ -209,14 +208,14 @@ def new_creation(request):
 @login_required
 def edit_creation(request,creation_id):
     """edit an existing entry"""
-    Creations = AfterJournal.objects.get(id=creation_id)
+    Creations = Creation.objects.get(id=creation_id)
     check_owner(Creations.owner,request.user)
     if request.method != 'POST':
         #initial request;pre-fill form with the current entry
-        form = AfterForm(instance=Creation)
+        form = CreationForm(instance=Creations)
     else:
         #POST data submitted; process data
-        form = Creation(instance=CreationForm,data=request.POST)
+        form = CreationForm(instance=Creations,data=request.POST)
         if form.is_valid():
             form.save()
             return redirect('learning_logs:topic',creation_id=Creations.id)

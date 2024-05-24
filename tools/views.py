@@ -1,8 +1,8 @@
 from django.shortcuts import render,redirect
-from models import Client,Session
+from .models import Client,Session
 from django.contrib.auth.decorators import login_required
 from django.http import Http404
-from forms import ClientForm,SessionForm
+from .forms import ClientForm, SessionForm
 
 
 #Functions
@@ -36,7 +36,7 @@ def client(request,client_pk):
     return render(request,'tools/client_session/client.html',context)
 
 @login_required
-def client(request,session_pk):
+def session(request,session_pk):
     """show one session"""
     session = Session.objects.get(pk=session_pk)
     check_owner(session.user,request.user)
@@ -94,3 +94,38 @@ def add_session(request):
     #display a blank or invalid form
     context = {'form':form}
     return render(request,'tools/client_session/add_session.html',context)
+
+@login_required
+def edit_client(request,client_pk):
+    """edit an existing entry"""
+    Client_i = Client.objects.get(pk=client_pk)
+    check_owner(Client_i.user,request.user)
+    if request.method != 'POST':
+        #initial request;pre-fill form with the current entry
+        form = ClientForm(instance=Client_i)
+    else:
+        #POST data submitted; process data
+        form = ClientForm(instance=Client_i,data=request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('tools:client',client_pk=Client_i.pk)
+    context = {'client':Client_i,'form':form}
+    return render(request,'tools/client_session/edit_client.html',context)
+
+
+@login_required
+def edit_session(request,session_pk):
+    """edit an existing Session"""
+    Sess = Session.objects.get(pk=session_pk)
+    check_owner(Sess.user,request.user)
+    if request.method != 'POST':
+        #initial request;pre-fill form with the current entry
+        form = SessionForm(instance=Sess)
+    else:
+        #POST data submitted; process data
+        form = SessionForm(instance=Sess,data=request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('learning_logs:topic',creation_id=Sess.pk)
+    context = {'session':Sess,'form':form}
+    return render(request,'tools/client_session/edit_session.html',context)

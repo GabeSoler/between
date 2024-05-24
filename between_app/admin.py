@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Personal_Style
+from .models import Personal_Style,Components
 # Register your models here.
 
 class ContentAdminProperties(admin.ModelAdmin):
@@ -7,6 +7,8 @@ class ContentAdminProperties(admin.ModelAdmin):
 
 
 admin.site.register(Personal_Style)
+admin.site.register(Components)
+
 
 
 
