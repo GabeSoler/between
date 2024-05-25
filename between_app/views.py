@@ -16,23 +16,24 @@ class index_View(TemplateView):
     template_name = 'between_app/index.html'
 
         
-@login_required
 def test_home(request):
     """show all tests"""
-    try:
-        positions = Personal_Style.objects.filter(user=request.user).latest('updated_at')
-    except Personal_Style.DoesNotExist:
-        positions = None
-    try:
-        bigTrad = BigTraditions.objects.filter(user=request.user).latest('updated_at')
-    except BigTraditions.DoesNotExist:
-        bigTrad = None
-    try:
-        components = Components.objects.filter(user=request.user).latest('updated_at')
-    except Components.DoesNotExist:
-        components = None
-    context = {'positions':positions,'BigTrad':bigTrad,'components':components}
-    return render(request,'between_app/test-home.html',context)
+    if request.user.is_authenticated:
+        try:
+            positions = Personal_Style.objects.filter(user=request.user).latest('updated_at')
+        except Personal_Style.DoesNotExist:
+            positions = None
+        try:
+            bigTrad = BigTraditions.objects.filter(user=request.user).latest('updated_at')
+        except BigTraditions.DoesNotExist:
+            bigTrad = None
+        try:
+            components = Components.objects.filter(user=request.user).latest('updated_at')
+        except Components.DoesNotExist:
+            components = None
+        context = {'positions':positions,'BigTrad':bigTrad,'components':components}
+        return render(request,'between_app/test-home.html',context)
+    return render(request,'between_app/test-home.html')
 
 
 #Therapeutic Positions

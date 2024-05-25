@@ -2,11 +2,21 @@
 {%block title%} List {%endblock title %}
 
 {% block content %}
-<h1>Therapist Style</h1>
+{% load static %}
+<link rel="stylesheet" href="{% static "between_app/css/style.css" %}">
 
-<div class="card mb-3">
+<!--Title card-->
+<div class="card mb-3 border-primary border-3 soft-green">
     <div class="card-body">
-<h2 class="card-title">Profile: </h2>
+<h2 class="card-title">Therapist Style</h2>
+<p class='card-text'>Here you can see your therapeutic style</p>
+    </div></div>
+
+    {% if user.is_authenticated %}
+ <!--Personal Profile-->   
+<div class="card mb-3 border-primary border-1 soft-blue">
+    <div class="card-body">
+<h2 class="card-title">Profile:</h2>
 <p class="card-text">Therapeutic Profiles is a project to help therapist and clients to find their unique needs, having names to organise the complexities of human beings.</p>
 <p class="card-text">They will help you to recognise your unique style and positions towards helping others and yourself.</p>
 <a class="badge bg-primary p-2 m-2" href={% url 'pages:index' %}>Read the theory </a>
@@ -18,9 +28,11 @@
 <a class="badge bg-primary p-2 m-2" href={% url 'between_app:traditions_test' %}>Big traditions test </a>
 
 
-
-
-<h2>Components</h2>
+<!-- Components bar section -->
+<div class="card mb-3 border-primary border-1 soft-blue"> 
+    <div class="card-body">
+  
+    <h2 class='card-title'>Components</h2>
 <!--component button-->
 <a class="badge bg-primary p-2 m-2" href={% url 'between_app:components_test' %}>Therapy components test</a>
 <!--Components results in bars-->
@@ -104,6 +116,17 @@
   <div class="progress">
     <div class="progress-bar progress-bar-striped bg-danger" role="progressbar" style="width: {{components.roles}}%" aria-valuenow="{{components.roles}}" aria-valuemin="0" aria-valuemax="100">Roles</div>
   </div> <!--end of identity -->
-
+</div></div>
 </br>
+
+{% else %}
+<!--no signed up card-->
+<div class="card mb-3 border-primary border-3 soft-green">
+    <div class="card-body">
+<h2 class="card-title">Take the test</h2>
+<p class='card-text'>Please login to see save and access your results.</p>
+<a class="badge bg-primary p-2 m-2" href={% url 'between_app:profile_test' %}>Take the Profile test </a></br>
+
+    </div></div>
+{% endif %}
   {% endblock content%}
