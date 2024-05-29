@@ -1,0 +1,18 @@
+{% extends 'between_app/_base.html' %}
+{% load django_bootstrap5 %}
+{% bootstrap_css%}
+{%bootstrap_javascript%}
+
+{% block title %}Log Out{% endblock%}
+
+{% block content %}
+
+<h1>Log Out</h1>
+<p>Are you sure you want to log out?</p>
+<form method='post' action={% url 'account_logout' %}>
+    {% csrf_token %}
+    {% bootstrap_button button_type='submit' content='Log out' %}
+</form>
+
+
+{% endblock%}

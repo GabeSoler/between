@@ -1,5 +1,5 @@
 from django import forms
-from .models import Personal_Style,BigTraditions,Components
+from .models import Personal_Style,BigTraditions,Components,EmailSent
 import floppyforms.__future__ as forms
 
 
@@ -96,3 +96,9 @@ class BigTradForm(forms.ModelForm):
         }
 
 
+class SendEmail(forms.ModelForm):
+    class Meta:
+        model = EmailSent
+        fields = ('email',)
+        labels = {'emal':'Please press send if you are singed up or write an email if not',}
+        

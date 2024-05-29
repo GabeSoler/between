@@ -1,14 +1,17 @@
 from django.shortcuts import render,redirect
-from .models import Personal_Style, Components,BigTraditions
+from .models import Personal_Style, Components,BigTraditions,PS_Section,PS_group
 from django.views.generic import ListView, DetailView,TemplateView,CreateView
-from .forms import StyleForm,ComponentsForm,BigTradForm
+from .forms import StyleForm,ComponentsForm,BigTradForm,SendEmail
 from django.contrib.auth import get_user_model
 from django.http import HttpResponseRedirect
 from django.urls import reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.decorators import login_required
-
+from django.core.mail import EmailMessage,get_connection
+from django.template.loader import render_to_string
+from django.utils.html import strip_tags
 from .content import Content
+from django.conf import settings
 # Create your views here.
 
 #Start classes with caps
@@ -52,7 +55,7 @@ class PositionListView(LoginRequiredMixin, ListView):
 class takeTestView(CreateView):
     model = Personal_Style
     form_class = StyleForm
-    template_name = 'between_app/profile_test.html'
+    template_name = 'between_app/personal_style/profile_test.html'
     success_url = 'between_app/personal_style/results/'
 
     def post(self, request, *args, **kwargs):
@@ -81,7 +84,7 @@ class formDetailView(DetailView):
 
 class resultsView(DetailView):
     model = Personal_Style
-    template_name = 'between_app/results.html'
+    template_name = 'between_app/personal_style/results.html'
     context_object_name = 'style_detail'
 
     def get_context_data(self, **kwargs):
@@ -91,6 +94,66 @@ class resultsView(DetailView):
         tradition = Content.tradition
         context["content"] = {'position':position,'path':path,'tradition':tradition}
         return context
+
+def ps_results(request,pk):
+    """show the results of personal style"""
+    style_detail = Personal_Style.objects.get(pk=pk)
+    results = style_detail.calProfile
+    cont_position = PS_group.objects.filter(section__section='position')
+    cont_path = PS_group.objects.filter(section__section='path')
+    cont_tradition = PS_group.objects.filter(section__section='tradition')
+    for position in cont_position:
+        if results['main_position'] == position.group: #targeting main position result
+            position_text = position
+            break
+        else:
+            position_text = 'error'
+    for path in cont_path:
+        if results['main_path'] == path.group: #targeting main path
+            path_text = path
+            break
+        else:
+            path_text = 'error'
+    for tradition in cont_tradition:
+        if results['main_tradition'] == tradition.group: #targeting main tradition
+            tradition_text = tradition
+            break
+        else:
+            path_text = 'error'
+    
+    if request.method != 'POST': #Email functionality to the results (making this accesible to non registered users)
+        form = SendEmail()
+    else:
+        form = SendEmail(data=request.POST)
+        if form.is_valid:
+            instance = form.save()
+            user_email = instance.email
+            user_email = tuple(user_email)
+        else:
+            return html_content("<h3>Please add a valid email!</h3>")
+        with get_connection(
+            host= settings.RESEND_SMTP_HOST,
+            port= settings.RESEND_SMTP_PORT,
+            username= settings.RESEND_SMTP_USERNAME,
+            password= settings.RESEND_API_KEY,
+            use_tls=True,
+            ) as connection:
+                subject, from_email, to = 'Profile', 'crea@therapy.com', user_email
+                html_content = render_to_string('between_app/email/personal_style_email.html', 
+                                                {'position':position_text,'path':path_text,'tradition':tradition_text}) # render with dynamic value
+                #text_content = strip_tags(html_content) # Strip the html tag. So people can see the pure text at least.
+                msg = EmailMessage(
+                    subject=subject,
+                    body=html_content,
+                    to=user_email,
+                    from_email=from_email,
+                    connection=connection)
+                msg.content_subtype = 'html'
+                msg.send()
+                return redirect('between_app:test_home')
+    context = {'position':position_text,'path':path_text,'tradition':tradition_text,'form':form,'pk':pk}
+    return render(request,'between_app/personal_style/results_email.html',context)
+
 
 
 class contentView(TemplateView):

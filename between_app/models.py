@@ -138,3 +138,27 @@ class BigTraditions(models.Model):
     spiritual = models.IntegerField(choices=Response_Choices.choices, default=1)
     scientific = models.IntegerField(choices=Response_Choices.choices, default=1)
 
+
+
+#Content fixtures
+from django.core.files.storage import FileSystemStorage
+from django.conf import settings
+
+upload_storage = FileSystemStorage(location=settings.STATIC_ROOT, base_url='/uploads')
+
+class PS_Section(models.Model):
+    updated_at = models.DateTimeField(auto_now=True, editable=False)
+    section = models.CharField(max_length=20,default='') #position, path,tradition
+class PS_group(models.Model):
+    updated_at = models.DateTimeField(auto_now=True, editable=False)
+    section = models.ForeignKey(PS_Section,default=None, on_delete=models.CASCADE)
+    group = models.CharField(max_length=20, default='') #compassionate,playgul, etc
+    image = models.ImageField(storage=upload_storage)
+    description = models.TextField(default='')
+    shadow = models.TextField(default='')
+    traditions = models.TextField(default='')
+    authors = models.TextField(default='')
+
+class EmailSent(models.Model):
+    email = models.EmailField(max_length=200)
+    created_at = models.DateTimeField(auto_now_add=True, editable=False)

@@ -39,23 +39,16 @@
             <!-- Account related links-->
             <ul class='navbar-nav ms-auto mb-2 mb-md-0'>
                 {% if user.is_authenticated %}
-                <li class='nav-item'>
-                    <span class='navbar-text me-2'>Hello, {{user.username}}!</span></li>
+                <class='nav-item'>
+                    <span class='navbar-text me-2'>Hello, {{user.username}}! <small><a class='nav-link-inline link-secondary' href="{% url 'account_logout' %}"> Log Out</a></small></span></li>
                 {% else %}
                 <li class='nav-item'>
-                    <a class='nav-link' href="{% url 'accounts:signup'%}">Signup</a></li>
+                    <a class='nav-link' href="{% url 'account_signup'%}">Signup</a></li>
                 <li class='nav-item'>
-                    <a class='nav-link' href="{% url 'accounts:login' %}">Log in</a></li>
+                    <a class='nav-link' href="{% url 'account_login' %}">Log in</a></li>
                 {% endif %}
             </ul> 
-                {% if user.is_authenticated %}
-                    <form action="{% url 'accounts:logout' %}" method='post'>
-                        {% csrf_token %}
-                        <button name='submit' class='btn btn-outline-secondary btn-sm'>
-                            Log out</button>
-                        </form>
-                {% endif %}
-             <!-- End of account related links -->
+               <!-- End of account related links -->
 
         </div> <!-- Closes collapsible parts of navbar -->
     </div><!-- closes navbar container-->

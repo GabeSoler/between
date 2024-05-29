@@ -16,7 +16,7 @@ urlpatterns = [
 # therapeutic positions
 
     path('form_detail/<uuid:pk>/',views.formDetailView.as_view(),name='personal_style_detail'),
-    path('results/<uuid:pk>/',views.resultsView.as_view(),name='results'),
+    #path('results/<uuid:pk>/',views.resultsView.as_view(),name='results'),
     path('profile_test/',views.takeTestView.as_view(),name='profile_test'),
     path('content/',views.contentView.as_view(),name='content'),
 
@@ -27,5 +27,11 @@ urlpatterns = [
 #Traditions
     path('traditions_test/',views.takeTraditionsView.as_view(),name='traditions_test'),
 
-    ]
+    
+#content
+    path('content_1/',views.contentView.as_view(),name='content_1'),
 
+    path('results_email/<uuid:pk>/',views.ps_results,name='results'),
+
+
+]

@@ -45,6 +45,8 @@ INSTALLED_APPS = [
     #third party apps
     'django_bootstrap5',
     'floppyforms',
+    'allauth',
+    'allauth.account',
 
 
 #defoult apps
@@ -66,6 +68,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'allauth.account.middleware.AccountMiddleware' #allauth middleware
 ]
 
 ROOT_URLCONF = 'between.urls'
@@ -132,8 +135,8 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
-STATIC_URL = '.static/'
-STATIC_ROOT = ".static/" #change when knowing the reall address, plus change url patterns
+STATIC_URL = 'static/'
+STATIC_ROOT = "static/" #change when knowing the reall address, plus change url patterns
 
 
 MEDIA_URL = 'media/'
@@ -144,16 +147,18 @@ MEDIA_URL = 'media/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
+
+
 # My settings
 
 LOGIN_REDIRECT_URL = 'between_app:index'
 LOGOUT_REDIRECT_URL = 'between_app:index'
 LOGIN_URL = 'accounts:login'
-
+AUTHENTICATION_LOGOUT_REDIRECT = 'between_app:index'
 AUTH_USER_MODEL = 'accounts.CustomUser'
 
 
-
+#config of bootstrap5, I added a theme called 'sandstone' from bootswatch
 BOOTSTRAP5 = {
 
     # The complete URL to the Bootstrap CSS file.
@@ -227,9 +232,30 @@ BOOTSTRAP5 = {
 }
 
 
+#REsend configuration and email back ends
+RESEND_API_KEY = config('RESEND_API_KEY')
+RESEND_SMTP_PORT = config('RESEND_SMTP_PORT')
+RESEND_SMTP_USERNAME = config('RESEND_SMTP_USERNAME')
+RESEND_SMTP_HOST = config('RESEND_SMTP_HOST')
 
-EMAIL_HOST = config('EMAIL_HOST', default='localhost')
-EMAIL_PORT = config('EMAIL_PORT', default=25, cast=int)
-EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD', default='')
-EMAIL_HOST_USER = config('EMAIL_HOST_USER', default='')
-EMAIL_USE_TLS = config('EMAIL_USE_TLS', default=False, cast=bool)
+if DEBUG == False: #switch to smtp when in production
+    EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+else:
+    EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+EMAIL_HOST = 'smtp.resend.com'
+EMAIL_USE_TLS = True
+EMAIL_PORT = RESEND_SMTP_PORT
+EMAIL_USE_SSL = False
+EMAIL_HOST_USER = RESEND_SMTP_USERNAME
+EMAIL_HOST_PASSWORD = RESEND_API_KEY
+
+
+#Django All auth config
+SITE_ID = 1
+AUTHENTICATION_BACKENDS = [
+    # Needed to login by username in Django admin, regardless of `allauth`
+    'django.contrib.auth.backends.ModelBackend',
+    # `allauth` specific authentication methods, such as login by email
+    'allauth.account.auth_backends.AuthenticationBackend',
+]

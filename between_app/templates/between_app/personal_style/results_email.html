@@ -1,0 +1,61 @@
+{% extends 'between_app/_base.html' %}
+
+{% block title%} Results {% endblock title %}
+
+{% load static %}
+{% load django_bootstrap5 %}
+
+
+{%block page_header %}<h1>Results</h1> {%endblock page_header%}
+
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'between_app/css/image.css' %}">
+
+<h3>Therapeutic Styles:</h3>
+<p>Therapeutic styles are a way of conceptualising human difference. We all move through positions and roles in life, some being more familiar than others to us. Different cultures, families, subcultures stress some positions more than others.</p>
+<p>My idea is that we need to learn from the different positions to overcome their 'shadows', the parts that become hidden of our personality and tradition.</p>
+<p>Many new traditions are placed in-between positions, making the current landscape more fluid. This model aims to help therapist and clients to identify the positions where they feel more comfortable and which ones feel harder.</p>
+</br>
+<H1>Your main therapeutic Position</H1>
+    <div class="card bg-active mb-3">
+    <div class="card-body">
+    <h2 class="card-title">{{position.group|title}}</h2>
+    <image src="{% static position.image %}" class='card-img-right posImage'>
+    <p class="card-text posText"><b>Description</b>:{{position.description}}</p>
+    <p class="card-text posText"><b>Shadow</b>:{{position.shadow}}</p>
+    <p class="card-text posText"><b>Traditions</b>:{{position.traditions}}</p>
+    <p class="card-text posText"><b>Authors</b>:{{position.authors}}</p>
+    </div></div>
+<H1>Your main Path</H1>
+    <div class="card bg-active mb-3">
+    <div class="card-body">
+    <h2 class="card-title">{{path.group|title}}</h2>
+    <image src="{% static path.image %}" class='card-img-right posImage'>
+    <p class="card-text posText"><b>Description</b>:{{path.description}}</p>
+    <p class="card-text posText"><b>Shadow</b>:{{path.shadow}}</p>
+    <p class="card-text posText"><b>Traditions</b>:{{path.traditions}}</p>
+    <p class="card-text posText"><b>Authors</b>:{{path.authors}}</p>
+    </div></div>
+<H1>Your main relationship with the Tradition</H1>
+    <div class="card bg-active mb-3">
+    <div class="card-body">
+    <h2 class="card-title">{{tradition.group|title}}</h2>
+    <image src="{% static tradition.image %}" class='card-img-right posImage'>
+    <p class="card-text posText"><b>Description</b>:{{tradition.description}}</p>
+    <p class="card-text posText"><b>Shadow</b>:{{tradition.shadow}}</p>
+    <p class="card-text posText"><b>Traditions</b>:{{tradition.traditions}}</p>
+    <p class="card-text posText"><b>Authors</b>:{{tradition.authors}}</p>
+    </div></div>
+   
+</div>
+</div>
+
+<form action="{% url 'between_app:results' pk %}" method='post'>
+    {% csrf_token %}
+    {% bootstrap_form form %}
+    {% bootstrap_button button_type='submit' content='Send as Email' %}
+  </form>
+
+
+{% endblock content%}
