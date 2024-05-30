@@ -8,3 +8,9 @@ class homeView(TemplateView):
 
 class creationView(TemplateView):
     template_name = 'pages/creation.html'
+
+class ProfilesView(TemplateView):
+    template_name = 'pages/profiles.html'
+
+class ComponentsView(TemplateView):
+    template_name = 'pages/components.html'

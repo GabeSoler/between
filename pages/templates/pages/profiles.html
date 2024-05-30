@@ -1,0 +1,206 @@
+    {% extends 'between_app/_base.html' %}
+
+
+
+{%block title%}Profiles{%endblock title%}
+
+
+{%block page_header%}Profiles{%endblock page_header%}
+{%block content%}
+{% load static %}
+<link rel="stylesheet" href="{% static 'pages/css/image.css' %}">
+
+<!--Acordion Position-->
+<h2>Position</h2>
+<div class="accordion" id="accordionPosition">
+<div class="accordion-item">
+    <h2 class="accordion-header" id="headingOne">
+    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+        Compassionate
+    </button>
+    </h2>
+    <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionPosition">
+    <div class="accordion-body">
+        <image src="{% static 'between_app/images/compasionate.jpg' %}" class='accordion-image-right posImage'>
+        <strong>Follows and accepts.</strong> Type of therapist that welcomes and holds anything that the client brings. Its words and interventions are soft and give a feeling of wholesomness. They never make you feel uncomfortable, nor challenge any of your comments. They are patient and no mater what you do, always see it in a good light. 
+        <p>Risk: lack of boundaries, clients abusing the ‘good’ therapist.<p/>
+            </div>
+    </div>
+</div>
+<div class="accordion-item">
+    <h2 class="accordion-header" id="headingTwo">
+    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+        Playful
+    </button>
+    </h2>
+    <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionPosition">
+    <div class="accordion-body">
+        <image src="{% static 'between_app/images/playful.jpg' %}" class='accordion-image-right posImage'>
+
+        <strong>Proposes and accepts.</strong> A type of therapist who tries to bring new things to the session to help the client process and move forward. They see many opportunities to help through little exercises like art-making, meditation, and role-playing. The goal is to activate the client's own processes by creating spaces of insight.
+        <p>Risk: unconscious enactments, opening up things without the right timing. <p/>
+    </div>
+    </div>
+</div>
+<div class="accordion-item">
+    <h2 class="accordion-header" id="headingThree">
+    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+        Inquisitive
+    </button>
+    </h2>
+    <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionPosition">
+    <div class="accordion-body">
+        <image src="{% static 'between_app/images/inquisitive.jpg' %}" class='accordion-image-right posImage'>
+
+        <strong>Follows and challenges.</strong>This type of therapist follows the client's process silently and awaits the right moment to comment or say a few words. They work by finding details in what the client brings that may trigger internal processes. They are subtle and make you feel they know something you have yet to figure out.
+        <p>Risk: over thinking, detached thinking. <p/>
+
+    </div>
+    </div>
+</div><div class="accordion-item">
+    <h2 class="accordion-header" id="headingThree">
+    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+        Changer
+    </button>
+    </h2>
+    <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#accordionPosition">
+    <div class="accordion-body">
+        <image src="{% static 'between_app/images/changer.jpg' %}" class='accordion-image-right posImage'>
+
+        <strong>Proposes and challenges.</strong> The type of therapist who wants to promote change in the client by bringing exercises, homework, and a battery of solutions. They have an answer for everything and a tool for every problem. They are on top of what is happening and will try to help you feel better soon. They tend to be pragmatic, enthusiastic, and encouraging.
+        <p>Risk: Controlling the situation and not giving space for the client to express all their angles. <p/>
+
+    </div>
+    </div>
+</div>
+
+<!--Acordion Path-->
+<h2>Path</h2>
+<div class="accordion" id="accordionPath">
+<div class="accordion-item">
+    <h2 class="accordion-header" id="headingOne">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne2" aria-expanded="true" aria-controls="collapseOne2">
+        Dreamer
+        </button>
+    </h2>
+    <div id="collapseOne2" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionPath">
+        <div class="accordion-body">
+        <image src="{% static 'between_app/images/dreamer.jpg' %}" class='accordion-image-right posImage'>
+
+        <strong>Soul Guardian.</strong> Allows imagination and fantasy to guide the path: “I can become everything, but never have a hold of it”. 
+        <p>Risk: Delirium, losing the connection with the other four, losing the ground and structures.</p>
+    </div>
+    </div>
+    </div>
+    <div class="accordion-item">
+    <h2 class="accordion-header" id="headingTwo">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo2" aria-expanded="false" aria-controls="collapseTwo2">
+        Sage
+        </button>
+    </h2>
+    <div id="collapseTwo2" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionPath">
+        <div class="accordion-body">
+        <image src="{% static 'between_app/images/sage.jpg' %}" class='accordion-image-right posImage'>
+
+        <strong>Spirit Guardian.</strong>Concepts and categories are the path: "I can understand everything but never feel close to it”. 
+        <p>Risk: Obsession, losing the magic and ground, the projects takes all meaning.</p>
+    
+    </div>
+    </div>
+    </div>
+    <div class="accordion-item">
+    <h2 class="accordion-header" id="headingThree">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree2" aria-expanded="false" aria-controls="collapseThree2">
+        Carer
+        </button>
+    </h2>
+    <div id="collapseThree2" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionPath">
+        <div class="accordion-body">
+            <image src="{% static 'between_app/images/carer.jpg' %}" class='accordion-image-right posImage'>
+
+            <strong>Life Guardian. </strong>Connecting with even the smallest thing: “I can care for everything, but never for myself”. 
+            <p>Risk: Submission, caring but forgetting themselves.</p>        
+        </div>
+    </div>
+    </div>
+</div>
+<div class="accordion-item">
+    <h2 class="accordion-header" id="headingFour">
+    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour2" aria-expanded="false" aria-controls="collapseFour2">
+        Explorer
+    </button>
+    </h2>
+    <div id="collapseFour2" class="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#accordionPath">
+    <div class="accordion-body">
+        <image src="{% static 'between_app/images/explorer.jpg' %}" class='accordion-image-right posImage'>
+
+            <strong>Knowledge Guardian.</strong>Looking for knowledge and new things to conquer, new technology, new techniques: “I can conquer everything, but feel never satisfied”. 
+            <p>Risk: Becoming maniac, losing biological balance and boundaries, exploration takes control.</p>    </div>
+    </div>
+</div>
+</div>
+
+<!--Acordion Traddition-->
+<h2>Tradition</h2>
+<div class="accordion" id="accordionTradition">
+
+<div class="accordion-item">
+    <h2 class="accordion-header" id="headingOne">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne3" aria-expanded="true" aria-controls="collapseOne3">
+        Artist
+        </button>
+    </h2>
+    <div id="collapseOne3" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionTradition">
+        <div class="accordion-body">
+            <image src="{% static 'between_app/images/artist.jpg' %}" class='accordion-image-right posImage'>
+
+                <strong>Feeling everything deeply. </strong>Artists express their connection with things and intense places. Artists become more themselves as they feel more. 
+                <p>Risk: The thirst for experience can become an addiction.</p>        </div>
+    </div>
+    </div>
+    <div class="accordion-item">
+    <h2 class="accordion-header" id="headingTwo">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo3" aria-expanded="false" aria-controls="collapseTwo3">
+        Warrior
+        </button>
+    </h2>
+    <div id="collapseTwo3" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionTradition">
+        <div class="accordion-body">
+            <image src="{% static 'between_app/images/warrior.jpg' %}" class='accordion-image-right posImage'>
+                <strong>Striking and rigorous. </strong>Warriors want to keep developing so they can achieve the next stage: to become more powerful and efficient. 
+                <p>Risk: Disconnection from others and their own feelings leads to tunnel vision, where they can only go forward.</p>        
+            </div>
+    </div>
+    </div>
+    <div class="accordion-item">
+    <h2 class="accordion-header" id="headingThree">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree3" aria-expanded="false" aria-controls="collapseThree3">
+        Lider/group
+        </button>
+    </h2>
+    <div id="collapseThree3" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionTradition">
+        <div class="accordion-body">
+            <image src="{% static 'between_app/images/lider.jpg' %}" class='accordion-image-right posImage'>
+                <strong>Belonging and shared identity.</strong>Tendencty to merge as a whole for a common vision with a leader who maintains the spirit and the coherence of the group.
+                <p>Risk: To lose contact with others groups, putting group's dynamics over rational ideas (in the shape of a cult).</p>
+                    </div>
+    </div>
+    </div>
+<div class="accordion-item">
+    <h2 class="accordion-header" id="headingFour">
+    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour3" aria-expanded="false" aria-controls="collapseFour3">
+        Coach/team
+    </button>
+    </h2>
+    <div id="collapseFour3" class="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#accordionTradition">
+    <div class="accordion-body">
+        <image src="{% static 'between_app/images/coach.jpg' %}" class='accordion-image-right posImage'>
+
+            <strong>Focused on the strategy and a target.</strong>Teams are differentiatied and the coach can be a strategist who plans how to use all the talents to achieve a goal.  
+            <p>Risk: The coach-role becoming a despot, not listening to the team or others, and the team preferring control over chaos.</p>        </div>
+</div>
+</div>
+</div>
+</br>
+
+{% endblock content %}
