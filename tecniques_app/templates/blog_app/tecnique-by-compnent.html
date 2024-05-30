@@ -1,0 +1,22 @@
+{% extends 'blog_app/base.html' %}
+
+{% block page_header%}
+<h2>Component:{{topic|title}}</h2>
+{% endblock page_header %}
+
+{%block content%}
+<div class='card' style="max-width: 800px;">
+<ul class='list-group border-bottom pb-2 mb-4 list-group-flash'>
+{%for blog in blogs %}
+        <li class='list-group-item boder-1'><a class='link-secondary' href="{%url 'blog_app:blog' blog.id %}">{{blog}}</a>: "{{blog.text|slice:":50"}}..."</li>
+{%empty%}
+        <li>No tecniques added yet</li>
+{%endfor%}
+</ul>
+{% if user.is_authenticated %}
+    <ul>
+        <li><a href="{%url 'blog_app:new_blog' %}">*Add new blog*</a></li>
+</ul>
+{% endif %}
+</div>
+{%endblock content%}
