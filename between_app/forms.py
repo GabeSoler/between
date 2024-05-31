@@ -1,7 +1,6 @@
 from django import forms
 from .models import Personal_Style,BigTraditions,Components,EmailSent
-import floppyforms.__future__ as forms
-
+from django.forms.widgets import Input
 
 def applyWidget(fields_list:list,widget_name:object):
     """for filling same widget in a group of fields"""
@@ -10,15 +9,16 @@ def applyWidget(fields_list:list,widget_name:object):
         widget_dic[field] = widget_name
     return widget_dic
 
-class RangeBooted(forms.RangeInput):
+class RangeBooted(Input):
     def get_context(self, name, value, attrs):
         ctx = super(RangeBooted, self).get_context(name, value, attrs)
-        ctx['attrs']['class'] = "form-range bg-secondary rounded shadow w-75 p-2"
-        ctx['attrs']['min'] = "0"
-        ctx['attrs']['max'] = "100"
-        ctx['attrs']['step'] = "2"
+        ctx['widget']['type'] = "range"
+        ctx['widget']['attrs']['class'] = "form-range bg-secondary rounded shadow w-75 p-2"
+        ctx['widget']['attrs']['min'] = "0"
+        ctx['widget']['attrs']['max'] = "100"
+        ctx['widget']['attrs']['step'] = "2"
         return ctx
-
+    
 
 class StyleForm(forms.ModelForm):
     class Meta:

@@ -41,10 +41,10 @@ INSTALLED_APPS = [
     'accounts.apps.AccountsConfig',
     'pages',
     'tools',
+    'techniques_app',
 
     #third party apps
     'django_bootstrap5',
-    'floppyforms',
     'allauth',
     'allauth.account',
 
