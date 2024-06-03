@@ -19,6 +19,21 @@
 <h2 class="card-title">Profile:</h2>
 <p class="card-text">Therapeutic Profiles is a project to help therapist and clients to find their unique needs, having names to organise the complexities of human beings.</p>
 <p class="card-text">They will help you to recognise your unique style and positions towards helping others and yourself.</p>
+
+<H1>Your main therapeutic Position</H1>
+    <div class="card bg-active mb-3">
+    <div class="card-body">
+    <h2 class="card-title">{{position.group|title}}</h2>
+    <image src="{% static cont_position.image_path %}" class='card-img-right posImage'>
+    <image src="{% static cont_path.image_path %}" class='card-img-right posImage'>
+    <image src="{{cont_tradition.image}}" class='card-img-right posImage'>
+    <p class="card-text posText"><b>Position</b>:{{cont_position.group|title}}</p>
+    <p class="card-text posText"><b>Path</b>:{{cont_path.group|title}}</p>
+    <p class="card-text posText"><b>Relationship with tradition</b>:{{cont_tradition.group|title}}</p>
+    </div></div>
+</ul>
+
+
 <a class="badge bg-primary p-2 m-2" href={% url 'pages:index' %}>Read the theory </a>
 <a class="badge bg-primary p-2 m-2" href={% url 'between_app:profile_test' %}>Take the test </a></br>
 

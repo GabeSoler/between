@@ -154,6 +154,7 @@ class PS_group(models.Model):
     section = models.ForeignKey(PS_Section,default=None, on_delete=models.CASCADE)
     group = models.CharField(max_length=20, default='') #compassionate,playgul, etc
     image = models.ImageField(storage=upload_storage)
+    image_path = models.CharField(max_length=300, default='')
     description = models.TextField(default='')
     shadow = models.TextField(default='')
     traditions = models.TextField(default='')
@@ -162,3 +163,4 @@ class PS_group(models.Model):
 class EmailSent(models.Model):
     email = models.EmailField(max_length=200)
     created_at = models.DateTimeField(auto_now_add=True, editable=False)
+

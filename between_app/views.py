@@ -22,19 +22,23 @@ class index_View(TemplateView):
 def test_home(request):
     """show all tests"""
     if request.user.is_authenticated:
-        try:
-            positions = Personal_Style.objects.filter(user=request.user).latest('updated_at')
-        except Personal_Style.DoesNotExist:
-            positions = None
+        try: 
+            style_detail = Personal_Style.objects.filter(user=request.user).latest('updated_at')
+            results = style_detail.calProfile
+            cont_position = PS_group.objects.get(group=results['main_position'])
+            cont_path = PS_group.objects.get(group=results['main_path'])
+            cont_tradition = PS_group.objects.get(group=results['main_tradition'])
+        except:
+            cont_position,cont_path,cont_tradition = None,None,None
         try:
             bigTrad = BigTraditions.objects.filter(user=request.user).latest('updated_at')
-        except BigTraditions.DoesNotExist:
+        except:
             bigTrad = None
         try:
             components = Components.objects.filter(user=request.user).latest('updated_at')
-        except Components.DoesNotExist:
+        except:
             components = None
-        context = {'positions':positions,'BigTrad':bigTrad,'components':components}
+        context = {'cont_position':cont_position,'cont_path':cont_path,'cont_tradition':cont_tradition,'BigTrad':bigTrad,'components':components}
         return render(request,'between_app/test-home.html',context)
     return render(request,'between_app/test-home.html')
 
@@ -99,28 +103,10 @@ def ps_results(request,pk):
     """show the results of personal style"""
     style_detail = Personal_Style.objects.get(pk=pk)
     results = style_detail.calProfile
-    cont_position = PS_group.objects.filter(section__section='position')
-    cont_path = PS_group.objects.filter(section__section='path')
-    cont_tradition = PS_group.objects.filter(section__section='tradition')
-    for position in cont_position:
-        if results['main_position'] == position.group: #targeting main position result
-            position_text = position
-            break
-        else:
-            position_text = 'error'
-    for path in cont_path:
-        if results['main_path'] == path.group: #targeting main path
-            path_text = path
-            break
-        else:
-            path_text = 'error'
-    for tradition in cont_tradition:
-        if results['main_tradition'] == tradition.group: #targeting main tradition
-            tradition_text = tradition
-            break
-        else:
-            path_text = 'error'
-    
+    cont_position = PS_group.objects.get(group=results['main_position'])
+    cont_path = PS_group.objects.get(group=results['main_path'])
+    cont_tradition = PS_group.objects.get(group=results['main_tradition'])
+   
     if request.method != 'POST': #Email functionality to the results (making this accesible to non registered users)
         form = SendEmail()
     else:
@@ -151,7 +137,7 @@ def ps_results(request,pk):
                 msg.content_subtype = 'html'
                 msg.send()
                 return redirect('between_app:test_home')
-    context = {'position':position_text,'path':path_text,'tradition':tradition_text,'form':form,'pk':pk}
+    context = {'position':cont_position,'path':cont_path,'tradition':cont_tradition,'form':form,'pk':pk}
     return render(request,'between_app/personal_style/results_email.html',context)
 
 
