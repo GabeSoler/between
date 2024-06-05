@@ -7,7 +7,7 @@
 <p>A space to think about your therapeutic style.</p>
 <ul class='list-group bg-light'>
 {%for item in style_list %}
-    <li class='list-group-item'><a href={% url 'between_app:results' item.pk %}>{{item.user}}'s Therapist Profile: {{item.updated_at|date:'d,m,Y'}}</a></li>
+    <li class='list-group-item'><a href={% url 'between_app:results' item.pk %}>{{item.user}}'s Therapist Profile: {{item.updated_at|date:'d,m,Y'}}</a>Find scores <a href={% url 'between_app:personal_style_detail' item.pk %}>here</li>
 {% endfor%}
 </ul>
 

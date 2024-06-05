@@ -141,10 +141,7 @@ class BigTraditions(models.Model):
 
 
 #Content fixtures
-from django.core.files.storage import FileSystemStorage
-from django.conf import settings
 
-upload_storage = FileSystemStorage(location=settings.STATIC_ROOT, base_url='/uploads')
 
 class PS_Section(models.Model):
     updated_at = models.DateTimeField(auto_now=True, editable=False)
@@ -153,8 +150,7 @@ class PS_group(models.Model):
     updated_at = models.DateTimeField(auto_now=True, editable=False)
     section = models.ForeignKey(PS_Section,default=None, on_delete=models.CASCADE)
     group = models.CharField(max_length=20, default='') #compassionate,playgul, etc
-    image = models.ImageField(storage=upload_storage)
-    image_path = models.CharField(max_length=300, default='')
+    image = models.CharField(max_length=300, default='')
     description = models.TextField(default='')
     shadow = models.TextField(default='')
     traditions = models.TextField(default='')

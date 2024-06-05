@@ -86,19 +86,6 @@ class formDetailView(DetailView):
     template_name = "personal_style/personal_style_detail.html"
 
 
-class resultsView(DetailView):
-    model = Personal_Style
-    template_name = 'between_app/personal_style/results.html'
-    context_object_name = 'style_detail'
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        position = Content.position
-        path = Content.path
-        tradition = Content.tradition
-        context["content"] = {'position':position,'path':path,'tradition':tradition}
-        return context
-
 def ps_results(request,pk):
     """show the results of personal style"""
     style_detail = Personal_Style.objects.get(pk=pk)
