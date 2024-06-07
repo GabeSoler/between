@@ -14,13 +14,18 @@
     <li class='list-group-item'>
       <b>{{creation.title}}</b> {{creation.date_added|date:'M d, Y'}} </p>
       <p>{{creation.goal}}</p>
-      <p><a href="{%url 'learning_logs:edit_creation' creation.pk %}">
-        Edit entry</a></p>
+      <p><a href="{%url 'learning_logs:creation_item' creation.pk %}">
+        See Entry</a></p>
     </li>
 
     {% empty %}
     <li>There are no entries for this topic yet. </li>
   </ul>
+
+  <a href="{% url 'learning_logs:creation_by_date' %}" class="card-link">Back to Creations list</a>
+<a href="{% url 'learning_logs:index' %}" class="card-link">Back to Journaling</a>
+
+</br></br>
   {% endfor %}
 
 

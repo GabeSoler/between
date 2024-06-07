@@ -6,19 +6,20 @@
 {% block content %}
 <div class="card" style="width: 18rem;">
     <div class="card-body">
-      <h5 class="card-title">{{shadows.title}}</h5>
+      <h2 class="card-title">{{shadows.title}}</h2>
       <h6 class="card-subtitle mb-2 text-body-secondary">{{shadows.date_added|date}}</h6>
-      <Goal class="card-text">Goal of the exploration: {{shadows.goal}} </P>
-      <My class="card-text">My opposite style: {{shadows.text_opposite_style}} </p>
-      <My class="card-text">My opposite sexuality: {{shadows.text_opposite_sex}}</p>
-      <p class="card-text">My opposite elements: {{shadows.text_opposite_elements}}  </p>
-      <p class="card-text">My transference characters: {{shadows.text_transf_characters}}</p>
-      <p class="card-text">My passion for cure: {{shadows.text_furor_curandis}}</p>
-      <p class="card-text">My trauma history: {{shadows.text_trauma_history}}</p>
-      <p class="card-text">My trauma triggers: {{shadows.text_trauma_triggers}}</p>
-      <p class="card-text">My care plan: {{shadows.text_care_plan}}</p>
-      <a href="{% url 'learning_log:shadows_by_date' %}" class="card-link">Back to shadows</a>
-      <a href="{% url 'learning_log:index' %}" class="card-link">Back to Journaling home</a>
+      <h5 class="card-text">Goal of the exploration:</h5><p> {{shadows.goal}} </P>
+      <h5 class="card-text">My opposite style:</h5><p> {{shadows.text_opposite_style}} </p>
+      <h5 class="card-text">My opposite sexuality:</h5><p> {{shadows.text_opposite_sex}}</p>
+      <h5 class="card-text">My opposite elements:</h5><p> {{shadows.text_opposite_elements}}  </p>
+      <h5 class="card-text">My transference characters:</h5><p> {{shadows.text_transf_characters}}</p>
+      <h5 class="card-text">My passion for cure:</h5><p> {{shadows.text_furor_curandis}}</p>
+      <h5 class="card-text">My trauma history:</h5><p> {{shadows.text_trauma_history}}</p>
+      <h5 class="card-text">My trauma triggers:</h5><p> {{shadows.text_trauma_triggers}}</p>
+      <h5 class="card-text">My care plan:</h5><p> {{shadows.text_care_plan}}</p>
+      <a href="{% url 'learning_logs:edit_shadow' shadows.pk %}" class="card-link">Edit</a></br>
+      <a href="{% url 'learning_logs:shadows_by_date' %}" class="card-link">Back to shadows</a>
+      <a href="{% url 'learning_logs:index' %}" class="card-link">Back to Journaling</a>
     </div>
   </div>
 

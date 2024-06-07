@@ -9,11 +9,21 @@
 
 
 {%block content%}
-
+<p>This test its to help you analyse your assumptions regarding reality and how learn and act upon the world.</p>
+<p>Through the 20th century there emerged a few strong contenders, which have been continue to evolve and be relevant in our society</p>
+<p>Therapy is also affected by this, and we see different movements associated with them</p>
+<p>Try to imagine that:</p>
+<ul>
+  <li>Bellow 40% is desagreement</li>
+  <li>Between 40% and 60% its neutral</li>
+  <li>Between 60% and 80% its a clear preference</li>
+  <li>Between 80% and 100% its your prefered view</li>
+</ul>
   <form action="{% url 'between_app:traditions_test' %}" method='post'>
     {% csrf_token %}
     {% bootstrap_form form %}
     {% bootstrap_button button_type='submit' content='Submit Profile' %}
   </form>
-
+</br>
+</br>
 {% endblock content %}

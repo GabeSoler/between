@@ -14,11 +14,16 @@
       <p class="card-text">My metaphoric space: {{creations.text_metaphore}}  </p>
       <p class="card-text">My Concepts: {{creations.text_concepts}}</p>
       <p class="card-text">My craft idea: {{creations.text_craft}}</p>
+      <a href="{% url 'learning_logs:edit_creation' creations.pk %}" class="card-link">Edit</a></br>
       <a href="{% url 'learning_logs:creations_by_date' %}" class="card-link">Back to Creations</a></br>
-      <a href="{% url 'learning_logs:index' %}" class="card-link">Back to Journal's home</a>
+      <a href="{% url 'learning_logs:index' %}" class="card-link">Back to Journal</a>
     </div>
   </div>
 
+  <a href="{% url 'learning_logs:creation_by_date' %}" class="card-link">Back to Creations list</a>
+<a href="{% url 'learning_logs:index' %}" class="card-link">Back to Journaling</a>
+
+</br></br>
 
 
 

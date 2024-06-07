@@ -62,9 +62,9 @@ def new_topic(request):
     return render(request,'learning_logs/topic/new_topic.html',context)
 
 @login_required
-def new_entry(request,topic_id):
+def new_entry(request,topic_pk):
     """add a new entry for a particular topic"""
-    topic = Topic.objects.get(id=topic_id)
+    topic = Topic.objects.get(pk=topic_pk)
     check_owner(topic.owner,request.user)
 
     if request.method !='POST':
@@ -77,15 +77,15 @@ def new_entry(request,topic_id):
             new_entry = form.save(commit=False)
             new_entry.topic = topic
             new_entry.save()
-            return redirect('learning_logs:topic',topic_id=topic_id)
+            return redirect('learning_logs:topics',topic_pk=topic.pk)
     #display blank or invalid form
     context={'topic':topic,'form':form}
     return render(request,'learning_logs/topic/new_entry.html',context)
 
 @login_required
-def edit_entry(request,entry_id):
+def edit_entry(request,entry_pk):
     """edit an existing entry"""
-    entry = Entry.objects.get(id=entry_id)
+    entry = Entry.objects.get(pk=entry_pk)
     topic = entry.topic
     check_owner(topic.owner,request.user)
     if request.method != 'POST':
@@ -96,7 +96,7 @@ def edit_entry(request,entry_id):
         form = EntryForm(instance=entry,data=request.POST)
         if form.is_valid():
             form.save()
-            return redirect('learning_logs:topic',topic_id=topic.id)
+            return redirect('learning_logs:topic',topic_pk=topic.pk)
     context = {'entry':entry,'topic':topic,'form':form}
     return render(request,'learning_logs/topic/edit_entry.html',context)
 
@@ -108,7 +108,7 @@ def question_item(request,question_pk):
     QuestionItem = AfterJournal.objects.get(pk=question_pk)
     check_owner(QuestionItem.owner,request.user)
     context = {'question':QuestionItem}
-    return render(request,'learning_logs/creating/creation_item.html',context)
+    return render(request,'learning_logs/question/question_item.html',context)
 
 
 @login_required
@@ -145,9 +145,9 @@ def new_question(request):
 
 
 @login_required
-def edit_question(request,question_id):
+def edit_question(request,question_pk):
     """edit an existing entry"""
-    AfterQuestion = AfterJournal.objects.get(id=question_id)
+    AfterQuestion = AfterJournal.objects.get(pk=question_pk)
     check_owner(AfterQuestion.owner,request.user)
     if request.method != 'POST':
         #initial request;pre-fill form with the current entry
@@ -206,9 +206,9 @@ def new_creation(request):
 
 
 @login_required
-def edit_creation(request,creation_id):
+def edit_creation(request,creation_pk):
     """edit an existing entry"""
-    Creations = Creation.objects.get(id=creation_id)
+    Creations = Creation.objects.get(pk=creation_pk)
     check_owner(Creations.owner,request.user)
     if request.method != 'POST':
         #initial request;pre-fill form with the current entry
@@ -269,13 +269,13 @@ def new_shadow(request):
 
 
 @login_required
-def edit_shadow(request,shadow_id):
+def edit_shadow(request,shadow_pk):
     """edit an existing entry"""
-    Shadows = Shadow.objects.get(id=shadow_id)
+    Shadows = Shadow.objects.get(pk=shadow_pk)
     check_owner(Shadows.owner,request.user)
     if request.method != 'POST':
         #initial request;pre-fill form with the current entry
-        form = ShadowForm(instance=Shadow)
+        form = ShadowForm(instance=Shadows)
     else:
         #POST data submitted; process data
         form = ShadowForm(instance=Shadow,data=request.POST)

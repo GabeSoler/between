@@ -7,7 +7,7 @@
 <ul>
   {% for topic in topics %}
     <li> 
-        <a href="{% url 'learning_logs:topic' topic.id %}">
+        <a href="{% url 'learning_logs:topic' topic.pk %}">
         {{topic.text}} </a></li>
         </li>
   {% empty %}
@@ -19,8 +19,9 @@
 <a href="{% url 'learning_logs:new_topic'%}">Add a new topic</a>
 
 
+<a href="{% url 'learning_logs:index' %}" class="card-link">Back to Journaling</a>
 
-
+</br></br>
 
 
 {% endblock content %}

@@ -1,0 +1,61 @@
+{% extends 'between_app/_base.html' %}
+{%block title%} Style Detail {%endblock title %}
+{% block content %}
+<h1>Therapist Style: Scores</h1>
+
+<p>Here you can see your test and scores. The combined bottom scores create the more elaborate groups above.</p>
+<p>One of the reasons to combine them is that they represent more clearly some comon therapeutic archetypes, making it more memorable.</p>
+<p>I chose names that are open and flexible, while still close to some of the traditions they are associated to (ie Compassioante>Person Centred; Inquisitive>Psychodynamic; Changer>CBT; Playful>Gestalt).</p>
+
+</br>
+<!--calculations by positions-->
+<h3>Therapeutic Positions: Scores</h3>
+{% for name,result in results.calPosition.items %}
+  <div class="progress"><!--Start of subjective section-->
+    <div class="progress-bar progress-bar-striped {{format.0 }}" role="progressbar" style="width: {{result}}%" aria-valuenow="{{result}}" aria-valuemin="0" aria-valuemax="100">{{name}}-{{result}}%</div>
+  </div>
+{% endfor %}
+
+<!--calculations by paths-->
+<h3>Therapeutic Paths: Scores</h3>
+{% for name,result in results.calPath.items %}
+  <div class="progress"><!--Start of subjective section-->
+    <div class="progress-bar progress-bar-striped {{format.1 }}" role="progressbar" style="width: {{result}}%" aria-valuenow="{{result}}" aria-valuemin="0" aria-valuemax="100">{{name}}-{{result}}%</div>
+  </div>
+{% endfor %}
+
+<!--calculations by traditions-->
+<h3>Relationship with the Tradition: Scores</h3>
+{% for name,result in results.calTradition.items %}
+  <div class="progress"><!--Start of subjective section-->
+    <div class="progress-bar progress-bar-striped {{format.2 }}" role="progressbar" style="width: {{result}}%" aria-valuenow="{{result}}" aria-valuemin="0" aria-valuemax="100">{{name}}-{{result}}%</div>
+  </div>
+{% endfor %}
+</br></br>
+<h1>Raw elements of the therapeutic style:</h1>
+<p>The scores above are calculated by adding and dividing by 2 some of the scores bellow (ie follower+challenger=Inquisitive).</p>
+<!--second section-->
+<!--The raw results of the test-->
+<h3>Personal Positions: Sub elements</h3>
+  {% for name,result in results.raw.position.items %}
+  <div class="progress"><!--Start of subjective section-->
+    <div class="progress-bar progress-bar-striped {{format.0}}" role="progressbar" style="width: {{result}}%" aria-valuenow="{{result}}" aria-valuemin="0" aria-valuemax="100">{{name}}-{{result}}%</div>
+  </div>
+{% endfor %}
+
+<h3>Personal Path: Sub elements</h3>
+  {% for name,result in results.raw.path.items  %}
+  <div class="progress"><!--Start of subjective section-->
+    <div class="progress-bar progress-bar-striped {{format.1}}" role="progressbar" style="width: {{result}}%" aria-valuenow="{{result}}" aria-valuemin="0" aria-valuemax="100">{{name}}-{{result}}%</div>
+  </div>
+{% endfor %}
+
+
+<h3>Relationship with the Tradition: Sub elements</h3>
+  {% for name,result in results.raw.tradition.items  %}
+  <div class="progress"><!--Start of subjective section-->
+    <div class="progress-bar progress-bar-striped {{format.2}}" role="progressbar" style="width: {{result}}%" aria-valuenow="{{result}}" aria-valuemin="0" aria-valuemax="100">{{name}}-{{result}}%</div>
+  </div>
+{% endfor %}
+</br>
+{% endblock content%}

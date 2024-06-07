@@ -15,8 +15,8 @@
         <p>{{answer.question|title}} </p>
         <p>{{answer.date_added|date:'M d,Y H:i'}} </p>
         <p>{{answer.text|linebreaks}}</p>
-        <p><a href="{%url 'learning_logs:edit_entry' entry.id %}">
-          Edit entry</a></p>
+        <p><a href="{%url 'learning_logs:creation_item' entry.id %}">
+          See Entryy</a></p>
       </li>
 
       {% empty %}
@@ -24,5 +24,9 @@
     </ul>
     {% endfor %}
 
+    <a href="{% url 'learning_logs:creation_by_date' %}" class="card-link">Back to Creations list</a>
+    <a href="{% url 'learning_logs:index' %}" class="card-link">Back to Journaling</a>
+    
+    </br></br>
 {% endblock content %}
   </ul>

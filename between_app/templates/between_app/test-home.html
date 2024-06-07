@@ -13,154 +13,132 @@
 <p class='card-text'>Here you can see your therapeutic style</p>
     </div></div>
 
+
     {% if user.is_authenticated %}
  <!--Personal Profile-->   
 <div class="card mb-3 border-primary border-1 soft-blue">
-    <div class="card-body">
-<h2 class="card-title">Profile:</h2>
-<p class="card-text">Therapeutic Profiles is a project to help therapist and clients to find their unique needs, having names to organise the complexities of human beings.</p>
-<p class="card-text">They will help you to recognise your unique style and positions towards helping others and yourself.</p>
-<a class="badge bg-primary p-2 m-2" href={% url 'between_app:profile_test' %}>Take the test </a></br>
+      <div class="card-body">
+  <h2 class="card-title">Profile:</h2>
+  <p class="card-text">Therapeutic Profiles is a project to help therapist and clients to find their unique needs, having names to organise the complexities of human beings.</p>
+  <p class="card-text">They will help you to recognise your unique style and positions towards helping others and yourself.</p>
+  <a class="badge bg-primary p-2 m-2" href={% url 'between_app:profile_test' %}>Take the test </a></br>
 
-<H1>Your main therapeutic Position</H1>
-    <div class="card bg-active mb-3">
-    <div class="card-body soft-green">
-    <h2 class="card-title">{{position.group|title}}</h2>
-    <div class='row'>
+  <H1>Your main therapeutic Position</H1>
+      <div class="card bg-active mb-3">
+      <div class="card-body soft-green">
+      <h2 class="card-title">{{position.group|title}}</h2>
+      <div class='row'>
+        <div class='col'>
+          <image src="{% static cont_position.image %}" class='img-thumbnail border-2 border-primary rounded-circle' style='max-height:6em;'>
+          <p class="card-text posText">{{cont_position.group|title}}</p>
+          </div>
       <div class='col'>
-        <image src="{% static cont_position.image %}" class='img-thumbnail border-2 border-primary rounded-circle' style='max-height:6em;'>
-        <p class="card-text posText">{{cont_position.group|title}}</p>
-        </div>
-    <div class='col'>
-      <image src="{% static cont_path.image %}" class='img-thumbnail border-2 border-primary rounded-circle' style='max-height:6em;'>
-      <p class="card-text posText">{{cont_path.group|title}}</p>
-    </div>
+        <image src="{% static cont_path.image %}" class='img-thumbnail border-2 border-primary rounded-circle' style='max-height:6em;'>
+        <p class="card-text posText">{{cont_path.group|title}}</p>
+      </div>
 
-    <div class='col'>
-      <image src="{% static cont_tradition.image %}" class='img-thumbnail border-2 border-primary rounded-circle' style='max-height:6em;'>
-    <p class="card-text posText">{{cont_tradition.group|title}}</p>
-  </div></div>
+      <div class='col'>
+        <image src="{% static cont_tradition.image %}" class='img-thumbnail border-2 border-primary rounded-circle' style='max-height:6em;'>
+      <p class="card-text posText">{{cont_tradition.group|title}}</p>
+    </div></div>
 
-  
-  </div></div>
-</ul>
+    
+    </div></div>
+  </ul>
 
+  <a class="badge bg-primary p-2 m-2" href={% url 'pages:index' %}>Read the theory </a>
+  <a class="badge bg-primary p-2 m-2" href={% url 'between_app:profiles_list' %}>See your tests </a></br>
 
-<a class="badge bg-primary p-2 m-2" href={% url 'pages:index' %}>Read the theory </a>
-<a class="badge bg-primary p-2 m-2" href={% url 'between_app:profiles_list' %}>See your tests </a></br>
+  </div>
+  </div>
 
-</div>
-</div>
-
-<a class="badge bg-primary p-2 m-2" href={% url 'between_app:traditions_test' %}>Big traditions test </a>
 
 
 <!-- Components bar section -->
 <div class="card mb-3 border-primary border-1 soft-blue"> 
     <div class="card-body">
-  
-    <h2 class='card-title'>Components</h2>
-<!--component button-->
-<a class="badge bg-primary p-2 m-2" href={% url 'between_app:components_test' %}>Therapy components test</a>
-<!--Components results in bars-->
-<h3>Subjective</h3>
-  <div class="progress"><!--Start of subjective section-->
-    <div class="progress-bar progress-bar-striped text-success" role="progressbar" style="width: {{components.body}}%" aria-valuenow="{{components.body}}" aria-valuemin="0" aria-valuemax="100">Body</div>
-  </div>
-  <div class="progress">
-    <div class="progress-bar progress-bar-striped bg-success" role="progressbar" style="width: {{components.feelings}}%" aria-valuenow="{{components.feelings}}" aria-valuemin="0" aria-valuemax="100">Feelings</div>
-  </div>
-  <div class="progress">
-    <div class="progress-bar progress-bar-striped bg-info" role="progressbar" style="width: {{components.expression}}%" aria-valuenow="{{components.expression}}" aria-valuemin="0" aria-valuemax="100">Expression</div>
-  </div>
-  <div class="progress">
-    <div class="progress-bar progress-bar-striped bg-warning" role="progressbar" style="width: {{components.thoughts}}%" aria-valuenow="{{components.thoughts}}" aria-valuemin="0" aria-valuemax="100">Thoughts</div>
-  </div>
-  <div class="progress">
-    <div class="progress-bar progress-bar-striped bg-danger" role="progressbar" style="width: {{components.narrative}}%" aria-valuenow="{{components.narrative}}" aria-valuemin="0" aria-valuemax="100">Narrative</div>
-  </div>
+    
+      <h2 class='card-title'>Components</h2>
+      <p clas='card-text'>Here you can use your graph to see what are your strong areas, and which ones you may want to develop.</p>
+      <p clas='card-text'>When constructing your profile for your clients  to see, its good to show what makes you unique, so clients with similar or complementary interest may reach to you.</p>
+      <p clas='card-text'>Similarity is usually good when starting or when we are more fragile. On the other hand, complements (therapist having areas clients miss or dislike) are better for growth, and to challenge oneself.</p>
+      
+      <!--list button-->
+      <a class="badge bg-primary p-2 m-2" href={% url 'between_app:components_list' %}>Your tests </a>
+      <a class="badge bg-primary p-2 m-2" href={% url 'between_app:components_test' %}>Components test</a>
 
-<!--end of subjective section-->
+  <!--Components results in bars-->
 
+  <!--Subjective loop-->
+  <h3>Subjective</h3>
+  {% for name,result in components.results.subjective.items %}
+    <div class="progress">
+      <div class="progress-bar progress-bar-striped {{format.0}}" role="progressbar" style="width: {{result}}%" aria-valuenow="{{result}}" aria-valuemin="0" aria-valuemax="100">{{name}}-{{result}}%</div>
+    </div>
+  {% endfor %}
+  <!--end of subjective section-->
 
-<h3>Extended Awareness</h3>
-<div class="progress"><!--Start of extended awareness section-->
-    <div class="progress-bar progress-bar-striped text-success" role="progressbar" style="width: {{components.dreaming}}%" aria-valuenow="{{components.dreaming}}" aria-valuemin="0" aria-valuemax="100">Dreaming</div>
-  </div>
-  <div class="progress">
-    <div class="progress-bar progress-bar-striped bg-success" role="progressbar" style="width: {{components.re_prog}}%" aria-valuenow="{{components.re_prog}}" aria-valuemin="0" aria-valuemax="100">Re-Programation</div>
-  </div>
-  <div class="progress">
-    <div class="progress-bar progress-bar-striped bg-info" role="progressbar" style="width: {{components.subliminal}}%" aria-valuenow="{{components.subliminal}}" aria-valuemin="0" aria-valuemax="100">Subliminal</div>
-  </div>
-  <div class="progress">
-    <div class="progress-bar progress-bar-striped bg-warning" role="progressbar" style="width: {{components.subparts}}%" aria-valuenow="{{components.subparts}}" aria-valuemin="0" aria-valuemax="100">Sub-Parts</div>
-  </div>
-  <div class="progress">
-    <div class="progress-bar progress-bar-striped bg-danger" role="progressbar" style="width: {{components.spiritual}}%" aria-valuenow="{{components.spiritual}}" aria-valuemin="0" aria-valuemax="100">Spiritual</div>
-  </div><!--end of extended awareness-->
+  <!--Extended Awareness section loop-->
+  <h3>Extended Awareness</h3>
+    {% for name,result in components.results.extended.items %}
+    <div class="progress">
+      <div class="progress-bar progress-bar-striped {{format.1}}" role="progressbar" style="width: {{result}}%" aria-valuenow="{{result}}" aria-valuemin="0" aria-valuemax="100">{{name}}-{{result}}%</div>
+    </div>
+  {% endfor %}
 
-
+  <!--Context section loop-->
   <h3>Context</h3>
-  <div class="progress"><!--Start of context work section-->
-    <div class="progress-bar progress-bar-striped text-success" role="progressbar" style="width: {{components.relational}}%" aria-valuenow="{{components.relational}}" aria-valuemin="0" aria-valuemax="100">Relational</div>
-  </div>
-  <div class="progress">
-    <div class="progress-bar progress-bar-striped bg-success" role="progressbar" style="width: {{components.systems}}%" aria-valuenow="{{components.systems}}" aria-valuemin="0" aria-valuemax="100">Systems</div>
-  </div>
-  <div class="progress">
-    <div class="progress-bar progress-bar-striped bg-info" role="progressbar" style="width: {{components.setup}}%" aria-valuenow="{{components.setup}}" aria-valuemin="0" aria-valuemax="100">Set-up and Rewards</div>
-  </div>
-  <div class="progress">
-    <div class="progress-bar progress-bar-striped bg-warning" role="progressbar" style="width: {{components.transOb}}%" aria-valuenow="{{components.transOb}}" aria-valuemin="0" aria-valuemax="100">Transitional Objects</div>
-  </div>
-  <div class="progress">
-    <div class="progress-bar progress-bar-striped bg-danger" role="progressbar" style="width: {{components.famiily}}%" aria-valuenow="{{components.family}}" aria-valuemin="0" aria-valuemax="100">Family</div>
-  </div> <!--end of context -->
+    {% for name,result in components.results.context.items %}
+    <div class="progress">
+      <div class="progress-bar progress-bar-striped {{format.2}}" role="progressbar" style="width: {{result}}%" aria-valuenow="{{result}}" aria-valuemin="0" aria-valuemax="100">{{name}}-{{result}}%</div>
+    </div>
+  {% endfor %}
 
+  <!--Culture section loop-->
   <h3>Culture</h3>
-  <div class="progress"><!--Start of culture section-->
-    <div class="progress-bar progress-bar-striped text-success" role="progressbar" style="width: {{components.antropology}}%" aria-valuenow="{{components.antropology}}" aria-valuemin="0" aria-valuemax="100">Antropology</div>
-  </div>
-  <div class="progress">
-    <div class="progress-bar progress-bar-striped bg-success" role="progressbar" style="width: {{components.arts}}%" aria-valuenow="{{components.antropology}}" aria-valuemin="0" aria-valuemax="100">Arts</div>
-  </div>
-  <div class="progress">
-    <div class="progress-bar progress-bar-striped bg-info" role="progressbar" style="width: {{components.politics}}%" aria-valuenow="{{components.politics}}" aria-valuemin="0" aria-valuemax="100">Politics</div>
-  </div>
-  <div class="progress">
-    <div class="progress-bar progress-bar-striped bg-warning" role="progressbar" style="width: {{components.philosophy}}%" aria-valuenow="{{components.philosophy}}" aria-valuemin="0" aria-valuemax="100">Philosophy</div>
-  </div>
-  <div class="progress">
-    <div class="progress-bar progress-bar-striped bg-danger" role="progressbar" style="width: {{components.worldview}}%" aria-valuenow="{{components.worldview}}" aria-valuemin="0" aria-valuemax="100">Wroldviews</div>
-  </div> <!--end of culture -->
+    {% for name,result in components.results.culture.items %}
+    <div class="progress">
+      <div class="progress-bar progress-bar-striped {{format.3}}" role="progressbar" style="width: {{result}}%" aria-valuenow="{{result}}" aria-valuemin="0" aria-valuemax="100">{{name}}-{{result}}%</div>
+    </div>
+  {% endfor %}
 
+  <!--Identity section loop-->
   <h3>Identity</h3>
+    {% for name,result in components.results.identity.items %}
+    <div class="progress">
+      <div class="progress-bar progress-bar-striped {{format.4}}" role="progressbar" style="width: {{result}}%" aria-valuenow="{{result}}" aria-valuemin="0" aria-valuemax="100">{{name}}-{{result}}%</div>
+    </div>
+  {% endfor %}
+  </div></div>
+  <!--end of Components-->
 
-  <div class="progress"><!--Start of identity section-->
-    <div class="progress-bar progress-bar-striped text-success" role="progressbar" style="width: {{components.individuation}}%" aria-valuenow="{{components.individuation}}" aria-valuemin="0" aria-valuemax="100">Individuation</div>
+<!--Big traditions Section-->
+<div class="card mb-3 border-primary border-1 soft-blue">
+  <div class="card-body">
+  <h2 class="card-title">Big Traditions</h2>
+  <p class="card-text">These are the main philosophical traditions behind the psychotherapy. We find sometimes mixes of them, and sub-groups, but they define clear paths relevant today.</p>
+  <p class="card-text">This test will help you to recognise your afiliation with some reality assumptions.</p>
+  <a class="badge bg-primary p-2 m-2" href={% url 'between_app:traditions_list' %}>Your tests </a>
+  <a class="badge bg-primary p-2 m-2" href={% url 'between_app:traditions_test' %}>Big traditions test </a>
+  <!--Big traditions results loop-->
+  {% for name,result in BigTrad.results.items %}
+    <div class="progress">
+      <div class="progress-bar {% cycle format.0 format.1 format.2 format.3 format.4 format.5 format.6 format.7%}" role="progressbar" style="width: {{result}}%" aria-valuenow="{{result}}" aria-valuemin="1" aria-valuemax="100">{{name}}-{{result}}%</div>
+    </div>
+    {% endfor %}
   </div>
-  <div class="progress">
-    <div class="progress-bar progress-bar-striped  bg-success text-danger" role="progressbar" style="width: {{components.sex_gender}}%" aria-valuenow="{{components.sex_gender}}" aria-valuemin="0" aria-valuemax="100">Sex and Gender</div>
-  </div>
-  <div class="progress">
-    <div class="progress-bar progress-bar-striped bg-info" role="progressbar" style="width: {{components.values}}%" aria-valuenow="{{components.values}}" aria-valuemin="0" aria-valuemax="100">Values</div>
-  </div>
-  <div class="progress">
-    <div class="progress-bar progress-bar-striped bg-warning" role="progressbar" style="width: {{components.belonging}}%" aria-valuenow="{{components.belonging}}" aria-valuemin="0" aria-valuemax="100">Belonging</div>
-  </div>
-  <div class="progress">
-    <div class="progress-bar progress-bar-striped bg-danger" role="progressbar" style="width: {{components.roles}}%" aria-valuenow="{{components.roles}}" aria-valuemin="0" aria-valuemax="100">Roles</div>
-  </div> <!--end of identity -->
-</div></div>
-</br>
+  </div><!--end traditions card-->
+</br></br>
+
+
+
 
 {% else %}
 <!--no signed up card-->
 <div class="card mb-3 border-primary border-3 soft-green">
     <div class="card-body">
-<h2 class="card-title">Take the test</h2>
-<p class='card-text'>Please login to see save and access your results.</p>
+<h2 class="card-title">Take the Personal Style test</h2>
+<p class='card-text'>Please login to see save and access your results. There are also another three tests and more resources.</p>
 <a class="badge bg-primary p-2 m-2" href={% url 'between_app:profile_test' %}>Take the Profile test </a></br>
 
     </div></div>

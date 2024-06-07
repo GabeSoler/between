@@ -14,6 +14,16 @@ from .content import Content
 from django.conf import settings
 # Create your views here.
 
+#A useful formating for bootstrap progress bars
+format = ('bg-primary text-success',
+        'bg-warning text-primary',
+        'bg-info text-danger',
+        'bg-danger text-dark',
+        'bg-success text-danger',
+        'bg-secondary text-primary',
+        'bg-light text-dark',
+        'bg-dark text-light',
+        )
 #Start classes with caps
 class index_View(TemplateView):
     template_name = 'between_app/index.html'
@@ -38,7 +48,7 @@ def test_home(request):
             components = Components.objects.filter(user=request.user).latest('updated_at')
         except:
             components = None
-        context = {'cont_position':cont_position,'cont_path':cont_path,'cont_tradition':cont_tradition,'BigTrad':bigTrad,'components':components}
+        context = {'cont_position':cont_position,'cont_path':cont_path,'cont_tradition':cont_tradition,'BigTrad':bigTrad,'components':components,'format':format}
         return render(request,'between_app/test-home.html',context)
     return render(request,'between_app/test-home.html')
 
@@ -80,11 +90,10 @@ class takeTestView(CreateView):
 
 
 
-class formDetailView(DetailView):
-    model = Personal_Style
-    context_object_name ='style_detail'
-    template_name = "personal_style/personal_style_detail.html"
-
+def style_detail(request,pk):
+    results = Personal_Style.objects.get(pk=pk)
+    context = {'results':results,'format':format}
+    return render(request,'between_app/personal_style/style_detail.html',context)
 
 def ps_results(request,pk):
     """show the results of personal style"""
@@ -93,7 +102,6 @@ def ps_results(request,pk):
     cont_position = PS_group.objects.get(group=results['main_position'])
     cont_path = PS_group.objects.get(group=results['main_path'])
     cont_tradition = PS_group.objects.get(group=results['main_tradition'])
-   
     if request.method != 'POST': #Email functionality to the results (making this accesible to non registered users)
         form = SendEmail()
     else:
@@ -113,7 +121,7 @@ def ps_results(request,pk):
             ) as connection:
                 subject, from_email, to = 'Profile', 'crea@therapy.com', user_email
                 html_content = render_to_string('between_app/email/personal_style_email.html', 
-                                                {'position':position_text,'path':path_text,'tradition':tradition_text}) # render with dynamic value
+                                                {'position':cont_position,'path':cont_path,'tradition':cont_tradition}) # render with dynamic value
                 #text_content = strip_tags(html_content) # Strip the html tag. So people can see the pure text at least.
                 msg = EmailMessage(
                     subject=subject,
@@ -124,7 +132,7 @@ def ps_results(request,pk):
                 msg.content_subtype = 'html'
                 msg.send()
                 return redirect('between_app:test_home')
-    context = {'position':cont_position,'path':cont_path,'tradition':cont_tradition,'form':form,'pk':pk}
+    context = {'results':style_detail,'position':cont_position,'path':cont_path,'tradition':cont_tradition,'form':form,'pk':pk,'format':format}
     return render(request,'between_app/personal_style/results_email.html',context)
 
 
@@ -141,27 +149,19 @@ class contentView(TemplateView):
 
     
 #Components Views
+@login_required
+def components_list(request):
+    list = Components.objects.filter(user=request.user)
+    context = {'list':list}    
+    return render(request,'between_app/Components/components_list.html',context)
 
-class takeComponentstView(CreateView):
-    model = Components
-    form_class = ComponentsForm
-    template_name = 'between_app/Components/components_test.html'
-    success_url = 'between_app/test_home'
+@login_required
+def components_detail(request,pk):
+    detail = Components.objects.get(pk=pk)
+    context = {'components':detail,'format':format} 
+    return render(request,'between_app/Components/components_detail.html',context)
 
-    def post(self, request, *args, **kwargs):
-        form = ComponentsForm(request.POST)
-        try:
-            user = request.user
-        except NameError:
-            user = get_user_model().objects.get(username='guest')
-        except:
-            user = get_user_model().objects.create_user(email='guest@guest.guest',username='guest' )
-        if form.is_valid():
-            profile_test = form.save(commit=False)
-            profile_test.user = user
-            profile_test.save()
-            return HttpResponseRedirect(reverse_lazy('between_app:test_home'))
-        return render(request, 'between_app/Components/components_test.html', {'form': form})
+
 
 @login_required
 def take_components(request):
@@ -183,24 +183,29 @@ def take_components(request):
 
 
 #Big traditions Views
-class takeTraditionsView(CreateView):
-    model = BigTraditions
-    form_class = BigTradForm
-    template_name = 'between_app/BigTraditions/traditions_test.html'
-    success_url = 'between_app/results/'
+@login_required
+def big_trad_list(request):
+    list = BigTraditions.objects.filter(user=request.user)
+    context = {'list':list}    
+    return render(request,'between_app/BigTraditions/traditions_list.html',context)
 
-    def post(self, request, *args, **kwargs):
-        form = StyleForm(request.POST)
-        try:
-            user = get_user_model().objects.get(pk=request.user.id)
-        except NameError:
-            user = get_user_model().objects.get(username='guest')
-        except:
-            user = get_user_model().objects.create_user(email='guest@guest.guest',username='guest' )
-        if form.is_valid():
-            profile_test = form.save(commit=False)
-            profile_test.user = user
-            profile_test.save()
-            return HttpResponseRedirect(reverse_lazy('between_app:index'))
-        return render(request, 'between_app/BitTraditions/traditions_test.html', {'form': form})
-    
+@login_required
+def big_trad_detail(request,pk):
+    detail = BigTraditions.objects.get(pk=pk)
+    context = {'detail':detail,'format':format}
+    return render(request,'between_app/BigTraditions/traditions_detail.html',context)
+
+
+@login_required
+def big_trad_test(request):
+    if request.method != 'POST': #Email functionality to the results (making this accesible to non registered users)
+        form = BigTradForm()
+    else:
+        form = BigTradForm(data=request.POST)
+        if form.is_valid:
+            instance = form.save(commit=False)
+            instance.user = request.user
+            instance.save()
+            return redirect('between_app:test_home')
+    context = {'form':form}
+    return render(request,'between_app/BigTraditions/traditions_test.html',context)

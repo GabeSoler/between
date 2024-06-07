@@ -22,6 +22,12 @@
     {% empty %}
     <li>There are no entries for this topic yet. </li>
   </ul>
+
+  <a href="{% url 'learning_logs:answer_by_date' %}" class="card-link">Back to Questions list</a>
+  <a href="{% url 'learning_logs:index' %}" class="card-link">Back to Journaling</a>
+
+</br></br>
+
   {% endfor %}
 
 

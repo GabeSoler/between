@@ -1,0 +1,15 @@
+{% extends 'between_app/_base.html' %}
+{%block title%} Traditions List {%endblock title %}
+
+{% block content %}
+
+
+<p>Your Components tests.</p>
+<ul class='list-group bg-light'>
+{%for item in list %}
+    <li class='list-group-item'><a href={% url 'between_app:components_detail' item.pk %}>{{item.user}}'s Components Test: {{item.updated_at|date:'d,m,Y'}}</a></li>
+{% endfor%}
+</ul>
+
+
+{% endblock content%}

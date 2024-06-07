@@ -15,7 +15,7 @@ urlpatterns = [
 
 # therapeutic positions
 
-    path('form_detail/<uuid:pk>/',views.formDetailView.as_view(),name='personal_style_detail'),
+    path('style_detail/<uuid:pk>/',views.style_detail,name='style_detail'),
     path('style_list/',views.PositionListView.as_view(),name='profiles_list'),
     path('profile_test/',views.takeTestView.as_view(),name='profile_test'),
     path('content/',views.contentView.as_view(),name='content'),
@@ -23,10 +23,14 @@ urlpatterns = [
 
 #Compnents
 
-    path('components_test/',views.takeComponentstView.as_view(),name='components_test'),
+    path('components_test/',views.take_components,name='components_test'),
+    path('components_list/',views.components_list,name='components_list'),
+    path('components_detail/<uuid:pk>/',views.components_detail,name='components_detail'),
 
 #Traditions
-    path('traditions_test/',views.takeTraditionsView.as_view(),name='traditions_test'),
+    path('traditions_test/',views.big_trad_test,name='traditions_test'),
+    path('traditions_list/',views.big_trad_list,name='traditions_list'),
+    path('traditions_detail/<uuid:pk>/',views.big_trad_detail,name='traditions_detail'),
 
     
 #content

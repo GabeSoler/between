@@ -9,7 +9,7 @@
 
 <h2 class='card-title'>Journal Space</h2>
 
-<p class='card-text'>Learning Log helps you keep track of your learning, for any topic you are interested in.</p>
+<p class='card-text'>The Journal space helps you keep track of your reflections and deepen your understanding of therapy.</p>
   </div></div>
 
 <!--Topics-->
@@ -28,6 +28,7 @@
   {% empty %}
     <li class='list-group-item'> No topics have been added yet </li>
   {% endfor %}
+  <a class='link-secondary' href="{% url 'learning_logs:topics'%}">See all Topics</a>
 
   </ul>
   </br>

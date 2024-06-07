@@ -1,0 +1,26 @@
+{% extends 'between_app/_base.html' %}
+{%block title%} Traditions List {%endblock title %}
+
+{% block content %}
+
+
+<div class="card mb-3 border-primary border-1 soft-blue">
+    <div class="card-body">
+  <h2 class="card-title">Big Traditions</h2>
+  <p class="card-text">These are the main philosophical traditions behind the psychotherapy. We find sometimes mixes of them, and sub-groups, but they define clear paths relevant today.</p>
+  <p class="card-text">This test will help you to recognise your afiliation with some reality assumptions.</p>
+  <a class="badge bg-primary p-2 m-2" href={% url 'between_app:traditions_list' %}>Your tests </a>
+  <a class="badge bg-primary p-2 m-2" href={% url 'between_app:test_home' %}>Back to Test Home </a>
+  
+  {% for name,result in detail.results.items %}
+  <div class="progress">
+    <div class="progress-bar {% cycle format.0 format.1 format.2 format.3 format.4 format.5 format.6 format.7%}" role="progressbar" style="width: {{result}}%" aria-valuenow="{{result}}" aria-valuemin="1" aria-valuemax="100">{{name}}-{{result}}%</div>
+  </div>
+  {% endfor %}
+  
+  </div>
+  
+  </div>
+
+
+  {%endblock %}

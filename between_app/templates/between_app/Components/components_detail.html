@@ -1,0 +1,67 @@
+{% extends 'between_app/_base.html' %}
+{%block title%} Traditions List {%endblock title %}
+
+{% block content %}
+
+
+
+
+<!-- detail bar section -->
+<div class="card mb-3 border-primary border-1 soft-blue"> 
+    <div class="card-body">
+  
+    <h2 class='card-title'>Components test</h2>
+    <p clas='card-text'>Here you can use your graph to see what are your strong areas, and which ones you may want to develop.</p>
+    <p clas='card-text'>When constructing your profile for your clients  to see, its good to show what makes you unique, so clients with similar or complementary interest may reach to you.</p>
+    <p clas='card-text'>Similarity is usually good when starting or when we are more fragile. On the other hand, complements (therapist having areas clients miss or dislike) are better for growth, and to challenge oneself.</p>
+    
+    <!--list button-->
+    <a class="badge bg-primary p-2 m-2" href={% url 'between_app:components_list' %}>Back to Your tests </a>
+    <a class="badge bg-primary p-2 m-2" href={% url 'between_app:test_home' %}>Back to Test Home</a>
+
+  <!--Components results in bars-->
+
+  <!--Subjective loop-->
+  <h3>Subjective</h3>
+  {% for name,result in components.results.subjective.items %}
+    <div class="progress">
+      <div class="progress-bar progress-bar-striped {{format.0}}" role="progressbar" style="width: {{result}}%" aria-valuenow="{{result}}" aria-valuemin="0" aria-valuemax="100">{{name}}-{{result}}%</div>
+    </div>
+  {% endfor %}
+  <!--end of subjective section-->
+
+  <!--Extended Awareness section loop-->
+  <h3>Extended Awareness</h3>
+    {% for name,result in components.results.extended.items %}
+    <div class="progress">
+      <div class="progress-bar progress-bar-striped {{format.1}}" role="progressbar" style="width: {{result}}%" aria-valuenow="{{result}}" aria-valuemin="0" aria-valuemax="100">{{name}}-{{result}}%</div>
+    </div>
+  {% endfor %}
+
+  <!--Context section loop-->
+  <h3>Context</h3>
+    {% for name,result in components.results.context.items %}
+    <div class="progress">
+      <div class="progress-bar progress-bar-striped {{format.2}}" role="progressbar" style="width: {{result}}%" aria-valuenow="{{result}}" aria-valuemin="0" aria-valuemax="100">{{name}}-{{result}}%</div>
+    </div>
+  {% endfor %}
+
+  <!--Culture section loop-->
+  <h3>Culture</h3>
+    {% for name,result in components.results.culture.items %}
+    <div class="progress">
+      <div class="progress-bar progress-bar-striped {{format.3}}" role="progressbar" style="width: {{result}}%" aria-valuenow="{{result}}" aria-valuemin="0" aria-valuemax="100">{{name}}-{{result}}%</div>
+    </div>
+  {% endfor %}
+
+  <!--Identity section loop-->
+  <h3>Identity</h3>
+    {% for name,result in components.results.identity.items %}
+    <div class="progress">
+      <div class="progress-bar progress-bar-striped {{format.4}}" role="progressbar" style="width: {{result}}%" aria-valuenow="{{result}}" aria-valuemin="0" aria-valuemax="100">{{name}}-{{result}}%</div>
+    </div>
+  {% endfor %}
+  </div></div>
+  <!--end of Components-->
+
+{% endblock %}

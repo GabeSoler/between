@@ -11,18 +11,18 @@ class Personal_Style(models.Model):
     created_at = models.DateTimeField(auto_now_add=True, editable=False)
     updated_at = models.DateTimeField(auto_now=True, editable=False)
     user = models.ForeignKey(get_user_model(),on_delete=models.PROTECT)
-    follower_1 = models.IntegerField(choices=Response_Choices.choices, default=1)
-    propositive_1 = models.IntegerField(choices=Response_Choices.choices, default=1)
-    challenger_1 = models.IntegerField(choices=Response_Choices.choices, default=1)
-    acceptant_1 = models.IntegerField(choices=Response_Choices.choices, default=1)
-    intensive_1 = models.IntegerField(choices=Response_Choices.choices, default=1)
-    extensive_1 = models.IntegerField(choices=Response_Choices.choices, default=1)
-    divider_1 = models.IntegerField(choices=Response_Choices.choices, default=1)
-    containment_1 = models.IntegerField(choices=Response_Choices.choices, default=1)
-    becoming_1 = models.IntegerField(choices=Response_Choices.choices, default=1)
-    development_1 = models.IntegerField(choices=Response_Choices.choices, default=1)
-    individuation_1 = models.IntegerField(choices=Response_Choices.choices, default=1)
-    belonging_1 = models.IntegerField(choices=Response_Choices.choices, default=1)
+    follower_1 = models.IntegerField(default=1)
+    propositive_1 = models.IntegerField(default=1)
+    challenger_1 = models.IntegerField(default=1)
+    acceptant_1 = models.IntegerField(default=1)
+    intensive_1 = models.IntegerField(default=1)
+    extensive_1 = models.IntegerField(default=1)
+    divider_1 = models.IntegerField(default=1)
+    containment_1 = models.IntegerField(default=1)
+    becoming_1 = models.IntegerField(default=1)
+    development_1 = models.IntegerField(default=1)
+    individuation_1 = models.IntegerField(default=1)
+    belonging_1 = models.IntegerField(default=1)
 
     @property
     def calPosition(self):
@@ -31,10 +31,10 @@ class Personal_Style(models.Model):
         inquisitive = self.follower_1 + self.challenger_1
         playful = self.propositive_1 + self.acceptant_1
         changer = self.propositive_1 + self.challenger_1
-        therapeuticPositions = {'compassionate': compassionate, 
-                                'inquisitive':inquisitive,
-                                'playful':playful, 
-                                 'changer':changer}
+        therapeuticPositions = {'compassionate': compassionate/2, 
+                                'inquisitive':inquisitive/2,
+                                'playful':playful/2, 
+                                 'changer':changer/2}
         return therapeuticPositions
     
     @property
@@ -44,10 +44,10 @@ class Personal_Style(models.Model):
         sage = self.intensive_1 + self.divider_1
         carer = self.extensive_1 + self.containment_1
         explorer = self.extensive_1 + self.divider_1
-        therapeutic_paths = {'dreamer':dreamer,
-                             'sage':sage,
-                             'carer':carer,
-                             'explorer':explorer}
+        therapeutic_paths = {'dreamer':dreamer/2,
+                             'sage':sage/2,
+                             'carer':carer/2,
+                             'explorer':explorer/2}
         return therapeutic_paths
     
     @property
@@ -55,12 +55,12 @@ class Personal_Style(models.Model):
         #Person vs tradition relaionship
         artist = self.becoming_1 + self.individuation_1
         warrior = self.development_1 + self.individuation_1
-        lider = self.becoming_1 + self.belonging_1
+        leader = self.becoming_1 + self.belonging_1
         coach = self.development_1 + self.belonging_1
-        tradition_relationship = {'artist':artist,
-                                  'warrior':warrior,
-                                  'lider':lider,
-                                  'coach':coach}
+        tradition_relationship = {'artist':artist/2,
+                                  'warrior':warrior/2,
+                                  'leader':leader/2,
+                                  'coach':coach/2}
         return tradition_relationship
  
     @property
@@ -76,6 +76,30 @@ class Personal_Style(models.Model):
                         'main_path':main_path,
                         'main_tradition':main_tradRel}
         return profile_dict
+    
+    @property
+    def raw(self):
+        position = {
+            'follower':self.follower_1,
+            'propositive':self.propositive_1, 
+            'challenger':self.challenger_1, 
+            'acceptant':self.acceptant_1, 
+        }
+        path = {
+            'intensive':self.intensive_1,
+            'extensive':self.extensive_1,
+            'divider':self.divider_1, 
+            'containment':self.containment_1, 
+        }
+        
+        tradition = {
+            'becoming':self.becoming_1,
+            'development':self.development_1, 
+            'individuation':self.individuation_1, 
+            'belonging':self.belonging_1, 
+        }
+        return {'position':position,'path':path,'tradition':tradition}
+
 
     def get_absolute_url(self):
         return reverse("between_app:results", kwargs={"pk": self.pk})
@@ -123,7 +147,51 @@ class Components(models.Model):
     values = models.IntegerField(default=0)
     belonging = models.IntegerField(default=0)
     roles = models.IntegerField(default=0)
+
+    @property
+    def results(self):
+        results = {
+            'subjective':{
+                'body':self.body,
+                'feelings':self.feelings,
+                'expression':self.expression,
+                'thoughts':self.thoughts,
+                'narrative':self.narrative,
+            },
     
+        
+            'extended':{
+                'dreaming':self.dreaming,
+                're-programming':self.re_prog,
+                'subliminal':self.subliminal,
+                'subparts':self.subparts,
+                'spiritual':self.spiritual,
+            },
+            'context':{
+                'relational':self.relational,
+                'systems':self.systems,
+                'setup':self.setup,
+                'transitional':self.transOb,
+                'family':self.family,
+            },
+            'culture':{
+                'antropology':self.antropology,
+                'arts':self.arts,
+                'politics':self.politics,
+                'philosophy':self.philosophy,  
+                'worldview':self.worldview,
+
+            },
+            'identity':{
+                'individuation':self.individuation,
+                'sex and gender':self.sex_gender,
+                'values':self.values,
+                'belonging':self.belonging,
+                'roles':self.roles,
+            }
+        }
+        return results
+
 
 class BigTraditions(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
@@ -132,13 +200,26 @@ class BigTraditions(models.Model):
     user = models.ForeignKey(get_user_model(),on_delete=models.PROTECT)
 
     #Big five traditions
-    hemeneutic = models.IntegerField(choices=Response_Choices.choices, default=1)
-    phenomenological = models.IntegerField(choices=Response_Choices.choices, default=1)
-    cybernetic = models.IntegerField(choices=Response_Choices.choices, default=1)
-    spiritual = models.IntegerField(choices=Response_Choices.choices, default=1)
-    scientific = models.IntegerField(choices=Response_Choices.choices, default=1)
-
-
+    hemeneutic = models.IntegerField(default=1)
+    phenomenological = models.IntegerField(default=1)
+    cybernetic = models.IntegerField(default=1)
+    spiritual = models.IntegerField(default=1)
+    scientific = models.IntegerField(default=1)
+    constructive = models.IntegerField(default=1)
+    participatory = models.IntegerField(default=1)
+    @property
+    def results(self):
+        results = {
+                'hemeneutic':self.hemeneutic,
+                'phenomenological':self.phenomenological,
+                'cybernetic':self.cybernetic,
+                'spiritual':self.spiritual,
+                'scientific':self.scientific,
+                'constructive':self.constructive,
+                'participatory':self.participatory,
+            }
+        return results
+    
 
 #Content fixtures
 

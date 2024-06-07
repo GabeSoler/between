@@ -6,7 +6,7 @@
 
   <p>Entries </p>
   <p>
-    <a href="{%url 'learning_logs:new_entry' topic.id%}">Add new entry</a>
+    <a href="{%url 'learning_logs:new_entry' topic.pk %}">Add new entry</a>
   </p>
 
   <ul>
@@ -14,7 +14,7 @@
       <li>
         <p>{{entry.date_added|date:'M d,Y H:i'}} </p>
         <p>{{entry.text|linebreaks}}</p>
-        <p><a href="{%url 'learning_logs:edit_entry' entry.id %}">
+        <p><a href="{%url 'learning_logs:new_entry' entry.pk %}">
           Edit entry</a></p>
       </li>
 
@@ -22,6 +22,11 @@
       <li>There are no entries for this topic yet. </li>
     </ul>
     {% endfor %}
+
+    <a href="{% url 'learning_logs:topics' %}" class="card-link">Back to Topic list</a>
+    <a href="{% url 'learning_logs:index' %}" class="card-link">Back to Journaling</a>
+    
+    </br></br>
 
 {% endblock content %}
   </ul>

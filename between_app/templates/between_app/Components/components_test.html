@@ -6,7 +6,16 @@
 {% endblock page_header%}
 {%block content%}
 <p> Please slide an approximation of how much you identify with these areas of work</p>
-<div class="card bg-active p-2 mb-3">
+<p>As a reference:</p>
+<ul>
+  <li>Curious: a few ideas about a topic or model up to 20%</li>
+  <li>Student: Learning a model through study and practice, up to 40%</li>
+  <li>Qualified: Able to do client work ethically with a model, up to 60%</li>
+  <li>Master: Able to work flexible, creatively and connecting with other ideas, up to 90%</li>
+  <li>PhD: Able to connect with the broad field, and to propose new ideas on the topic, up to 100%</li>
+</ul>
+<p>How much do you use the following for your therapeutic work?(if a client, you could use to see which one would you like)</p>
+  <div class="card bg-active p-2 mb-3">
   <form action="{% url 'between_app:components_test' %}" method='post'>
     {% csrf_token %}
     {% bootstrap_form form %}

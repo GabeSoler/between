@@ -1,16 +1,23 @@
 {%extends 'between_app/_base.html'%}
 {% load django_bootstrap5 %}
-
+{% block title %}Profiles Test{% endblock title%}
 {% block page_header%}
-<h2> New Profile test </h2>
-
+<h2> Take a Personal Profile Test </h2>
 {% endblock page_header%}
 
-
-
 {%block content%}
+<p>This is a text to help you reflect about your prefered positions at the time of working with people.</p>
+<p>It is composed of questions regaring your practice that add up to shape a profile. You can review previous tests and see your scores to have a more nuanced sense.</p>
+<p>The idea is for it to be flexible, and for it to be representative of yourself. I hope it can help you as a fluent mirror that keeps track of your process.</p>
+<p>As a reference you can use the bellow numbers.</p>
+<ul>
+  <li>Bellow 40% is desagreement</li>
+  <li>Between 40% and 60% its neutral</li>
+  <li>Between 60% and 80% its a clear preference</li>
+  <li>Between 80% and 100% its your prefered view</li>
+</ul>
 
-  <form action="{% url 'between_app:profile_test' %}" method='post'>
+<form action="{% url 'between_app:profile_test' %}" method='post'>
     {% csrf_token %}
     {% bootstrap_form form %}
     {% bootstrap_button button_type='submit' content='Submit Profile' %}
