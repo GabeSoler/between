@@ -12,6 +12,7 @@
 <p class='card-text'>The Journal space helps you keep track of your reflections and deepen your understanding of therapy.</p>
   </div></div>
 
+
 <!--Topics-->
 <div class="card mb-3 border-primary border-1 soft-blue"> 
       <div class="card-body">
@@ -21,7 +22,7 @@
   <ul class='list-group'>
   {% for topic in topics %}
     <li class='list-group-item warm-white'> 
-        <a class='link-secondary' href="{% url 'learning_logs:topic' topic.id %}">
+        <a class='link-secondary' href="{% url 'learning_logs:topic' topic.pk %}">
         {{topic.text}} </a>
         <p class='list-inline-item'>: <small>{{topic.date_added|date}}</small></p>
       </li>

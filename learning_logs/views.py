@@ -34,13 +34,13 @@ def topics(request):
     return render(request,'learning_logs/topic/topics.html',context)
 
 @login_required
-def topic(request, topic_id):
+def topic(request, topic_pk):
     """show a single topic nad all its entries"""
-    topic = Topic.objects.get(id=topic_id)
+    topic = Topic.objects.get(pk=topic_pk)
     #make sure topics belong to current user
     check_owner(topic.owner,request.user)
     entries = topic.entry_set.order_by('-date_added')
-    context = {'topic':topic, 'entries':entries}
+    context = {'topic':topic,'entries':entries}
     return render(request,'learning_logs/topic/topic.html',context)
 
 @login_required
@@ -65,8 +65,6 @@ def new_topic(request):
 def new_entry(request,topic_pk):
     """add a new entry for a particular topic"""
     topic = Topic.objects.get(pk=topic_pk)
-    check_owner(topic.owner,request.user)
-
     if request.method !='POST':
         #no data submitted, create a blank form
         form = EntryForm()
@@ -77,7 +75,7 @@ def new_entry(request,topic_pk):
             new_entry = form.save(commit=False)
             new_entry.topic = topic
             new_entry.save()
-            return redirect('learning_logs:topics',topic_pk=topic.pk)
+            return redirect('learning_logs:topics')
     #display blank or invalid form
     context={'topic':topic,'form':form}
     return render(request,'learning_logs/topic/new_entry.html',context)
@@ -87,7 +85,7 @@ def edit_entry(request,entry_pk):
     """edit an existing entry"""
     entry = Entry.objects.get(pk=entry_pk)
     topic = entry.topic
-    check_owner(topic.owner,request.user)
+    check_owner(entry.owner,request.user)
     if request.method != 'POST':
         #initial request;pre-fill form with the current entry
         form = EntryForm(instance=entry)
@@ -157,7 +155,7 @@ def edit_question(request,question_pk):
         form = AfterForm(instance=AfterQuestion,data=request.POST)
         if form.is_valid():
             form.save()
-            return redirect('learning_logs:topic',topic_id=topic.id)
+            return redirect('learning_logs:topic',topic_pk=topic.pk)
     context = {'question':AfterQuestion,'form':form}
     return render(request,'learning_logs/question/edit_Question.html',context)
 

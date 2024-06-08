@@ -1,18 +1,23 @@
 {% extends 'between_app/_base.html' %}
+{% block title %}New Entry{%endblock title%}
+{%block page_header%}
+    <a href= "{%url 'learning_logs:topic' topic.pk %}">{{topic|title}}</a>
+{% endblock page_header%}
+
 {% block content%}
 {% load django_bootstrap5 %}
-<p>
-    <a href= "{%url 'learning_logs:topic' topic.pk%}">{{topic}}</a></p>
-<p>Add new entry</p>
+
+
+    <p>Add new entry </p>
 <form action="{%url 'learning_logs:new_entry' topic.pk %}" method='post'>
     {%csrf_token%}
     {% bootstrap_form form %}
     {% bootstrap_button button_type='submit' content='New Entry' %}
 </form>
-
-<a href="{% url 'learning_logs:topics' %}" class="card-link">Back to Topic list</a>
-<a href="{% url 'learning_logs:index' %}" class="card-link">Back to Journaling</a>
-
+<div class='row'>
+<a href="{% url 'learning_logs:topics' %}" class="card-link col">Back to Topic list</a>
+<a href="{% url 'learning_logs:index' %}" class="card-link col">Back to Journaling</a>
+</div>
 </br></br>
 {%endblock content%}
 
