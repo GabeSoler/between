@@ -3,8 +3,8 @@
 asgiref==3.8.1
 certifi==2024.6.2
 charset-normalizer==3.3.2
-dj-database-url>=2,<3
-django>=5.0,<5.1
+dj-database-url==2.2.0
+Django==5.0.6
 django-allauth==0.63.3
 django-bootstrap5==24.2
 idna==3.7
@@ -16,5 +16,3 @@ resend==2.1.0
 sqlparse==0.5.0
 typing_extensions==4.12.2
 urllib3==2.2.1
-whitenoise[brotli]>=6,<7
-gunicorn>=22,<23
