@@ -23,6 +23,7 @@
   <p class="card-text">They will help you to recognise your unique style and positions towards helping others and yourself.</p>
   <a class="badge bg-primary p-2 m-2" href={% url 'between_app:profile_test' %}>Take the test </a></br>
 
+  {% if position.group %}
   <H1>Your main therapeutic Position</H1>
       <div class="card bg-active mb-3">
       <div class="card-body soft-green">
@@ -41,8 +42,10 @@
         <image src="{% static cont_tradition.image %}" class='img-thumbnail border-2 border-primary rounded-circle' style='max-height:6em;'>
       <p class="card-text posText">{{cont_tradition.group|title}}</p>
     </div></div>
+{% else %}
+    <p>Here you will see your results</p>
+    {% endif%}
 
-    
     </div></div>
   </ul>
 
@@ -68,6 +71,7 @@
       <a class="badge bg-primary p-2 m-2" href={% url 'between_app:components_test' %}>Components test</a>
 
   <!--Components results in bars-->
+  {% if components.results.subjective  %}
 
   <!--Subjective loop-->
   <h3>Subjective</h3>
@@ -109,6 +113,10 @@
       <div class="progress-bar progress-bar-striped {{format.4}}" role="progressbar" style="width: {{result}}%" aria-valuenow="{{result}}" aria-valuemin="0" aria-valuemax="100">{{name}}-{{result}}%</div>
     </div>
   {% endfor %}
+
+  {% else %}
+    <p>Here you will see your results</p>
+   {% endif%}
   </div></div>
   <!--end of Components-->
 
@@ -120,6 +128,7 @@
   <p class="card-text">This test will help you to recognise your afiliation with some reality assumptions.</p>
   <a class="badge bg-primary p-2 m-2" href={% url 'between_app:traditions_list' %}>Your tests </a>
   <a class="badge bg-primary p-2 m-2" href={% url 'between_app:traditions_test' %}>Big traditions test </a>
+  {% if BigTrad.results %}
   <!--Big traditions results loop-->
   {% for name,result in BigTrad.results.items %}
     <div class="progress">
@@ -127,7 +136,11 @@
     </div>
     {% endfor %}
   </div>
+  {% else %}
+  <p>Here you will see your results</p>
+ {% endif%}
   </div><!--end traditions card-->
+
 </br></br>
 
 

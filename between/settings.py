@@ -123,12 +123,16 @@ if IS_HEROKU_APP:
 else:
     # When running locally in development or in CI, a sqlite database file will be used instead
     # to simplify initial setup. Longer term it's recommended to use Postgres locally too.
-    DATABASES = {
-        "default": {
-            "ENGINE": "django.db.backends.sqlite3",
-            "NAME": BASE_DIR / "db.sqlite3",
+        DATABASES = {
+            'default': {
+                'ENGINE': 'django.db.backends.postgresql',
+                'NAME': 'gsole',
+                'USER': 'gsole',
+                'PASSWORD': config('POSTGRESS_KEY'),
+                'HOST': 'localhost',
+                'PORT': '5432',
+            }
         }
-    }
 
 
 
@@ -288,7 +292,7 @@ EMAIL_PORT = RESEND_SMTP_PORT
 EMAIL_USE_SSL = False
 EMAIL_HOST_USER = RESEND_SMTP_USERNAME
 EMAIL_HOST_PASSWORD = RESEND_API_KEY
-
+DEFAULT_FROM_EMAIL = 'gabriel@crea-therapy.com'
 
 #Django All auth config
 SITE_ID = 1
