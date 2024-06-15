@@ -1,0 +1,328 @@
+{% extends 'between_app/_base.html' %}
+
+
+
+{%block title%}CreaTherapy:Introduction{%endblock title%}
+
+{% load django_bootstrap5 %}
+{% bootstrap_css%}
+{% bootstrap_javascript%}
+{%block page_header%}{%endblock page_header%}
+{%block content%}
+{% load static %}
+<stile>
+
+</style>
+
+<!-- side table of contents -->
+<div class="row">
+  <div class='col-1 position-fixed'>
+<nav id="navbar-example3" class="navbar navbar-light bg-light flex-column align-items-stretch pb-5 mb-3 position-left">
+    <a class="navbar-brand" href="#">Content</a>
+    <nav class="nav nav-pills flex-column">
+      <a class="nav-link" href="#item-1">Introduction</a>
+      <nav class="nav nav-pills flex-column">
+        <a class="nav-link ms-3 my-1" href="#item-1-1">Overview</a>
+        <a class="nav-link ms-3 my-1" href="#item-1-2">Goals</a>
+      </nav>
+      <a class="nav-link" href="#item-2">Profiles</a>
+      <nav class="nav nav-pills flex-column">
+        <a class="nav-link ms-3 my-1" href="#item-2-1">Positions</a>
+        <a class="nav-link ms-3 my-1" href="#item-2-2">Paths</a>
+        <a class="nav-link ms-3 my-1" href="#item-2-3">Tradition</a>
+      </nav>
+
+      <a class="nav-link" href="#item-3">Components</a>
+      <nav class="nav nav-pills flex-column">
+        <a class="nav-link ms-3 my-1" href="#item-3-1">Subjective</a>
+        <a class="nav-link ms-3 my-1" href="#item-3-2">Awareness</a>
+        <a class="nav-link ms-3 my-1" href="#item-3-3">Contextual</a>
+        <a class="nav-link ms-3 my-1" href="#item-3-4">Culture</a>
+        <a class="nav-link ms-3 my-1" href="#item-3-5">Identity</a>
+      </nav>
+    </nav>
+  </nav>
+</div>
+ <!-- Content from here -->   
+ <div class="col-8 container ps-5">
+
+  <div data-bs-spy="scroll" data-bs-target="#navbar-example3" data-bs-offset="0" tabindex="0">
+
+    <h1 class='display bg display-5 mb-4'>CreaTherapy: Theory</h1>
+
+    <h1 id="item-1">Introduction</h1>
+    <p>Have you ever wondered how to learn from different traditions and practitioners?</p>
+    <p>Have you ever wanted what you learn can feel coherent with your values and to feel like it comes from your voice and not like it comes from somebody else?</p>
+    <p>CreaTherapy aims to help you understand and make your own therapeutic knowledge, and in that process to feel it like something that emerges from your own life and inner wisdom.</p>
+
+    
+    <h3 id="item-1-1">Overview</h3>
+
+    <p>When we look at an approach in academia we analyze a few components, like  what is the idea of reality, how do we learn from that reality and how do we relate to that reality in practice</p>
+    <p>Therapy is a different phenomenon because theory and practice are interlinked, and when they separate too much it damages the practice.</p>
+    <p>This emerges from a therapeutic fact, how we relate and how we are, are always impacting what happens in session. Furthermore, what we think and how it is palpable in the room.</p>
+    <p>As someone who enjoys learning new models and practices, I find myself in trouble when I use something too literally when it is not fully 'digested' by my unconscious, my thinking and my relating.</p>
+    <p>Trouble may be a strong word: what happens is that my intervention feels stiff and disconnected from the process and relationship.</p>
+    <p>So let's observe from above how I see my construction of a particular practice. We can understand a therapeutic style by working on five areas</p>
+    <ul>
+      <li>Tradition: as a coherent languaje, values, comunity and tecniques,</li>
+      <li>Person of the therapist: as someone and their circumstances, life decisions, learnings, experiences.</li>
+      <li>Philosophical Assumptions: Ideas about reality, change, learning, life.</li>
+      <li>Practical Theory: as a group of ideas that connect experience, theory and practice.</li>
+      <li>Components: Areas of expertise and concrete practices in therapy.</li>
+    </ul>
+    
+    <image class="rounded w-75 mb-2" src="{% static 'pages/images/eagle_eye.png' %}" alt='Image showing the five parts with the tradition as a colum to the left and the person as a colum to the right'>
+    <p>As an image, when we can learn to move between these parts, we can digest knowledge in a more coherent way. The traditions bring a language and give context. They also bring some assumptions in the middle section that dialogue with the person's assumptions.</p>
+    <p>There is therefore a needed space for you to reflect on your learning. Inside traditions, there are usually sub-groups, that share the language, but also may have other reality assumptions and sub-models (ie compare Winnicott, Lacan and Bion in psychoanalisis).</p>
+    <p>By giving yourself space to process, you may also find like-minded authors and colleagues. You may also make small adjustments to the theory, the practice, or the reality assumptions to make things fit you better.</p> 
+  </br>
+
+
+      <h3 id="item-1-2">Goals</h3>
+      <p>CreaTherapy aims to be different than other 'meta' projects (ie integrative, eclectic or pluralist). The goals that make it different are:</p>
+      <ul>
+        <li>to be more a template for therapeutic thinking than another tradition,</li>
+        <li>to be compatible with therapeutic traditions of different origins,</li>
+        <li>promote personal creation, by seeing theory as a creative/developmental process, and</li>
+        <li>to create a language for mutual understanding in a space of multiplicity of thinking.</li>    
+      </ul>
+      <p>Other meta projects tend to default into a new tradition and to multiply as traditions do. This project aims to be an approach between (a concept I tend to use theoretically).</p>
+      <p>What I would hope is for this project to work more like a wiki, or like a GitHub open-source, where we can keep improving the main idea by keeping it open. For this reason, try to separate the main model with my own comments about the model, so you can make your voice inside a theoretical frame.</p>
+
+    
+    <h3 id="item-2">Profiles:</h3>
+      <p>Therapeutic Profiles is a project to help therapists and clients find their unique needs, having names to organize the complexities of human beings.</p>
+      <p>They aim to move between the old traditions, in a context where therapists and clients are learning from multiple points of view and mixing ideas and practices from many sources becomes the new norm.</p>
+      
+      <h4 id="item-2-1">Positions:</h4>
+      <p>We have four main therapeutic positions, that map some of the most important groups inside psychotherapy:</p>
+      <ul>
+        <li>Compassionate, close to Person Centred approach;</li>
+        <li>Inquisitive, close to psychodynamic approaches;</li>
+        <li>Changer, close to CBT approaches and </li>
+        <li>Playful, close to Gestalt and other humanistic approaches.</li>
+        </ul>
+      <p>Thinking of them as positions allows us to be more flexible in our work, and to use the position when it matches a therapeutic moment. We also tend to have some preferred (and rejected) positions, which help us to trace a path of growth by integrating polarities</p>
+      
+      <!--Carrussel Positions-->
+      <div id="carouselPositions" class="carousel slide " data-bs-ride="carousel">
+        <div class="carousel-indicators">
+          <button type="button" data-bs-target="#carouselPositions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+          <button type="button" data-bs-target="#carouselPositions" data-bs-slide-to="1" aria-label="Slide 2"></button>
+          <button type="button" data-bs-target="#carouselPositions" data-bs-slide-to="2" aria-label="Slide 3"></button>
+          <button type="button" data-bs-target="#carouselPositions" data-bs-slide-to="3" aria-label="Slide 4"></button>
+        </div>
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <img src="{% static 'between_app/images/compasionate.jpg'%}" class="d-block w-100" alt="...">
+            <div class="carousel-caption d-none d-md-block">
+              <h5>Compassionate</h5>
+              <p>Therapist who follows clients and creates a receptive space of acceptance.</p>
+            </div>
+          </div>
+          <div class="carousel-item">
+            <img src="{% static 'between_app/images/inquisitive.jpg'%}" class="d-block w-100" alt="...">
+            <div class="carousel-caption d-none d-md-block">
+              <h5>Inquisitive</h5>
+              <p>Therapist that listens to interpret and find secret patterns hidden behind.</p>
+            </div>
+          </div>
+          <div class="carousel-item">
+            <img src="{% static 'between_app/images/playful.jpg'%}" class="d-block w-100" alt="...">
+            <div class="carousel-caption d-none d-md-block">
+              <h5>Playful</h5>
+              <p>Therapist that proposes activities to promote deeper acceptance and understanding.</p>
+            </div>
+          </div>
+          <div class="carousel-item">
+            <img src="{% static 'between_app/images/changer.jpg'%}" class="d-block w-100" alt="...">
+            <div class="carousel-caption d-none d-md-block">
+              <h5>Changer</h5>
+              <p>Therapist that brings many activities and homework, aiming to create change in their clients.</p>
+            </div>
+          </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselPositions" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselPositions" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+      </div>
+    </br>
+
+      
+      <h4 id="item-2-2">Paths:</h4>
+      <p>Therapeutic Paths mark another group of categories to describe our work. In this case, the focus is more ontological, and I feel deeper, marking our overall path of growth. I always see this area as complementary, being open for us to learn and connect opposites.</p>
+      <ul>
+        <li>Dreamer, focus on the intensive aspecs of life, dreams, metaphors, art,</li>
+        <li>Sage, focus on the abstract aspects of life, concepts, theories, mental maps,</li>
+        <li>Carer, focus on the embodied aspects of life, caring, connecting, being-with,</li>
+        <li>Explorer, focuses on the technical aspects of life, discovery, problem-solving, and tools.</li>
+      </ul>
+      <!--Carrussel Paths-->
+      <div id="carouselPath" class="carousel slide " data-bs-ride="carousel">
+        <div class="carousel-indicators">
+          <button type="button" data-bs-target="#carouselPath" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+          <button type="button" data-bs-target="#carouselPath" data-bs-slide-to="1" aria-label="Slide 2"></button>
+          <button type="button" data-bs-target="#carouselPath" data-bs-slide-to="2" aria-label="Slide 3"></button>
+          <button type="button" data-bs-target="#carouselPath" data-bs-slide-to="3" aria-label="Slide 4"></button>
+        </div>
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <img src="{% static 'between_app/images/dreamer.jpg'%}" class="d-block w-100" alt="...">
+            <div class="carousel-caption d-none d-md-block">
+              <h5>Dreamer</h5>
+              <p>Soul path, looking for metaphores and dreams to go deeper in themselves.</p>
+            </div>
+          </div>
+          <div class="carousel-item">
+            <img src="{% static 'between_app/images/sage.jpg'%}" class="d-block w-100" alt="...">
+            <div class="carousel-caption d-none d-md-block">
+              <h5>Sage</h5>
+              <p>Spirit path, looking for concepts, models and theories to understand the world.</p>
+            </div>
+          </div>
+          <div class="carousel-item">
+            <img src="{% static 'between_app/images/carer.jpg'%}" class="d-block w-100" alt="...">
+            <div class="carousel-caption d-none d-md-block">
+              <h5>Carer</h5>
+              <p>Life path, aware and caring for every entity around them.</p>
+            </div>
+          </div>
+          <div class="carousel-item">
+            <img src="{% static 'between_app/images/explorer.jpg'%}" class="d-block w-100" alt="...">
+            <div class="carousel-caption d-none d-md-block">
+              <h5>Explorer</h5>
+              <p>Techniques path, always looking for new knoledge, techniques and tools.</p>
+            </div>
+          </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselPath" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselPath" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+      </div>
+    </br>
+
+
+
+
+
+
+
+      <h4 id="item-2-3">Relationship with the Tradition:</h4>
+      <p>The third component of the personal profile is the relationship with the tradition. This one changes more often and marks different periods of our growth, being more focused on ourselves or the collective.</p>
+      <ul>
+        <li>Artist, focus on their inner world, looking for their unique self,</li>
+        <li>Warriors, focus on their self-perfecting and self-development,</li>
+        <li>Lider/group dynamic, with a focus on the group alignment for a common vision provided by a lender,</li>
+        <li>Coach/team dynamic, with a focus on a team strategy and a coach showing the more efficient path.</li>
+      </ul>
+    <p>These three parts compose a general view of the person of the therapist, like screenshots of who we are at a given moment. Even though there are many other angles to see the person of the therapist, I see these as embedded in the history of psychotherapy.<p/>
+    <p>Some may have noticed that there is some sort of correlation between them, like artist, dreamer, playful, and sound similar. In practice, we move between the positions and they match in different ways. There is no right combination.</p>  
+      <!--Carrussel Tradition-->
+      <div id="carouselTradition" class="carousel slide " data-bs-ride="carousel">
+        <div class="carousel-indicators">
+          <button type="button" data-bs-target="#carouselTradition" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+          <button type="button" data-bs-target="#carouselTradition" data-bs-slide-to="1" aria-label="Slide 2"></button>
+          <button type="button" data-bs-target="#carouselTradition" data-bs-slide-to="2" aria-label="Slide 3"></button>
+          <button type="button" data-bs-target="#carouselTradition" data-bs-slide-to="3" aria-label="Slide 4"></button>
+        </div>
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <img src="{% static 'between_app/images/artist.jpg'%}" class="d-block w-100" alt="...">
+            <div class="carousel-caption d-none d-md-block">
+              <h5>Artist</h5>
+              <p>Prefers the individual inner path of following the flow and becoming.</p>
+            </div>
+          </div>
+          <div class="carousel-item">
+            <img src="{% static 'between_app/images/warrior.jpg'%}" class="d-block w-100" alt="...">
+            <div class="carousel-caption d-none d-md-block">
+              <h5>Warrior</h5>
+              <p>Prefers hard work to develop new strategies and habilities on their own.</p>
+            </div>
+          </div>
+          <div class="carousel-item">
+            <img src="{% static 'between_app/images/leader.jpg'%}" class="d-block w-100" alt="...">
+            <div class="carousel-caption d-none d-md-block">
+              <h5>Lider</h5>
+              <p>Looking for or being the lider who brings a vision that keeps the group together.</p>
+            </div>
+          </div>
+          <div class="carousel-item">
+            <img src="{% static 'between_app/images/coach.jpg'%}" class="d-block w-100" alt="...">
+            <div class="carousel-caption d-none d-md-block">
+              <h5>Coach</h5>
+              <p>Looking for or being the coach who trains and guides a team to move foward.</p>
+            </div>
+          </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselTradition" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselTradition" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+      </div>
+    </br>
+
+
+
+
+
+    <h3 id="item-3">Components:</h3>
+      <p>Therapeutic components are an attempt to map the multiplicity of techniques and areas of work of a psychotherapist, to make clear certain fundamental aspects of our work.</p>
+      <p>The idea is to be able to collect techniques independent of the position or tradition, opening up the possibility of using insight from the whole field of psychotherapy</p>
+      <p>These areas of work need to be embodied and made coherent by each practitioner, so they do not feel like alien knowledge, or paranoid imposition (that makes us feel we are wrong if we don't do it perfectly)</p>
+      <p>So, we need to wrap what we learn with our own visions of the world and our own language. Making it your own allows deeper coherence, and easier learning, as you can transfer your life knowledge into therapeutic knowledge (see <a href='https://en.wikipedia.org/wiki/Critical_pedagogy'>Critical Pedagogy)</a></p>
+      <p>The five groups, composed of five sub-components are:</p>
+      <img src='{% static 'pages/images/components.png' %}' style='max-height:200px;'>
+      <ul>
+        <li>Subjective: body, feelings, expression, thoughts, and narrative,</li>
+        <li>Extended Awareness: dreaming and metaphor, Re-programming, subliminal work, sub-parts and selves, and spiritual,</li>
+        <li>Contextual: relational, systems, setup and rewards, transitional objects, and family,</li>
+        <li>Culture: antropology, arts, politics and power, philosophy, and world-view,</li>
+        <li>Identity: individuation, sex and gender, values, belonging and roles.</li>
+      </ul>
+<!--carrusssel components-->
+      <h5 id="item-3-1">Subjective:</h5>
+
+            <img src="{% static 'pages/images/subjective.png'%}" class="d-block w-50" alt="...">
+              <p>The traditional areas of work that help us to gain our subjective place.</p>
+            
+      <h5 id="item-3-2">Extended awareness:</h5>
+              <img src="{% static 'pages/images/awareness.png'%}" class="d-block w-50" alt="...">
+              <p>Areas that lie beyong our awareness so we need another to make sense and intervine.</p>
+
+      <h5 id="item-3-3">Contextual:</h5>
+            <img src="{% static 'pages/images/contextual.png'%}" class="d-block w-50" alt="...">
+              <p>Dealing with the context that influences us, giving us the power to change it too.</p>
+      
+      <h5 id="item-3-4">Culture:</h5>
+            <img src="{% static 'pages/images/culture.png'%}" class="d-block w-50" alt="...">
+              <p>The bigger context that influences our lives and others.</p>
+
+      
+      <h5 id="item-3-5">Identity:</h5>
+            <img src="{% static 'pages/images/identity.png'%}" class="d-block w-50" alt="...">
+              <p>A personal group that help us become more who we are.</p>
+
+
+</div>
+</div>
+
+
+
+
+{%endblock content%}

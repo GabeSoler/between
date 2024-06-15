@@ -27,7 +27,6 @@ urlpatterns = [
     path('accounts/',include('allauth.urls')),
     path('learning/',include('learning_logs.urls')),
     path('pages/',include('pages.urls')),
-    path('tools/',include('tools.urls')),
     path('techniques/',include('techniques_app.urls')),
     path('',include('between_app.urls')),
 

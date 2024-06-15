@@ -1,145 +1,17 @@
 {% extends 'between_app/_base.html' %}
 
-
-
 {%block title%}Theory Home{%endblock title%}
 
+{%block page_header%}To understand the theory behind {%endblock page_header%}
 
-{%block page_header%}{%endblock page_header%}
+
 {%block content%}
-{% load static %}
-<stile>
-
-</style>
-
-<!-- side table of contents -->
-<div class="row">
-  <div class='col-1 position-fixed'>
-<nav id="navbar-example3" class="navbar navbar-light bg-light flex-column align-items-stretch pb-5 mb-3 position-left">
-    <a class="navbar-brand" href="#">Content</a>
-    <nav class="nav nav-pills flex-column">
-      <a class="nav-link" href="#item-1">Introduction</a>
-      <nav class="nav nav-pills flex-column">
-        <a class="nav-link ms-3 my-1" href="#item-1-1">Eagle's eye</a>
-        <a class="nav-link ms-3 my-1" href="#item-1-2">Goals</a>
-      </nav>
-      <a class="nav-link" href="#item-2">Item 2</a>
-      <a class="nav-link" href="#item-3">Item 3</a>
-      <nav class="nav nav-pills flex-column">
-        <a class="nav-link ms-3 my-1" href="#item-3-1">Item 3-1</a>
-        <a class="nav-link ms-3 my-1" href="#item-3-2">Item 3-2</a>
-      </nav>
-    </nav>
-  </nav>
-</div>
- <!-- Content from here -->   
- <div class="col-8 container ps-5">
-
-  <div data-bs-spy="scroll" data-bs-target="#navbar-example3" data-bs-offset="0" tabindex="0">
-
-    <h1 class='display bg display-5 mb-4'>CreaTherapy: Theory</h1>
-
-    <h1 id="item-1">Introduction</h1>
-    <p>Have you ever wondered how to learn from different traditions and practitioners?</p>
-    <p>Have you ever wanted what you learn can feel coherent with your values and to feel like it comes from your voice and not like it comes from somebody else?</p>
-    <p>CreaTherapy aims to help you understand and make your own therapeutic knowledge, and in that process to feel it like something that emerges from your own life and inner wisdom.</p>
-
-    
-    <h3 id="item-1-1">Eagle's Eye</h3>
-
-    <p>When we look at an approach in academia we analyze a few components, like  what is the idea of reality, how do we learn from that reality and how do we relate to that reality in practice</p>
-    <p>Therapy is a different phenomenon because theory and practice are interlinked, and when they separate too much it damages the practice.</p>
-    <p>This emerges from a therapeutic fact, how we relate and how we are, are always impacting what happens in session. Furthermore, what we think and how it is palpable in the room.</p>
-    <p>As someone who enjoys learning new models and practices, I find myself in trouble when I use something too literally when it is not fully 'digested' by my unconscious, my thinking and my relating.</p>
-    <p>Trouble may be a strong word: what happens is that my intervention feels stiff and disconnected from the process and relationship.</p>
-    <p>So let's observe from above how I see my construction of a particular practice. We can understand a therapeutic style by working on five areas</p>
-    <ul>
-      <li>Tradition: as a coherent languaje, values, comunity and tecniques,</li>
-      <li>Person of the therapist: as someone and their circumstances, life decisions, learnings, experiences.</li>
-      <li>Philosophical Assumptions: Ideas about reality, change, learning, life.</li>
-      <li>Practical Theory: as a group of ideas that connect experience, theory and practice.</li>
-      <li>Components: Areas of expertise and concrete practices in therapy.</li>
-    </ul>
-    
-    <image class="rounded w-75 mb-2" src="{% static 'pages/images/eagle_eye.png' %}" alt='Image showing the five parts with the tradition as a colum to the left and the person as a colum to the right'>
-    <p>As an image, when we can learn to move between these parts, we can digest knowledge in a more coherent way. The traditions bring a language and give context. They also bring some assumptions in the middle section that dialogue with the person's assumptions.</p>
-    <p>There is therefore a needed space for you to reflect on your learning. Inside traditions, there are usually sub-groups, that share the language, but also may have other reality assumptions and sub-models (ie compare Winnicott, Lacan and Bion in psychoanalisis).</p>
-    <p>By giving yourself space to process, you may also find like-minded authors and colleagues. You may also make small adjustments to the theory, the practice, or the reality assumptions to make things fit you better.</p> 
-  </br>
-
-
-      <h3 id="item-1-2">Goals</h3>
-      <p>CreaTherapy aims to be different than other 'meta' projects (ie integrative, eclectic or pluralist). The goals that make it different are:</p>
-      <ul>
-        <li>to be more a template for therapeutic thinking than another tradition,</li>
-        <li>to be compatible with therapeutic traditions of different origins,</li>
-        <li>promote personal creation, by seeing theory as a creative/developmental process, and</li>
-        <li>to create a language for mutual understanding in a space of multiplicity of thinking.</li>    
-      </ul>
-      <p>Other meta projects tend to default into a new tradition and to multiply as traditions do. This project aims to be an approach between (a concept I tend to use theoretically).</p>
-      <p>What I would hope is for this project to work more like a wiki, or like a GitHub open-source, where we can keep improving the main idea by keeping it open. For this reason, try to separate the main model with my own comments about the model, so you can make your voice inside a theoretical frame.</p>
-
-    
-    <h3 id="item-1-2">Profiles:</h3>
-      <p>Therapeutic Profiles is a project to help therapists and clients find their unique needs, having names to organize the complexities of human beings.</p>
-      <p>They aim to move between the old traditions, in a context where therapists and clients are learning from multiple points of view and mixing ideas and practices from many sources becomes the new norm.</p>
-      
-      <h5 id="item-1-2-1">Positions:</h5>
-      <p>We have four main therapeutic positions, that map some of the most important groups inside psychotherapy:</p>
-      <ul>
-        <li>Compassionate, close to Person Centred approach;</li>
-        <li>Inquisitive, close to psychodynamic approaches;</li>
-        <li>Changer, close to CBT approaches and </li>
-        <li>Playful, close to Gestalt and other humanistic approaches.</li>
-        </ul>
-      <p>Thinking of them as positions allows us to be more flexible in our work, and to use the position when it matches a therapeutic moment. We also tend to have some preferred (and rejected) positions, which help us to trace a path of growth by integrating polarities</p>
-      <h5 id="item-1-2-2">Paths:</h5>
-      <p>Therapeutic Paths mark another group of categories to describe our work. In this case, the focus is more ontological, and I feel deeper, marking our overall path of growth. I always see this area as complementary, being open for us to learn and connect opposites.</p>
-      <ul>
-        <li>Dreamer, focus on the intensive aspecs of life, dreams, metaphors, art,</li>
-        <li>Sage, focus on the abstract aspects of life, concepts, theories, mental maps,</li>
-        <li>Carer, focus on the embodied aspects of life, caring, connecting, being-with,</li>
-        <li>Explorer, focuses on the technical aspects of life, discovery, problem-solving, and tools.</li>
-      </ul>
-      <h5 id="item-1-2-3">Relationship with the Tradition:</h5>
-      <p>The third component of the personal profile is the relationship with the tradition. This one changes more often and marks different periods of our growth, being more focused on ourselves or the collective.</p>
-      <ul>
-        <li>Artist, focus on their inner world, looking for their unique self,</li>
-        <li>Warriors, focus on their self-perfecting and self-development,</li>
-        <li>Lider/group dynamic, with a focus on the group alignment for a common vision provided by a lender,</li>
-        <li>Coach/team dynamic, with a focus on a team strategy and a coach showing the more efficient path.</li>
-      </ul>
-    <p>These three parts compose a general view of the person of the therapist, like screenshots of who we are at a given moment. Even though there are many other angles to see the person of the therapist, I see these as embedded in the history of psychotherapy.<p/>
-    <p>Some may have noticed that there is some sort of correlation between them, like artist, dreamer, playful, and sound similar. In practice, we move between the positions and they match in different ways. There is no right combination.</p>  
-
-    <h5 id="item-1-2">Components:</h5>
-      <p>Therapeutic components are an attempt to map the multiplicity of techniques and areas of work of a psychotherapist, to make clear certain fundamental aspects of our work.</p>
-      <p>The idea is to be able to collect techniques independent of the position or tradition, opening up the possibility of using insight from the whole field of psychotherapy</p>
-      <p>These areas of work need to be embodied and made coherent by each practitioner, so they do not feel like alien knowledge, or paranoid imposition (that makes us feel we are wrong if we don't do it perfectly)</p>
-      <p>So, we need to wrap what we learn with our own visions of the world and our own language. Making it your own allows deeper coherence, and easier learning, as you can transfer your life knowledge into therapeutic knowledge (see <a href='https://en.wikipedia.org/wiki/Critical_pedagogy'>Critical Pedagogy)</a></p>
-      <p>The five groups, composed of five sub-components are:</p>
-      <ul>
-        <li>Subjective: body, feelings, expression, thoughts, and narrative,</li>
-        <li>Extended Awareness: dreaming and metaphor, Re-programming, subliminal work, sub-parts and selves, and spiritual,</li>
-        <li>Contextual: relational, systems, setup and rewards, transitional objects, and family,</li>
-        <li>Culture: antropology, arts, politics and power, philosophy, and world-view,</li>
-        <li>Identity: individuation, sex and gender, values, belonging and roles.</li>
-      </ul>
-
-    <h4 id="item-3">Item 3</h4>
-    <p>...</p>
-    
-    <h5 id="item-3-1">Item 3-1</h5>
-    <p>...</p>
-    
-    <h5 id="item-3-2">Item 3-2</h5>
-    <p>...</p>
-  </div>
-
-  <a href={% url 'between_app:profile_test' %}>Take the test </a>
-
-</div>
-</div>
+<h2>CreaTherapy: </h2>
+<p>This section is to understand the ideas behind CreaTherapy, as a new creative view of psychotherapy.</p>
+<a class="badge bg-primary p-2 m-2" href={% url 'pages:intro' %}>Introduction </a>
+<a class="badge bg-primary p-2 m-2" href={% url 'pages:profiles' %}>Profiles </a>
+<a class="badge bg-primary p-2 m-2" href={% url 'pages:creation' %}>Creation </a>
+<a class="badge bg-primary p-2 m-2" href={% url 'pages:history' %}>History </a>
 
 
 

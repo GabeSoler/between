@@ -1,4 +1,4 @@
-{% extends 'blog_app/base.html' %}
+{% extends 'between_app/_base.html' %}
 {% block page_header%}
 <div class='p-3 mb-4 bg-light border rounded-3'  style='max-width: 1000px;'>
     <div class='container-fluid py-4'>
@@ -9,18 +9,15 @@
 {% endblock page_header%}
 
 {%block content%}
+{% if user.is_authenticated %} 
 <div class='card'>
     <h3 class='card-title ps-3'>My Compnents lits</h3>
 <ul class='list-group list-group-flush boder-bottom pb-2 mb-4'>
-{%for topic in topics %}
+{%for technique in techniques %}
         <li class='list-group-item boder-1'><a class='link-dark'href="{%url 'blog_app:blog_list_by_topic' topic.id %}">{{topic}}
         </a></br><p class='text-muted'>{{topic.about}}</p>
         </li>      
  {% endfor %}
- {% if user.is_authenticated %} 
-    <ul>
-        <li><p><a href="{%url 'blog_app:new_topic' %}"> Add a new tecnique</a></p></li>
-    </ul>
 {% endif %}
 </div>
 {%endblock content%}

@@ -32,5 +32,6 @@ class Technique(models.Model):
     notes = models.TextField(default='')
     date_made = models.DateField(auto_now_add=True)
     share = models.BooleanField(default=False)
+    stared = models.BooleanField(default=False)
     def __str__(self):
         return self.name

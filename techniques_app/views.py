@@ -5,9 +5,11 @@ from .forms import TechniqueForm
 
 #Global views
 def index(request):
-    techniques = Technique.objects.filter(user=request.user)
-    context = {'techniques':techniques}
-    return render(request,'techniques_app/index.html',context)
+    if request.user.is_authenticated:
+        techniques = Technique.objects.filter(user=request.user)
+        context = {'techniques':techniques}
+        return render(request,'techniques_app/index.html',context)
+    return render(request,'techniques_app/index.html')
 
 def group_list_community(request):
     subjective = Component.objects.filter(group='subj')

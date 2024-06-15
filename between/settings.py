@@ -48,7 +48,6 @@ INSTALLED_APPS = [
     'learning_logs',
     'accounts.apps.AccountsConfig',
     'pages',
-    'tools',
     'techniques_app',
 
     #third party apps
