@@ -67,10 +67,6 @@ class PositionListView(LoginRequiredMixin, ListView):
 
 
 def take_profile_test(request):
-    if request.user.is_authenticated:
-        user = request.user
-    else:
-        user = None
     if request.method !='POST':
         #no data submitted; create a blank form
         form = StyleForm()
@@ -79,7 +75,9 @@ def take_profile_test(request):
         form = StyleForm(data=request.POST)
         if form.is_valid():
             new = form.save(commit=False)
-            new.user = user
+            if request.user.is_authenticated:
+                user = request.user
+                new.user = user
             new.save()
             return redirect('between_app:results',new.pk)
     #display a blank or invalid form
