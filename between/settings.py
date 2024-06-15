@@ -279,10 +279,8 @@ RESEND_SMTP_PORT = 587
 RESEND_SMTP_USERNAME = 'resend'
 RESEND_SMTP_HOST = 'smtp.resend.com'
 
-if DEBUG == False: #switch to smtp when in production
-    EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-else:
-    EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+#resend activated all the time
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 
 EMAIL_HOST = RESEND_SMTP_HOST
 EMAIL_USE_TLS = True

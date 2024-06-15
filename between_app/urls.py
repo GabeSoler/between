@@ -17,7 +17,7 @@ urlpatterns = [
 
     path('style_detail/<uuid:pk>/',views.style_detail,name='style_detail'),
     path('style_list/',views.PositionListView.as_view(),name='profiles_list'),
-    path('profile_test/',views.takeTestView.as_view(),name='profile_test'),
+    path('profile_test/',views.take_profile_test,name='profile_test'),
     path('content/',views.contentView.as_view(),name='content'),
     path('results_email/<uuid:pk>/',views.ps_results,name='results'),
 

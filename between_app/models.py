@@ -10,7 +10,7 @@ class Personal_Style(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     created_at = models.DateTimeField(auto_now_add=True, editable=False)
     updated_at = models.DateTimeField(auto_now=True, editable=False)
-    user = models.ForeignKey(get_user_model(),on_delete=models.PROTECT)
+    user = models.ForeignKey(get_user_model(),blank=True,null=True,on_delete=models.PROTECT)
     follower_1 = models.IntegerField(default=1)
     propositive_1 = models.IntegerField(default=1)
     challenger_1 = models.IntegerField(default=1)

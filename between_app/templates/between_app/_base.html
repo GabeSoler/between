@@ -3,14 +3,14 @@
 <head>
     <meta charset='utf-8'>
     <meta name='viewport' content='with=device-with,inicial-scale=1'>
-    <title>{%block title%}Therapy Profiles{%endblock title%}</title>
+    <title>{%block title%}CreaTherapy{%endblock title%}</title>
 
     {% load django_bootstrap5 %}
     {% bootstrap_css %}
     {% bootstrap_javascript %}
 </head>
 
-<body class='bg-light'>
+<body class='container-fluid bg-light'>
 <nav class="navbar navbar-expand-lg bg-primary sticky-top start-0" data-bs-theme="dark">
     <div class='container-fluid'>
         <a class='navbar-brand' href="{% url 'between_app:index' %}">

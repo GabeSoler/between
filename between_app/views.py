@@ -66,27 +66,25 @@ class PositionListView(LoginRequiredMixin, ListView):
         return qs.filter(user=self.request.user.id)
 
 
-class takeTestView(CreateView):
-    model = Personal_Style
-    form_class = StyleForm
-    template_name = 'between_app/personal_style/profile_test.html'
-    success_url = 'between_app/personal_style/results/'
-
-    def post(self, request, *args, **kwargs):
-        form = StyleForm(request.POST)
-        try:
-            user = request.user
-        except:
-            try:
-                user = get_user_model().objects.get(username='guest')
-            except:
-                user = get_user_model().objects.create_user(email='guest@guest.guest',username='guest' )
+def take_profile_test(request):
+    if request.user.is_authenticated:
+        user = request.user
+    else:
+        user = None
+    if request.method !='POST':
+        #no data submitted; create a blank form
+        form = StyleForm()
+    else:
+        #POST data submitted; process data
+        form = StyleForm(data=request.POST)
         if form.is_valid():
-            profile_test = form.save(commit=False)
-            profile_test.user = user
-            profile_test.save()
-            return HttpResponseRedirect(reverse_lazy('between_app:results', args=[profile_test.pk]))
-        return render(request, 'between_app/profile_test.html', {'form': form})
+            new = form.save(commit=False)
+            new.user = user
+            new.save()
+            return redirect('between_app:results',new.pk)
+    #display a blank or invalid form
+    context = {'form':form}
+    return render(request,'between_app/personal_style/profile_test.html',context)
 
 
 
@@ -108,30 +106,20 @@ def ps_results(request,pk):
         form = SendEmail(data=request.POST)
         if form.is_valid:
             instance = form.save()
-            user_email = instance.email
-            user_email = tuple(user_email)
+            user_email = (instance.email,)
         else:
             return html_content("<h3>Please add a valid email!</h3>")
-        with get_connection(
-            host= settings.RESEND_SMTP_HOST,
-            port= settings.RESEND_SMTP_PORT,
-            username= settings.RESEND_SMTP_USERNAME,
-            password= settings.RESEND_API_KEY,
-            use_tls=True,
-            ) as connection:
-                subject, from_email, to = 'Profile', 'crea@therapy.com', user_email
-                html_content = render_to_string('between_app/email/personal_style_email.html', 
-                                                {'position':cont_position,'path':cont_path,'tradition':cont_tradition}) # render with dynamic value
-                #text_content = strip_tags(html_content) # Strip the html tag. So people can see the pure text at least.
-                msg = EmailMessage(
-                    subject=subject,
-                    body=html_content,
-                    to=user_email,
-                    from_email=from_email,
-                    connection=connection)
-                msg.content_subtype = 'html'
-                msg.send()
-                return redirect('between_app:test_home')
+        html_content = render_to_string('between_app/email/personal_style_email.html', 
+                                        {'position':cont_position,'path':cont_path,'tradition':cont_tradition}) # render with dynamic value
+        #text_content = strip_tags(html_content) # Strip the html tag. So people can see the pure text at least.
+        msg = EmailMessage(
+            subject='Profile',
+            body=html_content,
+            to=user_email,
+            from_email='gabriel@crea-therapy.com')
+        msg.content_subtype = 'html'
+        msg.send()
+        return redirect('between_app:test_home')
     context = {'results':style_detail,'position':cont_position,'path':cont_path,'tradition':cont_tradition,'form':form,'pk':pk,'format':format}
     return render(request,'between_app/personal_style/results_email.html',context)
 
