@@ -35,7 +35,7 @@
                     <a class='nav-link' href="{% url 'pages:index' %}">
                         Theory</a></li>
             </ul><!-- End of links on left side of nvbar -->
-            
+          </div> <!-- Closes collapsible parts of navbar -->
             <!-- Account related links-->
             <ul class='navbar-nav ms-auto mb-2 mb-md-0'>
                 {% if user.is_authenticated %}
@@ -50,7 +50,7 @@
             </ul> 
                <!-- End of account related links -->
 
-        </div> <!-- Closes collapsible parts of navbar -->
+        
     </div><!-- closes navbar container-->
 </nav><!-- end of navbar -->
 
