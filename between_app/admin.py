@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Personal_Style,Components,PS_Group,PS_Section
+from .models import Personal_Style,Components,PS_Group,PS_Section,BigTraditions
 # Register your models here.
 
 class ContentAdminProperties(admin.ModelAdmin):
@@ -17,6 +17,8 @@ class PSAdmin(admin.ModelAdmin):  # inlines: other models inside
 admin.site.register(Personal_Style)
 admin.site.register(Components)
 admin.site.register(PS_Section,PSAdmin)
+admin.site.register(BigTraditions)
+
 
 
 
