@@ -23,7 +23,7 @@
   <p class="card-text">They will help you to recognise your unique style and positions towards helping others and yourself.</p>
   <a class="badge bg-primary p-2 m-2" href={% url 'between_app:profile_test' %}>Take the test </a></br>
 
-  {% if position.group %}
+  {% if cont_position.group %}
   <H1>Your main therapeutic Position</H1>
       <div class="card bg-active mb-3">
       <div class="card-body soft-green">
@@ -44,10 +44,8 @@
     </div></div>
 {% else %}
     <p>Here you will see your results</p>
-    {% endif%}
-
-    </div></div>
   </ul>
+  {% endif%}
 
   <a class="badge bg-primary p-2 m-2" href={% url 'pages:index' %}>Read the theory </a>
   <a class="badge bg-primary p-2 m-2" href={% url 'between_app:profiles_list' %}>See your tests </a></br>
