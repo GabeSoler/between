@@ -225,9 +225,9 @@ class BigTraditions(models.Model):
 
 
 class PS_Section(models.Model):
-    updated_at = models.DateTimeField(auto_now=True, editable=False)
+    updated_at = models.DateTimeField(auto_now=True, editable=True)
     section = models.CharField(max_length=20,default='') #position, path,tradition
-class PS_group(models.Model):
+class PS_Group(models.Model):
     updated_at = models.DateTimeField(auto_now=True, editable=False)
     section = models.ForeignKey(PS_Section,default=None, on_delete=models.CASCADE)
     group = models.CharField(max_length=20, default='') #compassionate,playgul, etc

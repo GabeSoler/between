@@ -1,10 +1,8 @@
 from django.shortcuts import render,redirect
-from .models import Personal_Style, Components,BigTraditions,PS_Section,PS_group
-from django.views.generic import ListView, DetailView,TemplateView,CreateView
+from .models import Personal_Style, Components,BigTraditions,PS_Group
+from django.views.generic import ListView,TemplateView
 from .forms import StyleForm,ComponentsForm,BigTradForm,SendEmail
 from django.contrib.auth import get_user_model
-from django.http import HttpResponseRedirect
-from django.urls import reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.decorators import login_required
 from django.core.mail import EmailMessage,get_connection
@@ -35,9 +33,9 @@ def test_home(request):
         try: 
             style_detail = Personal_Style.objects.filter(user=request.user).latest('updated_at')
             results = style_detail.calProfile
-            cont_position = PS_group.objects.get(group=results['main_position'])
-            cont_path = PS_group.objects.get(group=results['main_path'])
-            cont_tradition = PS_group.objects.get(group=results['main_tradition'])
+            cont_position = PS_Group.objects.get(group=results['main_position'])
+            cont_path = PS_Group.objects.get(group=results['main_path'])
+            cont_tradition = PS_Group.objects.get(group=results['main_tradition'])
         except:
             cont_position,cont_path,cont_tradition = None,None,None
         try:
@@ -95,9 +93,9 @@ def ps_results(request,pk):
     """show the results of personal style"""
     style_detail = Personal_Style.objects.get(pk=pk)
     results = style_detail.calProfile
-    cont_position = PS_group.objects.get(group=results['main_position'])
-    cont_path = PS_group.objects.get(group=results['main_path'])
-    cont_tradition = PS_group.objects.get(group=results['main_tradition'])
+    cont_position = PS_Group.objects.get(group=results['main_position'])
+    cont_path = PS_Group.objects.get(group=results['main_path'])
+    cont_tradition = PS_Group.objects.get(group=results['main_tradition'])
     if request.method != 'POST': #Email functionality to the results (making this accesible to non registered users)
         form = SendEmail()
     else:
