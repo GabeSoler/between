@@ -1,0 +1,38 @@
+{% extends 'between_app/_base.html' %}
+{% load django_bootstrap5 %}
+{% block title %}Technique{% endblock title %}
+
+{% block page_header %}
+<div class='card soft-orange border-3 border-primary'><div class='card-title'> {{technique.name|title}}</div></div>
+{% endblock page_header %}
+
+
+
+{%block content%}
+
+<div class='card mb-3 border-2 border-primary'>
+    <div class='card-body soft-green '>
+    <p class='fw-bold'>Component:<a class='card-link text-primary' href="{%url 'techniques_app:techniques_short_community' technique.component.pk %}">{{technique.component|title}}</a></p>
+<p class='card-subtitle mb-2 text-muted'>{{technique.date_made}}</p>
+<p calss='card-text mb-2 fst-italic'>Author: {{author_info.name|title}}</p>
+<p class='card-subtitle fw-bold'>Description:</p>
+<p class='card-text'>{{technique.text}}</p>
+<p class='card-subtitle fw-bold'>Notes:</p>
+<p class='card-text'>{{technique.notes}}</p>
+
+<div class='row'>
+{% if user.is_authenticated %}
+<form method='post' action={% url 'techniques_app:save_technique' technique.pk %}>
+    {% csrf_token %}
+    {% bootstrap_button button_type='submit' content='Add to Saved' %}
+</form>
+{% if user == technique.user%}
+<a class='badge bg-primary p-2 m-2 col' href="{%url 'techniques_app:edit_technique' technique.pk %}">Edit Technique</a>
+{% endif %}
+{% endif %}
+<a class='badge bg-primary p-2 m-2 col' href="{%url 'techniques_app:index' %}">Back to Tecniques Home</a>
+
+</div>
+</div>
+</div>
+{%endblock content%}

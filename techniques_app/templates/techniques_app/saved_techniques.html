@@ -1,0 +1,24 @@
+{% extends 'between_app/_base.html' %}
+
+{% block title %}Saved Techniques {% endblock title %}
+
+{% block page_header%}
+<h2>Saved Techniques:</h2>
+{% endblock page_header %}
+
+{%block content%}
+<div class='card' style="max-width: 800px;">
+<ul class='list-group border-bottom pb-2 mb-4 list-group-flash'>
+{%for tech in tech_saved %}
+        <li class='list-group-item boder-1'><a class='link-secondary' href="{%url 'techniques_app:technique' tech.pk %}">{{tech.component}}</a>: "{{tech.name|slice:":50"}}..."</li>
+{%empty%}
+        <li>No tecniques added yet</li>
+{%endfor%}
+</ul>
+{% if user.is_authenticated %}
+    <ul>
+        <li><a href="{%url 'techniques_app:new_technique' %}">*Add new Technique*</a></li>
+</ul>
+{% endif %}
+</div>
+{%endblock content%}

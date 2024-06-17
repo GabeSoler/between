@@ -1,0 +1,25 @@
+{% extends 'between_app/_base.html' %}
+
+{% block title %}Technique{% endblock title %}
+
+{% block page_header %}{{technique.name|title}}
+{% endblock page_header %}
+
+
+{%block content%}
+
+<a href="{%url 'techniques_app:technique' technique.pk %}"> <h2>Name: {{technique}}</h2></a>
+
+<a href="{%url 'techniques_app:techniques_short_community' technique.component %}"><p>Component: {{technique.component}}</p></a>
+
+
+<p>Edit Entry</p>
+
+<form action="{%url 'techniques_app:edit_technique' technique.pk %}" method='post'>
+    {% csrf_token %}
+    {% bootstrap_form form %}
+    {% bootstrap_button button_type='submit' content='Edit Technique'%} 
+</form>
+
+
+{%endblock content%}

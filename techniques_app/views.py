@@ -1,5 +1,6 @@
 from django.shortcuts import render,redirect
 from .models import Technique,Component, TechSaved
+from .forms import TechniqueForm
 from django.contrib.auth.decorators import login_required
 from .forms import TechniqueForm
 
@@ -7,30 +8,42 @@ from .forms import TechniqueForm
 def index(request):
     if request.user.is_authenticated:
         techniques = Technique.objects.filter(user=request.user)
-        tech_saved = TechSaved.objects.get(user=request.user).saved.all()
-        context = {'techniques':techniques,'tech_saved':tech_saved}
+        context = {'techniques':techniques}
         return render(request,'techniques_app/index.html',context)
     return render(request,'techniques_app/index.html')
 
-def group_list_community(request):
+@login_required
+def saved_techniques(request):
+    try:
+        tech_saved = TechSaved.objects.get(user=request.user).saved.all()
+    except:
+        tech_saved = ''
+    context = {'tech_saved':tech_saved}
+    return render(request,'techniques_app/index.html',context)
+
+
+
+
+def group_list_community(request): #Components list to organise the techniques
     subjective = Component.objects.filter(group='subj')
     extended = Component.objects.filter(group='ext')
     contextual = Component.objects.filter(group='contx')
     culture = Component.objects.filter(group='cltr')
     identity = Component.objects.filter(group='idty')
-    content = {'subjective':subjective,'extended':extended,
+    context = {'subjective':subjective,'extended':extended,
                'contextual':contextual,'culture':culture,
                'identity':identity}
-    return render(request,'techniques_app/group_list.html',content)
+    return render(request,'techniques_app/group_list.html',context)
 
 
 
-def techniques_short_community(request,comp_id):
+def techniques_short_community(request,comp_id): #List organised by component
     technique = Technique.objects.filter(component=comp_id)
-    context = {'technique':technique}
+    component = Component.objects.get(pk=comp_id)
+    context = {'technique':technique, 'component':component}
     return render(request,'techniques_app/techniques_list_community.html',context)
 
-def techniques_long_community(request):
+def techniques_long_community(request): #Full list of techniques
     technique = Technique.objects.all()
     context = {'technique':technique}
     return render(request,'techniques_app/techniques_list_community.html',context)
@@ -38,7 +51,10 @@ def techniques_long_community(request):
 
 def technique(request, tch_pk):
     technique = Technique.objects.get(id=tch_pk)
-    author_info = technique.user__comunity_profile
+    try:    
+        author_info = technique.user__comunity_profile
+    except:
+        author_info = ''
     context = {'technique':technique,'author_info':author_info}
     return render(request,'techniques_app/technique.html',context)
 
@@ -52,7 +68,7 @@ def technique(request, tch_pk):
 def new_technique(request):
     user_id = request.user
     if request.method !='POST':
-        form = ()
+        form = TechniqueForm
     else:
         form = TechniqueForm(data=request.POST)
         #here we save the changes, the is valid check all is ok, then we save with commit False
@@ -67,7 +83,7 @@ def new_technique(request):
 
 @login_required
 def edit_technique(request,tch_pk):
-    technique = Technique.objects.get(id=tch_pk)
+    technique = Technique.objects.get(pk=tch_pk)
     if request.method != 'POST':
         #request pre-filled with current entry
         form = TechniqueForm(instance=technique)
@@ -81,21 +97,30 @@ def edit_technique(request,tch_pk):
             return redirect('techniques_app:technique',tch_pk=technique.pk)
     #blank form
     context = {'form':form,'technique':technique}
-    return render(request,'techniques_app/edit-tecnique.html',context)
+    return render(request,'techniques_app/edit-technique.html',context)
 
 
 @login_required
-def save_technique(request,tech_pk):
+def save_technique(request,tch_pk):
     user_id = request.user
     if request.method !='POST':
-        pass
+        return redirect('techniques_app:technique',tch_pk)
     else:
         tech_save = TechSaved.objects.get_or_create(user=user_id)
-        tech_save.saved.add(tech_pk)
+        tech_save.saved.add(tch_pk)
         tech_save.save()
-        return redirect('techniques_app:index')
-    return redirect('techniques_app:technique',tech_pk)
+        return redirect('techniques_app:saved_techniques')
 
         
-            
+@login_required
+def delete_technique(request,tch_pk):
+    user_id = request.user
+    if request.method !='POST':
+        return redirect('techniques_app:technique',tch_pk)
+    else:
+        tech_save = TechSaved.objects.get(user=user_id)
+        tech_save.saved.delete(tch_pk)
+        tech_save.save()
+        return redirect('techniques_app:saved_techniques')
+
 

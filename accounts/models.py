@@ -17,7 +17,6 @@ class CommunityProfile(models.Model):
     user = models.ForeignKey(CustomUser,on_delete=models.CASCADE)
     name = models.CharField(max_length=200, default='')
     about = models.TextField(default='')
-    user = models.ForeignKey(CustomUser,on_delete=models.CASCADE)
     def __str__(self):
         return self.name
     

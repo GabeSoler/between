@@ -1,21 +1,28 @@
-{% extends 'blog_app/base.html' %}
+{% extends 'between_app/_base.html' %}
+
+{% block title %}Public Techniques {% endblock title %}
 
 {% block page_header%}
 <h2>List of Public Tecniques</h2>
 {% endblock page_header %}
 
 {%block content%}
+{% if component %}
+<h3>Component: {{component.name|title}}</h3>
+{% endif%}
+
 <div class='card' style='max-width: 800px;'>
 <ul class='list-group border-bottom pb-2 mb-4 list-group-flush'>
-{%for blog in blogs %}
-        <li class='list-group-item boder-1'><a class='link-secondary' href="{%url 'blog_app:blog' blog.id %}">{{blog}}</a>: "{{blog.text|slice:":50"}}..."</li>
-{%empty%}
+
+        {%for tech in technique %}
+        <li class='list-group-item boder-1'><a class='link-secondary' href="{%url 'techniques_app:technique' tech.pk %}">{{tech|title}}</a>: "{{tech.text|slice:":50"}}..."</li>
+        {%empty%}
         <li>No tecniques added yet</li>
-{%endfor%}
-</ul>
+        {%endfor%}
+        </ul>
 {% if user.is_authenticated %}
     <ul>
-        <li><a href="{%url 'blog_app:new_blog' %}">*Add new tecnique*</a></li>
+        <li><a class='badge bg-primary p-2 m-2' href="{%url 'techniques_app:new_technique' %}">Add new tecnique</a></li>
 </ul>
 </div>
 {% endif %}

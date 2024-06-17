@@ -18,7 +18,7 @@ class Component(models.Model):
     group = models.CharField(max_length=200, choices=COMPONENTS_GROUP)
     about = models.TextField(default='')
     def __str__(self):
-        return self.text
+        return self.name
 
 
 
@@ -27,7 +27,7 @@ class Technique(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     user = models.ForeignKey(get_user_model(), on_delete=models.PROTECT)
     name = models.CharField(max_length=200)
-    component = models.ManyToManyField(Component)
+    component = models.ForeignKey(Component,on_delete=models.PROTECT)
     text = models.TextField(default='')
     notes = models.TextField(default='')
     date_made = models.DateField(auto_now_add=True)

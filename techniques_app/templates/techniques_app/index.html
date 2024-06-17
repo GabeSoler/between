@@ -1,35 +1,38 @@
 {% extends 'between_app/_base.html' %}
+{% block title %}Techniques{%endblock%}
 {% block page_header%}
-<div class='p-3 mb-4 bg-light border rounded-3'  style='max-width: 1000px;'>
+{% endblock page_header%}
+{%block content%}
+{% load static%}
+<link rel="stylesheet" href="{% static "between_app/css/style.css" %}">
+
+
+<div class='card p-3 mb-4 soft-orange border-3 border-primary rounded-3'  style='max-width: 1000px;'>
     <div class='container-fluid py-4'>
         <h1 class='display-3'>The Tecniques Space</h1>
         <p class='lead'>This is a space to write your own ways of working with components</p>
         <p class='lead'>You can opt to share and see the insight of others</p>
 
-{% endblock page_header%}
-<p>😄</p>
-{%block content%}
+        <a class="badge bg-primary p-2 m-2" href={% url 'techniques_app:saved_techniques' %}>My Saved Techniques </a>
+        <a class="badge bg-primary p-2 m-2" href={% url 'techniques_app:components_list' %}>Comunity Techniques</a></br>
+    </div>
+    </div>
+
 {% if user.is_authenticated %} 
-<div class='card'>
-    <h3 class='card-title ps-3'>My Compnents list</h3>
+<div class='card border-primary border-2 soft-green'>
+    <h3 class='card-title ps-3'>My Techniques list</h3>
+    <a class="badge bg-primary p-2 m-2" href={% url 'techniques_app:new_technique' %}>Add a new technique </a>
 <ul class='list-group list-group-flush boder-bottom pb-2 mb-4'>
-{%for technique in techniques %}
-        <li class='list-group-item boder-1'><a class='link-dark'href="{%url 'blog_app:blog_list_by_topic' topic.id %}">{{topic}}
-        </a></br><p class='text-muted'>{{topic.about}}</p>
+{%for tech in techniques %}
+        <li class='list-group-item boder-1 warm-white'><a class='link-dark'href="{%url 'techniques_app:technique' tech.pk %}">{{tech|title}}</a></br>
+        <p class='text-muted'>{{tech.text}}</p><p class='text-muted'>{{tech.component}}</p>
         </li>      
- {% endfor %}
+        {% empty %}
+        <p>Still not personal techniques</p>
+        {% endfor %}
+{%else%}
+<p>Here you will be able to see your techniques</p>
 
-
- <div class='card'>
-    <h3 class='card-title ps-3'>My Saved list</h3>
-<ul class='list-group list-group-flush boder-bottom pb-2 mb-4'>
-{%for technique in tech_saved %}
-        <li class='list-group-item boder-1'><a class='link-dark'href="{%url 'blog_app:blog_list_by_topic' topic.id %}">{{topic}}
-        </a></br><p class='text-muted'>{{topic.about}}</p>
-        </li>      
- {% endfor %}
 {% endif %}
-<p>😄</p>
-
 </div>
 {%endblock content%}

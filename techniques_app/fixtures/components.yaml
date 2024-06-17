@@ -1,33 +1,33 @@
 #Subjective
-- model : tecniques_app.Components
+- model : techniques_app.Component
   pk : 0
   fields:
     name : "body"
     group : "subj"
     about : "Working with Body sensations, movements, positions"
 
-- model : tecniques_app.Components
+- model : techniques_app.Component
   pk : 1
   fields:
     name : "feelings"
     group : "subj"
     about : "Working with Feelings, felt sense, affective processes"
     
-- model : tecniques_app.Components
+- model : techniques_app.Component
   pk : 2
   fields:
     name : "expression"
     group : "subj"
     about : "Working with Expressing processes through movements, sounds, writing"
 
-- model : tecniques_app.Components
+- model : techniques_app.Component
   pk : 3
   fields:
     name : "thought"
     group : "subj"
     about : "Working with Thought, reason, thought-processes"
     
-- model : tecniques_app.Components
+- model : techniques_app.Component
   pk : 4
   fields:
     name : "narrative"
@@ -36,35 +36,35 @@
 
 
 #Extended Awareness
-- model : tecniques_app.Components
+- model : techniques_app.Component
   pk : 5
   fields:
     name : "dreaming"
     group : "ext"
     about : "Working with Dreaming, metaphores, subtle spaces"
 
-- model : tecniques_app.Components
+- model : techniques_app.Component
   pk : 6
   fields:
     name : "re-programming"
     group : "ext"
     about : "Working with re-programming associations between body, mind and context"
     
-- model : tecniques_app.Components
+- model : techniques_app.Component
   pk : 7
   fields:
     name : "subliminal"
     group : "ext"
     about : "Working with subliminal areas, hipnosis, implicit comunications"
 
-- model : tecniques_app.Components
+- model : techniques_app.Component
   pk : 8
   fields:
     name : "sub-parts"
     group : "ext"
     about : "Working with sub-parts and multiple selves"
     
-- model : tecniques_app.Components
+- model : techniques_app.Component
   pk : 9
   fields:
     name : "spiritual"
@@ -72,35 +72,35 @@
     about : "Working with spiritual areas, alterated states, subtle energies"
 
 #Contextual
-- model : tecniques_app.Components
+- model : techniques_app.Component
   pk : 10
   fields:
     name : "relational"
     group : "contx"
     about : "Working with relational connection, tunning, shared unconcious"
 
-- model : tecniques_app.Components
+- model : techniques_app.Component
   pk : 11
   fields:
     name : "systems"
     group : "contx"
     about : "Working with the notion of systems, including family, work, friends, etc."
     
-- model : tecniques_app.Components
+- model : techniques_app.Component
   pk : 12
   fields:
     name : "set-up"
     group : "contx"
     about : "Working with the arrangement of space, rutines, rewards and punishments"
 
-- model : tecniques_app.Components
+- model : techniques_app.Component
   pk : 13
   fields:
     name : "transitional objects"
     group : "contx"
     about : "Working with objects that are meaninful, playful, representative of affect or unconcious processes"
     
-- model : tecniques_app.Components
+- model : techniques_app.Component
   pk : 14
   fields:
     name : "family"
@@ -109,35 +109,35 @@
 
 
 #Culture
-- model : tecniques_app.Components
+- model : techniques_app.Component
   pk : 15
   fields:
     name : "antropology"
     group : "cltr"
     about : "Working with the notion of cultural differences as local shared understanding"
 
-- model : tecniques_app.Components
+- model : techniques_app.Component
   pk : 16
   fields:
     name : "arts"
     group : "cltr"
     about : "Working with arts and its different forms of expression, texture, affect"
     
-- model : tecniques_app.Components
+- model : techniques_app.Component
   pk : 17
   fields:
     name : "politics"
     group : "cltr"
     about : "Working with a notion of politics and power dynamics as psychosocial phenomenon"
 
-- model : tecniques_app.Components
+- model : techniques_app.Component
   pk : 18
   fields:
     name : "philosophy"
     group : "cltr"
     about : "Working with philosophy, multiple paradigms and models of reality"
     
-- model : tecniques_app.Components
+- model : techniques_app.Component
   pk : 19
   fields:
     name : "world-view"
@@ -146,38 +146,38 @@
 
 
 #Identity
-- model : tecniques_app.Components
+- model : techniques_app.Component
   pk : 20
   fields:
     name : "individuation"
-    group : "cltr"
+    group : "idty"
     about : "Working with the idea of individuation as emergence of a deeper self"
 
-- model : tecniques_app.Components
+- model : techniques_app.Component
   pk : 21
   fields:
     name : "sex and gender"
-    group : "cltr"
+    group : "idty"
     about : "Working with sex and gender as psycho-socio-biological phenomena"
     
-- model : tecniques_app.Components
+- model : techniques_app.Component
   pk : 22
   fields:
     name : "values"
-    group : "cltr"
+    group : "idty"
     about : "Working with a notion of values and value systems"
 
-- model : tecniques_app.Components
+- model : techniques_app.Component
   pk : 23
   fields:
     name : "belonging"
-    group : "cltr"
+    group : "idty"
     about : "Working with a notion of belonging-to, being part of, groups"
     
-- model : tecniques_app.Components
+- model : techniques_app.Component
   pk : 24
   fields:
     name : "roles"
-    group : "cltr"
+    group : "idty"
     about : "Working with roles, social positions, and their place in identity"
 
