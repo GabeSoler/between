@@ -7,17 +7,29 @@
         <p class='lead'>You can opt to share and see the insight of others</p>
 
 {% endblock page_header%}
-
+<p>😄</p>
 {%block content%}
 {% if user.is_authenticated %} 
 <div class='card'>
-    <h3 class='card-title ps-3'>My Compnents lits</h3>
+    <h3 class='card-title ps-3'>My Compnents list</h3>
 <ul class='list-group list-group-flush boder-bottom pb-2 mb-4'>
 {%for technique in techniques %}
         <li class='list-group-item boder-1'><a class='link-dark'href="{%url 'blog_app:blog_list_by_topic' topic.id %}">{{topic}}
         </a></br><p class='text-muted'>{{topic.about}}</p>
         </li>      
  {% endfor %}
+
+
+ <div class='card'>
+    <h3 class='card-title ps-3'>My Saved list</h3>
+<ul class='list-group list-group-flush boder-bottom pb-2 mb-4'>
+{%for technique in tech_saved %}
+        <li class='list-group-item boder-1'><a class='link-dark'href="{%url 'blog_app:blog_list_by_topic' topic.id %}">{{topic}}
+        </a></br><p class='text-muted'>{{topic.about}}</p>
+        </li>      
+ {% endfor %}
 {% endif %}
+<p>😄</p>
+
 </div>
 {%endblock content%}

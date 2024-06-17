@@ -1,5 +1,5 @@
 from django.shortcuts import render,redirect
-from .models import Technique,Component
+from .models import Technique,Component, TechSaved
 from django.contrib.auth.decorators import login_required
 from .forms import TechniqueForm
 
@@ -7,7 +7,8 @@ from .forms import TechniqueForm
 def index(request):
     if request.user.is_authenticated:
         techniques = Technique.objects.filter(user=request.user)
-        context = {'techniques':techniques}
+        tech_saved = TechSaved.objects.get(user=request.user).saved.all()
+        context = {'techniques':techniques,'tech_saved':tech_saved}
         return render(request,'techniques_app/index.html',context)
     return render(request,'techniques_app/index.html')
 
@@ -65,7 +66,7 @@ def new_technique(request):
     return render(request,'techniques_app/new_technique.html',context)
 
 @login_required
-def edit_blog(request,tch_pk):
+def edit_technique(request,tch_pk):
     technique = Technique.objects.get(id=tch_pk)
     if request.method != 'POST':
         #request pre-filled with current entry
@@ -83,7 +84,18 @@ def edit_blog(request,tch_pk):
     return render(request,'techniques_app/edit-tecnique.html',context)
 
 
-        
+@login_required
+def save_technique(request,tech_pk):
+    user_id = request.user
+    if request.method !='POST':
+        pass
+    else:
+        tech_save = TechSaved.objects.get_or_create(user=user_id)
+        tech_save.saved.add(tech_pk)
+        tech_save.save()
+        return redirect('techniques_app:index')
+    return redirect('techniques_app:technique',tech_pk)
+
         
             
 

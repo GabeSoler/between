@@ -19,6 +19,7 @@ urlpatterns = [
 
     #editting funtionalities
     path('new_technique/',views.new_technique, name='new_technique'),
-    path('edit_technique/<uuid:tch_pk>/',views.edit_blog,name='edit_technique'),
+    path('edit_technique/<uuid:tch_pk>/',views.edit_technique,name='edit_technique'),
+    path('save_technique/<uuid:tch_pk>/',views.save_technique,name='save_technique'),
     ]
 
