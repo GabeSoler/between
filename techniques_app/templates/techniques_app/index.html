@@ -25,7 +25,8 @@
 <ul class='list-group list-group-flush boder-bottom pb-2 mb-4'>
 {%for tech in techniques %}
         <li class='list-group-item boder-1 warm-white'><a class='link-dark'href="{%url 'techniques_app:technique' tech.pk %}">{{tech|title}}</a></br>
-        <p class='text-muted'>{{tech.text}}</p><p class='text-muted'>{{tech.component}}</p>
+        <p class='text-muted'>{{tech.text}}</p>
+        <p class='text-muted'>{{tech.component|title}}, {{tech.date_made}}</p>
         </li>      
         {% empty %}
         <p>Still not personal techniques</p>

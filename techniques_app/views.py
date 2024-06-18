@@ -7,7 +7,7 @@ from .forms import TechniqueForm
 #Global views
 def index(request):
     if request.user.is_authenticated:
-        techniques = Technique.objects.filter(user=request.user)
+        techniques = Technique.objects.filter(user=request.user).order_by('-date_made')
         context = {'techniques':techniques}
         return render(request,'techniques_app/index.html',context)
     return render(request,'techniques_app/index.html')
@@ -15,11 +15,11 @@ def index(request):
 @login_required
 def saved_techniques(request):
     try:
-        tech_saved = TechSaved.objects.get(user=request.user).saved.all()
+        tech_saved = TechSaved.objects.get(user=request.user).saved.all().order_by('name')
     except:
         tech_saved = ''
     context = {'tech_saved':tech_saved}
-    return render(request,'techniques_app/index.html',context)
+    return render(request,'techniques_app/saved_techniques.html',context)
 
 
 
@@ -38,13 +38,13 @@ def group_list_community(request): #Components list to organise the techniques
 
 
 def techniques_short_community(request,comp_id): #List organised by component
-    technique = Technique.objects.filter(component=comp_id)
+    technique = Technique.objects.filter(share=True).filter(component=comp_id).order_by('-date_made')
     component = Component.objects.get(pk=comp_id)
     context = {'technique':technique, 'component':component}
     return render(request,'techniques_app/techniques_list_community.html',context)
 
 def techniques_long_community(request): #Full list of techniques
-    technique = Technique.objects.all()
+    technique = Technique.objects.filter(share=True).order_by('-date_made')
     context = {'technique':technique}
     return render(request,'techniques_app/techniques_list_community.html',context)
 
@@ -102,25 +102,29 @@ def edit_technique(request,tch_pk):
 
 @login_required
 def save_technique(request,tch_pk):
-    user_id = request.user
+    user = request.user
     if request.method !='POST':
         return redirect('techniques_app:technique',tch_pk)
     else:
-        tech_save = TechSaved.objects.get_or_create(user=user_id)
-        tech_save.saved.add(tch_pk)
+        tech_save,created = TechSaved.objects.get_or_create(user=user)
+        if created:
+            tech_save.saved = tch_pk
+        else:
+            tech_save.saved.add(tch_pk)
         tech_save.save()
-        return redirect('techniques_app:saved_techniques')
+    return redirect('techniques_app:saved_techniques')
 
         
 @login_required
 def delete_technique(request,tch_pk):
     user_id = request.user
     if request.method !='POST':
-        return redirect('techniques_app:technique',tch_pk)
+        context = {'tech_pk':tch_pk}
     else:
         tech_save = TechSaved.objects.get(user=user_id)
-        tech_save.saved.delete(tch_pk)
+        tech_save.saved.remove(tch_pk)
         tech_save.save()
         return redirect('techniques_app:saved_techniques')
+    return render(request,'techniques_app/delete_saved.html',context)
 
 

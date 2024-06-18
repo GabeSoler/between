@@ -1,5 +1,5 @@
 from django.contrib import admin
-from techniques_app.models import Technique,Component
+from techniques_app.models import Technique,Component,TechSaved
 
 # Register your models here.
 
@@ -7,3 +7,4 @@ from techniques_app.models import Technique,Component
 
 admin.site.register(Technique)
 admin.site.register(Component)
+admin.site.register(TechSaved)

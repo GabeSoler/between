@@ -3,17 +3,17 @@
 {% block title %}Components list{% endblock title %}
 
 {% block page_header%}
-<h2>Component List:{{topic|title}}</h2>
+<h2>By Component:{{topic|title}}</h2>
 {% endblock page_header %}
 
 {%block content%}
-<p>Press to see community techniques by component</p>
+<a href="{% url 'techniques_app:techniques_long_community'%}">See them all</a>
 <!--Subjective component-->
 <div class='card' style="max-width: 800px;">
  <h3 class='card-title soft-green'>Subjective</h3>
         <ul class='list-group border-bottom pb-2 mb-4 list-group-flash'>
         {%for subj in subjective %}
-                <li class='list-group-item boder-1'><a class='link-secondary' href="{%url 'techniques_app:techniques_short_community' subj.pk %}">{{subj.name|title}}</a>: "{{subj.about}}"</li>
+                <li class='list-group-item boder-1'><a class='link-secondary' href="{%url 'techniques_app:techniques_short_community' subj.pk %}">{{subj.name|title}}</a>: {{subj.about}}</li>
         {%empty%}
                 <li>No tecniques added yet</li>
         {%endfor%}
@@ -25,7 +25,7 @@
 
         <ul class='list-group border-bottom pb-2 mb-4 list-group-flash'>
         {%for ext in extended %}
-                <li class='list-group-item boder-1'><a class='link-secondary' href="{%url 'techniques_app:techniques_short_community' ext.pk %}">{{ext.name|title}}</a>: "{{ext.about}}"</li>
+                <li class='list-group-item boder-1'><a class='link-secondary' href="{%url 'techniques_app:techniques_short_community' ext.pk %}">{{ext.name|title}}</a>: {{ext.about}}</li>
         {%empty%}
                 <li>No tecniques added yet</li>
         {%endfor%}
@@ -37,7 +37,7 @@
 
         <ul class='list-group border-bottom pb-2 mb-4 list-group-flash'>
         {%for cult in culture %}
-                <li class='list-group-item boder-1'><a class='link-secondary' href="{%url 'techniques_app:techniques_short_community' cult.pk %}">{{cult.name|title}}</a>: "{{cult.about}}"</li>
+                <li class='list-group-item boder-1'><a class='link-secondary' href="{%url 'techniques_app:techniques_short_community' cult.pk %}">{{cult.name|title}}</a>: {{cult.about}}</li>
         {%empty%}
                 <li>No tecniques added yet</li>
         {%endfor%}
@@ -49,7 +49,7 @@
 
         <ul class='list-group border-bottom pb-2 mb-4 list-group-flash'>
         {%for id in identity %}
-                <li class='list-group-item boder-1'><a class='link-secondary' href="{%url 'techniques_app:techniques_short_community' id.pk %}">{{id.name|title}}</a>: "{{id.about}}"</li>
+                <li class='list-group-item boder-1'><a class='link-secondary' href="{%url 'techniques_app:techniques_short_community' id.pk %}">{{id.name|title}}</a>: {{id.about}}</li>
         {%empty%}
                 <li>No tecniques added yet</li>
         {%endfor%}

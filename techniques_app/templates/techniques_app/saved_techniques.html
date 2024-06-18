@@ -10,14 +10,14 @@
 <div class='card' style="max-width: 800px;">
 <ul class='list-group border-bottom pb-2 mb-4 list-group-flash'>
 {%for tech in tech_saved %}
-        <li class='list-group-item boder-1'><a class='link-secondary' href="{%url 'techniques_app:technique' tech.pk %}">{{tech.component}}</a>: "{{tech.name|slice:":50"}}..."</li>
+        <li class='list-group-item boder-1'><a class='link-secondary' href="{%url 'techniques_app:technique' tech.pk %}">{{tech.component|title}}</a>: {{tech.name|title}} <a href={%url 'techniques_app:delete_technique' tech.pk %}>remove</a></li>
 {%empty%}
         <li>No tecniques added yet</li>
 {%endfor%}
 </ul>
 {% if user.is_authenticated %}
     <ul>
-        <li><a href="{%url 'techniques_app:new_technique' %}">*Add new Technique*</a></li>
+        <li><a href="{%url 'techniques_app:techniques_long_community' %}">See more community techniques</a></li>
 </ul>
 {% endif %}
 </div>
