@@ -18,7 +18,9 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf.urls.static import static
 from django.conf import settings
-
+from django.contrib.flatpages import views
+from django.contrib.flatpages.sitemaps import FlatPageSitemap
+from django.contrib.sitemaps.views import sitemap
 
 
 urlpatterns = [
@@ -29,5 +31,17 @@ urlpatterns = [
     path('pages/',include('pages.urls')),
     path('techniques/',include('techniques_app.urls')),
     path('',include('between_app.urls')),
+    
+    #flat pages config
+    path("articles/", include("django.contrib.flatpages.urls")), #group of flat pages, access by 
+    path("about/", views.flatpage, {"url": "/about/"}, name="about"),#To add custom url of flat pages
+
+    #adding a site map
+    path(
+        "sitemap.xml",
+        sitemap,
+        {"sitemaps": {"flatpages": FlatPageSitemap}},
+        name="django.contrib.sitemaps.views.sitemap",
+    ),
 
     ]+ static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

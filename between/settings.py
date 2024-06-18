@@ -56,7 +56,9 @@ INSTALLED_APPS = [
     'allauth.account', #authorisations
     "whitenoise.runserver_nostatic", #white noise, static files manager
 
-
+#django apps added
+    'django.contrib.flatpages', #for flat pages
+    'django.contrib.sites',
 
 #defoult apps
 
@@ -66,7 +68,6 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles', #for statics
-    'django.contrib.sitemaps', # for coltrane
 ]
 
 MIDDLEWARE = [
@@ -86,7 +87,7 @@ ROOT_URLCONF = 'between.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR/"templates"],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
