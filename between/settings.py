@@ -299,7 +299,7 @@ EMAIL_HOST_PASSWORD = RESEND_API_KEY
 DEFAULT_FROM_EMAIL = 'gabriel@crea-therapy.com'
 
 #Django All auth config
-SITE_ID = 1,2
+SITE_ID = 1
 AUTHENTICATION_BACKENDS = [
     # Needed to login by username in Django admin, regardless of `allauth`
     'django.contrib.auth.backends.ModelBackend',
