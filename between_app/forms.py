@@ -102,7 +102,7 @@ class BigTradForm(forms.ModelForm):
 
 
 
-class SendEmail(forms.ModelForm):
+class SendEmailForm(forms.ModelForm):
     class Meta:
         model = EmailSent
         fields = ('email',)

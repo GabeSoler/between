@@ -1,7 +1,7 @@
 from django.shortcuts import render,redirect
 from .models import PersonalStyle, Components,BigTraditions,PersonalStyleGroup
 from django.views.generic import ListView,TemplateView
-from .forms import StyleForm,ComponentsForm,BigTradForm,SendEmail
+from .forms import StyleForm,ComponentsForm,BigTradForm,SendEmailForm
 from django.contrib.auth import get_user_model
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.decorators import login_required
@@ -97,9 +97,9 @@ def ps_results(request,pk):
     cont_path = PersonalStyleGroup.objects.get(group=results['main_path'])
     cont_tradition = PersonalStyleGroup.objects.get(group=results['main_tradition'])
     if request.method != 'POST': #Email functionality to the results (making this accesible to non registered users)
-        form = SendEmail()
+        form = SendEmailForm()
     else:
-        form = SendEmail(data=request.POST)
+        form = SendEmailForm(data=request.POST)
         if form.is_valid():
             instance = form.save()
             user_email = instance.email
