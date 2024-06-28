@@ -5,7 +5,7 @@ from django.urls import reverse
 import uuid
 
 
-class Personal_Style(models.Model):
+class PersonalStyle(models.Model):
     """A therapeutic profile based in therapeutic positions"""
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     created_at = models.DateTimeField(auto_now_add=True, editable=False)

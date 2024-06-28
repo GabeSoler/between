@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Personal_Style,Components,PS_Group,PS_Section,BigTraditions
+from .models import PersonalStyle,Components,PS_Group,PS_Section,BigTraditions
 # Register your models here.
 
 class ContentAdminProperties(admin.ModelAdmin):
@@ -14,7 +14,7 @@ class PSAdmin(admin.ModelAdmin):  # inlines: other models inside
 		]
 	list_display = ('section','updated_at')
 
-admin.site.register(Personal_Style)
+admin.site.register(PersonalStyle)
 admin.site.register(Components)
 admin.site.register(PS_Section,PSAdmin)
 admin.site.register(BigTraditions)

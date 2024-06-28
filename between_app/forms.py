@@ -1,5 +1,5 @@
 from django import forms
-from .models import Personal_Style,BigTraditions,Components,EmailSent
+from .models import PersonalStyle,BigTraditions,Components,EmailSent
 from django.forms.widgets import Input
 
 def applyWidget(fields_list:list,widget_name:object):
@@ -22,7 +22,7 @@ class RangeBooted(Input):
 
 class StyleForm(forms.ModelForm):
     class Meta:
-        model= Personal_Style
+        model= PersonalStyle
         fields = ("follower_1","propositive_1","challenger_1",
                   "acceptant_1","intensive_1","extensive_1",
                   "divider_1","containment_1","becoming_1",

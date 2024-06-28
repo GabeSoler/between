@@ -1,5 +1,5 @@
 from django.shortcuts import render,redirect
-from .models import Personal_Style, Components,BigTraditions,PS_Group
+from .models import PersonalStyle, Components,BigTraditions,PS_Group
 from django.views.generic import ListView,TemplateView
 from .forms import StyleForm,ComponentsForm,BigTradForm,SendEmail
 from django.contrib.auth import get_user_model
@@ -31,7 +31,7 @@ def test_home(request):
     """show all tests"""
     if request.user.is_authenticated:
         try: 
-            style_detail = Personal_Style.objects.filter(user=request.user).latest('updated_at')
+            style_detail = PersonalStyle.objects.filter(user=request.user).latest('updated_at')
             results = style_detail.calProfile
             cont_position = PS_Group.objects.get(group=results['main_position'])
             cont_path = PS_Group.objects.get(group=results['main_path'])
@@ -53,9 +53,9 @@ def test_home(request):
 
 #Therapeutic Positions
 class PositionListView(LoginRequiredMixin, ListView):
-    model = Personal_Style
+    model = PersonalStyle
     context_object_name = 'style_list'
-    template_name = 'between_app/personal_style/positions_list.html'
+    template_name = 'between_app/PersonalStyle/positions_list.html'
 
     def get_queryset(self):
         # original qs
@@ -80,18 +80,18 @@ def take_profile_test(request):
             return redirect('between_app:results',new.pk)
     #display a blank or invalid form
     context = {'form':form}
-    return render(request,'between_app/personal_style/profile_test.html',context)
+    return render(request,'between_app/PersonalStyle/profile_test.html',context)
 
 
 
 def style_detail(request,pk):
-    results = Personal_Style.objects.get(pk=pk)
+    results = PersonalStyle.objects.get(pk=pk)
     context = {'results':results,'format':format}
-    return render(request,'between_app/personal_style/style_detail.html',context)
+    return render(request,'between_app/PersonalStyle/style_detail.html',context)
 
 def ps_results(request,pk):
     """show the results of personal style"""
-    style_detail = Personal_Style.objects.get(pk=pk)
+    style_detail = PersonalStyle.objects.get(pk=pk)
     results = style_detail.calProfile
     cont_position = PS_Group.objects.get(group=results['main_position'])
     cont_path = PS_Group.objects.get(group=results['main_path'])
@@ -103,7 +103,7 @@ def ps_results(request,pk):
         if form.is_valid():
             instance = form.save()
             user_email = instance.email
-            html_content = render_to_string('between_app/email/personal_style_email.html', 
+            html_content = render_to_string('between_app/email/PersonalStyle_email.html', 
                                             {'position':cont_position,'path':cont_path,'tradition':cont_tradition}) # render with dynamic value
             text_content = strip_tags(html_content) # Strip the html tag. So people can see the pure text at least.
             msg = EmailMultiAlternatives(
@@ -118,12 +118,12 @@ def ps_results(request,pk):
         else:
             pass
     context = {'results':style_detail,'position':cont_position,'path':cont_path,'tradition':cont_tradition,'form':form,'pk':pk,'format':format}
-    return render(request,'between_app/personal_style/results_email.html',context)
+    return render(request,'between_app/PersonalStyle/results_email.html',context)
 
 
 
 class contentView(TemplateView):
-    template_name = 'between_app/personal_style/content.html'
+    template_name = 'between_app/PersonalStyle/content.html'
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         position = Content.position
