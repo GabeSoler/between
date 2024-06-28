@@ -102,7 +102,7 @@ class Personal_Style(models.Model):
 
 
     def get_absolute_url(self):
-        return reverse("between_app:results", kwargs={"pk": self.pk})
+        return reverse("between_app:style_detail", kwargs={"pk": self.pk})
         
     def __str__(self):
         new_name = f"{self.user}:{self.updated_at}"

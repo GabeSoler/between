@@ -11,7 +11,7 @@ def applyWidget(fields_list:list,widget_name:object):
 
 class RangeBooted(Input):
     def get_context(self, name, value, attrs):
-        ctx = super(RangeBooted, self).get_context(name, value, attrs)
+        ctx = super().get_context(name, value, attrs)
         ctx['widget']['type'] = "range"
         ctx['widget']['attrs']['class'] = "form-range bg-secondary rounded shadow w-75 p-2"
         ctx['widget']['attrs']['min'] = "0"

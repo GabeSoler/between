@@ -5,7 +5,7 @@ from .forms import StyleForm,ComponentsForm,BigTradForm,SendEmail
 from django.contrib.auth import get_user_model
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.decorators import login_required
-from django.core.mail import EmailMessage,get_connection
+from django.core.mail import EmailMessage,EmailMultiAlternatives
 from django.template.loader import render_to_string
 from django.utils.html import strip_tags
 from .content import Content
@@ -100,22 +100,23 @@ def ps_results(request,pk):
         form = SendEmail()
     else:
         form = SendEmail(data=request.POST)
-        if form.is_valid:
+        if form.is_valid():
             instance = form.save()
-            user_email = (instance.email,)
+            user_email = instance.email
+            html_content = render_to_string('between_app/email/personal_style_email.html', 
+                                            {'position':cont_position,'path':cont_path,'tradition':cont_tradition}) # render with dynamic value
+            text_content = strip_tags(html_content) # Strip the html tag. So people can see the pure text at least.
+            msg = EmailMultiAlternatives(
+                subject='Profile',
+                body=text_content,
+                to=[user_email],
+                from_email='gabriel@crea-therapy.com',
+                )
+            msg.attach_alternative(html_content, "text/html")
+            msg.send()
+            return redirect('between_app:test_home')
         else:
-            return html_content("<h3>Please add a valid email!</h3>")
-        html_content = render_to_string('between_app/email/personal_style_email.html', 
-                                        {'position':cont_position,'path':cont_path,'tradition':cont_tradition}) # render with dynamic value
-        #text_content = strip_tags(html_content) # Strip the html tag. So people can see the pure text at least.
-        msg = EmailMessage(
-            subject='Profile',
-            body=html_content,
-            to=user_email,
-            from_email='gabriel@crea-therapy.com')
-        msg.content_subtype = 'html'
-        msg.send()
-        return redirect('between_app:test_home')
+            pass
     context = {'results':style_detail,'position':cont_position,'path':cont_path,'tradition':cont_tradition,'form':form,'pk':pk,'format':format}
     return render(request,'between_app/personal_style/results_email.html',context)
 
