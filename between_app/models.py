@@ -224,12 +224,12 @@ class BigTraditions(models.Model):
 #Content fixtures
 
 
-class PS_Section(models.Model):
+class PersonalStyleSection(models.Model):
     updated_at = models.DateTimeField(auto_now=True, editable=True)
     section = models.CharField(max_length=20,default='') #position, path,tradition
-class PS_Group(models.Model):
+class PersonalStyleGroup(models.Model):
     updated_at = models.DateTimeField(auto_now=True, editable=False)
-    section = models.ForeignKey(PS_Section,default=None, on_delete=models.CASCADE)
+    section = models.ForeignKey(PersonalStyleSection,default=None, on_delete=models.CASCADE)
     group = models.CharField(max_length=20, default='') #compassionate,playgul, etc
     image = models.CharField(max_length=300, default='')
     description = models.TextField(default='')

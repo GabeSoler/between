@@ -1,12 +1,12 @@
 from django.contrib import admin
-from .models import PersonalStyle,Components,PS_Group,PS_Section,BigTraditions
+from .models import PersonalStyle,Components,PersonalStyleGroup,PersonalStyleSection,BigTraditions
 # Register your models here.
 
 class ContentAdminProperties(admin.ModelAdmin):
    	list_display = ('name','group')
 
 class PSgroupInline(admin.TabularInline): #Allows this model to be inside another
-	model = PS_Group
+	model = PersonalStyleGroup
 
 class PSAdmin(admin.ModelAdmin):  # inlines: other models inside
 	inlines = [
@@ -16,7 +16,7 @@ class PSAdmin(admin.ModelAdmin):  # inlines: other models inside
 
 admin.site.register(PersonalStyle)
 admin.site.register(Components)
-admin.site.register(PS_Section,PSAdmin)
+admin.site.register(PersonalStyleSection,PSAdmin)
 admin.site.register(BigTraditions)
 
 

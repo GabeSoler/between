@@ -1,5 +1,5 @@
 from django.shortcuts import render,redirect
-from .models import PersonalStyle, Components,BigTraditions,PS_Group
+from .models import PersonalStyle, Components,BigTraditions,PersonalStyleGroup
 from django.views.generic import ListView,TemplateView
 from .forms import StyleForm,ComponentsForm,BigTradForm,SendEmail
 from django.contrib.auth import get_user_model
@@ -33,9 +33,9 @@ def test_home(request):
         try: 
             style_detail = PersonalStyle.objects.filter(user=request.user).latest('updated_at')
             results = style_detail.calProfile
-            cont_position = PS_Group.objects.get(group=results['main_position'])
-            cont_path = PS_Group.objects.get(group=results['main_path'])
-            cont_tradition = PS_Group.objects.get(group=results['main_tradition'])
+            cont_position = PersonalStyleGroup.objects.get(group=results['main_position'])
+            cont_path = PersonalStyleGroup.objects.get(group=results['main_path'])
+            cont_tradition = PersonalStyleGroup.objects.get(group=results['main_tradition'])
         except:
             cont_position,cont_path,cont_tradition = None,None,None
         try:
@@ -93,9 +93,9 @@ def ps_results(request,pk):
     """show the results of personal style"""
     style_detail = PersonalStyle.objects.get(pk=pk)
     results = style_detail.calProfile
-    cont_position = PS_Group.objects.get(group=results['main_position'])
-    cont_path = PS_Group.objects.get(group=results['main_path'])
-    cont_tradition = PS_Group.objects.get(group=results['main_tradition'])
+    cont_position = PersonalStyleGroup.objects.get(group=results['main_position'])
+    cont_path = PersonalStyleGroup.objects.get(group=results['main_path'])
+    cont_tradition = PersonalStyleGroup.objects.get(group=results['main_tradition'])
     if request.method != 'POST': #Email functionality to the results (making this accesible to non registered users)
         form = SendEmail()
     else:
