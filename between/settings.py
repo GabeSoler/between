@@ -111,18 +111,23 @@ if IS_HEROKU_APP:
     # automatically by Heroku when a database addon is attached to your Heroku app. See:
     # https://devcenter.heroku.com/articles/provisioning-heroku-postgres#application-config-vars
     # https://github.com/jazzband/dj-database-url
-    DATABASES = {
-        "default": dj_database_url.config(
-            env="DATABASE_URL",
-            conn_max_age=600,
-            conn_health_checks=True,
-            ssl_require=True,
-        ),
-        "test": {
-            "ENGINE" : "django.db.backends.sqlite3",
-            "NAME" : BASE_DIR / "db.sqlite3",
-        }
-    } 
+    if 'DATABASE_URL' in os.environ:
+        DATABASES = {
+            "default": dj_database_url.config(
+                env="DATABASE_URL",
+                conn_max_age=600,
+                conn_health_checks=True,
+                ssl_require=True,
+            ),}
+    else:
+        DATABASES = {
+            "default": dj_database_url.config(
+                env="HEROKU_POSTGRESQL_COPPER_URL",
+                conn_max_age=600,
+                conn_health_checks=True,
+                ssl_require=True,
+            ),}
+    
 
 else:
     # When running locally in development or in CI, a sqlite database file will be used instead
