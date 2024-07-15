@@ -1,5 +1,5 @@
 
-- model : between_app.PS_group
+- model : between_app.PersonalStyleGroup
   pk : 0
   fields:
     updated_at : "2024-05-28 11:14:07.738883+00:00"
@@ -11,7 +11,7 @@
     traditions : Person Centred Focusing Relational Psychoanalisis.
     authors : 'Rogers Jung Stolorow Orange'
 
-- model : between_app.PS_group
+- model : between_app.PersonalStyleGroup
   pk : 1
   fields:
     updated_at : "2024-05-28 11:14:07.738883+00:00"
@@ -23,7 +23,7 @@
     traditions : Gestalt Psychodrama Play Therapy Art therapies.
     authors : Perls Moreno Winnicott
 
-- model : between_app.PS_group
+- model : between_app.PersonalStyleGroup
   pk : 2
   fields:
     updated_at : "2024-05-28 11:14:07.738883+00:00"
@@ -35,7 +35,7 @@
     traditions : Traditional Psychoanalysis Lacanian psychoanalysis Jungian analysis.
     authors : Freud Klein Bion Kernberg
 
-- model : between_app.PS_group
+- model : between_app.PersonalStyleGroup
   pk : 3
   fields:
     updated_at : "2024-05-28 11:14:07.738883+00:00"
@@ -48,7 +48,7 @@
     authors : Beck Elis
 
 #path
-- model : between_app.PS_group
+- model : between_app.PersonalStyleGroup
   pk : 4
   fields:
     updated_at : "2024-05-28 11:14:07.738883+00:00"
@@ -60,7 +60,7 @@
     traditions : Jungian analysis Psychoanalysis.
     authors : Jung
 
-- model : between_app.PS_group
+- model : between_app.PersonalStyleGroup
   pk : 5
   fields:
     updated_at : "2024-05-28 11:14:07.738883+00:00"
@@ -72,7 +72,7 @@
     traditions : Integral approach Integrative approaches.
     authors : Wilber Kegan
 
-- model : between_app.PS_group
+- model : between_app.PersonalStyleGroup
   pk : 6
   fields:
     updated_at : "2024-05-28 11:14:07.738883+00:00"
@@ -84,7 +84,7 @@
     traditions : Person Centred Focusing Relational Psychoanalisis.
     authors : Rogers Orange
 
-- model : between_app.PS_group
+- model : between_app.PersonalStyleGroup
   pk : 7
   fields:
     updated_at : "2024-05-28 11:14:07.738883+00:00"
@@ -97,7 +97,7 @@
     authors : Skinner Beck ElisRogers Wilber Opazo  
 
     #tradition
-- model : between_app.PS_group
+- model : between_app.PersonalStyleGroup
   pk : 8
   fields:
     updated_at : "2024-05-28 11:14:07.738883+00:00"
@@ -109,7 +109,7 @@
     traditions : Jungian analysis Psychoanalysis(Bion Klain Winnicott) Psychodelic treatements holotropic breathing.
     authors : Jung Winnicott Perls
         
-- model : between_app.PS_group
+- model : between_app.PersonalStyleGroup
   pk : 9
   fields:
     updated_at : "2024-05-28 11:14:07.738883+00:00"
@@ -121,7 +121,7 @@
     traditions : Cognitive Behavioural Gestalt
     authors : Beck Ellis Perls Wilber
 
-- model : between_app.PS_group
+- model : between_app.PersonalStyleGroup
   pk : 10
   fields:
     updated_at : "2024-05-28 11:14:07.738883+00:00"
@@ -133,7 +133,7 @@
     traditions : Confesional therapies
     authors : Freud when making seven rings
 
-- model : between_app.PS_group
+- model : between_app.PersonalStyleGroup
   pk : 11
   fields:
     updated_at : "2024-05-28 11:14:07.738883+00:00"

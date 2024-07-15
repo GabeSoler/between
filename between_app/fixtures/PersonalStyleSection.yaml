@@ -1,17 +1,17 @@
 
-- model : between_app.PS_Section
+- model : between_app.PersonalStyleSection
   pk : 0
   fields:
     updated_at : "2024-05-28 11:14:07.738883+00:00"
     section : position
 
-- model : between_app.PS_Section
+- model : between_app.PersonalStyleSection
   pk : 1
   fields:
     updated_at : "2024-05-28 11:14:07.738883+00:00"
     section : path
 
-- model : between_app.PS_Section
+- model : between_app.PersonalStyleSection
   pk : 2
   fields:
     updated_at : "2024-05-28 11:14:07.738883+00:00"
