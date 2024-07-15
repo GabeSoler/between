@@ -186,7 +186,7 @@ def creation_by_title(request):
 
 @login_required
 def new_creation(request):
-    """add new question"""
+    """add new Creation"""
     if request.method !='POST':
         #no data submitted; create a blank form
         form = CreationForm()
