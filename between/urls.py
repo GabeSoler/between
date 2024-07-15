@@ -21,10 +21,11 @@ from django.conf import settings
 from django.contrib.flatpages import views
 from django.contrib.flatpages.sitemaps import FlatPageSitemap
 from django.contrib.sitemaps.views import sitemap
+from decouple import config
 
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    path(config('ADMIN_URL'), admin.site.urls),
     #path('accounts/',include('accounts.urls')),
     path('accounts/',include('allauth.urls')),
     path('learning/',include('learning_logs.urls')),
