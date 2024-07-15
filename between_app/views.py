@@ -55,7 +55,7 @@ def test_home(request):
 class PositionListView(LoginRequiredMixin, ListView):
     model = PersonalStyle
     context_object_name = 'style_list'
-    template_name = 'between_app/PersonalStyle/positions_list.html'
+    template_name = 'between_app/personal_style/positions_list.html'
 
     def get_queryset(self):
         # original qs
@@ -80,14 +80,14 @@ def take_profile_test(request):
             return redirect('between_app:results',new.pk)
     #display a blank or invalid form
     context = {'form':form}
-    return render(request,'between_app/PersonalStyle/profile_test.html',context)
+    return render(request,'between_app/personal_style/profile_test.html',context)
 
 
 
 def style_detail(request,pk):
     results = PersonalStyle.objects.get(pk=pk)
     context = {'results':results,'format':format}
-    return render(request,'between_app/PersonalStyle/style_detail.html',context)
+    return render(request,'between_app/personal_style/style_detail.html',context)
 
 def ps_results(request,pk):
     """show the results of personal style"""
@@ -118,12 +118,12 @@ def ps_results(request,pk):
         else:
             pass
     context = {'results':style_detail,'position':cont_position,'path':cont_path,'tradition':cont_tradition,'form':form,'pk':pk,'format':format}
-    return render(request,'between_app/PersonalStyle/results_email.html',context)
+    return render(request,'between_app/personal_style/results_email.html',context)
 
 
 
 class contentView(TemplateView):
-    template_name = 'between_app/PersonalStyle/content.html'
+    template_name = 'between_app/personal_style/content.html'
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         position = Content.position

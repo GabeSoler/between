@@ -1,7 +1,7 @@
 from django.test import TestCase
 from django.urls import reverse
 from django.contrib.auth import get_user_model
-from .models import Personal_Style,Components,BigTraditions
+from .models import PersonalStyle,Components,BigTraditions
 from django.utils import timezone
 
 # Create your tests here.
@@ -15,7 +15,7 @@ class PersonalStyleTests(TestCase):
             password = 'test123',
         )
 
-        cls.profile = Personal_Style.objects.create(
+        cls.profile = PersonalStyle.objects.create(
                 created_at = "2024-03-14 11:14:07.738883+00:00",
                 updated_at = "2024-03-14 11:14:07.738883+00:00",
                 user = cls.user,
