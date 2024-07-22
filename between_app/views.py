@@ -5,11 +5,12 @@ from .forms import StyleForm,ComponentsForm,BigTradForm,SendEmailForm
 from django.contrib.auth import get_user_model
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.decorators import login_required
-from django.core.mail import EmailMessage,EmailMultiAlternatives
+from django.core.mail import EmailMessage,EmailMultiAlternatives,send_mail
 from django.template.loader import render_to_string
 from django.utils.html import strip_tags
 from .content import Content
 from django.conf import settings
+from .helper import ResultsEmailThread,compose_results 
 # Create your views here.
 
 #A useful formating for bootstrap progress bars
@@ -103,17 +104,10 @@ def ps_results(request,pk):
         if form.is_valid():
             instance = form.save()
             user_email = instance.email
-            html_content = render_to_string('between_app/email/PersonalStyle_email.html', 
-                                            {'position':cont_position,'path':cont_path,'tradition':cont_tradition}) # render with dynamic value
-            text_content = strip_tags(html_content) # Strip the html tag. So people can see the pure text at least.
-            msg = EmailMultiAlternatives(
-                subject='Profile',
-                body=text_content,
-                to=[user_email],
-                from_email='gabriel@crea-therapy.com',
-                )
-            msg.attach_alternative(html_content, "text/html")
-            msg.send()
+            #compose the results into a text. Doing html always broke and couln't figure it out.
+            content = compose_results(cont_position=cont_position,cont_path=cont_path,cont_tradition=cont_tradition)
+            msg = ResultsEmailThread(recipient_list=user_email,text_content=content)
+            msg.start()
             return redirect('between_app:test_home')
         else:
             pass
