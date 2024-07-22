@@ -11,6 +11,12 @@
     {% load static %}
     <link rel="stylesheet" href="{% static "between_app/css/style.css" %}">
 
+
+<!--Google Fonts-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Edu+AU+VIC+WA+NT+Hand:wght@400..700&display=swap&text=CreaTherapy" rel="stylesheet">
+
 <!--favicons-->
     <link rel="apple-touch-icon" sizes="180x180" href="{% static "favicon_io/apple-touch-icon.png"%}">
     <link rel="icon" type="image/png" sizes="32x32" href="{% static "favicon_io/favicon-32x32.png"%}">
@@ -22,7 +28,8 @@
 <nav class="navbar navbar-expand-lg bg-primary sticky-top start-0" data-bs-theme="dark">
     <div class='container-fluid'>
 
-        <a class='navbar-brand' href="{% url 'between_app:index' %}">
+        <a class='navbar-brand' href="{% url 'between_app:index' %}"  
+            style="font-family:'Edu AU VIC WA NT Hand',verdana,san-serif;">
           <img
           src="{% static "favicon_io/favicon-32x32.png"%}"
           class="img-fluid rounded"
