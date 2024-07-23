@@ -2,33 +2,7 @@ from django.test import TestCase
 from django.contrib.auth import get_user_model
 from django.urls import reverse_lazy,resolve
 # Create your tests here.
-""" this is useful before allauth is operating
-class CustomUsertest(TestCase):
-    def test_create_user(self):
-        User = get_user_model()
-        user = User.objects.create_user(username='gabe',
-                                        email='gsoler@gmail.com',
-                                        password='testpass123')
-        
-        self.assertEqual(user.username,'gabe')
-        self.assertEqual(user.email, 'gsoler@gmail.com')
-        self.assertTrue(user.is_active)
-        self.assertFalse(user.is_staff)
-        self.assertFalse(user.is_superuser)
 
-    def test_create_superuser(self):
-        User = get_user_model()
-        admin_user = User.objects.create_superuser(username='superadmin',
-                                                   email='superadmin@gmail.com',
-                                                   password='testpass123')
-
-        self.assertEqual(admin_user.username,'superadmin')
-        self.assertEqual(admin_user.email,'superadmin@gmail.com')
-        self.assertTrue(admin_user.is_active)
-        self.assertTrue(admin_user.is_staff)
-        self.assertTrue(admin_user.is_superuser)
-        
-"""
 
 class SignupPageTest(TestCase):
     username = "newuser"
@@ -50,3 +24,15 @@ class SignupPageTest(TestCase):
         self.assertEqual(get_user_model().objects.all()[0].username,self.username)
         self.assertEqual(get_user_model().objects.all()[0].email,self.email)
     
+
+class SettingsTest(TestCase):
+    def setUp(self):
+        pass
+
+#testing index with its modules
+    def test_settings_index_passwords_view(self):
+        pass
+    def test_settings_index_profile_view(self):
+        pass
+    def test_settings_index_status_view(self):
+        pass

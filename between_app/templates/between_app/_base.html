@@ -61,17 +61,21 @@
                       Techniques</a></li>
             </ul><!-- End of links on left side of nvbar -->
             <!-- Account related links-->
-            <ul class='navbar-nav ms-auto mb-2 mb-md-0'>
-                {% if user.is_authenticated %}
-                <class='nav-item'>
-                    <span class='navbar-text me-2'>Hello, {{user.username}}! <small><a class='nav-link-inline link-secondary' href="{% url 'account_logout' %}"> Log Out</a></small></span></li>
-                {% else %}
-                <li class='nav-item'>
-                    <a class='nav-link' href="{% url 'account_signup'%}">Signup</a></li>
-                <li class='nav-item'>
-                    <a class='nav-link' href="{% url 'account_login' %}">Log in</a></li>
-                {% endif %}
-            </ul> 
+            {% if user.is_authenticated %}
+            {% url 'account_email' as email_url %}
+            {% url 'socialaccount_connections' as socialaccount_url %}
+            {% if email_url or socialaccount_url %}
+                <a href="{% if email_url %}{{ email_url }}{% else %}{{ socialaccount_url }}{% endif %}"
+                   class="btn btn-outline-secondary">Manage Account</a>
+            {% endif %}
+            <a href="{% url 'account_logout' %}" class="btn btn-outline-danger-">Sign Out</a>
+        {% else %}
+            <a href="{% url 'account_login' %}" class="btn me-1 btn-outline-light">Sign In</a>
+            {% url 'account_signup' as signup_url %}
+            {% if signup_url %}
+                <a href="{{ signup_url }}" class="btn btn-outline-success">Sign Up</a>
+            {% endif %}
+        {% endif %}
                <!-- End of account related links -->
          </div> <!-- Closes collapsible parts of navbar -->
     </div><!-- closes navbar container-->
@@ -80,18 +84,17 @@
 <!-- Main section -->
 
 <main class='container'>
-      
+      {% block body %}
     <!-- As a heading with display -->
 
     <h1 class="display-6">{% block page_header %}{% endblock page_header %}</h1>
 
-
-
-
     <div> 
         {% block content %} {% endblock content %}      
     </div>
-    
+    {% endblock body %}
+    {% block extra_body %}
+    {% endblock extra_body %}
     
 </main>
 <footer>

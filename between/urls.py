@@ -26,8 +26,9 @@ from decouple import config
 
 urlpatterns = [
     path(config('ADMIN_URL'), admin.site.urls),
-    #path('accounts/',include('accounts.urls')),
     path('accounts/',include('allauth.urls')),
+    path('accounts/',include('accounts.urls')),
+
     path('learning/',include('learning_logs.urls')),
     path('pages/',include('pages.urls')),
     path('techniques/',include('techniques_app.urls')),
