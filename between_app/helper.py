@@ -1,5 +1,7 @@
 from threading import Thread
 from django.core.mail import send_mail
+from django.db import close_old_connections
+import time
 
 
 class ResultsEmailThread(Thread):
@@ -15,16 +17,20 @@ class ResultsEmailThread(Thread):
                 msg = send_mail(
                 "Your CreaTherapy Profile",
                 self.text_content,
-                "creatherapy.app@gmail.com",
+                "creatherapy.app@crea-therapy.com",
                 [self.recipient_list],
                 fail_silently=False,
                     )
                 if msg == False:
+                    time.sleep(.2)
                     continue
                 else:
                     break
             except Exception as e:
                 print(e)
+            finally:
+                close_old_connections()
+
 
 def compose_results(cont_position, cont_path, cont_tradition):
         """compose a text to display in a email"""
