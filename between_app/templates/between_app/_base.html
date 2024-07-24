@@ -69,6 +69,7 @@
                    class="btn btn-outline-secondary">Manage Account</a>
             {% endif %}
             <a href="{% url 'account_logout' %}" class="btn btn-outline-danger-">Sign Out</a>
+            {% csrf_token %}
         {% else %}
             <a href="{% url 'account_login' %}" class="btn me-1 btn-outline-light">Sign In</a>
             {% url 'account_signup' as signup_url %}
@@ -85,10 +86,6 @@
 
 <main class='container'>
       {% block body %}
-    <!-- As a heading with display -->
-
-    <h1 class="display-6">{% block page_header %}{% endblock page_header %}</h1>
-
     <div> 
         {% block content %} {% endblock content %}      
     </div>

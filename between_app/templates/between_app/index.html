@@ -7,23 +7,30 @@
 
 
 {%block content%}
-<div class="alert alert-warning alert-dismissible fade show" role="alert">
+<div class="alert alert-warning alert-dismissible fade show " role="alert">
     Work in Progress!
     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
     </button>
   </div>
 
-<div class="card mb-3">
-    <div class="card-body">
+<div class="card mb-3 shadow border-primary border-3">
+    <div class="card-body cold-white  rounded">
+    <div class="col-lg-10 mx-auto">
+    <!--Two starting points depending on user authentication-->
+        {% if user.is_authenticated%}
+        <h2 class="card-title">Hey, {{user.username}}!</h2>
+        <p class="card-text">Wellcome back!</p>
+        <p class="card-text">Please explore the site and make it your own. All you do is being saved privately and you can come back to it any time.</p>
+        {% else %}
+        <h2 class="card-title">Hey{% if user.is_authenticated%}, {{user.username}}{%endif%}!</h2>
+        <p class="card-text">CreaTherapy a project to re-imagine psychotherapy, in creative way from theory to practice.</p>
+        <p class="card-text">They aim to move between the old traditions, in a context where therapist and clients are learning from multiple points of view and mixing ideas and practices from many sources becomes the new norm.</p>
+        <p class="card-text">This approach aims to help you create your own path and style, while keeping strong theory and practice foundations.</p>
+       {%endif%}
+       <a class="badge bg-primary p-2 m-2" href={% url 'pages:index' %}>Read the theory </a>
+       <a class="badge bg-primary p-2 m-2" href={% url 'between_app:profile_test' %}>Take a profile test</a></br>
 
-<h2 class="card-title text-center">Hey{% if user.is_authenticated%}, {{user.username}}{%endif%}!</h2>
-    <div class="col-lg-6 mx-auto">
-<p class="card-text">CreaTherapy a project to re-imagine psychotherapy, in creative way from theory to practice.</p>
-<p class="card-text">They aim to move between the old traditions, in a context where therapist and clients are learning from multiple points of view and mixing ideas and practices from many sources becomes the new norm.</p>
-<a class="badge bg-primary p-2 m-2" href={% url 'pages:index' %}>Read the theory </a>
-<a class="badge bg-primary p-2 m-2" href={% url 'between_app:profile_test' %}>Take a profile test</a></br>
-
-</div>
+    </div>
 </div>
 
 

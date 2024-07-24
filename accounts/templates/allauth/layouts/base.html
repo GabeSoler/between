@@ -1,6 +1,15 @@
 {% extends 'between_app/_base.html' %}
+{% load i18n %}
 {% load django_bootstrap5 %}
 {% bootstrap_css%}
 {%bootstrap_javascript%}
 
 {% block title %}{% block head_title %}{% endblock %}{% endblock title %}
+
+{% block body %}
+    {%block content %}
+    {% endblock content%}
+{%endblock body %}
+
+{% block extra_body %}
+{% endblock extra_body %}
