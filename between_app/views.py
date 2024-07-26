@@ -5,9 +5,6 @@ from .forms import StyleForm,ComponentsForm,BigTradForm,SendEmailForm
 from django.contrib.auth import get_user_model
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.decorators import login_required
-from django.core.mail import EmailMessage,EmailMultiAlternatives,send_mail
-from django.template.loader import render_to_string
-from django.utils.html import strip_tags
 from .content import Content
 from django.conf import settings
 from .helper import ResultsEmailThread,compose_results 

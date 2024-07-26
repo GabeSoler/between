@@ -1,34 +1,27 @@
 """Views from Accounts creation Learning Logs"""
 from django.shortcuts import render,redirect
 from .models import CommunityProfile, UserStatus
+from django.contrib.auth.decorators import login_required
 
-def settings_view(request):
+@login_required
+def profile_view(request):
     """deals with pasword and user details"""
     profile,created_p = CommunityProfile.objects.get_or_create(user=request.user)
     status,created_s = UserStatus.objects.get_or_create(user=request.user)
     context = {'profile':profile,'status':status}
-    return render(request,'templates/account/index.html',context)
+    return render(request,'templates/account/profile.html',context)
 
-
-def community_profile_view(request):
+@login_required
+def community_profile_edit_view(request):
     profile = CommunityProfile.objects.get(user=request.user)
     context = {'profile':profile}
     return render(request,'templates/profile/account-profile.html',context)
 
-def community_profile_create_view(request):
-    return render(request,'templates/profile/account-profile.html',context)
-
-def community_profile_edit_view(request):
-    return render(request,'templates/profile/account-profile.html',context)
-
-
-
-def user_status_create_view(request):
-    return render(request,'templates/profile/account-profile.html',context)
-
+@login_required
 def user_status_edit_view(request):
+    profile = CommunityProfile.objects.get(user=request.user)
+    context = {'profile':profile}
     return render(request,'templates/profile/account-profile.html',context)
-
 
 #example
 '''
