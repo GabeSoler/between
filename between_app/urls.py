@@ -16,10 +16,10 @@ urlpatterns = [
 # therapeutic positions
 
     path('style_detail/<uuid:pk>/',views.style_detail,name='style_detail'),
-    path('style_list/',views.PositionListView.as_view(),name='profiles_list'),
+    path('style_list/',views.positions_list_view,name='profiles_list'),
     path('profile_test/',views.take_profile_test,name='profile_test'),
-    path('content/',views.contentView.as_view(),name='content'),
-    path('results/<uuid:pk>/',views.ps_results,name='results'),
+    path('content_1/',views.positions_content_view,name='content_1'),
+    path('results_email/<uuid:pk>/',views.ps_results,name='results'),
 
 #Compnents
 
@@ -34,9 +34,9 @@ urlpatterns = [
 
     
 #content
-    path('content_1/',views.contentView.as_view(),name='content_1'),
+    path('content/',views.positions_content_view,name='content'),
+    path('results/<uuid:pk>/',views.ps_results,name='results'),
 
-    path('results_email/<uuid:pk>/',views.ps_results,name='results'),
 
 
 ]

@@ -50,16 +50,12 @@ def test_home(request):
 
 
 #Therapeutic Positions
-class PositionListView(LoginRequiredMixin, ListView):
-    model = PersonalStyle
-    context_object_name = 'style_list'
-    template_name = 'between_app/personal_style/positions_list.html'
+@login_required
+def positions_list_view(request):
+    style_list = PersonalStyle.objects.get(user=request.user)
+    context = style_list
+    return render(request,'between_app/personal_style/positions_list.html', context)
 
-    def get_queryset(self):
-        # original qs
-        qs = super().get_queryset() 
-        # filter by user
-        return qs.filter(user=self.request.user.id)
 
 
 def take_profile_test(request):
@@ -75,7 +71,9 @@ def take_profile_test(request):
                 user = request.user
                 new.user = user
             new.save()
-            return redirect('between_app:results',new.pk)
+            pk = new.pk
+            request.session['form_pk'] = str(pk)
+            return redirect('between_app:results',pk)
     #display a blank or invalid form
     context = {'form':form}
     return render(request,'between_app/personal_style/profile_test.html',context)
@@ -112,16 +110,13 @@ def ps_results(request,pk):
     return render(request,'between_app/personal_style/results_email.html',context)
 
 
-
-class contentView(TemplateView):
-    template_name = 'between_app/personal_style/content.html'
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
+def positions_content_view(request):
         position = Content.position
         path = Content.path
         tradition = Content.tradition
-        context["content"] = {'position':position,'path':path,'tradition':tradition}
-        return context
+        content = {'position':position,'path':path,'tradition':tradition}
+        context = {"content":content}
+        return render(request,'between_app/personal_style/content.html',context)
 
     
 #Components Views
