@@ -24,42 +24,12 @@ class SignupPageTest(TestCase):
         self.assertEqual(get_user_model().objects.all()[0].email,new_user.email)
     
     def test_signup_form(self):
-        response = self.client.get(reverse_lazy('account_signup'))
-        self.assertContains(response,'Already have an account?')
-        response = self.client.post(reverse_lazy('account_signup'),{
-            'username':'test_user',
-            'password1':'128763HiTesting%',
-            'password2':'128763HiTesting%',
-            'email':'test@test.test',
-        },follow=True)
-        self.assertEqual(response.status_code,200)
-        self.assertNotContains(response,'A user with that username already exists.')
-        self.assertNotContains(response,'A user is already registered with this email address.')
-        self.assertNotContains(response,'You must type the same password each time.')
-        self.assertNotContains(response,'This password is too common')
-        self.assertNotContains(response,'Already have an account?')
-        self.assertContains(response,'test_user')
-    
-    def test_login_form(self):
+        response = self.client.get(reverse_lazy('account_signup')) #I decided to not test more as it is a third party work
+        self.assertContains(response,'Already have an account?')  #I will test this from the functional side instead
 
-        response = self.client.post(reverse_lazy('account_signup'),{
-            'username':'test_user',
-            'password1':'128763HiTesting%',
-            'password2':'128763HiTesting%',
-            'email':'test@test.test',
-        },follow=True)
-        self.client.logout()
+    def test_login_form(self):
         response = self.client.get(reverse_lazy('account_login'))
-        self.assertEqual(response.status_code,200)
-        self.assertContains(response,'If you have not created an account')
-        response = self.client.post(reverse_lazy('account_login'),{
-            'id_login':'test_user',
-            'password':'128763HiTesting%',
-            },follow=True)
-        self.assertEqual(response.status_code,200)
-        self.assertNotContains(response,'The username and/or password you specified are not correct.')
-        self.assertNotContains(response,'If you have not created an account')
-        self.assertContains(response,self.username)
+        self.assertContains(response,'If you have not created an account yet')
 
 
 

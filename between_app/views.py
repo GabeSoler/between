@@ -52,8 +52,8 @@ def test_home(request):
 #Therapeutic Positions
 @login_required
 def positions_list_view(request):
-    style_list = PersonalStyle.objects.get(user=request.user)
-    context = style_list
+    style_list = PersonalStyle.objects.filter(user=request.user)
+    context = {"style_list":style_list}
     return render(request,'between_app/personal_style/positions_list.html', context)
 
 

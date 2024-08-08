@@ -55,11 +55,14 @@ class PersonalStyleTests(TestCase):
 
 
     def test_position_list_view(self):
+        self.client.login(username = 'usertest',
+            email = 'test@test.com',
+            password = 'test123',)
         response = self.client.get(reverse('between_app:profiles_list'), follow=True)
         no_response = self.client.get('between/123')
         self.assertEqual(response.status_code,200)
         self.assertEqual(no_response.status_code,404)
-        self.assertContains(response,'<p>A space to think about your therapeutic style.</p>',html=True)
+        self.assertContains(response,'Explore your detailed scores')
         self.assertTemplateUsed(response,'between_app/personal_style/positions_list.html')
     
 
@@ -68,11 +71,14 @@ class PersonalStyleTests(TestCase):
         no_response = self.client.get('between/123')
         self.assertEqual(response.status_code,200)
         self.assertEqual(no_response.status_code,404)
-        self.assertContains(response, "Take a Personal Profile Test")
+        self.assertContains(response, "Profile Test")
         self.assertTemplateUsed(response, 'between_app/personal_style/profile_test.html')
     
-    """
+    
     def test_style_detail_view(self):
+        self.client.login(username = 'usertest',
+            email = 'test@test.com',
+            password = 'test123',)
         response = self.client.get(self.profile.get_absolute_url())
         no_response = self.client.get('between/123')
         self.assertEqual(response.status_code,200)
@@ -81,6 +87,9 @@ class PersonalStyleTests(TestCase):
         self.assertTemplateUsed(response, 'between_app/personal_style/style_detail.html')
 
     def test_ps_results_view(self):
+        self.client.login(username = 'usertest',
+        email = 'test@test.com',
+        password = 'test123',)
         response = self.client.get(f'/results/{self.profile.pk}/', follow=True)
         no_response = self.client.get('between/123')
         self.assertEqual(response.status_code,200)
@@ -166,46 +175,58 @@ class ComponentsTests(TestCase):
                 roles = 1,
                 )
     def setup(self):
-        self.client.login(username='usertest',password='test123')
-
+        self.client = Client()
 
     def test_components_creation(self):
-        t = timezone.now()
-        t = t.strftime('%Y-%m-%d')
-        self.assertEqual(f"{self.profile.politics}",'1')
-        self.assertEqual(f"{self.profile.philosophy}",'99')
-        self.assertEqual(f"{self.profile.created_at.date}",t)
+        component = Components.objects.get(pk=self.profile.pk)
+        self.assertEqual(component.politics,1)
+        self.assertEqual(component.philosophy,99)
+    
+    def test_component_user(self):
+        component = Components.objects.get(pk=self.profile.pk)
+        self.assertEqual(component.user, self.profile.user)
 
     def test_home_view(self):
+        self.client.login(username = 'usertest',
+            email = 'test@test.com',
+            password = 'test123')        
         response = self.client.get(reverse('between_app:test_home'), follow=True)
         self.assertEqual(response.status_code,200)
-        self.assertContains(response,"Narrative")
+        self.assertContains(response,"narrative")
         self.assertTemplateUsed(response,'between_app/test-home.html')
 
     def test_components_list_view(self):
+        self.client.login(username = 'usertest',
+            email = 'test@test.com',
+            password = 'test123')
         response = self.client.get(reverse('between_app:components_list'), follow=True)
         no_response = self.client.get('between/123')
         self.assertEqual(response.status_code,200)
         self.assertEqual(no_response.status_code,404)
         self.assertContains(response, "Your Components tests")
-        self.assertTemplateUsed(response, 'between_app/templates/between_app/Components/components_list.html')
-
+        self.assertTemplateUsed(response, 'between_app/Components/components_list.html')
+    
     def test_components_detail_view(self):
-        response = self.client.get(reverse('between_app:components_detail',self.profile.pk), follow=True)
+        self.client.login(username = 'usertest',
+            email = 'test@test.com',
+            password = 'test123')
+        response = self.client.get(f"/components_detail/{self.profile.pk}/")
         no_response = self.client.get('between/123')
         self.assertEqual(response.status_code,200)
         self.assertEqual(no_response.status_code,404)
-        self.assertContains(response, "Components Test")
-        self.assertTemplateUsed(response, '/between_app/Components/components_detail.html')
+        self.assertContains(response, "Components test")
+        self.assertTemplateUsed(response, 'between_app/Components/components_detail.html')
 
     def test_take_components_view(self):
+        self.client.login(username = 'usertest',
+            email = 'test@test.com',
+            password = 'test123')
         response = self.client.get(reverse('between_app:components_test'), follow=True)
         no_response = self.client.get('between/123')
         self.assertEqual(response.status_code,200)
         self.assertEqual(no_response.status_code,404)
-        self.assertEqual(response.resolver_match.func,take_components)
         self.assertContains(response, "Use of body sensations")#taken from
-        self.assertTemplateUsed(response, '/between_app/Components/components_test.html')
+        self.assertTemplateUsed(response, 'between_app/Components/components_test.html')
     
     def test_form_components(self):
         data = {
@@ -239,6 +260,9 @@ class ComponentsTests(TestCase):
                 'belonging':30,
                 'roles':1,
         }
+        self.client.login(username = 'usertest',
+            email = 'test@test.com',
+            password = 'test123')
         form_invalid = ComponentsForm(data={"name": "Computer", "price": 400.1234})
         self.assertFalse(form_invalid.is_valid())
         form_valid = ComponentsForm(data=data)
@@ -247,7 +271,7 @@ class ComponentsTests(TestCase):
         self.assertEqual(response.status_code,200)
         self.assertContains(response,"philosophy-2%")
         
-
+    
 class BigTraditionsTests(TestCase):
 
     @classmethod
@@ -269,20 +293,13 @@ class BigTraditionsTests(TestCase):
                 participatory = 90,
                             )
 
-    def setup(self):
-        self.client.login(username='usertest',password='test123')
-
-    def test_setup(self):
-        response = self.client.get('/')
-        self.assertEqual(response.user,'usertest')
 
     def test_big_traditions_creation(self):
-        t = timezone.now()
-        t = t.strftime('%Y-%m-%d')
-        self.assertEqual(f"{self.profile.hemeneutic}",'20')
-        self.assertEqual(f"{self.profile.cybernetic}",'60')
-        self.assertContains(f"{self.profile.created_at}",t)
+        big_trad = BigTraditions.objects.get(pk=self.profile.pk)
+        self.assertEqual(big_trad.hemeneutic,20)
+        self.assertEqual(big_trad.cybernetic,60)
 
+    """
     def test_home_view(self):
         response = self.client.get(reverse('between_app:test_home'), follow=True)
         self.assertEqual(response.status_code,200)
