@@ -1,4 +1,4 @@
-{% extends 'between_app/_base.html' %}
+{% extends 'between_app/cover.html' %}
 {% load static %}
 {%block title%}CreaTherapy{%endblock title%}
 {% load django_bootstrap5%}
@@ -7,13 +7,9 @@
 
 
 {%block content%}
-<div class="alert alert-warning alert-dismissible fade show " role="alert">
-    Work in Progress!
-    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
-    </button>
-  </div>
 
-<div class="card mb-3 shadow border-primary border-3">
+
+<div class="card mb-3 shadow border-primary border-3 col-10 mx-auto">
     <div class="card-body cold-white  rounded">
     <div class="col-lg-10 mx-auto">
     <!--Two starting points depending on user authentication-->

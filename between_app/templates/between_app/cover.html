@@ -1,0 +1,41 @@
+{% extends 'between_app/_base.html' %}
+{% load static %}
+{% load django_bootstrap5%}
+
+
+{% block intro %}
+
+<div class="cover-container ms-0 d-flex mx-auto flex-column mb-2"
+    style="background-image:url({% static 'between_app/images/crea-cover.png' %});
+    background-position:center;
+    background-size:cover;
+    height:90vh;
+    width:100vw;
+    min-height:400px;
+    z-index:10;"
+    id="cover">
+  
+    <main class="px-3 ms-4 my-auto">
+    {% if user.is_authenticated %}
+    <h1 id="landing-text" class="text-danger">Wellcome back, {{user.username}}!</h1>
+      <p class="lead">
+        <a href="{% url 'between_app:test_home' %}" class="btn btn-lg btn-secondary fw-bold border-primary bg-primary">See your tests</a>
+    {% else %}
+    <h1 id="landing-text" class="text-danger">Creative from theory to practice</h1>
+        <p class="lead">
+          <a href="#creativity" class="btn btn-lg btn-secondary fw-bold border-primary bg-primary">Learn more</a>
+    {% endif %}
+    </p>
+    </main>
+  
+    <footer class="mt-auto text-white-50">
+      <p>Check out <a href="creatherapy.com">Gabriel Soler psychotherapy</a></p>
+    </footer>
+  </div>
+
+    {% endblock intro %}
+{% block content%}
+    
+{%endblock content %}
+
+

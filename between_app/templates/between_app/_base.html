@@ -84,9 +84,12 @@
 
 <!-- Main section -->
 
-<main class='container'>
+<main>
+
       {% block body %}
-    <div> 
+      {% block intro %}
+      {% endblock intro %}
+    <div class="container-fluid mx-auto col-12 col-md-10"> 
         {% block content %} {% endblock content %}      
     </div>
     {% endblock body %}

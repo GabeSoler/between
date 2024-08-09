@@ -1,5 +1,5 @@
 from django.test import TestCase,RequestFactory,Client
-from django.urls import reverse
+from django.urls import reverse, reverse_lazy
 from django.contrib.auth import get_user_model
 from .models import PersonalStyle,Components,BigTraditions
 from django.utils import timezone
@@ -128,6 +128,9 @@ class PersonalStyleTests(TestCase):
         response = self.client.post('/profile_test/',data, follow=True)
         self.assertEqual(response.status_code,200)
         self.assertContains(response,"Compassionate")
+        response = self.client.post(reverse_lazy('account_signup', 
+                                 {'username':'testuser','password':'123%%gabe'} ))#testing saving of test
+        self.assertContains(response,"Wellcome back!")
         
 
    
