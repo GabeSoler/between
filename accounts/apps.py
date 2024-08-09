@@ -9,11 +9,23 @@ class AccountsConfig(AppConfig):
     name = 'accounts'
 
     def ready(self):
-        from allauth.account.signals import user_signed_up
+        from allauth.account.signals import user_signed_up, user_logged_in
         from between_app.models import PersonalStyle
 
         @receiver(user_signed_up, dispatch_uid="unique")
         def user_signed_up(request, user, **kwargs):
-            form_pk = request.session.get("form_pk")
-            form = PersonalStyle.objects.get(pk=form_pk)
-            form.user = request.user
+            try:
+                form_pk = request.session("form_pk")
+                form = PersonalStyle.objects.get(pk=form_pk)
+                form.user = user
+            except Exception as e:
+                print(e)
+
+        @receiver(user_logged_in, dispatch_uid="unique")
+        def user_signed_up(request, user, **kwargs):
+            try:
+                form_pk = request.session("form_pk")
+                form = PersonalStyle.objects.get(pk=form_pk)
+                form.user = user
+            except Exception as e:
+                print(e)

@@ -128,9 +128,18 @@ class PersonalStyleTests(TestCase):
         response = self.client.post('/profile_test/',data, follow=True)
         self.assertEqual(response.status_code,200)
         self.assertContains(response,"Compassionate")
-        response = self.client.post(reverse_lazy('account_signup', 
-                                 {'username':'testuser','password':'123%%gabe'} ))#testing saving of test
-        self.assertContains(response,"Wellcome back!")
+        response = self.client.post('/accounts/signup/', 
+                                 {'id_username':'testuser',
+                                  'id_email':'test@test.com',
+                                  'id_password1':'123%%gabe',
+                                  'id_password':'123%%gabe'
+                                    },
+                                    follow=True)
+        self.assertEqual(response.status_code,200)
+        response = self.client.get(reverse('between_app:test_home'))
+        self.assertContains(response,"Compassionate")
+        #self.client.login(username='testuser',password='123%%gabe')
+        #self.assertContains(response,"Welcome back")
         
 
    
