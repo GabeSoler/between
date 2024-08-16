@@ -52,7 +52,7 @@ def test_home(request):
 #Therapeutic Positions
 @login_required
 def positions_list_view(request):
-    style_list = PersonalStyle.objects.filter(user=request.user)
+    style_list = PersonalStyle.objects.filter(user=request.user).order_by('-updated_at')
     context = {"style_list":style_list}
     return render(request,'between_app/personal_style/positions_list.html', context)
 
@@ -73,6 +73,7 @@ def take_profile_test(request):
             new.save()
             pk = new.pk
             request.session['form_pk'] = str(pk)
+            request.session['linked'] = "false"
             return redirect('between_app:results',pk)
     #display a blank or invalid form
     context = {'form':form}

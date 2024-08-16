@@ -105,6 +105,24 @@ class PersonalStyleTests(TestCase):
         self.assertContains(response, "categories explained")
         self.assertTemplateUsed(response, 'between_app/personal_style/content.html')
 
+
+class ProfileLinkUserAutenticate(TestCase):
+    """to test if the open profile test saves after login and signup """
+
+    fixtures = ['between_app/fixtures/PersonalStyleGroup.yaml',
+                'between_app/fixtures/PersonalStyleSection.yaml'
+                ]
+    def setup(self):
+        self.client = Client() #to explore templates in request
+    
+    @classmethod
+    def setUpTestData(cls):    
+        cls.user = get_user_model().objects.create_user(
+            username = 'usertest',
+            email = 'test@test.com',
+            password = 'test123',
+        )
+
     def test_form_profiles(self):
         data = {
                 'follower_1':90,
@@ -127,17 +145,16 @@ class PersonalStyleTests(TestCase):
         self.assertTrue(form_valid.is_valid())
         response = self.client.post('/profile_test/',data, follow=True)
         self.assertEqual(response.status_code,200)
+        self.assertEqual(self.client.session['linked'],"false")
         self.assertContains(response,"Compassionate")
-        response = self.client.post('/accounts/signup/', 
-                                 {'id_username':'testuser',
-                                  'id_email':'test@test.com',
-                                  'id_password1':'123%%gabe',
-                                  'id_password':'123%%gabe'
+        response = self.client.post('/accounts/login/', 
+                                 {'id_login':'usertest',
+                                  'id_password':'test123',
                                     },
-                                    follow=True)
-        self.assertEqual(response.status_code,200)
+                                    )
+        self.assertRedirects(response=response,expected_url='/')
         response = self.client.get(reverse('between_app:test_home'))
-        self.assertContains(response,"Compassionate")
+        self.assertEqual(self.client.session['linked'],"true")
         #self.client.login(username='testuser',password='123%%gabe')
         #self.assertContains(response,"Welcome back")
         

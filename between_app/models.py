@@ -1,6 +1,5 @@
 from django.db import models
 from django.contrib.auth import get_user_model
-from .choices import Response_Choices
 from django.urls import reverse
 import uuid
 

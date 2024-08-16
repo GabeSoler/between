@@ -5,7 +5,7 @@ from django.contrib.auth.decorators import login_required
 
 @login_required
 def profile_view(request):
-    """deals with pasword and user details"""
+    """deals with password and user details"""
     profile,created_p = CommunityProfile.objects.get_or_create(user=request.user)
     status,created_s = UserStatus.objects.get_or_create(user=request.user)
     context = {'profile':profile,'status':status}

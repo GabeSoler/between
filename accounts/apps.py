@@ -1,7 +1,4 @@
 from django.apps import AppConfig
-from django.dispatch.dispatcher import receiver
-
-
 
 
 class AccountsConfig(AppConfig):
@@ -10,22 +7,31 @@ class AccountsConfig(AppConfig):
 
     def ready(self):
         from allauth.account.signals import user_signed_up, user_logged_in
+        from django.dispatch.dispatcher import receiver
         from between_app.models import PersonalStyle
+        import uuid
 
-        @receiver(user_signed_up, dispatch_uid="unique")
-        def user_signed_up(request, user, **kwargs):
+        @receiver(user_signed_up)
+        def user_signed_up(request, **kwargs):
             try:
-                form_pk = request.session("form_pk")
+                form_pk = request.session["form_pk"]
+                form_pk = uuid.UUID(form_pk)
                 form = PersonalStyle.objects.get(pk=form_pk)
-                form.user = user
+                form.user = request.user
+                print("form linked to user")
+                request.session['linked'] = "true"
             except Exception as e:
-                print(e)
+                print(f"failed to link user because: {e}")
 
-        @receiver(user_logged_in, dispatch_uid="unique")
-        def user_signed_up(request, user, **kwargs):
+        @receiver(user_logged_in)
+        def user_logged_in(request, **kwargs):
             try:
-                form_pk = request.session("form_pk")
+                form_pk = request.session["form_pk"]
+                form_pk = uuid.UUID(form_pk)
                 form = PersonalStyle.objects.get(pk=form_pk)
-                form.user = user
+                form.user = request.user
+                print("form linked to user")
+                request.session['linked'] = "true"
             except Exception as e:
-                print(e)
+                print(f"failed to link user because: {e}")
+        
