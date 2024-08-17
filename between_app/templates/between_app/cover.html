@@ -15,7 +15,7 @@
     z-index:10;"
     id="cover">
   
-    <main class="px-3 ms-4 my-auto">
+    <div class="px-3 ms-4 my-auto">
     {% if user.is_authenticated %}
     <h1 id="landing-text" class="text-danger">Wellcome back, {{user.username}}!</h1>
       <p class="lead">
@@ -23,14 +23,14 @@
     {% else %}
     <h1 id="landing-text" class="text-danger">Creative from theory to practice</h1>
         <p class="lead">
-          <a href="#creativity" class="btn btn-lg btn-secondary fw-bold border-primary bg-primary">Learn more</a>
+          <a href="{% url 'between_app:profile_test' %}" class="btn btn-lg btn-secondary fw-bold border-primary bg-primary">Take a Test</a>
     {% endif %}
     </p>
-    </main>
+  </div>
   
-    <footer class="mt-auto text-white-50">
+    <div class="mt-auto text-white-50">
       <p>Check out <a href="creatherapy.com">Gabriel Soler psychotherapy</a></p>
-    </footer>
+    </div>
   </div>
 
     {% endblock intro %}

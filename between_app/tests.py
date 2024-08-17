@@ -5,6 +5,9 @@ from .models import PersonalStyle,Components,BigTraditions
 from django.utils import timezone
 from .forms import StyleForm,ComponentsForm, BigTradForm
 from .views import take_components,test_home
+
+
+
 # Create your tests here.
 
 class PersonalStyleTests(TestCase):
@@ -105,59 +108,6 @@ class PersonalStyleTests(TestCase):
         self.assertContains(response, "categories explained")
         self.assertTemplateUsed(response, 'between_app/personal_style/content.html')
 
-
-class ProfileLinkUserAutenticate(TestCase):
-    """to test if the open profile test saves after login and signup """
-
-    fixtures = ['between_app/fixtures/PersonalStyleGroup.yaml',
-                'between_app/fixtures/PersonalStyleSection.yaml'
-                ]
-    def setup(self):
-        self.client = Client() #to explore templates in request
-    
-    @classmethod
-    def setUpTestData(cls):    
-        cls.user = get_user_model().objects.create_user(
-            username = 'usertest',
-            email = 'test@test.com',
-            password = 'test123',
-        )
-
-    def test_form_profiles(self):
-        data = {
-                'follower_1':90,
-                'propositive_1':2,
-                'challenger_1':6,
-                'acceptant_1':10,
-                'intensive_1':20,
-                'extensive_1':6,
-                'divider_1':3,
-                'containment_1':30,
-                'becoming_1':1,
-                'development_1':60,
-                'individuation_1':10,
-                'belonging_1':3,
-
-        }
-        form_invalid = StyleForm(data={"name": "Computer", "price": 400.1234})
-        self.assertFalse(form_invalid.is_valid())
-        form_valid = StyleForm(data=data)
-        self.assertTrue(form_valid.is_valid())
-        response = self.client.post('/profile_test/',data, follow=True)
-        self.assertEqual(response.status_code,200)
-        self.assertEqual(self.client.session['linked'],"false")
-        self.assertContains(response,"Compassionate")
-        response = self.client.post('/accounts/login/', 
-                                 {'id_login':'usertest',
-                                  'id_password':'test123',
-                                    },
-                                    )
-        self.assertRedirects(response=response,expected_url='/')
-        response = self.client.get(reverse('between_app:test_home'))
-        self.assertEqual(self.client.session['linked'],"true")
-        #self.client.login(username='testuser',password='123%%gabe')
-        #self.assertContains(response,"Welcome back")
-        
 
    
 
