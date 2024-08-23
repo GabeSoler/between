@@ -15,7 +15,7 @@
     <!--Two starting points depending on user authentication-->
         {% if user.is_authenticated%}
         <h2 class="card-title">Hey, {{user.username}}!</h2>
-        <p class="card-text" id="welcome-authenticated">Wellcome back!</p>
+        <p class="card-text" id="welcome-authenticated">Welcome back!</p>
         <p class="card-text">Please explore the site and make it your own. All you do is being saved privately and you can come back to it any time.</p>
         {% else %}
         <h2 class="card-title">Hey{% if user.is_authenticated%}, {{user.username}}{%endif%}!</h2>

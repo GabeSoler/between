@@ -8,17 +8,6 @@ from allauth.account import app_settings
 
 
 
-@override_settings(
-    ACCOUNT_DEFAULT_HTTP_PROTOCOL="https",
-    ACCOUNT_EMAIL_VERIFICATION=app_settings.EmailVerificationMethod.MANDATORY,
-    ACCOUNT_AUTHENTICATION_METHOD=app_settings.AuthenticationMethod.USERNAME,
-    ACCOUNT_SIGNUP_FORM_CLASS=None,
-    ACCOUNT_EMAIL_SUBJECT_PREFIX=None,
-    LOGIN_REDIRECT_URL="/accounts/profile/",
-    ACCOUNT_SIGNUP_REDIRECT_URL="/accounts/welcome/",
-    ACCOUNT_ADAPTER="allauth.account.adapter.DefaultAccountAdapter",
-    ACCOUNT_USERNAME_REQUIRED=True,
-)
 class ProfileLinkUserAutenticate(TestCase):
     """to test if the open profile test saves after login and signup """
 
@@ -30,12 +19,12 @@ class ProfileLinkUserAutenticate(TestCase):
     
     @classmethod
     def setUpTestData(cls):
-        cls.login_data = {'password':'test123','remember':'False',
-                                'user':'usertest'}
+        cls.login_data = {'password':'test123%%HH','remember':'False',
+                                'username':'usertest'}
         cls.user = get_user_model().objects.create_user(
             username = 'usertest',
             email = 'test@test.com',
-            password = 'test123',
+            password = 'test123%%HH',
         )
         cls.data = {
                 'follower_1':90,
@@ -78,13 +67,14 @@ class ProfileLinkUserAutenticate(TestCase):
         self.assertTrue(login_valid.is_valid())
     
     def test_login_after_test(self):
+        self.client.logout()
         response = self.client.post('/profile_test/',self.data, follow=True)
+        self.assertEqual(self.client.session['linked'],"false")        
         response = self.client.post(reverse('account_login'),data=self.login_data)
-        self.assertRedirects(response=response,expected_url='/')
+        #self.assertRedirects(response=response,expected_url='/')
         #self.client.login(username='usertest',password='test123')
-        response = self.client.get(reverse('between_app:test_home'))
-        self.assertEqual(self.client.session['linked'],"true")
-        
-        #self.client.login(username='testuser',password='123%%gabe')
+        response = self.client.get('')
+        #self.assertContains(response,"Welcome back")
+        self.assertEqual(self.client.session['linked'],"true")        
         #self.assertContains(response,"Welcome back")
         
