@@ -1,8 +1,22 @@
 {% extends 'between_app/_base.html' %}
+{% load django_bootstrap5 %}
+{% block title%}
+New Topic
+{% endblock title%}
 
 {%block content%}
-{% load django_bootstrap5 %}
-  <p> Add a new content </p>
+
+
+<div class="card cold-white">
+  <div class="card-header soft-blue">
+  <div class="card-title display-6">New Topic</div>
+</div>
+
+<div class="card-body">
+  <div class="card-title fs-5">Add here a new Topic.</div>
+  <p class="card-subtitle">Then you can add insights to it that will be saved by date.</p>
+
+  {% if user.is_authenticated %}
 
   <form action="{% url 'learning_logs:new_topic' %}" method='post'>
     {% csrf_token %}
@@ -10,9 +24,17 @@
     {% bootstrap_button button_type='submit' content='New Topic' %}
   </form>
 
-  <a href="{% url 'learning_logs:topics' %}" class="card-link">Back to Topic list</a>
+{% else %}
+<div class="alert alert-success" role="alert">
+  Please Sign In before creating a new entry, so we can save it. <a href="{% url 'account_login' %}">Sign In</a>
+</div>
+{% endif %}
+
+<a href="{% url 'learning_logs:topics' %}" class="card-link">Back to Topic list</a>
 <a href="{% url 'learning_logs:index' %}" class="card-link">Back to Journaling</a>
 
+</div>
+</div>
 </br></br>
 {% endblock content %}
 

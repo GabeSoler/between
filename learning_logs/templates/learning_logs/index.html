@@ -11,7 +11,7 @@
 <p class='card-text'>The Journal space helps you keep track of your reflections and deepen your understanding of therapy.</p>
   </div></div>
 
-
+{% if user.is_authenticated%}
 <!--Topics-->
 <div class="card mb-3 border-primary border-1 soft-blue"> 
       <div class="card-body">
@@ -107,9 +107,23 @@
   {% endfor %}
     </ul>
     </br>
+
+
+
     <a class="badge bg-primary p-2 m-2" href={% url 'learning_logs:new_shadow' %}>Add a new shadow journal</a></br>
     <a class="badge bg-primary p-2 m-2" href={% url 'learning_logs:shadows_by_date' %}>See the whole list</a></br>
 
+
+    {% else %}
+
+    <div class="card mb-3 mt-2 border-primary border-3 soft-green"> 
+      <div class="card-body">    
+    <p class='card-text'>After Signing In, you will find a sumary of your different Journal entries.</p>
+      </div></div>
+<div class="alert alert-success" role="alert">
+  Please Sign In before exploring the Journal section so it is personalised for you. <a href="{% url 'account_login' %}">Sign In</a>
+</div>
+    {% endif%}
     </div>
     </div>   
 {% endblock content%}

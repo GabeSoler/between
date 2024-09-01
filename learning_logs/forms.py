@@ -25,13 +25,13 @@ class CreationForm(forms.ModelForm):
     class Meta:
         model = Creation
         fields = ['goal','text_sensation','text_conection','text_metaphore','text_concepts','text_craft','title']
-        labels = {'goal':"Please, write your creation goal before we start (it may change on the way)",
+        labels = {'goal':"Please, write the goal for this creation (it may change on the way)",
                   'text_sensation':'Explore how this goal feels in your body, what comes to your senses, internal and external. Try to write a description of what you have expereinced.',
                   'text_conection':"Now, without losing this feeling, see if you can associate it with people, a group or someone, allow the sensation to guide you. Write down who did you think about.",
-                  'text_metaphore':"Keeping the feelings of the connection now relax your mind and allow your new sensations to guide you into an imaginative space, where metaphore and dream guide your associations. Write it down, maybe in poetic form",
-                  'text_concepts':"After an image has taken place, you can now describe it with words and concepts, and try to make sense of it with your mind. Try writing it down.",
+                  'text_metaphore':"Keeping the feelings of the connection now relax your mind. Come back to your body sensations for a few seconds. Now, observe your sensations, their colours, textures and forms. Relax into this observation and let it take you, to new images, memories or sensations.",
+                  'text_concepts':"After an image, memory or sensation has taken place, you can now describe it with words and concepts bellow. Then as you write, take notes of the ideas that emerge.",
                   'text_craft':"Imagine something you could do with these feelings, images and ideas, something concrete that can combine the different aspects of these journey.",
-                  'title':"Lets end with a title for these piece of work, so you can remember it later (it will appear as a link)"}
+                  'title':"Lets end with a title for reflection, so you can remember it later (it will appear as a title in your list of entries)"}
         widgets = {'text_sensation':forms.Textarea(attrs={'cols':80}),
                    'text_conection':forms.Textarea(attrs={'cols':80}),
                    'text_metaphore':forms.Textarea(attrs={'cols':80}),

@@ -1,14 +1,23 @@
 {% extends 'between_app/_base.html' %}
 
+{% block title%}
+New Question
+{% endblock title%}
+
 {%block content%}
 {% load static %}
 {% load django_bootstrap5 %}
-  <h2> After Session Questions </h2>
-  <a href={% url 'learning_logs:after_answer_date' %}>After session questions</a>
 
-    <p>Press the button to get an after session prompt</p>
-  <div class="card mb-3 bg-light">
-    <div class="card-body">
+
+<div class="card cold-white">
+  <div class="card-header soft-blue">
+  <div class="card-title display-6">After Session Questions</div>
+</div>
+<div class="card-body">
+  <p class="card-title fs-5"> Press the button to get an after session prompt.</p>
+  <p class="card-title">Then if you like it add it as a title of your journal.</p>
+
+
   <div id='questionWidget'>
     <p class='card-text' id='text'><i>Get a question pressing bellow</i></p>
     {% bootstrap_button class='btn button-primary' id='getQuestion' onclick='printQuestion()' content='Get New Questions' %}    
@@ -16,12 +25,19 @@
   </div>
     </div> 
   </div>
+
+  {% if user.is_authenticated %}
 </br>
   <form action="{% url 'learning_logs:new_question' %}" method='post'>
     {% csrf_token %}
     {% bootstrap_form form %}
     {% bootstrap_button button_type='submit' content='Create Topic' %}
   </form>
+{% else %}
+<div class="alert alert-success" role="alert">
+  Please Sign In before writing your entry, so we can save it.<a href="{% url 'account_login' %}">Sign In</a>
+</div>
+  {% endif%}
 
   <a href="{% url 'learning_logs:after_answer_date' %}" class="card-link">Back to Questions list</a>
   <a href="{% url 'learning_logs:index' %}" class="card-link">Back to Journaling</a>

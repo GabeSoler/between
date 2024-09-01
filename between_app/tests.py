@@ -328,3 +328,6 @@ class BigTraditionsTests(TestCase):
         self.assertContains(response,"cybernetic-60%")
 
         """
+
+class IndexWelcomeCards(TestCase):
+    pass

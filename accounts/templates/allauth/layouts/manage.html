@@ -4,6 +4,12 @@
     <div class="flex-grow-1 d-flex flex-row">
         <aside class="col-md-2 text-bg-light">
             <ul class="p-3 nav nav-pills flex-column">
+                <!-- My insert -->
+                    <li class="nav-item">
+                        <a class="nav-link text-primary"
+                           href="{% url 'accounts:account_profile' %}">Your Profile</a>
+                    </li>
+                    <!--Allauth sections-->
                 {% url 'account_email' as email_url %}
                 {% if email_url %}
                     <li class="nav-item">

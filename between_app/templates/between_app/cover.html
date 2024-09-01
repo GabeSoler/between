@@ -3,13 +3,14 @@
 {% load django_bootstrap5%}
 
 
+
 {% block intro %}
 
 <div class="cover-container ms-0 d-flex mx-auto flex-column mb-2"
     style="background-image:url({% static 'between_app/images/crea-cover.png' %});
     background-position:center;
     background-size:cover;
-    height:90vh;
+    height:81vh;
     width:100vw;
     min-height:400px;
     z-index:10;"
@@ -17,19 +18,24 @@
   
     <div class="px-3 ms-4 my-auto">
     {% if user.is_authenticated %}
-    <h1 id="landing-text" class="text-danger">Wellcome back, {{user.username}}!</h1>
+    <h1 id="landing-text" class="text-danger">Welcome back, {{user.username}}!</h1>
       <p class="lead">
         <a href="{% url 'between_app:test_home' %}" class="btn btn-lg btn-secondary fw-bold border-primary bg-primary">See your tests</a>
     {% else %}
-    <h1 id="landing-text" class="text-danger">Creative from theory to practice</h1>
+    <h1 id="landing-text" class="text-danger">Your Journey your Knowledge</h1>
+    <p class="text-light">
+      <i class="bi bi-brush-fill"></i> A creative and modular approach to psychotherapy</p>
         <p class="lead">
           <a href="{% url 'between_app:profile_test' %}" class="btn btn-lg btn-secondary fw-bold border-primary bg-primary">Take a Test</a>
     {% endif %}
     </p>
   </div>
   
+ 
     <div class="mt-auto text-white-50">
-      <p>Check out <a href="creatherapy.com">Gabriel Soler psychotherapy</a></p>
+      <p class="d-inline">Check out <a href="https://www.gabrielsoler.co.uk/">My site</a></p>
+      <a href="#intro-card"><i class="bi bi-arrow-down-short mb-2 text-light position-absolute start-50 fs-4"></i></a>
+
     </div>
   </div>
 

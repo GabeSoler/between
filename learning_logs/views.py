@@ -15,9 +15,10 @@ def check_owner(topic_owner,request_user):
 
 
 
-@login_required
 def index(request):
     """show all topics"""
+    if not request.user.is_authenticated:
+        return render(request,'learning_logs/index.html')
     topics = Topic.objects.filter(owner=request.user).order_by('date_added')[:3]
     questions = AfterJournal.objects.filter(owner=request.user).order_by('date_added')[:3]
     creations = Creation.objects.filter(owner=request.user).order_by('date_added')[:3]
@@ -43,7 +44,6 @@ def topic(request, topic_pk):
     context = {'topic':topic,'entries':entries}
     return render(request,'learning_logs/topic/topic.html',context)
 
-@login_required
 def new_topic(request):
     """add new topic"""
     if request.method !='POST':
@@ -123,7 +123,6 @@ def after_answer_question(request):
     context = {'answers':answers_by_question}
     return render(request,'learning_logs/question/after_by_question.html',context)
 
-@login_required
 def new_question(request):
     """add new question"""
     if request.method !='POST':
@@ -184,7 +183,6 @@ def creation_by_title(request):
     context = {'creations':answers_by_question}
     return render(request,'learning_logs/creating/creation_by_question.html',context)
 
-@login_required
 def new_creation(request):
     """add new Creation"""
     if request.method !='POST':
@@ -247,7 +245,6 @@ def shadow_by_title(request):
     context = {'answers':answers_by_question}
     return render(request,'learning_logs/shadow/shadow_by_question.html',context)
 
-@login_required
 def new_shadow(request):
     """add new question"""
     if request.method !='POST':

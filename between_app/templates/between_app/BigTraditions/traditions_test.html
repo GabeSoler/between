@@ -1,29 +1,44 @@
 {%extends 'between_app/_base.html'%}
 {% load django_bootstrap5 %}
 
-{% block page_header%}
-<h2>Traditions Test </h2>
-
-{% endblock page_header%}
-
-
+{% block title%}
+Traditions Test
+{% endblock title%}
 
 {%block content%}
-<p>This test its to help you analyse your assumptions regarding reality and how learn and act upon the world.</p>
-<p>Through the 20th century there emerged a few strong contenders, which have been continue to evolve and be relevant in our society</p>
-<p>Therapy is also affected by this, and we see different movements associated with them</p>
-<p>Try to imagine that:</p>
-<ul>
-  <li>Bellow 40% is desagreement</li>
-  <li>Between 40% and 60% its neutral</li>
-  <li>Between 60% and 80% its a clear preference</li>
-  <li>Between 80% and 100% its your prefered view</li>
+
+<div class="card cold-white">
+  <div class="card-header soft-blue">
+  <div class="card-title display-6">Traditions Test</div>
+</div>
+  <div class="card-body">
+<p class="card-text">This test its to help you analyse your assumptions regarding reality and how learn and act upon the world.</p>
+<p class="card-text">Through the 20th century there emerged a few strong contenders, which have been continue to evolve and be relevant in our society</p>
+<p class="card-text">Therapy is also affected by this, and we see different movements associated with them</p>
+<p class="card-text">Try to imagine that:</p>
+<ul class="list-group">
+  <li class="list-group-item">Bellow 40% is desagreement</li>
+  <li class="list-group-item">Between 40% and 60% its neutral</li>
+  <li class="list-group-item">Between 60% and 80% its a clear preference</li>
+  <li class="list-group-item">Between 80% and 100% its your prefered view</li>
 </ul>
+
+{% if user.is_authenticated %}
   <form action="{% url 'between_app:traditions_test' %}" method='post'>
     {% csrf_token %}
     {% bootstrap_form form %}
     {% bootstrap_button button_type='submit' content='Submit Profile' %}
   </form>
+{% else %}
+<div class="alert alert-success" role="alert">
+  Please Sign In before taking the test so we can save your results <a href="{% url 'account_login' %}">Sign In</a>
+</div>
+{% endif %}
+
+</div>
+
+</div>
+</div>
 </br>
 </br>
 {% endblock content %}

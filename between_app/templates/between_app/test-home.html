@@ -148,9 +148,12 @@
 <div class="card mb-3 border-primary border-3 soft-green">
     <div class="card-body">
 <h2 class="card-title">Take the Personal Style test</h2>
-<p class='card-text'>Please login to see save and access your results. There are also another three tests and more resources.</p>
+<p class='card-text'>You can take the test and then sign up or login, and still will be saved (only test with that functionality).</p>
+<p class='card-text'>After Signing In, this page will show a summary of your last tests. You always can access a list of all your previous tests.</p>
 <a class="badge bg-primary p-2 m-2" href={% url 'between_app:profile_test' %}>Take the Profile test </a></br>
-
-    </div></div>
+</div></div>
+<div class="alert alert-success" role="alert">
+  Please Sign In to see your tests sumary <a href="{% url 'account_login' %}">Sign In</a>
+</div>
 {% endif %}
   {% endblock content%}

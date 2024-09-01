@@ -135,7 +135,6 @@ def components_detail(request,pk):
 
 
 
-@login_required
 def take_components(request):
     """add new client"""
     if request.method !='POST':
@@ -168,7 +167,6 @@ def big_trad_detail(request,pk):
     return render(request,'between_app/BigTraditions/traditions_detail.html',context)
 
 
-@login_required
 def big_trad_test(request):
     if request.method != 'POST': #Email functionality to the results (making this accesible to non registered users)
         form = BigTradForm()

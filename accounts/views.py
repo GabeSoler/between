@@ -9,7 +9,7 @@ def profile_view(request):
     profile,created_p = CommunityProfile.objects.get_or_create(user=request.user)
     status,created_s = UserStatus.objects.get_or_create(user=request.user)
     context = {'profile':profile,'status':status}
-    return render(request,'templates/account/profile.html',context)
+    return render(request,'profile.html',context)
 
 @login_required
 def community_profile_edit_view(request):
