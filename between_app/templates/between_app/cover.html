@@ -10,7 +10,7 @@
     style="background-image:url({% static 'between_app/images/crea-cover.png' %});
     background-position:center;
     background-size:cover;
-    height:81vh;
+    height:80vh;
     width:100vw;
     min-height:400px;
     z-index:10;"
@@ -18,11 +18,14 @@
   
     <div class="px-3 ms-4 my-auto">
     {% if user.is_authenticated %}
-    <h1 id="landing-text" class="text-danger">Welcome back, {{user.username}}!</h1>
-      <p class="lead">
+    <h1 id="landing-text" class="t-bright-yellow">Welcome back, {{user.username}}!</h1>
+    <p class="text-light">
+      <i class="bi bi-brush-fill"></i> Keep exploring and playing!</p>
+  
+    <p class="lead">
         <a href="{% url 'between_app:test_home' %}" class="btn btn-lg btn-secondary fw-bold border-primary bg-primary">See your tests</a>
     {% else %}
-    <h1 id="landing-text" class="text-danger">Your Journey your Knowledge</h1>
+    <h1 id="landing-text" class="t-bright-yellow">Your Journey your Knowledge</h1>
     <p class="text-light">
       <i class="bi bi-brush-fill"></i> A creative and modular approach to psychotherapy</p>
         <p class="lead">
