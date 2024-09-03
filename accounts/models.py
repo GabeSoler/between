@@ -1,5 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
+from django.contrib.auth import get_user_model
+
 # Create your models here.
 
 class CustomUser(AbstractUser):
@@ -7,14 +9,14 @@ class CustomUser(AbstractUser):
 
 
 class UserStatus(models.Model):
-    user = models.ForeignKey(CustomUser,on_delete=models.CASCADE)
+    """account type ans status"""
+    user = models.ForeignKey(get_user_model(),on_delete=models.CASCADE)
     therapist = models.BooleanField(default=True)
-    client = models.BooleanField(default=True)
     premium = models.BooleanField(default=False)
 
 class CommunityProfile(models.Model):
-    """the name of the author of blog"""
-    user = models.ForeignKey(CustomUser,on_delete=models.CASCADE)
+    """profile to display"""
+    user = models.ForeignKey(get_user_model(),on_delete=models.CASCADE)
     name = models.CharField(max_length=200, default='')
     about = models.TextField(default='')
     def __str__(self):

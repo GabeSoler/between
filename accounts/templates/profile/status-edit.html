@@ -1,0 +1,21 @@
+{% extends 'between_app/_base.html' %}
+{% block title %}Edit Account Status{%endblock title%}
+
+{% block content%}
+{% load django_bootstrap5 %}
+
+
+    <h3>Edit account status </h3>
+    <p>Please mark if you are a therapist using the site, we aim to create two different experiences of the site.</p>
+    <p>We do not have a premium membership at the moment, but we may at some point.</p>
+<form action="{%url 'accounts:edit_status' %}" method='post'>
+    {%csrf_token%}
+    {% bootstrap_form form %}
+    {% bootstrap_button button_type='submit' content='Update' %}
+</form>
+<div class='row'>
+<a href="{% url 'learning_logs:topics' %}" class="card-link col">Back to Topic list</a>
+<a href="{% url 'learning_logs:index' %}" class="card-link col">Back to Journaling</a>
+</div>
+</br></br>
+{%endblock content%}

@@ -2,6 +2,10 @@
 from django.shortcuts import render,redirect
 from .models import CommunityProfile, UserStatus
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth import get_user_model
+from django.http import Http404
+from .forms import UserStatusForm,CommunityProfileForm
+
 
 @login_required
 def profile_view(request):
@@ -13,15 +17,39 @@ def profile_view(request):
 
 @login_required
 def community_profile_edit_view(request):
-    profile = CommunityProfile.objects.get(user=request.user)
-    context = {'profile':profile}
-    return render(request,'templates/profile/account-profile.html',context)
+    profile = CommunityProfile.objects.filter(user=request.user).last()
+    user = request.user
+    if request.method != 'POST':
+        #initial request;pre-fill form with the current entry
+        form = CommunityProfileForm(instance=profile)
+    else:
+        #POST data submitted; process data
+        form = CommunityProfileForm(instance=profile,data=request.POST)
+        if form.is_valid():
+            form.save(commit=False)
+            form.user = user
+            form.save()
+            return redirect('accounts:account_profile')
+    context = {'profile':profile,'form':form}
+    return render(request,'profile/edit-account-profile.html',context)
 
 @login_required
 def user_status_edit_view(request):
-    profile = CommunityProfile.objects.get(user=request.user)
-    context = {'profile':profile}
-    return render(request,'templates/profile/account-profile.html',context)
+    status = UserStatus.objects.filter(user=request.user).last()
+    user = request.user
+    if request.method != 'POST':
+        #initial request;pre-fill form with the current entry
+        form = UserStatusForm(instance=status)
+    else:
+        #POST data submitted; process data
+        form = UserStatusForm(instance=status,data=request.POST)
+        if form.is_valid():
+            form.save(commit=False)
+            form.user = user
+            form.save()            
+            return redirect('accounts:account_profile')
+    context = {'status':status,'form':form}
+    return render(request,'profile/status-edit.html',context)
 
 #example
 '''

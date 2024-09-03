@@ -19,7 +19,7 @@ class ProfileLinkUserAutenticate(TestCase):
     
     @classmethod
     def setUpTestData(cls):
-        cls.login_data = {'password':'test123%%HH','remember':'False',
+        cls.login_data = {'password':'test123%%HH','remember':'t',
                                 'username':'usertest'}
         cls.user = get_user_model().objects.create_user(
             username = 'usertest',
