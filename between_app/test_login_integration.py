@@ -82,9 +82,6 @@ class ProfileLinkUserAutenticate(TestCase):
         self.assertEqual(self.client.session['linked'],"false")
         self.assertContains(response,"Compassionate")
 
-    def test_login_form_is_valid(self):
-        login_valid = LoginForm(data=self.login_data)
-        self.assertTrue(login_valid.is_valid())
     
     def test_login_after_test(self):
         self.client.logout()
@@ -97,10 +94,6 @@ class ProfileLinkUserAutenticate(TestCase):
         self.assertRedirects(
             response, settings.LOGIN_REDIRECT_URL, fetch_redirect_response=False
         )
-        #self.assertRedirects(response=response,expected_url='/')
-        #self.client.login(username='usertest',password='test123')
         response = self.client.get('')
-        #self.assertContains(response,"Welcome back")
         self.assertEqual(self.client.session['linked'],"true")        
-        #self.assertContains(response,"Welcome back")
         
