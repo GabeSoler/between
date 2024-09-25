@@ -27,6 +27,7 @@
             <h4 class="card-title">Account Status</h4>
             <p class="card-text">Tell us if you are a therapist or a client. In the future we may do things different depeending on this.</p>
             <p class="card-text">Currently all accounts have access to the whole site. Please consider <a href="https://buymeacoffee.com/creatherapy">buying me a coffee</a> to keep the project going. </p>
+            <script type="text/javascript" src="https://cdnjs.buymeacoffee.com/1.0.0/button.prod.min.js" data-name="bmc-button" data-slug="CreaTherapy" data-color="#FFDD00" data-emoji="☕"  data-font="Cookie" data-text="Buy me a coffee" data-outline-color="#000000" data-font-color="#000000" data-coffee-color="#ffffff" ></script>
             <table class="table table-striped">
             <tr>
                 <th>User type:</th><td>{{status.therapist|yesno:"Therapist,Client"}}</td>
@@ -35,7 +36,6 @@
             </tr>
         </table>
             <a href="{% url 'accounts:edit_status' %}">Edit account status</a>
-
         </div>
     </div>
     
