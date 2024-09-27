@@ -27,13 +27,16 @@ class AccountsConfig(AppConfig):
                 request.session["linked_error"] = error_text
                 print(error_text) # for checking your logs
 
+
         @receiver(user_signed_up)
         def user_signed_up(request, user, **kwargs):
             """function to be applied after signup so if there is a test made before it is attached to the user"""
-            save_form_after_log(request,user,PersonalStyle,**kwargs)
+            if request.session["form_pk"]:
+                save_form_after_log(request,user,PersonalStyle,**kwargs)
 
         @receiver(user_logged_in)
         def user_logged_in(request, user, **kwargs):
             """function to be applied after login so if there is a test made before it is attached to the user"""
-            save_form_after_log(request,user,PersonalStyle,**kwargs)
+            if request.session["form_pk"]:  
+                save_form_after_log(request,user,PersonalStyle,**kwargs)
         
