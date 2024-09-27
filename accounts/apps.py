@@ -22,6 +22,7 @@ class AccountsConfig(AppConfig):
                 print("form linked to user") # For checking your logs
                 request.session['linked'] = "true" #for testing
             except Exception as e:
+                request.session["form_pk"] = "error"
                 print(f"failed to link user because: {e}") # for checking your logs
 
         @receiver(user_signed_up)
