@@ -4,8 +4,6 @@ from django.contrib.auth import get_user_model
 from .forms import StyleForm
 from django.conf import settings
 
-from allauth.account.forms import LoginForm
-from allauth import utils
 from django.test.utils import override_settings
 from allauth.account import app_settings
 from allauth.account.models import EmailAddress

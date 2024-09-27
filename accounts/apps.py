@@ -12,6 +12,7 @@ class AccountsConfig(AppConfig):
         import uuid
 
         def save_form_after_log(request,user,model,**kwargs):
+            """Base function for adding pk to form after auth"""
             try:
                 form_pk = request.session["form_pk"]
                 form_pk = uuid.UUID(form_pk)
