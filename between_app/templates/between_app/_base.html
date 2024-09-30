@@ -6,6 +6,7 @@
     <title>{%block title%}CreaTherapy{%endblock title%}</title>
 
     {% load django_bootstrap5 %}
+    {% load url_utils %}
     {% bootstrap_css %}
     {% bootstrap_javascript %}
     {% load static %}
@@ -49,16 +50,21 @@
         <div class='collapse navbar-collapse' id='navbarCollapse'>
             <ul class='navbar-nav me-auto mb2 mb-md-0'> <!-- 'me' refers to left, and 'ms' to right -->
                 <li class='nav-item'>
-                    <a class='nav-link t-burnt-yellow' href="{% url 'between_app:test_home' %}">
+                    <a class='nav-link t-burnt-yellow {% if request.path|url_section:1 == '/tests/' %}active{% endif %}' 
+                    aria-current="page"      
+                    href="{% url 'between_app:test_home' %}">
                         My Tests</a></li>
                 <li class='nav-item'>
-                    <a class='nav-link t-burnt-yellow' href="{% url 'learning_logs:index' %}">
+                    <a class='nav-link t-burnt-yellow {% if request.path|url_section:1 == '/learning/' %}active{% endif %}' 
+                          href="{% url 'learning_logs:index' %}">
                         My Journal</a></li>
                 <li class='nav-item'>
-                    <a class='nav-link t-burnt-yellow' href="{% url 'pages:index' %}">
+                    <a class='nav-link t-burnt-yellow {% if request.path|url_section:1 == '/pages/' %}active{% endif %}' 
+                          href="{% url 'pages:index' %}">
                         Theory</a></li>
                 <li class='nav-item'>
-                  <a class='nav-link t-burnt-yellow' href="{% url 'techniques_app:index' %}">
+                  <a class='nav-link t-burnt-yellow {% if request.path|url_section:1 == '/techniques/' %}active{% endif %}' 
+                        href="{% url 'techniques_app:index' %}">
                       Techniques</a></li>
             </ul><!-- End of links on left side of nvbar -->
             <!-- Account related links-->
@@ -131,6 +137,7 @@
 
 
 </footer>
+<script src="{%static 'js/boots.js' %}"></script>
 </body>
 </html>
 
