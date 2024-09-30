@@ -3,6 +3,7 @@ from django.urls import reverse, reverse_lazy
 from django.contrib.auth import get_user_model
 from .forms import StyleForm
 from django.conf import settings
+from asgiref.sync import sync_to_async
 
 from django.test.utils import override_settings
 from allauth.account import app_settings

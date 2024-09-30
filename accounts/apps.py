@@ -11,6 +11,8 @@ class AccountsConfig(AppConfig):
         from between_app.models import PersonalStyle
         import uuid
 
+
+
         def save_form_after_log(request,user,model,**kwargs):
             """Base function for adding pk to form after auth"""
             try:
