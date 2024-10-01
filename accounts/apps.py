@@ -11,34 +11,39 @@ class AccountsConfig(AppConfig):
         from between_app.models import PersonalStyle
         import uuid
 
+        async def save_user(model,form_pk,user):
+            form = model.objects.aget(pk=form_pk)
+            form.user = user
+            form.save()
 
-
-        def save_form_after_log(request,user,model,**kwargs):
+        async def save_form_after_log(request,user,model,**kwargs)->str:
             """Base function for adding pk to form after auth"""
+            session = request.session
+            form_pk = session['form_pk']
+            form_pk = uuid.UUID(form_pk)
+            linked = session['linked']
+            linked = 'processing'
             try:
-                form_pk = request.session["form_pk"]
-                form_pk = uuid.UUID(form_pk)
-                form = model.objects.get(pk=form_pk)
-                form.user = user
-                form.save()
-                print("form linked to user") # For checking your logs
-                request.session['linked'] = "true" #for testing
+                await save_user(model,form_pk,user)
             except Exception as e:
                 request.session["linked"] = "error"
                 error_text = f"failed to link user because: {e}"
-                request.session["linked_error"] = error_text
+                linked = error_text
                 print(error_text) # for checking your logs
-
+            else:
+                print("form linked to user") # For checking your logs
+                linked = "true" #for testing
+            return linked
 
         @receiver(user_signed_up)
-        def user_signed_up(request, user, **kwargs):
+        async def user_signed_up(request, user, **kwargs):
             """function to be applied after signup so if there is a test made before it is attached to the user"""
             if request.session["form_pk"]:
-                save_form_after_log(request,user,PersonalStyle,**kwargs)
+                await save_form_after_log(request,user,PersonalStyle,**kwargs)
 
         @receiver(user_logged_in)
-        def user_logged_in(request, user, **kwargs):
+        async def user_logged_in(request, user, **kwargs):
             """function to be applied after login so if there is a test made before it is attached to the user"""
             if request.session["form_pk"]:  
-                save_form_after_log(request,user,PersonalStyle,**kwargs)
+                await save_form_after_log(request,user,PersonalStyle,**kwargs)
         
