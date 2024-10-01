@@ -93,7 +93,7 @@ class PersonalStyleTests(TestCase):
         self.client.login(username = 'usertest',
         email = 'test@test.com',
         password = 'test123',)
-        response = self.client.get(f'/results/{self.profile.pk}/', follow=True)
+        response = self.client.get(f'/tests/results/{self.profile.pk}/', follow=True)
         no_response = self.client.get('between/123')
         self.assertEqual(response.status_code,200)
         self.assertEqual(no_response.status_code,404)
@@ -189,7 +189,7 @@ class ComponentsTests(TestCase):
         self.client.login(username = 'usertest',
             email = 'test@test.com',
             password = 'test123')
-        response = self.client.get(f"/components_detail/{self.profile.pk}/")
+        response = self.client.get(f"/tests/components_detail/{self.profile.pk}/")
         no_response = self.client.get('between/123')
         self.assertEqual(response.status_code,200)
         self.assertEqual(no_response.status_code,404)
@@ -246,7 +246,7 @@ class ComponentsTests(TestCase):
         self.assertFalse(form_invalid.is_valid())
         form_valid = ComponentsForm(data=data)
         self.assertTrue(form_valid.is_valid())
-        response = self.client.post('/components_test/',data, follow=True)
+        response = self.client.post('/tests/components_test/',data, follow=True)
         self.assertEqual(response.status_code,200)
         self.assertContains(response,"philosophy-2%")
         

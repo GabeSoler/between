@@ -1,7 +1,7 @@
 from django.test import TestCase,Client
 from django.urls import reverse, reverse_lazy
 from django.contrib.auth import get_user_model
-from .forms import StyleForm
+from between_app.forms import StyleForm
 from django.conf import settings
 from asgiref.sync import sync_to_async
 
@@ -77,22 +77,25 @@ class ProfileLinkUserAutenticate(TestCase):
         self.assertTrue(form_valid.is_valid())
     
     def test_post_form(self):
-        response = self.client.post('/profile_test/',self.data, follow=True)
+        response = self.client.post('/tests/profile_test/',self.data, follow=True)
         self.assertEqual(self.client.session['linked'],"false")
         self.assertContains(response,"Compassionate")
 
     
     def test_login_after_test(self):
         self.client.logout()
-        response = self.client.post('/profile_test/',self.data, follow=True)
-        self.assertEqual(self.client.session['linked'],"false")        
-        response = self.client.post(
-            reverse("account_login"),
-            self.login_data,
-        )        
+        response = self.client.post('/tests/profile_test/',self.data, follow=True)
+        self.assertEqual(self.client.session['linked'],"false")
+        with self.captureOnCommitCallbacks(execute=True) as callbacks: 
+            response = self.client.post(
+                reverse("account_login"),
+                self.login_data,
+                )
+        #self.assertEqual(len(callbacks), 1)
         self.assertRedirects(
             response, settings.LOGIN_REDIRECT_URL, fetch_redirect_response=False
-        )
+            )
         response = self.client.get('')
+        self.assertNotEqual(self.client.session['linked'],"error")
         self.assertEqual(self.client.session['linked'],"true")        
         
