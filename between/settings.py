@@ -270,7 +270,7 @@ AUTHENTICATION_BACKENDS = [
 
 TESTING = "test" in sys.argv
 
-if not TESTING:
+if not TESTING and not DEBUG:
     INSTALLED_APPS = [
         *INSTALLED_APPS,
         "debug_toolbar",
