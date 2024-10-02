@@ -14,7 +14,7 @@ from pathlib import Path
 import os
 from decouple import config
 import dj_database_url
-
+import sys
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -28,7 +28,6 @@ SECRET_KEY = config('SECRET_KEY')
 
 
 IS_HEROKU_APP = "DYNO" in os.environ and not "CI" in os.environ
-
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = config('DEBUG', default=False, cast=bool)
@@ -57,7 +56,6 @@ INSTALLED_APPS = [
     'allauth.socialaccount', #the social account sytem 
     'allauth.socialaccount.providers.apple', #apple social account
     'allauth.socialaccount.providers.google', #google social account
-
     "whitenoise.runserver_nostatic", #white noise, static files manager
 
 #django apps added
@@ -267,3 +265,21 @@ AUTHENTICATION_BACKENDS = [
     'allauth.account.auth_backends.AuthenticationBackend',
 ]
 
+
+# Debug Tool bar
+
+TESTING = "test" in sys.argv
+
+if not TESTING:
+    INSTALLED_APPS = [
+        *INSTALLED_APPS,
+        "debug_toolbar",
+    ]
+    MIDDLEWARE = [
+        "debug_toolbar.middleware.DebugToolbarMiddleware",
+        *MIDDLEWARE,
+    ]
+
+INTERNAL_IPS = [
+    "127.0.0.1",
+]
