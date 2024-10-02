@@ -54,7 +54,7 @@ INSTALLED_APPS = [
     'allauth',
     'allauth.account', #authorisations
     'allauth.socialaccount', #the social account sytem 
-    'allauth.socialaccount.providers.apple', #apple social account
+    #'allauth.socialaccount.providers.apple', #apple social account
     'allauth.socialaccount.providers.google', #google social account
     "whitenoise.runserver_nostatic", #white noise, static files manager
 
