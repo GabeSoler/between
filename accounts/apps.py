@@ -20,13 +20,10 @@ class AccountsConfig(AppConfig):
             """Base function for adding pk to form after auth"""
             form_pk = request.session['form_pk']
             form_pk = uuid.UUID(form_pk)
-            request.session['linked'] = "processing"
             try:
                 save_user(model,form_pk,user)
             except Exception as e:
-                request.session['linked'] = "error"
                 error_text = f"failed to link user because: {e}"
-                request.session['link_error'] = error_text
                 print(error_text) # for checking your logs
             else:
                 print("form linked to user") # For checking your logs
