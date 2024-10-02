@@ -31,3 +31,15 @@
 
 
 {%endblock content%}
+
+{% block extra_body %}
+{% if user.is_authenticated == False %}
+<div class="alert alert-info display-5 mx-3 mt-3" role="alert">
+    Signup for Free to get full access. <a class="alert-link" href="{% url 'account_signup' %}">Signup here.</a>
+  </div>
+{% else %}
+<div class="alert alert-secondary display-5 mx-3 mt-3" role="alert">
+    Update your community profile. <a class="alert-link" href="{% url 'accounts:edit_profile' %}">Update here.</a>
+  </div>
+{% endif %}
+{% endblock extra_body %}
