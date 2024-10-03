@@ -67,15 +67,14 @@ def take_profile_test(request):
         form = StyleForm(data=request.POST)
         if form.is_valid():
             new = form.save(commit=False)
+            pk = new.pk
             if request.user.is_authenticated:
                 user = request.user
                 new.user = user
-                new.save()
             else:
-                pk = new.pk
                 request.session['form_pk'] = str(pk)
                 request.session['linked'] = "false"
-                new.save()
+            new.save()
             return redirect('between_app:results',pk)
     #display a blank or invalid form
     context = {'form':form}
