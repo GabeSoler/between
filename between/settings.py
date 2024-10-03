@@ -15,6 +15,8 @@ import os
 from decouple import config
 import dj_database_url
 import sys
+import sentry_sdk
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -283,3 +285,16 @@ if not TESTING and DEBUG==True:
 INTERNAL_IPS = [
     "127.0.0.1",
 ]
+
+# Sentry
+
+sentry_sdk.init(
+    dsn="https://f57392aad1371157da17ab47a01ec465@o4508058171473920.ingest.de.sentry.io/4508058172915792",
+    # Set traces_sample_rate to 1.0 to capture 100%
+    # of transactions for tracing.
+    traces_sample_rate=1.0,
+    # Set profiles_sample_rate to 1.0 to profile 100%
+    # of sampled transactions.
+    # We recommend adjusting this value in production.
+    profiles_sample_rate=1.0,
+)
