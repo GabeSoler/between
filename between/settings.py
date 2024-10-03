@@ -288,26 +288,26 @@ INTERNAL_IPS = [
 
 # Sentry
 if IS_HEROKU_APP: # I am separating configurations to slow the rates depending of the app. 
-    if 'DATABASE_URL' in os.environ:
-        dsn=config('SENTRY_DSN'),
-        traces_sample_rate = 1.0
-        profiles_sample_rate=1.0
+    if 'DATABASE_URL' in os.environ: # heroku main deployment
+        dsn_conf=config('SENTRY_DSN')
+        traces_sample_rate_conf=1.0
+        profiles_sample_rate_conf=1.0
     else:    
-        dsn=config('SENTRY_DSN'),
-        traces_sample_rate = 0.3
-        profiles_sample_rate=0.3
+        dsn_conf=config('SENTRY_DSN') # heroku staging deployment
+        traces_sample_rate_conf=0.3
+        profiles_sample_rate_conf=0.3
 else:
-    dsn=config('SENTRY_DSN'),
-    traces_sample_rate = 1.0
-    profiles_sample_rate=1.0
+    dsn_conf=config('SENTRY_DSN') # local config
+    traces_sample_rate_conf=1.0
+    profiles_sample_rate_conf=1.0
 
 sentry_sdk.init(
-    dsn=dsn,
+    dsn=dsn_conf,
     # Set traces_sample_rate to 1.0 to capture 100%
     # of transactions for tracing.
-    traces_sample_rate=traces_sample_rate,
+    traces_sample_rate=traces_sample_rate_conf,
     # Set profiles_sample_rate to 1.0 to profile 100%
     # of sampled transactions.
     # We recommend adjusting this value in production.
-    profiles_sample_rate=profiles_sample_rate,
+    profiles_sample_rate=profiles_sample_rate_conf,
 )
