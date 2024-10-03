@@ -24,8 +24,6 @@ from django.contrib.sitemaps.views import sitemap
 from decouple import config
 
 
-def trigger_error(request):
-    division_by_zero = 1 / 0
 
 urlpatterns = [
     path(config('ADMIN_URL'), admin.site.urls),
@@ -48,7 +46,6 @@ urlpatterns = [
         {"sitemaps": {"flatpages": FlatPageSitemap}},
         name="django.contrib.sitemaps.views.sitemap",
         ),
-    path('sentry-debug/', trigger_error),
 
     ]+ static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
