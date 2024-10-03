@@ -71,6 +71,7 @@ def take_profile_test(request):
             if request.user.is_authenticated:
                 user = request.user
                 new.user = user
+                request.session['linked'] = "true"
             else:
                 request.session['form_pk'] = str(pk)
                 request.session['linked'] = "false"

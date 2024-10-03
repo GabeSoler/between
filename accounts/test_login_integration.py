@@ -99,3 +99,18 @@ class ProfileLinkUserAutenticate(TestCase):
         self.assertNotEqual(self.client.session['linked'],"error")
         self.assertEqual(self.client.session['linked'],"true")        
         
+    def test_login_before_test(self):
+        self.client.logout()
+        with self.captureOnCommitCallbacks(execute=True) as callbacks: 
+            response = self.client.post(
+                reverse("account_login"),
+                self.login_data,
+                )
+        #self.assertEqual(len(callbacks), 1)
+        self.assertRedirects(
+            response, settings.LOGIN_REDIRECT_URL, fetch_redirect_response=False
+            )
+        response = self.client.post('/tests/profile_test/',self.data, follow=True)
+        self.assertEqual(self.client.session['linked'],"true")
+        self.assertNotEqual(self.client.session['linked'],"error")
+        
