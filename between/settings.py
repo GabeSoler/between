@@ -288,10 +288,14 @@ INTERNAL_IPS = [
 
 # Sentry
 if IS_HEROKU_APP: # I am separating configurations to slow the rates depending of the app. 
-    dsn=config('SENTRY_DSN'),
-    traces_sample_rate = 1.0
-    profiles_sample_rate=1.0
-    # add if 'database' to create one for the production app
+    if 'DATABASE_URL' in os.environ:
+        dsn=config('SENTRY_DSN'),
+        traces_sample_rate = 1.0
+        profiles_sample_rate=1.0
+    else:    
+        dsn=config('SENTRY_DSN'),
+        traces_sample_rate = 0.3
+        profiles_sample_rate=0.3
 else:
     dsn=config('SENTRY_DSN'),
     traces_sample_rate = 1.0
