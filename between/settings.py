@@ -287,14 +287,23 @@ INTERNAL_IPS = [
 ]
 
 # Sentry
+if IS_HEROKU_APP: # I am separating configurations to slow the rates depending of the app. 
+    dsn=config('SENTRY_DSN'),
+    traces_sample_rate = 1.0
+    profiles_sample_rate=1.0
+    # add if 'database' to create one for the production app
+else:
+    dsn=config('SENTRY_DSN'),
+    traces_sample_rate = 1.0
+    profiles_sample_rate=1.0
 
 sentry_sdk.init(
-    dsn="https://f57392aad1371157da17ab47a01ec465@o4508058171473920.ingest.de.sentry.io/4508058172915792",
+    dsn=dsn,
     # Set traces_sample_rate to 1.0 to capture 100%
     # of transactions for tracing.
-    traces_sample_rate=1.0,
+    traces_sample_rate=traces_sample_rate,
     # Set profiles_sample_rate to 1.0 to profile 100%
     # of sampled transactions.
     # We recommend adjusting this value in production.
-    profiles_sample_rate=1.0,
+    profiles_sample_rate=profiles_sample_rate,
 )
