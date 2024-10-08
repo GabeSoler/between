@@ -8,7 +8,7 @@
 
 <div class='card px-3 mt-2 mb-4 soft-orange border-3 border-primary rounded-3'  style='max-width: 1000px;'>
     <div class='container-fluid py-4'>
-        <h1 class='display-5'>The Tecniques Space</h1>
+        <h1 class='display-5'>The Techniques Space</h1>
         <p class='lead'>This is a space to write your own ways of working with components</p>
         <p class='card-text'>You can opt to share and see the insight of others</p>
         {% if user.is_authenticated%}
@@ -20,7 +20,7 @@
 
 {% if user.is_authenticated %} 
 <div class='card border-primary border-2 soft-green'>
-    <h3 class='card-title ps-3'>My Techniques list</h3>
+    <h3 class='card-title ps-3 mt-3'>My Techniques list</h3>
     <a class="badge bg-primary p-2 m-2" href={% url 'techniques_app:new_technique' %}>Add a new technique </a>
 <ul class='list-group list-group-flush boder-bottom pb-2 mb-4'>
 {%for tech in techniques %}

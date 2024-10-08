@@ -6,7 +6,7 @@
 {% load django_bootstrap5 %}
 
 
-    <h3>Edit account profile</h3>
+    <h3 class='bt-3'>Edit account profile</h3>
 <form action="{%url 'accounts:edit_profile' %}" method='post'>
     {%csrf_token%}
     {% bootstrap_form form %}

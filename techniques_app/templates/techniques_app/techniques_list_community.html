@@ -2,11 +2,11 @@
 
 {% block title %}Public Techniques {% endblock title %}
 
-{% block page_header%}
-<h2>List of Public Tecniques</h2>
-{% endblock page_header %}
 
 {%block content%}
+
+<h2 class='mt-3'>List of Public Techniques</h2>
+
 {% if component %}
 <h3>Component: {{component.name|title}}</h3>
 {% endif%}
@@ -21,9 +21,7 @@
         {%endfor%}
         </ul>
 {% if user.is_authenticated %}
-    <ul>
-        <li><a class='badge bg-primary p-2 m-2' href="{%url 'techniques_app:new_technique' %}">Add new tecnique</a></li>
-</ul>
+<a class='badge bg-primary p-2 m-2 mb-5' href="{%url 'techniques_app:new_technique' %}">Add new tecnique</a>
 </div>
 {% endif %}
 {%endblock content%}

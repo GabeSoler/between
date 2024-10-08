@@ -1,8 +1,9 @@
 from django.shortcuts import render,redirect
-from .models import Technique,Component, TechSaved
+from .models import Technique,Component,TechSaved
 from .forms import TechniqueForm
 from django.contrib.auth.decorators import login_required
 from .forms import TechniqueForm
+from accounts.models import CommunityProfile
 
 #Global views
 def index(request):
@@ -52,7 +53,7 @@ def techniques_long_community(request): #Full list of techniques
 def technique(request, tch_pk):
     technique = Technique.objects.get(id=tch_pk)
     try:    
-        author_info = technique.user__comunity_profile
+        author_info = CommunityProfile.objects.get(user=request.user)
     except:
         author_info = ''
     context = {'technique':technique,'author_info':author_info}
