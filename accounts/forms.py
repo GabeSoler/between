@@ -1,7 +1,7 @@
 
 from django.contrib.auth import get_user_model
 from django.contrib.auth.forms import UserCreationForm,UserChangeForm
-from .models import CommunityProfile,UserStatus
+from .models import CommunityProfile,UserStatus,DeleteAccount
 from django import forms
 
 class CustomUserCreationForm(UserCreationForm):
@@ -37,3 +37,18 @@ class UserStatusForm(forms.ModelForm):
             "therapist":"Are you a therapist?",
             "premium":"Access premium"
         }
+
+class DeleteAccountForm(forms.ModelForm):
+    """a form before deleting account"""
+    class Meta:
+        model = DeleteAccount
+        fields = ('reason','confirm')
+        labels = {
+            'reason':'Please select a reason',
+            'confirm':'Please confirm delete, all your data will be erased'
+        }
+        widgets = {
+            'reason':forms.RadioSelect,
+            'confirm':forms.CheckboxInput,
+        }
+        

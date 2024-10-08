@@ -21,4 +21,16 @@ class CommunityProfile(models.Model):
     about = models.TextField(default='')
     def __str__(self):
         return self.name
-    
+
+REASONS = [
+    ("inter", "No interested"),
+    ("use", "Interested but not using it"),
+    ("no", "No reasons"),
+    ("info", "Worried for my privacy"),
+    ("fit", "Theory does not fit me"),
+]
+
+class DeleteAccount(models.Model):
+    """leave trace of deleted accounts"""
+    reason = models.CharField(max_length=20, choices=REASONS, default='')
+    confirm = models.BooleanField()

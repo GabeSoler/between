@@ -1,11 +1,10 @@
 """Views from Accounts creation Learning Logs"""
 from django.shortcuts import render,redirect
-from .models import CommunityProfile, UserStatus
+from .models import CommunityProfile, UserStatus,DeleteAccount
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import get_user_model
 from django.http import Http404
-from .forms import UserStatusForm,CommunityProfileForm
-
+from .forms import UserStatusForm,CommunityProfileForm,DeleteAccountForm
 
 @login_required
 def profile_view(request):
@@ -50,6 +49,21 @@ def user_status_edit_view(request):
             return redirect('accounts:account_profile')
     context = {'status':status,'form':form}
     return render(request,'profile/status-edit.html',context)
+
+def delete_account_view(request):
+    user = request.user
+    if request.method != 'POST':
+        form = DeleteAccountForm()
+    else:
+        form = DeleteAccountForm(data=request.POST)
+        if form.is_valid():
+            form.save()
+            if form['confirm'] == True:
+                user.delete()
+                return redirect('between_app:index')
+    context = {'form':form}
+    return render(request,'profile/delete.html',context)
+
 
 #example
 '''

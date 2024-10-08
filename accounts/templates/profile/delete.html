@@ -1,0 +1,16 @@
+{% extends 'between_app/_base.html' %}
+{% block title %}Delete Account{%endblock title%}
+{% load django_bootstrap5 %}
+
+{% block content%}
+<h1>Confirm Deleting your Account</h1>
+<p>Please help us with a little feedback before you leave</p>
+
+<form action="{% url 'accounts:delete_account' %}" method='post'>
+    {% csrf_token %}
+    {% bootstrap_form form %}
+    {% bootstrap_button button_type='submit' button_class='btn-danger' content='Delete Account' %}
+  </form>
+
+{% endblock content %}
+

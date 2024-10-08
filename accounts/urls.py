@@ -15,4 +15,6 @@ urlpatterns = [
                                                                         #i need to add link in the manage.py file and extend it too
     path("edit_profile/", views.community_profile_edit_view, name='edit_profile'),
     path("edit_status/", views.user_status_edit_view, name='edit_status'),
+    path("delete_account/", views.delete_account_view, name='delete_account'),
+
 ]
