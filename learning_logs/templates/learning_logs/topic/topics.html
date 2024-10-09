@@ -2,7 +2,27 @@
 
 {% block content %}
 
-<p>Topics</p>
+<div class="card">
+  <div class="card-header">Topics:</div>
+  <div class="card-body">
+    <ul>
+      {% for topic in topics %}
+        <li> 
+            <a href="{% url 'learning_logs:topic' topic.pk %}">
+            {{topic.text}} </a></li>
+            </li>
+      {% empty %}
+        <li> No topics have been added yet </li>
+      {% endfor %}
+    
+    </ul>  </div>
+    <a href="{% url 'learning_logs:new_topic'%}">Add a new topic</a>
+
+
+<a href="{% url 'learning_logs:index' %}" class="card-link">Back to Journaling</a>
+
+</div>
+
 
 <ul>
   {% for topic in topics %}

@@ -16,9 +16,7 @@
 {%endfor%}
 </ul>
 {% if user.is_authenticated %}
-    <ul>
-        <li><a href="{%url 'techniques_app:techniques_long_community' %}">See more community techniques</a></li>
-</ul>
+ <a href="{%url 'techniques_app:techniques_long_community' %}" class='m-3 mt-1'>See more community techniques</a>
 {% endif %}
 </div>
 {%endblock content%}

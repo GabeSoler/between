@@ -2,9 +2,6 @@
 {% load django_bootstrap5 %}
 {% block title %}Technique{% endblock title %}
 
-{% block page_header %}
-<div class='card soft-orange border-3 border-primary'><div class='card-title'> {{technique.name|title}}</div></div>
-{% endblock page_header %}
 
 
 
@@ -12,9 +9,10 @@
 
 <div class='card mb-3 border-2 border-primary'>
     <div class='card-body soft-green '>
+        <div class='card-title display-6'> {{technique.name|title}}</div>
     <p class='fw-bold'>Component:<a class='card-link text-primary' href="{%url 'techniques_app:techniques_short_community' technique.component.pk %}">{{technique.component|title}}</a></p>
 <p class='card-subtitle mb-2 text-muted'>{{technique.date_made}}</p>
-<p calss='card-text mb-2 fst-italic'>Author: {{author_info.name|title}}</p>
+<p calss='card-text mb-2 fst-italic'><b>Author:</b> <a href="{% url 'techniques_app:author_list' technique.pk %}">{{author_info.name|title}}</a></p>
 <p class='card-subtitle fw-bold'>Description:</p>
 <p class='card-text'>{{technique.text}}</p>
 <p class='card-subtitle fw-bold'>Notes:</p>

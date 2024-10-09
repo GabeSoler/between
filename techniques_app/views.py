@@ -4,6 +4,7 @@ from .forms import TechniqueForm
 from django.contrib.auth.decorators import login_required
 from .forms import TechniqueForm
 from accounts.models import CommunityProfile
+from django.contrib.auth import get_user_model
 
 #Global views
 def index(request):
@@ -14,7 +15,7 @@ def index(request):
     return render(request,'techniques_app/index.html')
 
 @login_required
-def saved_techniques(request):
+def saved_techniques_view(request):
     try:
         tech_saved = TechSaved.objects.get(user=request.user).saved.all().order_by('name')
     except:
@@ -25,7 +26,7 @@ def saved_techniques(request):
 
 
 
-def group_list_community(request): #Components list to organise the techniques
+def group_list_community_view(request): #Components list to organise the techniques
     subjective = Component.objects.filter(group='subj')
     extended = Component.objects.filter(group='ext')
     contextual = Component.objects.filter(group='contx')
@@ -38,19 +39,19 @@ def group_list_community(request): #Components list to organise the techniques
 
 
 
-def techniques_short_community(request,comp_id): #List organised by component
+def techniques_short_community_view(request,comp_id): #List organised by component
     technique = Technique.objects.filter(share=True).filter(component=comp_id).order_by('-date_made')
     component = Component.objects.get(pk=comp_id)
     context = {'technique':technique, 'component':component}
     return render(request,'techniques_app/techniques_list_community.html',context)
 
-def techniques_long_community(request): #Full list of techniques
+def techniques_long_community_view(request): #Full list of techniques
     technique = Technique.objects.filter(share=True).order_by('-date_made')
     context = {'technique':technique}
     return render(request,'techniques_app/techniques_list_community.html',context)
 
 
-def technique(request, tch_pk):
+def technique_view(request, tch_pk):
     technique = Technique.objects.get(id=tch_pk)
     try:    
         author_info = CommunityProfile.objects.get(user=request.user)
@@ -59,6 +60,16 @@ def technique(request, tch_pk):
     context = {'technique':technique,'author_info':author_info}
     return render(request,'techniques_app/technique.html',context)
 
+def author_techniques_view(request,tch_pk): #List organised by author
+    technique_origin = Technique.objects.get(pk=tch_pk)
+    try:
+        author_info = CommunityProfile.objects.get(user=technique_origin.user)
+    except:
+        author_info = {'name':"(not filled)",'about':"(not filled)"}
+    techniques = Technique.objects.filter(user=technique_origin.user).filter(share=True).order_by('-date_made')
+    context = {'techniques':techniques, 'author_info':author_info}
+    return render(request,'techniques_app/techniques_list_by_user.html',context)
+
 
 #CRUD section, where you can edit insde the site (not admin)
 
@@ -66,7 +77,7 @@ def technique(request, tch_pk):
 #Views
 
 @login_required
-def new_technique(request):
+def new_technique_view(request):
     user_id = request.user
     if request.method !='POST':
         form = TechniqueForm
@@ -83,7 +94,7 @@ def new_technique(request):
     return render(request,'techniques_app/new_technique.html',context)
 
 @login_required
-def edit_technique(request,tch_pk):
+def edit_technique_view(request,tch_pk):
     technique = Technique.objects.get(pk=tch_pk)
     if request.method != 'POST':
         #request pre-filled with current entry
@@ -102,14 +113,14 @@ def edit_technique(request,tch_pk):
 
 
 @login_required
-def save_technique(request,tch_pk):
+def save_technique_view(request,tch_pk):
     user = request.user
     if request.method !='POST':
         return redirect('techniques_app:technique',tch_pk)
     else:
         tech_save,created = TechSaved.objects.get_or_create(user=user)
         if created:
-            tech_save.saved = tch_pk
+            tech_save.saved.add() == tch_pk
         else:
             tech_save.saved.add(tch_pk)
         tech_save.save()
@@ -117,7 +128,7 @@ def save_technique(request,tch_pk):
 
         
 @login_required
-def delete_technique(request,tch_pk):
+def delete_technique_view(request,tch_pk):
     user_id = request.user
     if request.method !='POST':
         context = {'tech_pk':tch_pk}

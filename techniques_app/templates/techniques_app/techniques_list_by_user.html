@@ -1,0 +1,25 @@
+{% extends 'between_app/_base.html' %}
+{% block title %}User Techniques{% endblock title %}
+<!--Receives two functions, with different lists of techniques, one with compnent tittle one with all of them-->
+
+{%block content%}
+
+<div class='card mt-2 mb-3 border-3 border-primary col-10'>
+   <div class='card-heading p-3 soft-orange border-bottom border-primary rounded'>
+        <h2 class='mt-2 display-5'>Techniques by: {{author_info.name}}</h2>
+        <p><b>About:</b> {{author_info.about}}</p>
+   </div>
+   <div class='card-body soft-green'>
+        <ul class='list-group pb-2 mb-4'>
+        {%for tech in techniques %}
+        <li class='list-group-item boder-1'><a class='link-secondary' href="{%url 'techniques_app:technique' tech.pk %}">{{tech|title}}</a>: "{{tech.text|slice:":50"}}..."</li>
+        {%empty%}
+        <li>No tecniques added yet</li>
+        {%endfor%}
+        </ul>
+{% if user.is_authenticated %}
+<a class='badge bg-primary p-2 m-2 mb-5' href="{%url 'techniques_app:new_technique' %}">Add new tecnique</a>
+</div>
+</div>
+{% endif %}
+{%endblock content%}

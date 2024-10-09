@@ -296,18 +296,16 @@ if IS_HEROKU_APP: # I am separating configurations to slow the rates depending o
         dsn_conf=config('SENTRY_DSN') # heroku staging deployment
         traces_sample_rate_conf=0.3
         profiles_sample_rate_conf=0.3
-else:
-    dsn_conf=config('SENTRY_DSN') # local config
-    traces_sample_rate_conf=1.0
-    profiles_sample_rate_conf=1.0
 
-sentry_sdk.init(
-    dsn=dsn_conf,
-    # Set traces_sample_rate to 1.0 to capture 100%
-    # of transactions for tracing.
-    traces_sample_rate=traces_sample_rate_conf,
-    # Set profiles_sample_rate to 1.0 to profile 100%
-    # of sampled transactions.
-    # We recommend adjusting this value in production.
-    profiles_sample_rate=profiles_sample_rate_conf,
-)
+
+if DEBUG == False:
+    sentry_sdk.init(
+        dsn=dsn_conf,
+        # Set traces_sample_rate to 1.0 to capture 100%
+        # of transactions for tracing.
+        traces_sample_rate=traces_sample_rate_conf,
+        # Set profiles_sample_rate to 1.0 to profile 100%
+        # of sampled transactions.
+        # We recommend adjusting this value in production.
+        profiles_sample_rate=profiles_sample_rate_conf,
+    )
