@@ -28,11 +28,11 @@ urlpatterns = [
     #Detail page for a single answer
     path('after_answer/<uuid:question_pk>/', views.question_item, name='question_item'),
     #questions by andser
-    path('after_answer/<uuid:topic_pk>/', views.after_answer_question, name='after_answer_question'),
+    path('after_answer_by_question/', views.after_answer_question, name='after_answer_question'),
     #page adding an after session question
     path('new_question/',views.new_question,name='new_question'),
     #page for editing an entry
-    path('edit_question/<uuid:entry_pk>/',views.edit_question,name='edit_question'),
+    path('edit_question/<uuid:question_pk>/',views.edit_question,name='edit_question'),
     
 
 #creating CRUD

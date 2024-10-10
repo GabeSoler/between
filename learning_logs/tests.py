@@ -95,6 +95,46 @@ class TestAfterJournal(TestCase):
         self.client.login(username = 'usertest',
             password = 'test123')    
 
+    def test_topic_entry_creation(self):
+        topic = AfterJournal.objects.get(pk=self.after_journal.id)
+        self.assertEqual(topic.text,"I am a text")    
+
+    def test_question_item_rendering(self):
+        self.setup()
+        response = self.client.get(f'/learning/after_answer/{self.after_journal.id}/')
+        self.assertEqual(response.status_code,200)
+        self.assertContains(response,self.after_journal.question)
+        self.assertTemplateUsed(response,'learning_logs/question/question_item.html')
+  
+    def test_after_answer_date_rendering(self):
+        self.setup()
+        response = self.client.get(reverse('learning_logs:after_answer_date'))
+        self.assertEqual(response.status_code,200)
+        self.assertContains(response,"After Session Questions List")
+        self.assertTemplateUsed(response,'learning_logs/question/after_by_date.html')
+
+    def test_after_answer_question_rendering(self):
+        self.setup()
+        response = self.client.get(reverse('learning_logs:after_answer_question'))
+        self.assertEqual(response.status_code,200)
+        self.assertContains(response,"After Session Questions List-By question")
+        self.assertTemplateUsed(response,'learning_logs/question/after_by_question.html')
+   
+    def test_new_question_rendering(self):
+        self.setup()
+        response = self.client.get(f'/learning/new_question/')
+        self.assertEqual(response.status_code,200)
+        self.assertContains(response,"Create an After Session Entry:")
+        self.assertTemplateUsed(response,'learning_logs/question/create_Question.html')
+
+    def test_edit_entry_rendering(self):
+        self.setup()
+        response = self.client.get(f'/learning/edit_question/{self.after_journal.id}/')
+        self.assertEqual(response.status_code,200)
+        self.assertContains(response,"Edit Entry")
+        self.assertTemplateUsed(response,'learning_logs/question/edit_Question.html')
+
+
 class TestCreation(TestCase):
 
     @classmethod

@@ -1,24 +1,24 @@
 {% extends 'between_app/_base.html' %}
 {% block title%}{{question.title}}{%endblock title%}
 
-{% block page_header %}{{question.title}}{% endblock page_header%}
-
 {% block content %}
-<div class="card" style="width: 18rem;">
-    <div class="card-body">
-      <h5 class="card-title">{{question.question}}</h5>
-      <h6 class="card-subtitle mb-2 text-body-secondary">My question: {{question.date_added|date}}</h6>
-      <Goal class="card-text">My answer: {{question.text}} </P>
-      <a href="{% url 'learning_logs:edit_question' question.pk %}" class="card-link">Edit</a></br>
-      <a href="{% url 'learning_logs:after_answer_date' %}" class="card-link">Back to question</a>
-      <a href="{% url 'learning_logs:index' %}" class="card-link">Back to Journaling</a>
-    </div>
+<div class="card cold-white mt-3 mb-4">
+
+  <div class="card-header fs-4 soft-blue">{{question.question}}</div>
+
+  <div class="card-body">
+    <div class="card-subtitle mb-2 text-body-secondary">{{question.date_added|date}}
+    <small><a href="{%url 'learning_logs:edit_question' question.pk %}">
+      Edit entry</a></small></div>
+    <div class="card-text">{{question.text}}</P>
+    
+      <div class="card-footer">
+    <a href="{% url 'learning_logs:after_answer_date' %}" class="card-link">Back to question list</a>
+    <a href="{% url 'learning_logs:index' %}" class="card-link">Back to Journaling</a>
   </div>
-
-  <a href="{% url 'learning_logs:answer_by_date' %}" class="card-link">Back to Questions list</a>
-  <a href="{% url 'learning_logs:index' %}" class="card-link">Back to Journaling</a>
-
-</br></br>
+</div>
+</div>
+</div>
 
 
 {%endblock content%}

@@ -11,7 +11,7 @@ New Question
 
 <div class="card cold-white">
   <div class="card-header soft-blue">
-  <div class="card-title display-6">After Session Questions</div>
+  <div class="card-title display-6">Create an After Session Entry:</div>
 </div>
 <div class="card-body">
   <p class="card-title fs-5"> Press the button to get an after session prompt.</p>
@@ -31,7 +31,7 @@ New Question
   <form action="{% url 'learning_logs:new_question' %}" method='post'>
     {% csrf_token %}
     {% bootstrap_form form %}
-    {% bootstrap_button button_type='submit' content='Create Topic' %}
+    {% bootstrap_button button_type='submit' content='Create Question Entry' %}
   </form>
 {% else %}
 <div class="alert alert-success" role="alert">

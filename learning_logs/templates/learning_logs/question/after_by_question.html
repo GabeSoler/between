@@ -2,32 +2,35 @@
 
 {% block content %}
 
-  <p>Question: {{answers.question}} </p>
 
-  <p>Entries </p>
-  <p>
-    <a href="{%url 'learning_logs:new_question'%}">Add new question reflexion</a>
-  </p>
 
-  <ul>
-    {% for answer in answers%}
-      <li>
-        <p>{{answer.question|title}} </p>
-        <p>{{answer.date_added|date:'M d,Y H:i'}} </p>
-        <p>{{answer.text|linebreaks}}</p>
-        <p><a href="{%url 'learning_logs:edit_question' question.pk %}">
-          Edit entry</a></p>
-      </li>
 
-      {% empty %}
-      <li>There are no entries for this topic yet. </li>
-    </ul>
-    {% endfor %}
-
-    <a href="{% url 'learning_logs:answer_by_date' %}" class="card-link">Back to Questions list</a>
+<div class="card mt-2 mb-3 cold-white">
+  <div class="card-header display-6 soft-blue">After Session Questions List-By question:</div>
+  <div class="card-body">
+    <div class="card-text">
+      <ul>
+        {% for answer in answers%}
+        <li>
+          <p class="fs-6"><i>{{answer.question|title}}</i> 
+            <small><a href="{%url 'learning_logs:question_item' answer.pk %}">
+              Open</a> -
+              <a href="{%url 'learning_logs:edit_question' answer.pk %}">
+              Edit entry</a></small></p>
+          <p>{{answer.text|linebreaks}}
+          </p>
+          </li>
+          
+          {% empty %}
+          <li>There are no questions yet. </li>
+        </ul>
+        {% endfor %}
+        <a href="{%url 'learning_logs:new_question'%}">Add new reflexion</a>
+  </div></div>
+  <div class="card-footer">
+    <a href="{% url 'learning_logs:after_answer_date' %}" class="card-link">Back to Questions list</a>
     <a href="{% url 'learning_logs:index' %}" class="card-link">Back to Journaling</a>
-  
-  </br></br>
+  </div>
+</div>
   
 {% endblock content %}
-  </ul>

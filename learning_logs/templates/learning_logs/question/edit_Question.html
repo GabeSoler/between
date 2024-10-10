@@ -1,19 +1,27 @@
 {% extends 'between_app/_base.html' %}
 {% block content %}
 {% load django_bootstrap5 %}
-<p><a href="{% url 'learning_logs:index'%}">{{topic}}</a></p>
 
-<p>Edit Entry</p>
 
-<form action="{%url 'learning_logs:edit_question' question.pk %}" method='post'>
-    {% csrf_token %}
-    {% bootstrap_form form %}
-    {% bootstrap_button button_type='submit' content='Update Answer' %}
-</form>
-<a href="{% url 'learning_logs:answer_by_date' %}" class="card-link">Back to Questions list</a>
+<div class="card mt-2 mb-3 cold-white">
+    <div class="card-header display-6 soft-blue"><a href="{% url 'learning_logs:question_item' question.pk%}">{{question}}</a></div>
+    <div class="card-body">
+    <div class="card-title display-6">Edit Entry</div>
+
+    <div class="card-text"><a href="{%url 'learning_logs:new_question'%}">Add new reflexion</a></div>
+  
+
+
+    <form action="{%url 'learning_logs:edit_question' question.pk %}" method='post'>
+        {% csrf_token %}
+        {% bootstrap_form form %}
+        {% bootstrap_button button_type='submit' content='Update Answer' %}
+    </form>
+    <div class="card-footer">
+<a href="{% url 'learning_logs:after_answer_date' %}" class="card-link">Back to Questions list</a>
 <a href="{% url 'learning_logs:index' %}" class="card-link">Back to Journaling</a>
-
-</br></br>
-
+    </div>
+</div>
+</div>
 
 {%endblock content%}
