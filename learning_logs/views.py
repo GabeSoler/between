@@ -178,10 +178,10 @@ def creation_by_date(request):
 
 @login_required
 def creation_by_title(request):
-    """show all answers by question"""
-    answers_by_question = Creation.objects.filter(owner=request.user).order_by('question','date_added')
-    context = {'creations':answers_by_question}
-    return render(request,'learning_logs/creating/creation_by_question.html',context)
+    """show all creations by title"""
+    by_title = Creation.objects.filter(owner=request.user).order_by('title','date_added')
+    context = {'creations':by_title}
+    return render(request,'learning_logs/creating/creation_by_title.html',context)
 
 def new_creation(request):
     """add new Creation"""

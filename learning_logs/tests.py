@@ -160,6 +160,48 @@ class TestCreation(TestCase):
         self.client.login(username = 'usertest',
             password = 'test123')    
 
+
+    def test_topic_entry_creation(self):
+        topic = Creation.objects.get(pk=self.creation.id)
+        self.assertEqual(topic.title,"a title")    
+
+    def test_creation_item_rendering(self):
+        self.setup()
+        response = self.client.get(f'/learning/creation/{self.creation.id}/')
+        self.assertEqual(response.status_code,200)
+        self.assertContains(response,self.creation.title)
+        self.assertTemplateUsed(response,'learning_logs/creating/creation_item.html')
+  
+    def test_creations_by_date_date_rendering(self):
+        self.setup()
+        response = self.client.get(reverse('learning_logs:creations_by_date'))
+        self.assertEqual(response.status_code,200)
+        self.assertContains(response,self.creation.title)
+        self.assertTemplateUsed(response,'learning_logs/creating/creation_by_date.html')
+
+    def test_creations_by_title_rendering(self):
+        self.setup()
+        response = self.client.get(reverse('learning_logs:creations_by_title'))
+        self.assertEqual(response.status_code,200)
+        self.assertContains(response,self.creation.title.title())
+        self.assertTemplateUsed(response,'learning_logs/creating/creation_by_title.html')
+   
+    def test_new_creation_rendering(self):
+        self.setup()
+        response = self.client.get(f'/learning/new_creation/')
+        self.assertEqual(response.status_code,200)
+        self.assertContains(response,"A guided creative reflection:")
+        self.assertTemplateUsed(response,'learning_logs/creating/create_reflection.html')
+
+    def test_edit_entry_rendering(self):
+        self.setup()
+        response = self.client.get(f'/learning/edit_creation/{self.creation.pk}/')
+        self.assertEqual(response.status_code,200)
+        self.assertContains(response,"Edit Creation")
+        self.assertTemplateUsed(response,'learning_logs/creating/edit_creation.html')
+
+
+
 class TestShadow(TestCase):
 
     @classmethod

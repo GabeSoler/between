@@ -4,27 +4,60 @@
 {% block page_header %}{{creations.title}}{% endblock page_header%}
 
 {% block content %}
-<div class="card" style="width: 18rem;">
+<div class="card cold-white mt-3 mb-4">
+  <h5 class="card-header display-6 soft-blue">{{creations.title}}</h5>
     <div class="card-body">
-      <h5 class="card-title">{{creations.title}}</h5>
-      <h6 class="card-subtitle mb-2 text-body-secondary">{{creations.date_added|date}}</h6>
-      <Goal class="card-text">Goal of the exploration: {{creations.goal}} </P>
-      <My class="card-text">My sensations: {{creations.text_sensation}} </p>
-      <My class="card-text">My connections: {{creations.text_conection}}</p>
-      <p class="card-text">My metaphoric space: {{creations.text_metaphore}}  </p>
-      <p class="card-text">My Concepts: {{creations.text_concepts}}</p>
-      <p class="card-text">My craft idea: {{creations.text_craft}}</p>
-      <a href="{% url 'learning_logs:edit_creation' creations.pk %}" class="card-link">Edit</a></br>
-      <a href="{% url 'learning_logs:creations_by_date' %}" class="card-link">Back to Creations</a></br>
+      <div class="card-subtitle mb-2 text-body-secondary">{{creations.date_added|date}}
+        <small><a href="{%url 'learning_logs:edit_creation' creations.pk %}">
+          Edit entry</a></small>
+      </div>
+    <div class="card border-1 border-primary">
+      <div class="card-header soft-green">Goal of the exploration:  </div>
+      <div class="card-body">
+      <div class="card-text">{{creations.goal}}</div>
+      </div>
+    </div>
+
+    <div class="card mt-3 border-1 border-primary">
+      <div class="card-header soft-orange">My sensations:</div>
+      <div class="card-body">
+      <div class="card-text">{{creations.text_sensation}}</div>
+      </div>
+    </div>
+
+    <div class="card mt-3 border-1 border-primary">
+      <div class="card-header soft-green">My connections:</div>
+      <div class="card-body">
+      <div class="card-text">{{creations.text_conection}}</div>
+      </div>
+    </div>
+    <div class="card mt-3 border-1 border-primary">
+      <div class="card-header soft-orange">My metaphoric space:</div>
+      <div class="card-body">
+      <div class="card-text">{{creations.text_metaphore}}</div>
+      </div>
+    </div>
+    <div class="card mt-3 border-1 border-primary">
+      <div class="card-header soft-green">My Concepts:</div>
+      <div class="card-body">
+      <div class="card-text">{{creations.text_concepts}}</div>
+      </div>
+    </div>
+
+    <div class="card mt-3 border-1 border-primary">
+      <div class="card-header soft-orange">My craft idea:</div>
+      <div class="card-body">
+      <div class="card-text">{{creations.text_craft}}</div>
+      </div>
+    </div>
+
+ 
+<div class="card-footer">
+      <a href="{% url 'learning_logs:creations_by_date' %}" class="card-link">Back to Creations</a>
       <a href="{% url 'learning_logs:index' %}" class="card-link">Back to Journal</a>
     </div>
   </div>
-
-  <a href="{% url 'learning_logs:creation_by_date' %}" class="card-link">Back to Creations list</a>
-<a href="{% url 'learning_logs:index' %}" class="card-link">Back to Journaling</a>
-
-</br></br>
-
+</div>
 
 
 {%endblock content%}

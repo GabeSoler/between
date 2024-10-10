@@ -10,7 +10,7 @@
     <div class="card-subtitle mb-2 text-body-secondary">{{question.date_added|date}}
     <small><a href="{%url 'learning_logs:edit_question' question.pk %}">
       Edit entry</a></small></div>
-    <div class="card-text">{{question.text}}</P>
+    <div class="card-text bg-white rounded border-1 border-primary">{{question.text}}</div>
     
       <div class="card-footer">
     <a href="{% url 'learning_logs:after_answer_date' %}" class="card-link">Back to question list</a>

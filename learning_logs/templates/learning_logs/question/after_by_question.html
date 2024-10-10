@@ -9,9 +9,9 @@
   <div class="card-header display-6 soft-blue">After Session Questions List-By question:</div>
   <div class="card-body">
     <div class="card-text">
-      <ul>
+      <ul class="list-group">
         {% for answer in answers%}
-        <li>
+        <li class="list-group-item">
           <p class="fs-6"><i>{{answer.question|title}}</i> 
             <small><a href="{%url 'learning_logs:question_item' answer.pk %}">
               Open</a> -

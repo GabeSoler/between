@@ -10,9 +10,9 @@
   <div class="card-body">
   <div class="card-text"><a href="{%url 'learning_logs:new_question'%}">Add new reflexion</a></div>
 
-    <ul>
+    <ul class="list-group">
       {% for answer in answers%}
-        <li>
+        <li class="list-group-item bg-bright">
           <p>{{answer.date_added|date:'M d,Y H:i'}} - 
             <small><a href="{%url 'learning_logs:question_item' answer.pk %}">
             Open</a> -
