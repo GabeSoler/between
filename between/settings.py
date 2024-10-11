@@ -50,6 +50,7 @@ INSTALLED_APPS = [
     'accounts.apps.AccountsConfig',
     'pages',
     'techniques_app',
+    'dive_app',
 
     #third party apps
     'django_bootstrap5', #css framework

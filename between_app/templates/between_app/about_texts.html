@@ -1,48 +1,57 @@
 <div class="row">
     <!--card one: Tests functions -->
-    <div class="col-md-4 ml-1 mt-1">
-        <div class="card shadow border-primary border-3 cold-white  rounded">
+    <div class="col-md-6 ml-1 mt-1">
+        <div class="card shadow border-primary border-3 cold-white rounded  h-100">
             <div class="card-body">
                 <h3 class="card-title">Profile tests</h3>
-                <p class="card-text">The profile tests help you track your changes as a therapist by asking questions and tracking differnt entries.</p>
+                <p class="card-text">The profile tests help you track your changes as a therapis.</p>
                 <p class="card-text">
-                    <i class="bi bi-person-arms-up"></i><b>Personal Profile:</b> Your positions about care, your path interest and the tension individuation/tradition. <a href="{% url 'between_app:profile_test' %}">Try</a> (no sign in required).</p>
+                    <i class="bi bi-person-arms-up"></i><b>Personal Profile:</b> Your positions about care. <a href="{% url 'between_app:profile_test' %}">Try</a> (no sign in required).</p>
                 <p class="card-text">
-                    <i class="bi bi-bricks"></i><b> Components:</b> Clarify your areas of interest and expertise and create a profile of knowledge. <a href="{% url 'between_app:components_test' %}">Try.</a></p>
+                    <i class="bi bi-bricks"></i><b> Components:</b> Clarify your areas of interest and expertise. <a href="{% url 'between_app:components_test' %}">Try.</a></p>
                 <p class="card-text">
-                    <i class="bi bi-map"></i> <b>Big Traditions:</b> Explore your philosophycal assumptions and different perspectives of reality and knoledge. <a href="{% url 'between_app:traditions_test' %}">Try.</a></p>
+                    <i class="bi bi-map"></i> <b>Big Traditions:</b> Explore your philosophycal assumptions. <a href="{% url 'between_app:traditions_test' %}">Try.</a></p>
             </div>
         </div>
     </div>
     <!--card two: Journal functions-->
-    <div class="col-md-4 ml-1 mt-1">
-        <div class="card shadow border-primary border-3 cold-white  rounded">
+    <div class="col-md-6 ml-1 mt-1">
+        <div class="card shadow border-primary border-3 cold-white rounded  h-100">
             <div class="card-body">
                 <h3 class="card-title">Journal prompts</h3>
-                <p class="card-text">Record your reflections, and use our prompts.</p>
+                <p class="card-text">Create Topics and record your reflections.</p>
                 <p class="card-text">
-                    <i class="bi bi-highlighter"></i> <b>Learning Log:</b> create topics and log your insights. <a href="{% url 'learning_logs:new_topic' %}">Try.</a></p>
+                    <i class="bi bi-highlighter"></i> <b>Learning Log:</b> create topics and log your insights. A space for you to narrate your learning and keep track of ideas. <a href="{% url 'learning_logs:new_topic' %}">Try.</a></p>
                 <p class="card-text">
-                    <i class="bi bi-patch-question"></i> <b>After Session questions:</b> a random question for reflection after a therapy session.  <a href="{% url 'learning_logs:new_question' %}">Try.</a></p>
-                <p class="card-text">
-                    <i class="bi bi-brush"></i> <b>Creative prompt:</b> a step by step prompt for a creative process.  <a href="{% url 'learning_logs:new_creation' %}">Try.</a></p>
-                <p class="card-text">
-                    <i class="bi bi-shadows"></i> <b>Shadow:</b> prompts to reflect on your triggers in therapy.  <a href="{% url 'learning_logs:new_shadow' %}">Try.</a></p>
-            </div>
+                    <i class="bi bi-patch-question"></i> <b>After Session questions:</b> a series of question to help you deeper your insight after a therapy session (delves in multiple modalities).  <a href="{% url 'learning_logs:new_question' %}">Try.</a></p>            </div>
         </div>
     </div>
     <!--card three: Techniques functions-->
-    <div class="col-md-4 ml-1 mt-1">
-        <div class="card shadow border-primary border-3 cold-white  rounded">
+    <div class="col-md-6 ml-1 mt-1">
+        <div class="card shadow border-primary border-3 cold-white rounded  h-100">
             <div class="card-body">
                 <h3 class="card-title">Techniques Space</h3>
                 <p class="card-text">To help you record and share your insights in therapy.</p>
                 <p class="card-text">
                     <i class="bi bi-box"></i> <b>Personal repository:</b> for you to keep and change over time.  <a href="{% url 'techniques_app:new_technique' %}">Try.</a></p>
-                <p class="card-text">
-                    <i class="bi bi-boxes"></i> <b>Public repository:</b> to share and read other people's insights.  <a href="{% url 'techniques_app:components_list' %}">Try.</a></p>
+                    <p class="card-text">
+                        <i class="bi bi-boxes"></i> <b>Public repository:</b> to share and read other people's insights.  <a href="{% url 'techniques_app:components_list' %}">Try.</a></p>
+                    </div>
+                </div>
             </div>
-        </div>
-    </div>
+    <!-- Dive card -->
+            <div class="col-md-6 ml-1 mt-1">
+                <div class="card shadow border-primary border-3 cold-white rounded  h-100">
+                    <div class="card-body">
+                        <h3 class="card-title">Dive</h3>
+                        <p class="card-text">Dive into CreaTherapy approach to grow as a therapist.</p>
+                        <p class="card-text">
+                            <i class="bi bi-brush"></i> <b>Creative prompt:</b> a step by step prompt for a creative process.  <a href="{% url 'dive_app:new_creation' %}">Try.</a></p>
+                        <p class="card-text">
+                            <i class="bi bi-shadows"></i> <b>Shadow:</b> prompts to reflect on your triggers in therapy.  <a href="{% url 'dive_app:new_shadow' %}">Try.</a></p>
+                    </div>
+                </div>
+            </div>
 
-</div>
+        </div>
+        

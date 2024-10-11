@@ -63,57 +63,6 @@
     </div>
 
 
-<div class="card mb-3 border-primary border-1 soft-blue"> <!-- Creations -->
-  <div class="card-body">
-
-  <h2 class='card-title'>Creation journal</h2>
-
-  <ul class='list-group'>
-  {% for creation in creations %}
-    <li class='list-group-item warm-white'> 
-        <a class='link-secondary' href="{% url 'learning_logs:creation_item' creation.pk %}">
-        {{creation.title}}</a>
-        <p class='list-inline-item'>: <small>{{creation.date_added|date}}</small></p>
-
-      </li>
-  
-  {% empty %}
-    <li class='list-group-item'> No entries have been added yet </li>
-  {% endfor %}
-    </ul>
-    </br>
-    <a class="badge bg-primary p-2 m-2" href={% url 'learning_logs:new_creation' %}>Add a new creation</a></br>
-    <a class="badge bg-primary p-2 m-2" href={% url 'learning_logs:creations_by_date' %}>See list</a></br>
-    </div>
-    </div>
-
- 
-<div class="card mb-3 border-primary border-1 soft-blue"> <!-- Shadow -->
-  <div class="card-body">
-
-  <h2 class='card-title'>Shadow Journal</h2>
-
-  <ul class='list-group'>
-  {% for shadow in shadows %}
-    <li class='list-group-item warm-white'> 
-        <a class='link-secondary' href="{% url 'learning_logs:shadow_item' shadow.pk %}">
-        {{shadow.title}} </a>
-        <p class='list-inline-item'>: <small>{{shadow.date_added|date}}</small></p>
-
-      </li>
-      
-  {% empty %}
-    <li class='list-group-item'> No entries have been added yet </li>
-  {% endfor %}
-    </ul>
-    </br>
-
-
-
-    <a class="badge bg-primary p-2 m-2" href={% url 'learning_logs:new_shadow' %}>Add a new shadow journal</a></br>
-    <a class="badge bg-primary p-2 m-2" href={% url 'learning_logs:shadows_by_date' %}>See the whole list</a></br>
-
-
     {% else %}
 
     <div class="card mb-3 mt-2 border-primary border-3 soft-green"> 

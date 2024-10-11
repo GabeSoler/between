@@ -1,0 +1,21 @@
+{% extends 'between_app/_base.html' %}
+{% block content %}
+{% load django_bootstrap5 %}
+<p><a href="{% url 'dive_app:index' %}">{{topic}}</a></p>
+
+<p>Edit Entry</p>
+
+<form action="{%url 'dive_app:edit_shadow' shadow.pk %}" method='post'>
+    {% csrf_token %}
+    {% bootstrap_form form %}
+    {% bootstrap_button button_type='submit' content='Update Answer' %}
+</form>
+</br>
+
+<a href="{% url 'dive_app:after_answer_date' %}" class="card-link">Back to Shadow list</a></br>
+<a href="{% url 'dive_app:index' %}" class="card-link">Back to Journaling</a>
+</br>
+</br>
+
+
+{%endblock content%}

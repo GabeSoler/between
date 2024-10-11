@@ -1,0 +1,38 @@
+{% extends 'between_app/_base.html' %}
+
+{% block content %}
+
+
+
+<div class="card mt-2 mb-3 cold-white">
+  <div class="card-header display-6 soft-blue">Creations by Title:</div>
+  <div class="card-body">
+  <div class="card-text"><a href="{%url 'dive_app:new_creation'%}">Add new Creation</a></div>
+
+
+  <ul class='list-group'>
+    {% for creation in creations%}
+
+        <li class="list-group-item">
+          <p class="fs-6"><i>{{creation.title|title}}</i> - 
+            <small><a href="{%url 'dive_app:creation_item' creation.pk %}">
+              Open</a> -
+              <a href="{%url 'dive_app:edit_creation' creation.pk %}">
+              Edit entry</a></small></p>
+          <p>{{creation.goal|linebreaks}}
+          </p>
+          </li>
+
+      {% empty %}
+      <li class="list-group-item">There are no entries for Creations yet.</li>
+    </ul>
+    {% endfor %}
+<div class="card-footer">
+    <a href="{% url 'dive_app:creations_by_date' %}" class="card-link">Back to Creations list</a>
+    <a href="{% url 'dive_app:index' %}" class="card-link">Back to Journaling</a>
+  
+</div>
+</div>
+</div>
+
+{% endblock content %}

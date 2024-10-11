@@ -1,0 +1,32 @@
+{% extends 'between_app/_base.html' %}
+
+{% block content %}
+
+  <p>Question: {{answers.question}} </p>
+
+  <p>Entries </p>
+  <p>
+    <a href="{%url 'dive_app:new_question'%}">Add new question reflexion</a>
+  </p>
+
+  <ul>
+    {% for answer in answers%}
+      <li>
+        <p>{{answer.question|title}} </p>
+        <p>{{answer.date_added|date:'M d,Y H:i'}} </p>
+        <p>{{answer.text|linebreaks}}</p>
+        <p><a href="{%url 'dive_app:edit_entry' entry.id %}">
+          Edit entry</a></p>
+      </li>
+
+      {% empty %}
+      <li>There are no entries for this topic yet. </li>
+    </ul>
+    {% endfor %}
+
+  <a href="{% url 'dive_app:shadow_by_date' %}" class="card-link">Back to Shadow list</a>
+  <a href="{% url 'dive_app:index' %}" class="card-link">Back to Journaling</a>
+
+</br></br>
+{% endblock content %}
+  </ul>
