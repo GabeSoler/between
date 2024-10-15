@@ -21,6 +21,7 @@ class CustomUserChangeForm(UserChangeForm):
         )
 
 class CommunityProfileForm(forms.ModelForm):
+    """ Form to display information in the techniques app """
     class Meta:    
         model = CommunityProfile
         fields = ('name','about')
@@ -30,12 +31,17 @@ class CommunityProfileForm(forms.ModelForm):
         }
 
 class UserStatusForm(forms.ModelForm):
+    """Form for describing user types"""
     class Meta:    
         model = UserStatus
-        fields = ('therapist','premium')
+        fields = ('user_type','diver')
         labels = {
-            "therapist":"Are you a therapist?",
-            "premium":"Access premium"
+            "user_type":"tell us which type of user you are",
+            "diver":"Open Dive section"
+        }
+        widgets = {
+            'user_type':forms.RadioSelect,
+            'dive':forms.CheckboxInput,
         }
 
 class DeleteAccountForm(forms.ModelForm):
