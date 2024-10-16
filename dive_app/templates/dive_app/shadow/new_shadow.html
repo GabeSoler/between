@@ -8,14 +8,18 @@ Shadow Entry
 {% load django_bootstrap5 %}
 
 
-<div class="card cold-white">
+<div class="card cold-white mt-3 mb-3">
   <div class="card-header soft-blue">
   <div class="card-title display-6">Shadow Reflections</div>
 </div>
   <div class="card-body">
-<p class="card-title">This prompt helps you to think about areas outside your awareness.</p>
-<p class="card-title">Please take a moment to reflect on them.</p>
+<p class="card-title">This prompt helps you to think about areas outside your awareness. This prompts are not easy and may be triggering.
+  Their aim is to be unconfortable and to help you go a bit further in your self knoledge.
+</p>
+ <p>Please, do not push yourself, and do not explore things you don't feel you cannot handle.</p>
+<p class="card-title border-bottom mb-4">Take a moment to reflect on them.</p>
 
+<h5><i class="bi bi-shadows"></i> Shadow Dive:</h5>
 {% if user.is_authenticated %}
 
   <form action="{% url 'dive_app:new_shadow' %}" method='post'>

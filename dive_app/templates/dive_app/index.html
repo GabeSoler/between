@@ -9,6 +9,23 @@
 <h2 class='card-title'>Dive In</h2>
 
 <p class='card-text'>This section is to explore more deeply CreaTherapy as a therapeutic approach.</p>
+
+{% if not perms.accounts.can_dive %}
+<div
+    class="alert alert-warning alert-dismissible fade show"
+    role="alert"
+>
+    <button
+        type="button"
+        class="btn-close"
+        data-bs-dismiss="alert"
+        aria-label="Close"
+    ></button>
+
+    <strong>Still not a Diver?</strong> Press any section to activate a full access.
+</div>
+{% endif%}
+
   </div></div>
 
 {% if user.is_authenticated%}

@@ -3,7 +3,9 @@ from django.test import TestCase,Client
 from django.urls import reverse
 from django.contrib.auth import get_user_model
 from .models import Creation,Shadow
+from accounts.models import UserStatus
 
+#todo Test and review Shadow
 
 class TestCreation(TestCase):
 
@@ -25,50 +27,70 @@ class TestCreation(TestCase):
             text_concepts = "content",
             text_craft = "content",
         )
+        cls.user_status = UserStatus.objects.create(
+            user=cls.user,
+            therapist=False,
+            diver=False,
+        )
+        cls.user_status_data = {'therapist':True,'diver':True}
     def setup(self):
-        self.client = Client() 
         self.client.login(username = 'usertest',
-            password = 'test123')    
+            password = 'test123')
+        
+    def add_diver(self,response):
+        response = self.client.post(reverse('accounts:edit_status'),self.user_status_data, follow=True)
+        return response
 
-
-    def test_topic_entry_creation(self):
+    def test_creation_object_creation(self):
         topic = Creation.objects.get(pk=self.creation.id)
         self.assertEqual(topic.title,"a title")    
 
-    def test_creation_item_rendering(self):
+    def test_creation_item_rendering_permissions(self):
+        response = self.client.get(f'/dive/creation/{self.creation.id}/')
+        self.assertRedirects(response,f'/accounts/login/?next=/dive/creation/{self.creation.pk}/',302) #needs to be sign in
         self.setup()
-        response = self.client.get(f'/learning/creation/{self.creation.id}/')
-        self.assertEqual(response.status_code,200)
+        response = self.client.get(f'/dive/creation/{self.creation.id}/')
+        self.assertRedirects(response,f'/accounts/edit_status/?next=/dive/creation/{self.creation.pk}/',302) #needs to have permissions
+        response = self.add_diver(response)
+        response = self.client.get(f'/dive/creation/{self.creation.id}/')
         self.assertContains(response,self.creation.title)
-        self.assertTemplateUsed(response,'learning_logs/creating/creation_item.html')
+        self.assertTemplateUsed(response,'dive_app/creating/creation_item.html')
   
     def test_creations_by_date_date_rendering(self):
+        response = self.client.get(reverse('dive_app:index'))
         self.setup()
-        response = self.client.get(reverse('learning_logs:creations_by_date'))
+        response = self.add_diver(response)
+        response = self.client.get(reverse('dive_app:creations_by_date'))
         self.assertEqual(response.status_code,200)
         self.assertContains(response,self.creation.title)
-        self.assertTemplateUsed(response,'learning_logs/creating/creation_by_date.html')
+        self.assertTemplateUsed(response,'dive_app/creating/creation_by_date.html')
 
     def test_creations_by_title_rendering(self):
+        response = self.client.get(reverse('dive_app:index'))
         self.setup()
-        response = self.client.get(reverse('learning_logs:creations_by_title'))
+        response = self.add_diver(response)
+        response = self.client.get(reverse('dive_app:creations_by_title'))
         self.assertEqual(response.status_code,200)
         self.assertContains(response,self.creation.title.title())
-        self.assertTemplateUsed(response,'learning_logs/creating/creation_by_title.html')
+        self.assertTemplateUsed(response,'dive_app/creating/creation_by_title.html')
    
     def test_new_creation_rendering(self):
+        response = self.client.get(reverse('dive_app:index'))
         self.setup()
-        response = self.client.get(f'/learning/new_creation/')
+        response = self.add_diver(response)
+        response = self.client.get('/dive/new_creation/')
         self.assertEqual(response.status_code,200)
         self.assertContains(response,"A guided creative reflection:")
-        self.assertTemplateUsed(response,'learning_logs/creating/create_reflection.html')
+        self.assertTemplateUsed(response,'dive_app/creating/create_reflection.html')
 
     def test_edit_entry_rendering(self):
+        response = self.client.get(reverse('dive_app:index'))
         self.setup()
-        response = self.client.get(f'/learning/edit_creation/{self.creation.pk}/')
+        response = self.add_diver(response)
+        response = self.client.get(f'/dive/edit_creation/{self.creation.pk}/')
         self.assertEqual(response.status_code,200)
         self.assertContains(response,"Edit Creation")
-        self.assertTemplateUsed(response,'learning_logs/creating/edit_creation.html')
+        self.assertTemplateUsed(response,'dive_app/creating/edit_creation.html')
 
 
 

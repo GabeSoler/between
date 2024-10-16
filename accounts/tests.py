@@ -40,7 +40,7 @@ class SettingsTest(TestCase):
     email = "newuser@email.com"
     password = "312%%HWH"
     data_profile = {"name":"Hey","about":"hey hey"}
-    data_status = {"therapist":False,"premium":False}
+    data_status = {"therapist":True,"diver":True}
     def setUp(self):
         self.user = get_user_model().objects.create_user(self.username,self.email,self.password)
 
@@ -74,9 +74,9 @@ class SettingsTest(TestCase):
         self.client.login(username=self.username,email=self.email,password=self.password)
         response = self.client.get(reverse('accounts:account_profile'))
         self.assertContains(response,"Normal")
-        self.assertContains(response,"Therapist")
+        self.assertContains(response,"Other")
         response = self.client.post(reverse('accounts:edit_status'),self.data_status, follow=True)
         self.assertRedirects(response,reverse('accounts:account_profile'))
         response = self.client.get(reverse('accounts:account_profile'))
-        self.assertNotContains(response,"Therapist")
-        self.assertContains(response,"Client")
+        self.assertContains(response,"Therapist")
+        self.assertContains(response,"Diver")

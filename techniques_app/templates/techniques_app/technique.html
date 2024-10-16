@@ -7,16 +7,24 @@
 
 {%block content%}
 
-<div class='card mb-3 border-2 border-primary'>
+<div class='card mb-3 border-2 border-primary mt-3 mb-3'>
+    <div class="card-header bg-primary-subtle border-bottom border-primary">
+    <div class='card-title display-6'> {{technique.name|title}}</div>
+    </div>
     <div class='card-body soft-green '>
-        <div class='card-title display-6'> {{technique.name|title}}</div>
-    <p class='fw-bold'>Component:<a class='card-link text-primary' href="{%url 'techniques_app:techniques_short_community' technique.component.pk %}">{{technique.component|title}}</a></p>
-<p class='card-subtitle mb-2 text-muted'>{{technique.date_made}}</p>
-<p calss='card-text mb-2 fst-italic'><b>Author:</b> <a href="{% url 'techniques_app:author_list' technique.pk %}">{{author_info.name|title}}</a></p>
-<p class='card-subtitle fw-bold'>Description:</p>
-<p class='card-text'>{{technique.text}}</p>
-<p class='card-subtitle fw-bold'>Notes:</p>
-<p class='card-text'>{{technique.notes}}</p>
+    <p class='fw-bold'>Component:<a class='card-link text-primary' href="{%url 'techniques_app:techniques_short_community' technique.component.pk %}"> {{technique.component|title}}</a></p>
+
+    <p class='card-subtitle mb-2 text-muted'>{{technique.date_made}}</p>
+
+    <p calss='card-text mb-2 fst-italic'><b>Author:</b> <a href="{% url 'techniques_app:author_list' technique.pk %}">{{author_info.name|title}}</a></p>
+
+    <p class='card-subtitle fw-bold'>Description:</p>
+
+    <p class='card-text'>{{technique.text}}</p>
+
+    <p class='card-subtitle fw-bold'>Notes:</p>
+
+    <p class='card-text'>{{technique.notes}}</p>
 
 <div class='row'>
 {% if user.is_authenticated %}
@@ -24,9 +32,12 @@
     {% csrf_token %}
     {% bootstrap_button button_type='submit' content='Add to Saved' %}
 </form>
+
 {% if user == technique.user%}
-<a class='badge bg-primary p-2 m-2 col' href="{%url 'techniques_app:edit_technique' technique.pk %}">Edit Technique</a>
+<a class='badge bg-warning p-2 m-2 col' href="{%url 'techniques_app:delete_technique' technique.pk %}">Delete Technique</a>
+<a class='badge bg-info p-2 m-2 col' href="{%url 'techniques_app:edit_technique' technique.pk %}">Edit Technique</a>
 {% endif %}
+
 {% endif %}
 <a class='badge bg-primary p-2 m-2 col' href="{%url 'techniques_app:index' %}">Back to Tecniques Home</a>
 

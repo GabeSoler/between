@@ -34,13 +34,13 @@ class UserStatusForm(forms.ModelForm):
     """Form for describing user types"""
     class Meta:    
         model = UserStatus
-        fields = ('user_type','diver')
+        fields = ('therapist','diver')
         labels = {
-            "user_type":"tell us which type of user you are",
-            "diver":"Open Dive section"
+            "therapist":"I am a therapist (or trainee)? (for reference)",
+            "diver":"Become a Diver (full access)"
         }
         widgets = {
-            'user_type':forms.RadioSelect,
+            'therapist':forms.CheckboxInput,
             'dive':forms.CheckboxInput,
         }
 

@@ -10,7 +10,7 @@
 <div class='card bt-2' style="max-width: 800px;">
 <ul class='list-group border-bottom pb-2 mb-4 list-group-flash'>
 {%for tech in tech_saved %}
-        <li class='list-group-item boder-1'><a class='link-secondary' href="{%url 'techniques_app:technique' tech.pk %}">{{tech.component|title}}</a>: {{tech.name|title}} <a href={%url 'techniques_app:delete_technique' tech.pk %}>remove</a></li>
+        <li class='list-group-item boder-1'><a class='link-secondary' href="{%url 'techniques_app:technique' tech.pk %}">{{tech.component|title}}</a>: {{tech.name|title}} <a href={%url 'techniques_app:delete_saved_technique' tech.pk %}>remove</a></li>
 {%empty%}
         <li>No tecniques added yet</li>
 {%endfor%}

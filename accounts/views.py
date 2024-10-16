@@ -5,6 +5,9 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth import get_user_model
 from django.http import Http404
 from .forms import UserStatusForm,CommunityProfileForm,DeleteAccountForm
+from django.contrib.contenttypes.models import ContentType
+from django.contrib.auth.models import Permission
+
 
 @login_required
 def profile_view(request):
@@ -33,9 +36,15 @@ def community_profile_edit_view(request):
     return render(request,'profile/edit-account-profile.html',context)
 
 @login_required
-def user_status_edit_view(request):
+def user_status_edit_view(request): # * I have made this one able to give different permissions to the app
     status = UserStatus.objects.filter(user=request.user).last()
     user = request.user
+    #* Getting 'next' to go back after a redirect
+    if request.GET.get('next'):
+        next = request.GET.get('next')
+    else:
+        next = ''
+    #* Separating post from get
     if request.method != 'POST':
         #initial request;pre-fill form with the current entry
         form = UserStatusForm(instance=status)
@@ -46,8 +55,28 @@ def user_status_edit_view(request):
             form.save(commit=False)
             form.user = user
             form.save()            
+            # get permissions:
+            user_status = UserStatus.objects.get(user=user)
+            content_type = ContentType.objects.get_for_model(UserStatus)
+            perm_therapist = Permission.objects.get(        
+                            codename="is_therapist",
+                            content_type=content_type)
+            perm_diver = Permission.objects.get(        
+                            codename="can_dive",
+                            content_type=content_type)
+            # add permissions relative to database (using the form was confusing, not registering true and false)
+            if user_status.therapist:
+                user.user_permissions.add(perm_therapist)
+            else:
+                user.user_permissions.remove(perm_diver)
+            if user_status.diver:
+                user.user_permissions.add(perm_diver)
+                if next:
+                    return redirect(next)
+            else:
+                user.user_permissions.remove(perm_diver)
             return redirect('accounts:account_profile')
-    context = {'status':status,'form':form}
+    context = {'status':status,'form':form,'next':next}
     return render(request,'profile/status-edit.html',context)
 
 def delete_account_view(request):
@@ -64,25 +93,3 @@ def delete_account_view(request):
     context = {'form':form}
     return render(request,'profile/delete.html',context)
 
-
-#example
-'''
-@login_required
-def edit_entry(request,entry_pk):
-    """edit an existing entry"""
-    entry = Entry.objects.get(pk=entry_pk)
-    topic = entry.topic
-    check_owner(entry.owner,request.user)
-    if request.method != 'POST':
-        #initial request;pre-fill form with the current entry
-        form = EntryForm(instance=entry)
-    else:
-        #POST data submitted; process data
-        form = EntryForm(instance=entry,data=request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect('learning_logs:topic',topic_pk=topic.pk)
-    context = {'entry':entry,'topic':topic,'form':form}
-    return render(request,'learning_logs/topic/edit_entry.html',context)
-
-    '''

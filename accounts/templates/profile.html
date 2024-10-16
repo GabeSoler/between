@@ -30,9 +30,9 @@
             <script type="text/javascript" src="https://cdnjs.buymeacoffee.com/1.0.0/button.prod.min.js" data-name="bmc-button" data-slug="CreaTherapy" data-color="#FFDD00" data-emoji="☕"  data-font="Cookie" data-text="Buy me a coffee" data-outline-color="#000000" data-font-color="#000000" data-coffee-color="#ffffff" ></script>
             <table class="table table-striped mt-3">
             <tr>
-                <th>User type:</th><td>{{status.therapist|yesno:"Therapist,Client"}}</td>
+                <th>User type:</th><td>{{status.therapist|yesno:"Therapist,Other"}}</td>
             <tr>    
-                <th>Account Type:</th><td>{{status.premium|yesno:"Premium,Normal"}}</td>
+                <th>Account Type:</th><td>{{status.diver|yesno:"Diver,Normal"}}</td>
             </tr>
         </table>
             <a href="{% url 'accounts:edit_status' %}">Edit account status</a>
@@ -56,7 +56,7 @@
                 class="btn btn-warning"
                 href="{% url 'accounts:delete_account' %}"
                 role="button"
-                >Delete Page</a
+                >Delete Account</a
             >
             
             

@@ -9,12 +9,29 @@
 <div class='card px-3 mt-2 mb-4 soft-orange border-3 border-primary rounded-3'  style='max-width: 1000px;'>
     <div class='container-fluid py-4'>
         <h1 class='display-5'>The Techniques Space</h1>
+
+        {% if not perms.accounts.can_dive %}
+        <div
+            class="alert alert-warning alert-dismissible fade show"
+            role="alert"
+        >
+            <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="alert"
+                aria-label="Close"
+            ></button>
+        
+            <strong>Still not a Diver?</strong> Press any section to activate a full access.
+        </div>
+        {% endif%}
+        
         <p class='lead'>This is a space save, share and learn about therapeutic techniques.</p>
         <p class='card-text'>You can opt to share and see the insight of others.</p>
         {% if user.is_authenticated%}
         <a class="badge bg-primary p-2 m-2" href={% url 'techniques_app:saved_techniques' %}>My Saved Techniques </a>
-        {% endif%}
         <a class="badge bg-primary p-2 m-2" href={% url 'techniques_app:components_list' %}>Comunity Techniques</a></br>
+        {% endif%}
     </div>
     </div>
 

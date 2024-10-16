@@ -3,12 +3,34 @@
 
 {% block content%}
 {% load django_bootstrap5 %}
+{% if next %}
+<div
+    class="alert alert-warning alert-dismissible fade show"
+    role="alert"
+>
+    <button
+        type="button"
+        class="btn-close"
+        data-bs-dismiss="alert"
+        aria-label="Close"
+    ></button>
 
+    <strong>Hey, become a Diver to see that page!</strong> Just click bellow.
+</div>
+{% endif%}
+<div class="card p-3">
+    <div class="card-header">
+    <h3>Edit account status</h3>
+    </div>
+    <div class="card-body">
+    <ul>
+    <li>Tell us if you are a therapist or trainee so we can know you better.</li>
+    <li>Become  a Diver for free and get full access.</li>
+    <li>Consider helping this independent project by buying us a coffee.</li>
 
-    <h3>Edit account status </h3>
-    <p>Please mark if you are a therapist using the site, we aim to create two different experiences of the site.</p>
-    <p>We do not have a premium membership at the moment, but we may at some point.</p>
-<form action="{%url 'accounts:edit_status' %}" method='post'>
+    <script type="text/javascript" src="https://cdnjs.buymeacoffee.com/1.0.0/button.prod.min.js" data-name="bmc-button" data-slug="CreaTherapy" data-color="#FFDD00" data-emoji="☕"  data-font="Cookie" data-text="Buy me a coffee" data-outline-color="#000000" data-font-color="#000000" data-coffee-color="#ffffff" ></script>
+
+<form action="{% url 'accounts:edit_status' %}?next={{next}}" method='post' class='mt-3 mb-3'>
     {%csrf_token%}
     {% bootstrap_form form %}
     {% bootstrap_button button_type='submit' content='Update' %}
@@ -19,3 +41,6 @@
 </div>
 </br></br>
 {%endblock content%}
+
+</div>
+</div>

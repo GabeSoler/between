@@ -1,7 +1,7 @@
 from django.shortcuts import render,redirect
 from .models import Technique,Component,TechSaved
 from .forms import TechniqueForm
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import login_required,permission_required
 from .forms import TechniqueForm
 from accounts.models import CommunityProfile
 from django.contrib.auth import get_user_model
@@ -15,6 +15,7 @@ def index(request):
     return render(request,'techniques_app/index.html')
 
 @login_required
+@permission_required('accounts.can_dive',login_url="/accounts/edit_status/")
 def saved_techniques_view(request):
     try:
         tech_saved = TechSaved.objects.get(user=request.user).saved.all().order_by('name')
@@ -25,7 +26,8 @@ def saved_techniques_view(request):
 
 
 
-
+@login_required
+@permission_required('accounts.can_dive',login_url="/accounts/edit_status/")
 def group_list_community_view(request): #Components list to organise the techniques
     subjective = Component.objects.filter(group='subj')
     extended = Component.objects.filter(group='ext')
@@ -38,19 +40,22 @@ def group_list_community_view(request): #Components list to organise the techniq
     return render(request,'techniques_app/group_list.html',context)
 
 
-
+@login_required
+@permission_required('accounts.can_dive',login_url="/accounts/edit_status/")
 def techniques_short_community_view(request,comp_id): #List organised by component
     technique = Technique.objects.filter(share=True).filter(component=comp_id).order_by('-date_made')
     component = Component.objects.get(pk=comp_id)
     context = {'technique':technique, 'component':component}
     return render(request,'techniques_app/techniques_list_community.html',context)
 
+@login_required
+@permission_required('accounts.can_dive',login_url="/accounts/edit_status/")
 def techniques_long_community_view(request): #Full list of techniques
     technique = Technique.objects.filter(share=True).order_by('-date_made')
     context = {'technique':technique}
     return render(request,'techniques_app/techniques_list_community.html',context)
 
-
+@login_required
 def technique_view(request, tch_pk):
     technique = Technique.objects.get(id=tch_pk)
     try:    
@@ -60,6 +65,8 @@ def technique_view(request, tch_pk):
     context = {'technique':technique,'author_info':author_info}
     return render(request,'techniques_app/technique.html',context)
 
+@login_required
+@permission_required('accounts.can_dive',login_url="/accounts/edit_status/")
 def author_techniques_view(request,tch_pk): #List organised by author
     technique_origin = Technique.objects.get(pk=tch_pk)
     try:
@@ -113,6 +120,7 @@ def edit_technique_view(request,tch_pk):
 
 
 @login_required
+@permission_required('accounts.can_dive',login_url="/accounts/edit_status/")
 def save_technique_view(request,tch_pk):
     user = request.user
     if request.method !='POST':
@@ -128,7 +136,8 @@ def save_technique_view(request,tch_pk):
 
         
 @login_required
-def delete_technique_view(request,tch_pk):
+@permission_required('accounts.can_dive',login_url="/accounts/edit_status/")
+def delete_saved_technique_view(request,tch_pk):
     user_id = request.user
     if request.method !='POST':
         context = {'tech_pk':tch_pk}
@@ -139,4 +148,13 @@ def delete_technique_view(request,tch_pk):
         return redirect('techniques_app:saved_techniques')
     return render(request,'techniques_app/delete_saved.html',context)
 
+@login_required
+def delete_technique_view(request,tch_pk):
+    tech = Technique.objects.get(pk=tch_pk)
+    if request.method !='POST':
+        context = {'tech_pk':tch_pk,'tech':tech}
+    else:
+        tech.delete()
+        return redirect('techniques_app:index')
+    return render(request,'techniques_app/delete_technique.html',context)
 

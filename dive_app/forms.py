@@ -25,15 +25,15 @@ class ShadowForm(forms.ModelForm):
         model = Shadow
         fields = ['goal','text_opossite_style','text_opposite_sex','text_oppossite_elements','text_transf_characters','text_furor_curandis','text_trauma_history','text_trauma_triggers','text_care_plan','title']
         labels = {'goal':"Please write your goal for this exploration (as a starting point that can change)",
-                  'text_opossite_style':"Reflect on the profile you have and the areas that you scored the lowest, or styles you know feel dificult or annoying. These are your opposite style and may say something about your shadow",
+                  'text_opossite_style':"Reflect on the profile you have and the areas that you scored the lowest, or styles you know feel difficult or annoying. These are your opposite style and may say something about your shadow",
                   'text_opposite_sex':"Reflect on your sexual orientation and gender, try to imagine how would you be if on an opposite side, how would that feel?(This give us clues about our Anima and Animus)",
-                  'text_oppossite_elements':"Reflect on what are your prefered essoteric elements and what are your opposites. Here fire is connected with intuition, air with reason, water with emotions and earth with sensations (Junguian personalities)",
+                  'text_oppossite_elements':"Reflect on what are your preferred elements and what are your opposites. Here fire is connected with intuition, air with reason, water with emotions and earth with sensations (Jungian personalities).",
                   'text_transf_characters':"Here explore what type of characters appear in your transference and countertransference, who do you tend to embody, which type of parent, which type of child?",
-                  'text_furor_curandis':"In this space reflect on your passion for helping others, and how this appears in sessions. When we get too passionate about helping we lose sight of ourselve and others, and it may become iatrogenic",
-                  'text_trauma_history':"In this section please relfect on your trauma history, what do you remember of your childhood, your fears and conflicts. Many things may be blocked and appear later on your journey.",
-                  'text_trauma_triggers':"Are there topics or people that make you feel unconfortable? or even anxious? These may be your trauma triggers, please write them here",
-                  'text_care_plan':"Please have a read of what you have writen above and think of actions that may help you to accept and care for your weaker parts, your shadows and dark spaces",
-                  'title':"To finish, please give a title to this exploration, and it will appear as a link for you to see it again later"}
+                  'text_furor_curandis':"In this space reflect on your passion for helping others, and how this appears in sessions. When we get too passionate about helping we lose sight of ourselves and others, and it may become iatrogenic.",
+                  'text_trauma_history':"In this section please reflect on your trauma history, what do you remember of your childhood, your fears and conflicts. Many things may be blocked and appear later on your journey.",
+                  'text_trauma_triggers':"Are there topics or people that make you feel uncomfortable? or even anxious? These may be your trauma triggers, please write them here.",
+                  'text_care_plan':"Please have a read of what you have written above and think of actions that may help you to accept and care for your weaker parts, your shadows and dark spaces.",
+                  'title':"To finish, please give a title to this exploration, and it will appear as a link for you to see it again later."}
         widgets = {'text_opossite_style':forms.Textarea(attrs={'cols':80}),
                    'text_opposite_sex':forms.Textarea(attrs={'cols':80}),
                    'text_oppossite_elements':forms.Textarea(attrs={'cols':80}),
