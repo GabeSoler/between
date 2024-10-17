@@ -3,32 +3,35 @@
 
 {% block content %}
 
-<p>Answers after Session</p>
+<div class="card mt-3 mb-3 p-3 cold-white">
+  <div class="card-header soft-blue display-6">
+    <i class="bi bi-shadows"></i> Shadow List (by date)
+  </div>
 
-<p>
-  <a href="{%url 'dive_app:new_question'%}">Add new question reflexion</a>
-</p>
+  <div class="card-body">
 
-<ul>
+  <a href="{%url 'dive_app:new_shadow'%}"
+  class="card-link"><small>Add new Shadow entry</small></a>
+  <a href="{%url 'dive_app:shadows_by_title'%}"
+  class="card-link"><small>Order By title</small></a>
+
+
+<ul class="list-group border">
   {% for answer in answers%}
-    <li>
-      <p>{{answer.date_added|date:'M d,Y H:i'}} </p>
-      <p>{{answer.title}} </p>
-      <p>{{answer.text|linebreaks}}</p>
-      <p><a href="{%url 'dive_app:shadow_item' answer.pk %}">
-        See Entry</a></p>
+    <li class="list-group-item"><a href="{%url 'dive_app:shadow_item' answer.pk %}">
+      {{answer.title|title}}</a> <small>- {{answer.date_added|date:'M d,Y H:i'}}</small>
+
     </li>
 
     {% empty %}
     <li>There are no entries for this topic yet. </li>
+    {% endfor %}
   </ul>
-  {% endfor %}
 
   <a href="{% url 'dive_app:shadows_by_date' %}" class="card-link">Back to Shadow list</a>
-  <a href="{% url 'dive_app:index' %}" class="card-link">Back to Journaling</a>
+  <a href="{% url 'dive_app:index' %}" class="card-link">Back to Dive</a>
 
-
-
+</div></div>
 
 
 

@@ -1,9 +1,12 @@
 {% extends 'between_app/_base.html' %}
 {% block content %}
 {% load django_bootstrap5 %}
+
+
+
 <p><a href="{% url 'dive_app:index' %}">{{topic}}</a></p>
 
-<p>Edit Entry</p>
+<p><i class="bi bi-shadows"></i>  Edit Shadow</p>
 
 <form action="{%url 'dive_app:edit_shadow' shadow.pk %}" method='post'>
     {% csrf_token %}

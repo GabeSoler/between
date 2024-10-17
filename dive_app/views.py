@@ -89,7 +89,7 @@ def edit_creation(request,creation_pk):
     return render(request,'dive_app/creating/edit_creation.html',context)
 
 
-#Shadow's CRUD
+#* Shadow's CRUD
 
 
 @login_required
@@ -114,9 +114,9 @@ def shadow_by_date(request):
 @permission_required('accounts.can_dive',login_url="/accounts/edit_status/")
 def shadow_by_title(request):
     """show all answers by question"""
-    answers_by_question = Shadow.objects.filter(owner=request.user).order_by('question','date_added')
+    answers_by_question = Shadow.objects.filter(owner=request.user).order_by('title','-date_added')
     context = {'answers':answers_by_question}
-    return render(request,'dive_app/shadow/shadow_by_question.html',context)
+    return render(request,'dive_app/shadow/shadow_by_title.html',context)
 
 def new_shadow(request):
     """add new question"""

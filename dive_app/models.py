@@ -38,16 +38,16 @@ class Shadow(models.Model):
     #oposites parts
     title = models.CharField(max_length=500, default=None)
     goal = models.CharField(max_length=500, default=None)
-    text_opossite_style = models.TextField(default="")
-    text_opposite_sex = models.TextField(default="")
-    text_oppossite_elements = models.TextField(default="")
+    text_opossite_style = models.TextField(default="",blank=True,null=True)
+    text_opposite_sex = models.TextField(default="",blank=True,null=True)
+    text_oppossite_elements = models.TextField(default="",blank=True,null=True)
     #wounded healer
-    text_transf_characters = models.TextField(default="")
-    text_furor_curandis = models.TextField(default="")
-    text_trauma_history = models.TextField(default="")
-    text_trauma_triggers = models.TextField(default="")
+    text_transf_characters = models.TextField(default="",blank=True,null=True)
+    text_furor_curandis = models.TextField(default="",blank=True,null=True)
+    text_trauma_history = models.TextField(default="",blank=True,null=True)
+    text_trauma_triggers = models.TextField(default="",blank=True,null=True)
     #plan
-    text_care_plan = models.TextField(default="")
+    text_care_plan = models.TextField(default="",blank=True,null=True)
 
     class Meta:
         verbose_name_plural = 'Shadows'
