@@ -1,11 +1,11 @@
 {% extends 'between_app/_base.html' %}
 {% block title%}{{creations.title}}{%endblock title%}
 
-{% block page_header %}{{creations.title}}{% endblock page_header%}
+{% block page_header %}{{creations.title|title}}{% endblock page_header%}
 
 {% block content %}
 <div class="card cold-white mt-3 mb-4">
-  <h5 class="card-header display-6 soft-blue">{{creations.title}}</h5>
+  <h5 class="card-header display-6 soft-blue">{{creations.title|title}}</h5>
     <div class="card-body">
       <div class="card-subtitle mb-2 text-body-secondary">{{creations.date_added|date}}
         <small><a href="{%url 'dive_app:edit_creation' creations.pk %}">

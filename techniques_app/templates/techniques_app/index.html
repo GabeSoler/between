@@ -6,10 +6,11 @@
 {% load static%}
 
 
-<div class='card px-3 mt-2 mb-4 soft-orange border-3 border-primary rounded-3'  style='max-width: 1000px;'>
+<div class='card px-3 mt-2 mb-4 soft-orange border-3 border-primary rounded-3'>
     <div class='container-fluid py-4'>
         <h1 class='display-5'>The Techniques Space</h1>
 
+        <!-- Text if no permissions -->
         {% if not perms.accounts.can_dive %}
         <div
             class="alert alert-warning alert-dismissible fade show"
@@ -30,25 +31,37 @@
         <p class='card-text'>You can opt to share and see the insight of others.</p>
         {% if user.is_authenticated%}
         <a class="badge bg-primary p-2 m-2" href={% url 'techniques_app:saved_techniques' %}>My Saved Techniques </a>
-        <a class="badge bg-primary p-2 m-2" href={% url 'techniques_app:components_list' %}>Comunity Techniques</a></br>
+        <a class="badge bg-primary p-2 m-2" href={% url 'techniques_app:components_list' %}>Comunity Techniques</a>
         {% endif%}
     </div>
     </div>
 
-{% if user.is_authenticated %} 
-<div class='card border-primary border-2 soft-green'>
-    <h3 class='card-title ps-3 mt-3'>My Techniques list</h3>
+<!-- Text for signed users -->
+{% if user.is_authenticated %}
+
+<div class='card border-primary border-2 soft-green rounded pb-3'>
+    <div class="card-heading bg-primary-subtle">
+    <div class='card-title fs-4 mt-3 ms-3'>My Techniques list</div>
+    </div>
+    <div class="card-body">
     <a class="badge bg-primary p-2 m-2" href={% url 'techniques_app:new_technique' %}>Add a new technique </a>
-<ul class='list-group list-group-flush boder-bottom pb-2 mb-4'>
+
+
+    <!-- List of techniques -->
+<ul class='list-group list-group-flush'>
 {%for tech in techniques %}
-        <li class='list-group-item boder-1 warm-white'><a class='link-dark'href="{%url 'techniques_app:technique' tech.pk %}">{{tech|title}}</a></br>
-        <p class='text-muted'>{{tech.text}}</p>
-        <p class='text-muted'>{{tech.component|title}}, {{tech.date_made}}</p>
-        </li>      
+        <li class='list-group-item warm-white'>
+            <a class='t-burnt-yellow'href="{%url 'techniques_app:technique' tech.pk %}">{{tech|title}}</a> 
+            <small>{{tech.date_made}} - {{tech.component|title}} -
+            {{tech.text|truncatechars:30}}</small>
+        </li>
         {% empty %}
-        <p>Still not personal techniques</p>
+        <li>Still not personal techniques</li>
         {% endfor %}
-{%else%}
+        </ul>
+
+{%else%} <!-- Text for non sign users -->
+
 <div class='card border-primary border-2 soft-green p-2'>
 <div class="card-title fs-5">A list of your techniques</div>
 <div class="card-title">After Signing In you will see here a list of your techniques and links to explore and save the community repository.</div>
@@ -57,5 +70,5 @@
     Please Sign In so we can open your repository.<a href="{% url 'account_login' %}">Sign In</a>
   </div>
 {% endif %}
-</div>
+</div></div>
 {%endblock content%}

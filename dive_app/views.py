@@ -14,11 +14,11 @@ def check_owner(topic_owner,request_user):
 #Views
 
 def index(request):
-    """show all topics"""
+    """show all Dive sections"""
     if not request.user.is_authenticated:
         return render(request,'dive_app/index.html')
-    creations = Creation.objects.filter(owner=request.user).order_by('date_added')[:3]
-    shadows = Shadow.objects.filter(owner=request.user).order_by('date_added')[:3]
+    creations = Creation.objects.filter(owner=request.user).order_by('-date_added')[:5]
+    shadows = Shadow.objects.filter(owner=request.user).order_by('-date_added')[:5]
     context = {'creations':creations,'shadows':shadows}
     return render(request,'dive_app/index.html',context)
 
@@ -74,18 +74,18 @@ def new_creation(request):
 @permission_required('accounts.can_dive',login_url="/accounts/edit_status/")
 def edit_creation(request,creation_pk):
     """edit an existing entry"""
-    Creations = Creation.objects.get(pk=creation_pk)
-    check_owner(Creations.owner,request.user)
+    creation = Creation.objects.get(pk=creation_pk)
+    check_owner(creation.owner,request.user)
     if request.method != 'POST':
         #initial request;pre-fill form with the current entry
-        form = CreationForm(instance=Creations)
+        form = CreationForm(instance=creation)
     else:
         #POST data submitted; process data
-        form = CreationForm(instance=Creations,data=request.POST)
+        form = CreationForm(instance=creation,data=request.POST)
         if form.is_valid():
             form.save()
-            return redirect('dive_app:topic',creation_id=Creations.id)
-    context = {'creations':Creations,'form':form}
+            return redirect('dive_app:creation_item',creation_pk)
+    context = {'creations':creation,'form':form}
     return render(request,'dive_app/creating/edit_creation.html',context)
 
 
@@ -140,16 +140,16 @@ def new_shadow(request):
 @permission_required('accounts.can_dive',login_url="/accounts/edit_status/")
 def edit_shadow(request,shadow_pk):
     """edit an existing entry"""
-    Shadows = Shadow.objects.get(pk=shadow_pk)
-    check_owner(Shadows.owner,request.user)
+    shadow = Shadow.objects.get(pk=shadow_pk)
+    check_owner(shadow.owner,request.user)
     if request.method != 'POST':
         #initial request;pre-fill form with the current entry
-        form = ShadowForm(instance=Shadows)
+        form = ShadowForm(instance=shadow)
     else:
         #POST data submitted; process data
-        form = ShadowForm(instance=Shadow,data=request.POST)
+        form = ShadowForm(instance=shadow,data=request.POST)
         if form.is_valid():
             form.save()
-            return redirect('dive_app:shadow_by_date',shadow_id=Shadows.id)
-    context = {'shadow':Shadows,'form':form}
+            return redirect('dive_app:shadow_item',shadow_pk)
+    context = {'shadow':shadow,'form':form}
     return render(request,'dive_app/shadow/edit_shadow.html',context)

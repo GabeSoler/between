@@ -34,6 +34,16 @@ class TestCreation(TestCase):
         )
         cls.user_status_data = {'therapist':True,'diver':True}
 
+        cls.creation_data = {
+            "title":"posting data",
+            "goal":"post data",
+            "text_sensation":"content",
+            "text_conection":"content",
+            "text_metaphore":"content",
+            "text_concepts":"content",
+            "text_craft":"content",
+            }
+
     def post_diver(self,response,follow=True):
         response = self.client.post(reverse('accounts:edit_status'),self.user_status_data, follow=follow)
         return response
@@ -98,14 +108,28 @@ class TestCreation(TestCase):
         self.assertContains(response,"A guided creative reflection:")
         self.assertTemplateUsed(response,'dive_app/creating/create_reflection.html')
 
-    def test_edit_entry_rendering(self):
+    def test_edit_creation_rendering(self):
         self.setup()
         response = self.client.get(f'/dive/edit_creation/{self.creation.pk}/')
         self.assertEqual(response.status_code,200)
         self.assertContains(response,"Edit Creation")
         self.assertTemplateUsed(response,'dive_app/creating/edit_creation.html')
 
+    def test_new_creation_post(self):
+        self.setup()
+        response = self.client.post('/dive/new_creation/',self.creation_data)
+        self.assertRedirects(response,
+                reverse('dive_app:index'),302)
+        
+    def test_edit_creation_post(self):
+        self.setup()
+        response = self.client.post(f'/dive/edit_creation/{self.creation.pk}/',self.creation_data)
+        self.assertRedirects(response,
+                f'/dive/creation/{self.creation.pk}/',302)
+        
+ 
 
+#* Testing Shadow
 
 class TestShadow(TestCase):
 
@@ -139,6 +163,22 @@ class TestShadow(TestCase):
         )
 
         cls.user_status_data = {'therapist':True,'diver':True}
+
+        cls.shadow_data = {
+            "title":"some content",
+            "goal":"some content",
+            "text_opossite_style":"some content",
+            "text_opposite_sex":"some content",
+            "text_oppossite_elements":"some content",
+            #wounded healer
+            "text_transf_characters":"some content",
+            "text_furor_curandis":"some content",
+            "text_trauma_history":"some content",
+            "text_trauma_triggers":"some content",
+            #plan
+            "text_care_plan":"some content",
+
+        }
 
     def setup(self,add_perm=True):
         self.client.login(username = 'usertest',
@@ -182,6 +222,17 @@ class TestShadow(TestCase):
         self.setup()
         response = self.client.get(f'/dive/edit_shadow/{self.shadow.pk}/')
         self.assertEqual(response.status_code,200)
-        self.assertContains(response,"Edit Creation")
+        self.assertContains(response,"Edit Shadow")
         self.assertTemplateUsed(response,'dive_app/shadow/edit_shadow.html')
 
+    def test_new_shadow_post(self):
+        self.setup()
+        response = self.client.post('/dive/new_shadow/',self.shadow_data)
+        self.assertRedirects(response,
+                reverse('dive_app:index'),302)
+        
+    def test_edit_shadow_post(self):
+        self.setup()
+        response = self.client.post(f'/dive/edit_shadow/{self.shadow.pk}/',self.shadow_data)
+        self.assertRedirects(response,
+                f'/dive/shadow/{self.shadow.pk}/',302)

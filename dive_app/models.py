@@ -14,11 +14,11 @@ class Creation(models.Model):
     #Creation parts
     title = models.CharField(max_length=500, default=None)
     goal = models.CharField(max_length=500, default=None)
-    text_sensation = models.TextField(default="")
-    text_conection = models.TextField(default="")
-    text_metaphore = models.TextField(default="")
-    text_concepts = models.TextField(default="")
-    text_craft = models.TextField(default="")
+    text_sensation = models.TextField(default="",blank=True,null=True)
+    text_conection = models.TextField(default="",blank=True,null=True)
+    text_metaphore = models.TextField(default="",blank=True,null=True)
+    text_concepts = models.TextField(default="",blank=True,null=True)
+    text_craft = models.TextField(default="",blank=True,null=True)
 
     class Meta:
         verbose_name_plural = 'Creations'

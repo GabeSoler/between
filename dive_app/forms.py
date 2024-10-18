@@ -24,7 +24,7 @@ class ShadowForm(forms.ModelForm):
     class Meta:
         model = Shadow
         fields = ['goal','text_opossite_style','text_opposite_sex','text_oppossite_elements','text_transf_characters','text_furor_curandis','text_trauma_history','text_trauma_triggers','text_care_plan','title']
-        labels = {'goal':"Please write your goal for this exploration (as a starting point that can change) (required)",
+        labels = {'goal':"Please write your goal for this exploration (it can change on the way) (required)",
                   'text_opossite_style':"Reflect on the profile you have and the areas that you scored the lowest, or styles you know feel difficult or annoying. These are your opposite style and may say something about your shadow",
                   'text_opposite_sex':"Reflect on your sexual orientation and gender, try to imagine how would you be if on an opposite side, how would that feel?(This give us clues about our Anima and Animus)",
                   'text_oppossite_elements':"Reflect on what are your preferred elements and what are your opposites. Here fire is connected with intuition, air with reason, water with emotions and earth with sensations (Jungian personalities).",

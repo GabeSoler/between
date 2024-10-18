@@ -30,7 +30,9 @@
 
 {% if user.is_authenticated%}
 
-<div class="card mb-3 border-primary border-1 soft-blue"> <!-- Creations -->
+    <!-- Creations -->
+
+<div class="card mb-3 border-primary border-1 soft-blue"> 
   <div class="card-body">
 
   <h2 class='card-title'>Creation journal</h2>
@@ -38,9 +40,8 @@
   <ul class='list-group'>
   {% for creation in creations %}
     <li class='list-group-item warm-white'> 
-        <a class='link-secondary' href="{% url 'dive_app:creation_item' creation.pk %}">
-        {{creation.title}}</a>
-        <p class='list-inline-item'>: <small>{{creation.date_added|date}}</small></p>
+        <a class='t-burnt-yellow' href="{% url 'dive_app:creation_item' creation.pk %}">
+        {{creation.title}}</a>: <small>{{creation.date_added|date}} - "{{creation.goal|truncatechars:60}}"</small>
 
       </li>
   
@@ -49,13 +50,16 @@
   {% endfor %}
     </ul>
     </br>
-    <a class="badge bg-primary p-2 m-2" href={% url 'dive_app:new_creation' %}>Add a new creation</a></br>
-    <a class="badge bg-primary p-2 m-2" href={% url 'dive_app:creations_by_date' %}>See list</a></br>
+    <a class="badge bg-primary p-2 m-2" href={% url 'dive_app:new_creation' %}>New creation</a>
+    <a class="badge bg-primary p-2 m-2" href={% url 'dive_app:creations_by_date' %}>Creation list</a>
     </div>
     </div>
 
+
+
+    <!-- Shadow -->
  
-<div class="card mb-3 border-primary border-1 soft-blue"> <!-- Shadow -->
+<div class="card mb-3 border-primary border-1 soft-blue"> 
   <div class="card-body">
 
   <h2 class='card-title'>Shadow Journal</h2>
@@ -63,9 +67,8 @@
   <ul class='list-group'>
   {% for shadow in shadows %}
     <li class='list-group-item warm-white'> 
-        <a class='link-secondary' href="{% url 'dive_app:shadow_item' shadow.pk %}">
-        {{shadow.title}} </a>
-        <p class='list-inline-item'>: <small>{{shadow.date_added|date}}</small></p>
+        <a class='t-burnt-yellow' href="{% url 'dive_app:shadow_item' shadow.pk %}">
+        {{shadow.title}}</a>: <small>{{shadow.date_added|date}} - "{{shadow.goal|truncatechars:60}}"</small>
 
       </li>
       
@@ -77,8 +80,8 @@
 
 
 
-    <a class="badge bg-primary p-2 m-2" href={% url 'dive_app:new_shadow' %}>Add a new shadow journal</a></br>
-    <a class="badge bg-primary p-2 m-2" href={% url 'dive_app:shadows_by_date' %}>See the whole list</a></br>
+    <a class="badge bg-primary p-2 m-2" href={% url 'dive_app:new_shadow' %}>New Shadow</a>
+    <a class="badge bg-primary p-2 m-2" href={% url 'dive_app:shadows_by_date' %}>Shadow list</a>
 
 
     {% else %}
