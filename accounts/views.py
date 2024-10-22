@@ -19,7 +19,7 @@ def profile_view(request):
 
 @login_required
 def community_profile_edit_view(request):
-    profile = CommunityProfile.objects.filter(user=request.user).last()
+    profile,_ = CommunityProfile.objects.get_or_create(user=request.user)
     user = request.user
     if request.method != 'POST':
         #initial request;pre-fill form with the current entry
@@ -37,7 +37,7 @@ def community_profile_edit_view(request):
 
 @login_required
 def user_status_edit_view(request): # * I have made this one able to give different permissions to the app
-    status = UserStatus.objects.filter(user=request.user).last()
+    status,_ = UserStatus.objects.get_or_create(user=request.user)
     user = request.user
     #* Getting 'next' to go back after a redirect
     if request.GET.get('next'):
