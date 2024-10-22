@@ -11,7 +11,7 @@ class CustomUser(AbstractUser):
 
 class UserStatus(models.Model):
     """account type ans status"""
-    user = models.ForeignKey(get_user_model(),on_delete=models.CASCADE)
+    user = models.OneToOneField(get_user_model(),on_delete=models.CASCADE)
     therapist = models.BooleanField(default=False)
     diver = models.BooleanField(default=False)
 
@@ -24,7 +24,7 @@ class UserStatus(models.Model):
 
 class CommunityProfile(models.Model):
     """profile to display"""
-    user = models.ForeignKey(get_user_model(),on_delete=models.CASCADE)
+    user = models.OneToOneField(get_user_model(),on_delete=models.CASCADE)
     name = models.CharField(max_length=200, default='')
     about = models.TextField(default='')
     def __str__(self):

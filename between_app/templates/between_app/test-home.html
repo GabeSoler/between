@@ -22,10 +22,9 @@
   <p class="card-text">They will help you to recognise your unique style and positions towards helping others and yourself.</p>
   <a class="badge bg-primary p-2 m-2" href={% url 'between_app:profile_test' %}>Take the test </a></br>
 
-  {% if cont_position.group %}
+  {% if cont_position.group %} <!-- if we have some resoults to show -->
   <H1>Your main therapeutic Position</H1>
-      <div class="card bg-active mb-3">
-      <div class="card-body soft-green">
+      <div class="card-body soft-green rounded">
       <h2 class="card-title">{{position.group|title}}</h2>
       <div class='row'>
         <div class='col'>
@@ -40,19 +39,19 @@
       <div class='col'>
         <image src="{% static cont_tradition.image %}" class='img-thumbnail border-2 border-primary rounded-circle' style='max-height:6em;'>
       <p class="card-text posText">{{cont_tradition.group|title}}</p>
-    </div></div>
-{% else %}
+    </div>
+  </div><!--end row-->
+  </div><!--end card-body -->
+      {% else %}
     <p>Here you will see your results</p>
-  </ul>
-  {% endif%}
+      {% endif%} <!-- end if resoults -->
 
   <a class="badge bg-primary p-2 m-2" href={% url 'pages:index' %}>Read the theory </a>
   <a class="badge bg-primary p-2 m-2" href={% url 'between_app:profiles_list' %}>See your tests </a></br>
 
   </div>
   </div>
-</div>
-</div>
+
 <!-- end personal profile -->
 
 
@@ -68,7 +67,7 @@
       
       <!--list button-->
       <a class="badge bg-primary p-2 m-2" href={% url 'between_app:components_list' %}>Your tests </a>
-      <a class="badge bg-primary p-2 m-2" href={% url 'between_app:components_test' %}>Components test</a>
+      <a class="badge bg-primary p-2 m-2" href={% url 'between_app:components_test' %}>Take Components test</a>
 
   <!--Components results in bars-->
   {% if components.results.subjective  %}
@@ -137,11 +136,12 @@
       <div class="progress-bar {% cycle format.0 format.1 format.2 format.3 format.4 format.5 format.6 format.7%}" role="progressbar" style="width: {{result}}%" aria-valuenow="{{result}}" aria-valuemin="1" aria-valuemax="100">{{name}}-{{result}}%</div>
     </div>
     {% endfor %}
-  </div>
   {% else %}
   <p>Here you will see your results</p>
  {% endif%}
-  </div><!--end traditions card-->
+  </div>
+</div>
+  <!--end traditions card-->
 
 
 
@@ -160,4 +160,6 @@
   Please Sign In to see your tests sumary <a href="{% url 'account_login' %}">Sign In</a>
 </div>
 {% endif %}
+
+
   {% endblock content%}

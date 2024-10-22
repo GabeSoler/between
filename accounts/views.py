@@ -57,19 +57,20 @@ def user_status_edit_view(request): # * I have made this one able to give differ
             form.save()            
             # get permissions:
             user_status = UserStatus.objects.get(user=user)
-            content_type = ContentType.objects.get_for_model(UserStatus)
+            content_type_user_status = ContentType.objects.get_for_model(UserStatus)
             perm_therapist = Permission.objects.get(        
                             codename="is_therapist",
-                            content_type=content_type)
+                            content_type=content_type_user_status)
             perm_diver = Permission.objects.get(        
                             codename="can_dive",
-                            content_type=content_type)
+                            content_type=content_type_user_status)
             # add permissions relative to database (using the form was confusing, not registering true and false)
-            if user_status.therapist:
+            if user_status.therapist == True:
                 user.user_permissions.add(perm_therapist)
             else:
                 user.user_permissions.remove(perm_diver)
-            if user_status.diver:
+            #adds permissions to be a diver
+            if user_status.diver == True:
                 user.user_permissions.add(perm_diver)
                 if next:
                     return redirect(next)

@@ -86,8 +86,7 @@ class ProfileLinkUserAutenticate(TestCase):
         self.client.logout()
         response = self.client.post('/tests/profile_test/',self.data, follow=True)
         self.assertEqual(self.client.session['linked'],"false")
-        with self.captureOnCommitCallbacks(execute=True) as callbacks: 
-            response = self.client.post(
+        response = self.client.post(
                 reverse("account_login"),
                 self.login_data,
                 )
@@ -101,8 +100,7 @@ class ProfileLinkUserAutenticate(TestCase):
         
     def test_login_before_test(self):
         self.client.logout()
-        with self.captureOnCommitCallbacks(execute=True) as callbacks: 
-            response = self.client.post(
+        response = self.client.post(
                 reverse("account_login"),
                 self.login_data,
                 )

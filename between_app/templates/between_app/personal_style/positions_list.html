@@ -16,7 +16,9 @@
                 <a href={% url 'between_app:results' item.pk %}
                 >{{item.user}}'s Therapist Profile: {{item.updated_at|date:'d,m,Y'}}</a>
                 Explore your detailed scores <a href={% url 'between_app:style_detail' item.pk %}>here</li>
-            {% endfor%}
+            {% empty %}
+            <li> No tests to list yet.</li>
+                    {% endfor%}
             </ul>
 
 </div>
