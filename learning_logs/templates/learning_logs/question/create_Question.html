@@ -19,7 +19,7 @@ New Question
 
 
   <div id='questionWidget'>
-    <p class='card-text' id='text'><i>Get a question pressing bellow</i></p>
+    <p class='card-text' id='textDisplay'><i>Get a question pressing bellow</i></p>
     {% bootstrap_button class='btn button-primary' id='getQuestion' onclick='printQuestion()' content='Get New Questions' %}    
     {% bootstrap_button class='btn button-primary' id='addTopic' onclick='inputQuestion()' content='Add as Title' %}
   </div>
@@ -65,7 +65,7 @@ const afterQuestions = [
 "Was there something worth registering for in the future? It may be just a phrase or even a gesture at the right moment. See how writing it makes you feel.",
 "Did you feel like needing a hug or some comfort during the session? When did it happen? Could you describe the situation in your mind or use images or words?",
 "Did something of the session remind you of your family? Maybe only one person? Could you write about them and describe how they make you feel?",
-"Have you thought about a relationship between the present and the past? Try to bring images of your past associated with this relationship and register how it makes you feel in your body.",
+"Have you thought about a relationship from the past at some point of the session? Try to bring images of your past associated with this relationship and register how it makes you feel in your body.",
 "Did you realise something about what makes you and your journey unique? Things that make you singular? Try to write down these insights and see how it makes you feel to have them in front of you.",
 "Do you have the impulse to do something, act, or take steps towards something? Could you express in writing?",
 "Do you feel like changing something in your life or context? Can you think of a ‘baby step’ towards it? And a ‘baby step’ towards the ‘baby step’?",
@@ -80,7 +80,7 @@ const afterQuestions = [
 ];
 
 // Create object with a div id
-var questionDiv = document.getElementById("questionWidget").firstChild;
+var questionDiv = document.getElementById("textDisplay").firstChild;
 const inputDiv = document.getElementById("id_question");
 
 

@@ -9,6 +9,7 @@
     {% load url_utils %}
     {% bootstrap_css %}
     {% bootstrap_javascript %}
+    {% load allauth %}
     {% load static %}
     <link rel="stylesheet" href="{% static "between_app/css/style.css" %}">
 
@@ -69,7 +70,7 @@
                 <li class='nav-item'>
                   <a class='nav-link t-burnt-yellow {% if request.path|url_section:1 == '/dive/' %}active{% endif %}' 
                         href="{% url 'dive_app:index' %}">
-                      Dive</a></li>
+                      Diver</a></li>
             </ul><!-- End of links on left side of nvbar -->
             <!-- Account related links-->
             {% if user.is_authenticated %}

@@ -278,7 +278,6 @@ class BigTraditionsTests(TestCase):
         self.assertEqual(big_trad.hemeneutic,20)
         self.assertEqual(big_trad.cybernetic,60)
 
-    """
     def test_home_view(self):
         response = self.client.get(reverse('between_app:test_home'), follow=True)
         self.assertEqual(response.status_code,200)
@@ -326,8 +325,3 @@ class BigTraditionsTests(TestCase):
         response = self.client.post('/traditions_test/',data, follow=True)
         self.assertEqual(response.status_code,200)
         self.assertContains(response,"cybernetic-60%")
-
-        """
-
-class IndexWelcomeCards(TestCase):
-    pass

@@ -12,7 +12,8 @@
   </div>
 </div>
 
-    {% if user.is_authenticated %}
+    {% if user.is_authenticated %} <!-- Authenticated section -->
+
  <!--Personal Profile-->   
 <div class="card mb-3 border-primary border-1 soft-blue">
       <div class="card-body">
@@ -50,7 +51,9 @@
 
   </div>
   </div>
-</div></div>
+</div>
+</div>
+<!-- end personal profile -->
 
 
 
@@ -114,8 +117,10 @@
   {% else %}
     <p>Here you will see your results</p>
    {% endif%}
-  </div></div>
+  </div>
+</div>
   <!--end of Components-->
+
 
 <!--Big traditions Section-->
 <div class="card mb-3 border-primary border-1 soft-blue">
@@ -138,13 +143,12 @@
  {% endif%}
   </div><!--end traditions card-->
 
-</br></br>
 
 
 
 
-{% else %}
-<!--no signed up card-->
+{% else %} <!-- No authenticated section -->
+            <!--no signed up card-->
 <div class="card mb-3 border-primary border-3 soft-green">
     <div class="card-body">
 <h2 class="card-title">Take the Personal Style test</h2>

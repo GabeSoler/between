@@ -3,13 +3,23 @@
 
 {% block content %}
 
+<div class="card mt-3 mb-4">
 
-<p>A space to think about your therapeutic style.</p>
-<ul class='list-group bg-light'>
-{%for item in style_list %}
-    <li class='list-group-item'><a href={% url 'between_app:results' item.pk %}>{{item.user}}'s Therapist Profile: {{item.updated_at|date:'d,m,Y'}}</a>Explore your detailed scores <a href={% url 'between_app:style_detail' item.pk %}>here</li>
-{% endfor%}
-</ul>
+    <div class="card-header display-6 bg-primary-subtle">Tests List</div>
 
+    <div class"card-body">
+
+        <ul class='list-group bg-light'>
+
+            {%for item in style_list %}
+                <li class='list-group-item bg-light-subtle'>
+                <a href={% url 'between_app:results' item.pk %}
+                >{{item.user}}'s Therapist Profile: {{item.updated_at|date:'d,m,Y'}}</a>
+                Explore your detailed scores <a href={% url 'between_app:style_detail' item.pk %}>here</li>
+            {% endfor%}
+            </ul>
+
+</div>
+</div>
 
 {% endblock content%}
