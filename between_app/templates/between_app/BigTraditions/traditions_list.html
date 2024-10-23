@@ -1,15 +1,23 @@
 {% extends 'between_app/_base.html' %}
-{%block title%}Your Traditions Tests {%endblock title %}
+{%block title%}Big Traditions List{%endblock title %}
 
 {% block content %}
 
-
+<div class="card my-3 border-primary border-1 soft-blue">
+    <div class="card-hearder bg-primary-subtle p-3 display-6"
+    >Big Traditions: List</div>
+      <div class="card-body">
 <p>Your traditions tests.</p>
-<ul class='list-group bg-light'>
+
+<ul class='list-group bg-light-s'>
 {%for item in list %}
-    <li class='list-group-item'><a href={% url 'between_app:traditions_detail' item.pk %}>{{item.user}}'s Traditions Test: {{item.updated_at|date:'d,m,Y'}}</a></li>
+    <li class='list-group-item'
+    ><a href={% url 'between_app:traditions_detail' item.pk %}
+    >{{item.user}}'s Traditions Test: {{item.updated_at|date:'d,m,Y'}}</a></li>
 {% endfor%}
 </ul>
 
+</div>
+</div>
 
 {% endblock content%}

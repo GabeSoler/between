@@ -31,11 +31,11 @@ class CommunityProfile(models.Model):
         return self.name
 
 REASONS = [
-    ("inter", "No interested"),
-    ("use", "Interested but not using it"),
-    ("no", "No reasons"),
-    ("info", "Worried for my privacy"),
-    ("fit", "Theory does not fit me"),
+    ("no_inter", "No interested"),
+    ("no_use", "Interested but not using it"),
+    ("no_reason", "No reasons"),
+    ("privacy", "Worried for my privacy"),
+    ("no_fit", "Theory does not fit me"),
 ]
 
 class DeleteAccount(models.Model):

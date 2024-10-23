@@ -154,8 +154,11 @@ class ComponentsTests(TestCase):
                 roles = 1,
                 )
     def setup(self):
-        self.client = Client()
-
+        self.client.login(username = 'usertest',
+            email = 'test@test.com',
+            password = 'test123'
+            )
+        
     def test_components_creation(self):
         component = Components.objects.get(pk=self.profile.pk)
         self.assertEqual(component.politics,1)
@@ -166,18 +169,14 @@ class ComponentsTests(TestCase):
         self.assertEqual(component.user, self.profile.user)
 
     def test_home_view(self):
-        self.client.login(username = 'usertest',
-            email = 'test@test.com',
-            password = 'test123')        
+        self.setup()        
         response = self.client.get(reverse('between_app:test_home'), follow=True)
         self.assertEqual(response.status_code,200)
         self.assertContains(response,"narrative")
         self.assertTemplateUsed(response,'between_app/test-home.html')
 
     def test_components_list_view(self):
-        self.client.login(username = 'usertest',
-            email = 'test@test.com',
-            password = 'test123')
+        self.setup()
         response = self.client.get(reverse('between_app:components_list'), follow=True)
         no_response = self.client.get('between/123')
         self.assertEqual(response.status_code,200)
@@ -186,9 +185,7 @@ class ComponentsTests(TestCase):
         self.assertTemplateUsed(response, 'between_app/Components/components_list.html')
     
     def test_components_detail_view(self):
-        self.client.login(username = 'usertest',
-            email = 'test@test.com',
-            password = 'test123')
+        self.setup()
         response = self.client.get(f"/tests/components_detail/{self.profile.pk}/")
         no_response = self.client.get('between/123')
         self.assertEqual(response.status_code,200)
@@ -197,9 +194,7 @@ class ComponentsTests(TestCase):
         self.assertTemplateUsed(response, 'between_app/Components/components_detail.html')
 
     def test_take_components_view(self):
-        self.client.login(username = 'usertest',
-            email = 'test@test.com',
-            password = 'test123')
+        self.setup()
         response = self.client.get(reverse('between_app:components_test'), follow=True)
         no_response = self.client.get('between/123')
         self.assertEqual(response.status_code,200)
@@ -239,9 +234,7 @@ class ComponentsTests(TestCase):
                 'belonging':30,
                 'roles':1,
         }
-        self.client.login(username = 'usertest',
-            email = 'test@test.com',
-            password = 'test123')
+        self.setup()
         form_invalid = ComponentsForm(data={"name": "Computer", "price": 400.1234})
         self.assertFalse(form_invalid.is_valid())
         form_valid = ComponentsForm(data=data)
@@ -271,37 +264,46 @@ class BigTraditionsTests(TestCase):
                 constructive = 30,
                 participatory = 90,
                             )
-
+    def setup(self):
+        self.client.login(username = 'usertest',
+            email = 'test@test.com',
+            password = 'test123'
+            )
 
     def test_big_traditions_creation(self):
+        self.setup()
         big_trad = BigTraditions.objects.get(pk=self.profile.pk)
         self.assertEqual(big_trad.hemeneutic,20)
         self.assertEqual(big_trad.cybernetic,60)
 
     def test_home_view(self):
-        response = self.client.get(reverse('between_app:test_home'), follow=True)
+        self.setup()
+        response = self.client.get(reverse('between_app:test_home'))
         self.assertEqual(response.status_code,200)
         self.assertContains(response,"hemeneutic-20%")
         self.assertTemplateUsed(response,'between_app/test-home.html')
 
     def test_big_trad_list_view(self):
-        response = self.client.get(reverse('between_app:traditions_list'), follow=True)
+        self.setup()
+        response = self.client.get(reverse('between_app:traditions_list'))
         no_response = self.client.get('between/123')
         self.assertEqual(response.status_code,200)
         self.assertEqual(no_response.status_code,404)
-        self.assertContains(response, "Your Traditions Tests")
+        self.assertContains(response, self.profile.user)
         self.assertTemplateUsed(response, 'between_app/BigTraditions/traditions_list.html')
 
     def test_big_trad_detail_view(self):
-        response = self.client.get(reverse('between_app:traditions_detail',self.profile.id), follow=True)
+        self.setup()
+        response = self.client.get(f"/tests/traditions_detail/{self.profile.pk}/")
         no_response = self.client.get('between/123')
         self.assertEqual(response.status_code,200)
         self.assertEqual(no_response.status_code,404)
-        self.assertContains(response, "Big Traditions")
+        self.assertContains(response, self.profile.participatory)
         self.assertTemplateUsed(response, 'between_app/BigTraditions/traditions_detail.html')
 
     def test_take_big_traditions_view(self):
-        response = self.client.get(reverse('between_app:traditions_test'), follow=True)
+        self.setup()
+        response = self.client.get(reverse('between_app:traditions_test'))
         no_response = self.client.get('between/123')
         self.assertEqual(response.status_code,200)
         self.assertEqual(no_response.status_code,404)
@@ -309,6 +311,7 @@ class BigTraditionsTests(TestCase):
         self.assertTemplateUsed(response, 'between_app/BigTraditions/traditions_test.html')
 
     def test_form_big_traditions(self):
+        self.setup()
         data = {
                 'hemeneutic':20,
                 'phenomenological':80,
@@ -322,6 +325,6 @@ class BigTraditionsTests(TestCase):
         self.assertFalse(form_invalid.is_valid())
         form_valid = BigTradForm(data=data)
         self.assertTrue(form_valid.is_valid())
-        response = self.client.post('/traditions_test/',data, follow=True)
+        response = self.client.post('/tests/traditions_test/',data, follow=True)
         self.assertEqual(response.status_code,200)
         self.assertContains(response,"cybernetic-60%")

@@ -199,13 +199,13 @@ class BigTraditions(models.Model):
     user = models.ForeignKey(get_user_model(),on_delete=models.PROTECT)
 
     #Big five traditions
-    hemeneutic = models.IntegerField(default=1)
-    phenomenological = models.IntegerField(default=1)
-    cybernetic = models.IntegerField(default=1)
-    spiritual = models.IntegerField(default=1)
-    scientific = models.IntegerField(default=1)
-    constructive = models.IntegerField(default=1)
-    participatory = models.IntegerField(default=1)
+    hemeneutic = models.IntegerField(default=50)
+    phenomenological = models.IntegerField(default=50)
+    cybernetic = models.IntegerField(default=50)
+    spiritual = models.IntegerField(default=50)
+    scientific = models.IntegerField(default=50)
+    constructive = models.IntegerField(default=50)
+    participatory = models.IntegerField(default=50)
     @property
     def results(self):
         results = {
