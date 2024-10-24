@@ -108,7 +108,6 @@ class ProfileLinkUserAutenticate(TestCase):
         self.assertRedirects(
             response, settings.LOGIN_REDIRECT_URL, fetch_redirect_response=False
             )
-        response = self.client.post('/tests/profile_test/',self.data, follow=True)
-        self.assertEqual(self.client.session['linked'],"true")
-        self.assertNotEqual(self.client.session['linked'],"error")
-        
+        response = self.client.post('/tests/profile_test/',self.data,follow=True)
+        self.assertEqual(self.client.session['linked'],"ok")     # ok when already auth
+ 

@@ -80,6 +80,7 @@ def user_status_edit_view(request): # * I have made this one able to give differ
     context = {'status':status,'form':form,'next':next}
     return render(request,'profile/status-edit.html',context)
 
+@login_required
 def delete_account_view(request):
     user = request.user
     if request.method != 'POST':
