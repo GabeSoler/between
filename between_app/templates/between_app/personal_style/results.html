@@ -5,42 +5,62 @@
 {% load static %}
 {% load django_bootstrap5 %}
 
-
-{%block page_header %}<h1>Results</h1> {%endblock page_header%}
-
-
 {% block content %}
 
-<h1>Therapeutic Styles:</h1>
-<p>Therapeutic styles are a way of conceptualising human difference. We all move through positions and roles in life, some being more familiar than others to us. Different cultures, families, subcultures stress some positions more than others.</p>
-<p>My idea is that we need to learn from the different positions to overcome their 'shadows', the parts that become hidden of our personality and tradition.</p>
-<p>Many new traditions are placed in-between positions, making the current landscape more fluid. This model aims to help therapist and clients to identify the positions where they feel more comfortable and which ones feel harder.</p>
+
+<div class="card mt-3 mb-4">
+
+    <div class="card-header display-6 bg-primary-subtle">Results:</div>
+
+    <div class"card-body m-2">
+
+        <div class="card-body m-2"> <!-- intro -->
+<h3 class="card-title">Therapeutic Styles:</h3>
+<p class="card-text">It is a system of care and interest. We all move through positions and roles in life. Different cultures, families and our experience will make some areas more famiiliar.</p>
+<p class="card-text">Some areas will be more to the front, and others that may be behind or even rejected.</p>
+<p class="card-text">Use this as a tool to explore your attractions and rejections of different therapeutic approaches and see your own evolution.</p>
 <a class="link" href={% url 'between_app:style_detail' pk %}>Numeric Scores</a>
-</br>
-<H2>Your main therapeutic Position</H2>
-    <div class="card bg-active mb-3" id="results-card">
-    <div class="card-body">
-    <h2 class="card-title">{{position.group|title}}</h2>
+    </div>
+
+
+
+<div class="card body m-3"> <!-- Position Card -->
+    <div class="card-header bg-primary-subtle">
+        <H2>Main Position</H2></div>
+
+        <div class="card-body cold-white">
+        <h2 class="card-title text-primary ms-3 display-6">{{position.group|title}}</h2>
     <image src="{% static position.image %}" class='card-img-right posImage'>
     <p class="card-text posText"><b>Description</b>:{{position.description}}</p>
     <p class="card-text posText"><b>Shadow</b>:{{position.shadow}}</p>
     <p class="card-text posText"><b>Traditions</b>:{{position.traditions}}</p>
     <p class="card-text posText"><b>Authors</b>:{{position.authors}}</p>
-    </div></div>
-<H2>Your main Path</H2>
-    <div class="card bg-active mb-3">
-    <div class="card-body">
-    <h2 class="card-title">{{path.group|title}}</h2>
+    </div>
+</div>
+</div>
+
+
+
+<div class="card body m-3"> <!-- Path Card -->
+    <div class="card-header bg-primary-subtle">
+        <H2>Main Path</H2></div>
+
+        <div class="card-body cold-white">
+            <h2 class="card-title text-primary ms-3 display-6">{{path.group|title}}</h2>
     <image src="{% static path.image %}" class='card-img-right posImage'>
     <p class="card-text posText"><b>Description</b>:{{path.description}}</p>
     <p class="card-text posText"><b>Shadow</b>:{{path.shadow}}</p>
     <p class="card-text posText"><b>Traditions</b>:{{path.traditions}}</p>
     <p class="card-text posText"><b>Authors</b>:{{path.authors}}</p>
     </div></div>
-<H2>Your main relationship with the Tradition</H2>
-    <div class="card bg-active mb-3">
-    <div class="card-body">
-    <h2 class="card-title">{{tradition.group|title}}</h2>
+
+
+    <div class="card body m-3"> <!-- Tradition Card -->
+        <div class="card-header bg-primary-subtle">
+    <H2>Main Tradition/Individuation</H2></div>
+
+    <div class="card-body cold-white">
+        <h2 class="card-title text-primary ms-3 display-6">{{tradition.group|title}}</h2>
     <image src="{% static tradition.image %}" class='card-img-right posImage'>
     <p class="card-text posText"><b>Description</b>:{{tradition.description}}</p>
     <p class="card-text posText"><b>Shadow</b>:{{tradition.shadow}}</p>
@@ -58,7 +78,7 @@ class="alert alert-info col-10 mx-auto"
 role="alert"
 >
 <h4 class="alert-heading">❗ Save Test</h4>
-<p class="mb-0">Please link it to you by authenticating from here.
+<p class="mb-0">Please link it to your account by logging from here.
     <a class="link" href="{% url 'account_signup' %}?next={{request.path}}" id="signup-link">Sign up</a> |
     <a class="link" href="{% url 'account_login' %}?next={{request.path}}" id="signup-link">Sign in</a>
 </p>
