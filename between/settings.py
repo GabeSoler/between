@@ -295,8 +295,8 @@ if IS_HEROKU_APP: # I am separating configurations to slow the rates depending o
         profiles_sample_rate_conf=1.0
     else:    
         dsn_conf=config('SENTRY_DSN') # heroku staging deployment
-        traces_sample_rate_conf=0.3
-        profiles_sample_rate_conf=0.3
+        traces_sample_rate_conf=1.0
+        profiles_sample_rate_conf=1.0
 
 
 if DEBUG == False:
