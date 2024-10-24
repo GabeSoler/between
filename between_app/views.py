@@ -6,7 +6,6 @@ from django.contrib.auth import get_user_model
 from django.contrib.auth.decorators import login_required
 from .content import Content
 from django.conf import settings
-from .helper import ResultsEmailThread,compose_results 
 # Create your views here.
 
 #A useful formating for bootstrap progress bars
@@ -90,26 +89,16 @@ def style_detail(request,pk):
 def ps_results(request,pk):
     """show the results of personal style"""
     style_detail = PersonalStyle.objects.get(pk=pk)
+    user = request.user
+    if user.is_authenticated and style_detail.user != user:
+        style_detail.user = user
+        style_detail.save()
     results = style_detail.calProfile
     cont_position = PersonalStyleGroup.objects.get(group=results['main_position'])
     cont_path = PersonalStyleGroup.objects.get(group=results['main_path'])
     cont_tradition = PersonalStyleGroup.objects.get(group=results['main_tradition'])
-    if request.method != 'POST': #Email functionality to the results (making this accesible to non registered users)
-        form = SendEmailForm()
-    else:
-        form = SendEmailForm(data=request.POST)
-        if form.is_valid():
-            instance = form.save()
-            user_email = instance.email
-            #compose the results into a text. Doing html always broke and couln't figure it out.
-            content = compose_results(cont_position=cont_position,cont_path=cont_path,cont_tradition=cont_tradition)
-            msg = ResultsEmailThread(recipient_list=user_email,text_content=content)
-            msg.start()
-            return redirect('between_app:test_home')
-        else:
-            pass
-    context = {'results':style_detail,'position':cont_position,'path':cont_path,'tradition':cont_tradition,'form':form,'pk':pk,'format':format}
-    return render(request,'between_app/personal_style/results_email.html',context)
+    context = {'results':style_detail,'position':cont_position,'path':cont_path,'tradition':cont_tradition,'pk':pk,'format':format}
+    return render(request,'between_app/personal_style/results.html',context)
 
 
 def positions_content_view(request):

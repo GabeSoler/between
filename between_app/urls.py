@@ -18,7 +18,7 @@ urlpatterns = [
     path('tests/style_list/',views.positions_list_view,name='profiles_list'),
     path('tests/profile_test/',views.take_profile_test,name='profile_test'),
     path('tests/content_1/',views.positions_content_view,name='content_1'),
-    path('tests/results_email/<uuid:pk>/',views.ps_results,name='results'),
+    path('tests/results/<uuid:pk>/',views.ps_results,name='results'),
 
 #Compnents
 

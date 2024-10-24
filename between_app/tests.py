@@ -98,7 +98,7 @@ class PersonalStyleTests(TestCase):
         self.assertEqual(response.status_code,200)
         self.assertEqual(no_response.status_code,404)
         self.assertContains(response, "Compassionate")
-        self.assertTemplateUsed(response, 'between_app/personal_style/results_email.html')
+        self.assertTemplateUsed(response, 'between_app/personal_style/results.html')
 
     def test_content_view(self):
         response = self.client.get(reverse('between_app:content'), follow=True)

@@ -11,12 +11,13 @@
 
 {% block content %}
 
-<h3>Therapeutic Styles:</h3>
+<h1>Therapeutic Styles:</h1>
 <p>Therapeutic styles are a way of conceptualising human difference. We all move through positions and roles in life, some being more familiar than others to us. Different cultures, families, subcultures stress some positions more than others.</p>
 <p>My idea is that we need to learn from the different positions to overcome their 'shadows', the parts that become hidden of our personality and tradition.</p>
 <p>Many new traditions are placed in-between positions, making the current landscape more fluid. This model aims to help therapist and clients to identify the positions where they feel more comfortable and which ones feel harder.</p>
+<a class="link" href={% url 'between_app:style_detail' pk %}>Numeric Scores</a>
 </br>
-<H1>Your main therapeutic Position</H1>
+<H2>Your main therapeutic Position</H2>
     <div class="card bg-active mb-3" id="results-card">
     <div class="card-body">
     <h2 class="card-title">{{position.group|title}}</h2>
@@ -26,7 +27,7 @@
     <p class="card-text posText"><b>Traditions</b>:{{position.traditions}}</p>
     <p class="card-text posText"><b>Authors</b>:{{position.authors}}</p>
     </div></div>
-<H1>Your main Path</H1>
+<H2>Your main Path</H2>
     <div class="card bg-active mb-3">
     <div class="card-body">
     <h2 class="card-title">{{path.group|title}}</h2>
@@ -36,7 +37,7 @@
     <p class="card-text posText"><b>Traditions</b>:{{path.traditions}}</p>
     <p class="card-text posText"><b>Authors</b>:{{path.authors}}</p>
     </div></div>
-<H1>Your main relationship with the Tradition</H1>
+<H2>Your main relationship with the Tradition</H2>
     <div class="card bg-active mb-3">
     <div class="card-body">
     <h2 class="card-title">{{tradition.group|title}}</h2>
@@ -50,18 +51,20 @@
 </div>
 </div>
 
-<a class="badge bg-primary p-2 m-2" href={% url 'between_app:style_detail' pk %}>See your scores</a></br>
-<a class="badge bg-primary p-2 m-2" href={% url 'account_signup' %} id="signup-link">Sign up</a></br>
 
-<div class="card p-2">
-    <h3 class="card-title">Email</h3>
-<p>You can send the results to your email bellow. Consider Signing up to save your results and take multiple tests</p>
-<form action="{% url 'between_app:results' pk %}" method='post'>
-    {% csrf_token %}
-    {% bootstrap_form form %}
-    {% bootstrap_button button_type='submit' content='Send as Email' %}
-  </form>
+{% if user.is_authenticated == False %}
+<div
+class="alert alert-info col-10 mx-auto"
+role="alert"
+>
+<h4 class="alert-heading">❗ Save Test</h4>
+<p class="mb-0">Please link it to you by authenticating from here.
+    <a class="link" href="{% url 'account_signup' %}?next={{request.path}}" id="signup-link">Sign up</a> |
+    <a class="link" href="{% url 'account_login' %}?next={{request.path}}" id="signup-link">Sign in</a>
+</p>
 </div>
-</br>
+
+{% endif %}
+
 
 {% endblock content%}
