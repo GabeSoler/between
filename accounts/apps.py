@@ -27,7 +27,7 @@ class AccountsConfig(AppConfig):
                 save_user(model,form_pk,user)
             except Exception as e:
                 error_text = f"Failed to link form user because: {e}"
-                logger.error(error_text) # for checking your logs
+                logger.warning(error_text) # for checking your logs
             else:
                 logger.info("Form linked to current user user") # For checking your logs
                 request.session['linked'] = "true"

@@ -310,3 +310,20 @@ if DEBUG == False:
         # We recommend adjusting this value in production.
         profiles_sample_rate=profiles_sample_rate_conf,
     )
+
+
+# logging conf to add some info when things are wrong (there are more complex setups). 
+# By default django messages are shown when debug True even in info level.
+LOGGING = {
+    "version": 1,
+    "disable_existing_loggers": False,
+    "handlers": {
+        "console": {
+            "class": "logging.StreamHandler",
+        },
+    },
+    "root": {
+        "handlers": ["console"],
+        "level": "WARNING",
+    },
+}

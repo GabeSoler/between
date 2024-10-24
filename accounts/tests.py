@@ -65,7 +65,7 @@ class SettingsTest(TestCase):
         response = self.client.get(reverse('accounts:account_profile'))
         self.assertContains(response,"name")
         response = self.client.post(reverse('accounts:edit_profile'),self.data_profile, follow=True)
-        self.assertRedirects(response,reverse('accounts:account_profile'))
+        self.assertRedirects(response,reverse('accounts:account_profile'),302)
         response = self.client.get(reverse('accounts:account_profile'))
         self.assertNotContains(response,"newuser")
         self.assertContains(response,"Hey")
