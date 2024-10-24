@@ -85,12 +85,11 @@
 
             <!--Log out, with exit icon-->
             <a href="{% url 'account_logout' %}" class="btn text-warning"><i class="bi bi-box-arrow-right fs-5"></i></a>
-            {% csrf_token %}
         {% else %}
-            <a href="{% url 'account_login' %}" class="btn me-1 btn-outline-light">Sign In</a>
+            <a href="{% url 'account_login' %}?next={{request.path}}" class="btn me-1 btn-outline-light">Sign In</a>
             {% url 'account_signup' as signup_url %}
             {% if signup_url %}
-                <a href="{{ signup_url }}" class="btn btn-outline-success">Sign Up</a>
+                <a href="{{ signup_url }}?next={{request.path}}" class="btn btn-outline-success">Sign Up</a>
             {% endif %}
         {% endif %}
                <!-- End of account related links -->
