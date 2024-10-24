@@ -10,7 +10,9 @@ class AccountsConfig(AppConfig):
         from django.dispatch.dispatcher import receiver
         from between_app.models import PersonalStyle
         import uuid
-        from django.contrib import messages
+        import logging
+
+        logger = logging.getLogger(__name__)
 
         def save_user(model,form_pk,user):
             form = model.objects.get(pk=form_pk)
@@ -24,10 +26,10 @@ class AccountsConfig(AppConfig):
                 form_pk = uuid.UUID(form_pk)
                 save_user(model,form_pk,user)
             except Exception as e:
-                error_text = f"Failed to link test to user because: {e}"
-                messages.error(request,error_text) # for checking your logs
+                error_text = f"Failed to link form user because: {e}"
+                logger.error(error_text) # for checking your logs
             else:
-                messages.info(request,"Form linked to user") # For checking your logs
+                logger.info("Form linked to current user user") # For checking your logs
                 request.session['linked'] = "true"
 
         @receiver(user_signed_up)
