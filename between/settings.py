@@ -44,15 +44,14 @@ else:
 # Application definition
 
 INSTALLED_APPS = [
-#my apps
+    #* My apps
     'between_app',
     'learning_logs',
     'accounts.apps.AccountsConfig',
-    'pages',
     'techniques_app',
     'dive_app',
 
-    #third party apps
+    #* Third party apps
     'django_bootstrap5', #css framework
     'allauth',
     'allauth.account', #authorisations
@@ -61,12 +60,11 @@ INSTALLED_APPS = [
     'allauth.socialaccount.providers.google', #google social account
     "whitenoise.runserver_nostatic", #white noise, static files manager
 
-#django apps added
+    #* Django apps added
     'django.contrib.flatpages', #for flat pages
     'django.contrib.sites',
 
-#defoult apps
-
+    #* Defoult apps
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',

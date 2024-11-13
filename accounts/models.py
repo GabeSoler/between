@@ -42,3 +42,4 @@ class DeleteAccount(models.Model):
     """leave trace of deleted accounts"""
     reason = models.CharField(max_length=20, choices=REASONS, default='')
     confirm = models.BooleanField()
+    
