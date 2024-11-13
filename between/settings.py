@@ -259,7 +259,8 @@ EMAIL_HOST_USER = RESEND_SMTP_USERNAME
 EMAIL_HOST_PASSWORD = RESEND_API_KEY
 DEFAULT_FROM_EMAIL = 'gabriel@crea-therapy.com'
 
-#Django All auth config
+
+#* Django All auth config
 SITE_ID = 1
 AUTHENTICATION_BACKENDS = [
     # Needed to login by username in Django admin, regardless of `allauth`
@@ -268,8 +269,9 @@ AUTHENTICATION_BACKENDS = [
     'allauth.account.auth_backends.AuthenticationBackend',
 ]
 
+ACCOUNT_SIGNUP_FORM_HONEYPOT_FIELD = 'phone_number'
 
-# Debug Tool bar
+#* Debug Tool bar
 
 TESTING = "test" in sys.argv
 

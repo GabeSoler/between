@@ -69,10 +69,6 @@ def take_profile_test(request):
             if request.user.is_authenticated:
                 user = request.user
                 new_form.user = user
-                request.session['linked'] = "ok" # so this one is ok and the one after auth is true
-            else:
-                request.session['form_pk'] = str(pk)
-                request.session['linked'] = "false"
             new_form.save()
             return redirect('between_app:results',pk)
     #display a blank or invalid form

@@ -1,7 +1,10 @@
 from django.test import TestCase
 from django.contrib.auth import get_user_model
 from django.urls import reverse_lazy,reverse
-from .forms import CommunityProfileForm,UserStatusForm
+from .forms import CommunityProfileForm,UserStatusForm,DeleteAccountForm
+
+from allauth.account.models import EmailAddress
+
 # Create your tests here.
 
 
@@ -80,3 +83,46 @@ class SettingsTest(TestCase):
         response = self.client.get(reverse('accounts:account_profile'))
         self.assertContains(response,"Therapist")
         self.assertContains(response,"Diver")
+
+
+class DeleteAccount(TestCase):
+    username = "newuser"
+    email = "newuser@email.com"
+    password = "312%%HWH"
+    data_profile = {"name":"Hey","about":"hey hey"}
+    data_status = {"therapist":True,"diver":True}
+    delete_data = {'reason':"no_inter",'confirm':True}
+    def setUp(self):
+        self.user = get_user_model().objects.create_user(self.username,self.email,self.password)
+
+
+
+    def test_form_valid(self):
+        form_invalid = DeleteAccountForm(data={'reason':'pepito','confirm':'hola'})
+        self.assertFalse(form_invalid.is_valid())
+        form_valid = DeleteAccountForm(data=self.delete_data)
+        self.assertTrue(form_valid.is_valid())
+
+    def test_account_deleted(self):
+        self.assertIsNotNone(get_user_model().objects.get(username=self.user.username))
+        self.client.login(username=self.username,email=self.email,password=self.password)
+        self.assertTrue(self.user.is_authenticated)
+        response = self.client.get('/')
+        self.assertContains(response,self.user.username)
+        response = self.client.get(reverse('accounts:delete_account'))
+        self.assertEqual(response.status_code,200)
+        response = self.client.post(
+            reverse('accounts:delete_account'),self.delete_data,follow=False
+        )
+        self.assertRedirects(response,'/',302)
+        response = self.client.get('/')
+        self.assertNotContains(response,self.user.username)
+
+        
+
+
+
+
+
+
+    

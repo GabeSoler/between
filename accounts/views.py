@@ -89,7 +89,7 @@ def delete_account_view(request):
         form = DeleteAccountForm(data=request.POST)
         if form.is_valid():
             form.save()
-            if form['confirm'] == True:
+            if form.cleaned_data['confirm'] == True:
                 user.delete()
                 return redirect('between_app:index')
     context = {'form':form}

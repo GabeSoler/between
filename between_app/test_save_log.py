@@ -5,31 +5,15 @@ from between_app.forms import StyleForm
 from django.conf import settings
 from asgiref.sync import sync_to_async
 
-from django.test.utils import override_settings
-from allauth.account import app_settings
 from allauth.account.models import EmailAddress
-from allauth.account import app_settings
 
 
-@override_settings(
-    ACCOUNT_DEFAULT_HTTP_PROTOCOL="https",
-    ACCOUNT_EMAIL_VERIFICATION=app_settings.EmailVerificationMethod.MANDATORY,
-    ACCOUNT_AUTHENTICATION_METHOD=app_settings.AuthenticationMethod.USERNAME,
-    ACCOUNT_SIGNUP_FORM_CLASS=None,
-    ACCOUNT_EMAIL_SUBJECT_PREFIX=None,
-    LOGIN_REDIRECT_URL="/accounts/profile/",
-    ACCOUNT_SIGNUP_REDIRECT_URL="/accounts/welcome/",
-    ACCOUNT_ADAPTER="allauth.account.adapter.DefaultAccountAdapter",
-    ACCOUNT_USERNAME_REQUIRED=True,
-)
 class ProfileLinkUserAutenticate(TestCase):
     """to test if the open profile test saves after login and signup """
 
     fixtures = ['between_app/fixtures/PersonalStyleGroup.yaml',
                 'between_app/fixtures/PersonalStyleSection.yaml'
                 ]
-    def setup(self):
-        self.client = Client() #to explore templates in request
     
     @classmethod
     def setUpTestData(cls):
@@ -43,7 +27,6 @@ class ProfileLinkUserAutenticate(TestCase):
             verified=True,
         )
         cls.login_data = {"login":"@usertest","password":"test123%%HH"}
-
 
         cls.data = {
                 'follower_1':90,
@@ -60,6 +43,11 @@ class ProfileLinkUserAutenticate(TestCase):
                 'belonging_1':3,
 
         }
+
+    def next_link(self,next,reverse_tag):
+        login_in_address = reverse(reverse_tag)
+        next_link = f"{login_in_address}?next={next}"
+        return next_link
 
     def test_client_login(self):
         self.client.login(
@@ -78,36 +66,33 @@ class ProfileLinkUserAutenticate(TestCase):
     
     def test_post_form(self):
         response = self.client.post('/tests/profile_test/',self.data, follow=True)
-        self.assertEqual(self.client.session['linked'],"false")
         self.assertContains(response,"Compassionate")
 
     
     def test_login_after_test(self):
         self.client.logout()
         response = self.client.post('/tests/profile_test/',self.data, follow=True)
-        self.assertEqual(self.client.session['linked'],"false")
+        next = response.request['PATH_INFO']
         response = self.client.post(
-                reverse("account_login"),
-                self.login_data,
+                self.next_link(next,"account_login"),
+                self.login_data,follow=True
                 )
-        #self.assertEqual(len(callbacks), 1)
         self.assertRedirects(
-            response, settings.LOGIN_REDIRECT_URL, fetch_redirect_response=False
+            response,next, fetch_redirect_response=False
             )
-        response = self.client.get('')
-        self.assertNotEqual(self.client.session['linked'],"error")
-        self.assertEqual(self.client.session['linked'],"true")        
-        
+        response = self.client.get(reverse('between_app:profiles_list'))
+        self.assertContains(response,"@usertest's Therapist Profile")
+
     def test_login_before_test(self):
         self.client.logout()
         response = self.client.post(
                 reverse("account_login"),
                 self.login_data,
                 )
-        #self.assertEqual(len(callbacks), 1)
         self.assertRedirects(
-            response, settings.LOGIN_REDIRECT_URL, fetch_redirect_response=False
+            response,'/', fetch_redirect_response=False
             )
         response = self.client.post('/tests/profile_test/',self.data,follow=True)
-        self.assertEqual(self.client.session['linked'],"ok")     # ok when already auth
+        response = self.client.get(reverse('between_app:profiles_list'))
+        self.assertContains(response,"@usertest's Therapist Profile")
  
