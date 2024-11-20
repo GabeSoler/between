@@ -18,18 +18,23 @@
   
     <div class="px-3 ms-4 my-auto">
     {% if user.is_authenticated %}
-    <h1 id="landing-text" class="t-bright-yellow">Welcome back, {{user.username}}!</h1>
-    <p class="text-light">
-      <i class="bi bi-brush-fill"></i> Keep exploring and playing!</p>
-  
-    <p class="lead">
-        <a href="{% url 'between_app:test_home' %}" class="btn btn-lg btn-secondary fw-bold border-primary bg-primary">See your tests</a>
+    <!--Wellcomes the authenticated user and gives two options:tests or theory-->
+    <h1 class="t-bright-yellow" id="landing-text_1">Welcome back, {{user.username}}!</h1>
+    <p class="text-light lead" id="landing-text_2">
+      <i class="bi bi-brush-fill"></i> Keep exploring and playing!
+        <a class="link fs-6" href="https://theory.crea-therapy.com/" target="_blank">CreaTheory</a>
+      </p>
+        <a href="{% url 'between_app:test_home' %}" class="btn btn-lg btn-primary fw-bold" id="landing-button">See your tests</a>
+
     {% else %}
-    <h1 id="landing-text" class="t-bright-yellow">Your Journey your Knowledge</h1>
-    <p class="text-light">
-      <i class="bi bi-brush-fill"></i> A creative and modular approach to psychotherapy</p>
+    <!--Wellcomes the user and gives a test option-->
+    <h1 class="t-bright-yellow" id="landing-text_1">Your Journey your Knowledge</h1>
+    <p class="text-light" id="landing-text_2">
+      <i class="bi bi-brush-fill lead"></i> A creative and modular approach to psychotherapy.
+      <a class="link fs-6" href="https://theory.crea-therapy.com/" target="_blank">CreaTheory</a>
+      </p>
         <p class="lead">
-          <a href="{% url 'between_app:profile_test' %}" class="btn btn-lg btn-secondary fw-bold border-primary bg-primary">Take a Test</a>
+          <a href="{% url 'between_app:profile_test' %}" class="btn btn-lg btn-primary fw-bold" id="landing-button">Take a Test</a>
     {% endif %}
     </p>
   </div>

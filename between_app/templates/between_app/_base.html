@@ -26,6 +26,9 @@
     <link rel="icon" type="image/png" sizes="16x16" href="{% static "between_app/favicon_io/favicon-16x16.png"%}">
     <link rel="manifest" href="{% static 'between_app/favicon_io/site.webmanifest' %}">
 
+    <!--Jquery link and a block to allow scripts added to a page-->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script src="{%block page_script%}{% endblock page_script%}"></script>
 </head>
 
 <body class='bg-light'>
@@ -61,8 +64,8 @@
                         My Journal</a></li>
                 <li class='nav-item'>
                     <a class='nav-link t-burnt-yellow' 
-                          href="https://theory.crea-therapy.com/">
-                        Theory <i class="bi bi-box-arrow-in-up-right"></i></a></li>
+                          href="https://theory.crea-therapy.com/" target="_blank">
+                        CreaTheory <i class="bi bi-box-arrow-in-up-right"></i></a></li>
                 <li class='nav-item'>
                   <a class='nav-link t-burnt-yellow {% if request.path|url_section:1 == '/techniques/' %}active{% endif %}' 
                         href="{% url 'techniques_app:index' %}">

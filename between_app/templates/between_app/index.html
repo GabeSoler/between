@@ -5,25 +5,30 @@
 
 {%block page_header%}{%endblock page_header%}
 
-
+{% block script%}{% static "between_app/js/index-cards.js"%}{% endblock script%}
 {%block content%}
 
 
 <div class="card mb-3 shadow border-primary border-3 col-12 mx-auto" id="intro-card">
-    <div class="card-body cold-white  rounded">
+    <div class="card-body cold-white rounded" id="welcomeText">
     <div class="col-lg-12 mx-auto">
     <!--Two starting points depending on user authentication-->
         {% if user.is_authenticated%}
-        <h2 class="card-title">Hey, {{user.username}}!</h2>
-        <p class="card-text" id="welcome-authenticated">Welcome back!</p>
-        <p class="card-text">Please explore the site and make it your own. All you do is being saved privately and you can come back to it any time.</p>
+        <h2 class="card-title" id="animateMe1">Hey, {{user.username}}!</h2>
+        <p class="card-text" id="animateMe2">Welcome back!</p>
+        <p class="card-text" id="animateMe3">Please explore the site and make it your own. All you do is being saved privately and you can come back to it any time.</p>
         {% else %}
-        <h2 class="card-title">Hey!</h2>
-        <p class="card-text" id="welcome-no-authenticated">
+        <h2 class="card-title" id="animateMe1">Hey!</h2>
+        <p class="card-text"  id="animateMe2">
             <i class="bi bi-play-fill"></i>CreaTherapy a project to re-imagine psychotherapy, in creative way from theory to practice.</p>
+        <div class="wrapper" id="animateMe3">
+            <p class="card-text">
+            <i class="bi bi-play-fill"></i>This this app will help you create your own path and style, and track your changes, while giving you strong foundations.</p>
         <p class="card-text">
-            <i class="bi bi-play-fill"></i>This this app will help you create your own path and style, track your changes, while giving you strong theory and practical foundations.</p>
-       {%endif%}
+            <i class="bi bi-play-fill"></i>This approach does not compete with your current approach, but to empower you as a creator of therapy. 
+            Read the theory in this <a class="link-secondary" href="theory.crea-therapy.com/" target="_blank">second site.</a></p>
+        </div class"wrapper">
+            {%endif%}
     </div>
 </div>
 </div>

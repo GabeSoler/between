@@ -23,9 +23,8 @@
   <a class="badge bg-primary p-2 m-2" href={% url 'between_app:profile_test' %}>Take the test </a></br>
 
   {% if cont_position.group %} <!-- if we have some resoults to show -->
-  <H1>Your main therapeutic Position</H1>
       <div class="card-body soft-green rounded">
-      <h2 class="card-title">{{position.group|title}}</h2>
+      <h2 class="card-title">Your current personal Profile:</h2>
       <div class='row'>
         <div class='col'>
           <image src="{% static cont_position.image %}" class='img-thumbnail border-2 border-primary rounded-circle' style='max-height:6em;'>
@@ -46,7 +45,7 @@
     <p>Here you will see your results</p>
       {% endif%} <!-- end if resoults -->
 
-  <a class="badge bg-primary p-2 m-2" href="https://theory.crea-therapy.com/">Read the theory </a>
+  <a class="badge bg-primary p-2 m-2" href="https://theory.crea-therapy.com/Profiles/" target="_blank">Read the theory</a>
   <a class="badge bg-primary p-2 m-2" href={% url 'between_app:profiles_list' %}>See your tests </a></br>
 
   </div>
