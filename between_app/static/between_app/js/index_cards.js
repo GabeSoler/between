@@ -39,25 +39,58 @@ $(function(){
 
     }
 
-    //Animate if scrolling and in view port, appearing from right
-    $(window).scroll(function() {
-          $(".card").each(function(index,item){
-            if (isInFullView(item)) {
-              item.velocity("finish");
-            } else if (isInBottomNav(item)) {
-              item.velocity("fadeInRight");
-            };
-            return;
-            });
 
-            if (isInViewport($("#alert_bottom"))){
-                $("#alert_bottom_text").fadeIn(800)
-            }else{
-                $("#alert_bottom_text").fadeOut(100)
-                };           
-        });
+
+    //Animate if scrolling and in view port, appearing from right
+    // $(window).scroll(function() {
+    //       $(".card").each(function(index,item){
+    //         if (isInFullView(item)) {
+    //           item.velocity("finish");
+    //         } else if (isInBottomNav(item)) {
+    //           item.velocity("fadeInRight");
+    //         };
+    //         return;
+    //         });
+
+    //         if (isInViewport($("#alert_bottom"))){
+    //             $("#alert_bottom_text").fadeIn(800)
+    //         }else{
+    //             $("#alert_bottom_text").fadeOut(100)
+    //             };           
+    //     });
     $("#landing-text_1").hide().fadeIn(600);
     $("#landing-text_2").hide().fadeIn(1000);
     $("#landing-button").hide().fadeIn(1400);
     $("#my_site_link").hide().fadeIn(2000);
-})
+
+
+
+
+    
+    //intersection observer
+    var cards = document.querySelector(".card")
+    
+    function animate_card_callback(entries,observer) {
+      entries.forEach(entry =>{
+        if (entry.isIntersecting){
+          entry.target.velocity("fadeInRight");
+        }
+      }
+      )
+      }
+    
+    const card_observer_options = {
+      rootMargin :"50px",
+      //threshold : "0.1"
+    }
+    const card_observer = new IntersectionObserver(animate_card_callback, card_observer_options)
+
+    $(".card").each(function (index,item){
+
+      card_observer.observe($(item)[0]);
+    }
+      
+    )
+
+
+  })
