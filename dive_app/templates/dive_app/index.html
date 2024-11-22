@@ -10,7 +10,7 @@
 
 <p class='card-text'>This section is to explore more deeply CreaTherapy as a therapeutic approach.</p>
 
-{% if not perms.accounts.can_dive %}
+{% if not perms.accounts.can_dive and user.is_authenticated%}
 <div
     class="alert alert-warning alert-dismissible fade show"
     role="alert"

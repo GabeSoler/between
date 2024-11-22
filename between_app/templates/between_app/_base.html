@@ -26,8 +26,11 @@
     <link rel="icon" type="image/png" sizes="16x16" href="{% static "between_app/favicon_io/favicon-16x16.png"%}">
     <link rel="manifest" href="{% static 'between_app/favicon_io/site.webmanifest' %}">
 
-    <!--Jquery link and a block to allow scripts added to a page-->
+    <!--JQuery and velocity-->
     <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/velocity/2.0.6/velocity.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/velocity/2.0.6/velocity.ui.min.js"></script>
+    <!--a script django block to add js files per page-->
     <script src="{%block page_script%}{% endblock page_script%}"></script>
 </head>
 
