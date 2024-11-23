@@ -41,6 +41,6 @@ $(function(){
       card_observer.observe($(item)[0]);
     }
     )
-
+    card_observer.observe($("#alert_bottom_text")[0]);
 
   })
