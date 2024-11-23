@@ -2,94 +2,44 @@
 
 $(function(){
 
-    // True if in the view port
-    function isInViewport(card) {
-        var elementTop = $(card).offset().top;
-        var elementBottom = elementTop + $(card).outerHeight();
-        var viewportTop = $(window).scrollTop();
-        var viewportBottom = viewportTop + $(window).height();
-        return elementBottom > viewportTop + 80 && elementTop < viewportBottom - 80;
-        };
-    function isInFullView(card) {
-        var elementTop = $(card).offset().top;
-        var elementBottom = elementTop + $(card).outerHeight();
-        var viewportTop = $(window).scrollTop();
-        var viewportBottom = viewportTop + $(window).height();
-        return elementBottom > viewportTop + 100 && elementTop < viewportBottom - 100;
-        };
-    function isInBottomNav(element) {
-        let elementTop = $(element).offset().top;
-        let elementBottom = elementTop + $(element).outerHeight();
-        let viewportTop = $(window).scrollTop();
-        let navbarTop = viewportTop + $(window).height() - 50;
-        let navbarBottom = viewportTop + $(window).height();
-        return navbarBottom > elementTop < navbarTop;
-        };
-
-    function animate(item) {
-      item.velocity({
-        transform: ["translateX(0)","translateX(5%)"],
-        opacity:[1,0]
-        },
-        {
-          duration: 1200,
-          ease: "ease-out",
-          loop: false
-        });
-
-    }
 
 
 
-    //Animate if scrolling and in view port, appearing from right
-    // $(window).scroll(function() {
-    //       $(".card").each(function(index,item){
-    //         if (isInFullView(item)) {
-    //           item.velocity("finish");
-    //         } else if (isInBottomNav(item)) {
-    //           item.velocity("fadeInRight");
-    //         };
-    //         return;
-    //         });
-
-    //         if (isInViewport($("#alert_bottom"))){
-    //             $("#alert_bottom_text").fadeIn(800)
-    //         }else{
-    //             $("#alert_bottom_text").fadeOut(100)
-    //             };           
-    //     });
-    $("#landing-text_1").hide().fadeIn(600);
-    $("#landing-text_2").hide().fadeIn(1000);
-    $("#landing-button").hide().fadeIn(1400);
-    $("#my_site_link").hide().fadeIn(2000);
+    $("#landing-text_1").velocity("fadeInRight",{duration:600});
+    $("#landing-text_2").velocity("fadeInRight",{duration:800});
+    $("#landing-button").velocity("fadeInRight",{duration:1000});
+    $("#my_site_link").velocity("fadeInRight",{duration:1500});
 
 
 
 
     
-    //intersection observer
-    var cards = document.querySelector(".card")
-    
+// define a callback function for the intersection observer. It receives an entry and a observer object that can stop observing    
     function animate_card_callback(entries,observer) {
+      // entries are the observations
       entries.forEach(entry =>{
+        //if an observation hits the options
         if (entry.isIntersecting){
+          //trigger an animation
           entry.target.velocity("fadeInRight");
         }
       }
       )
       }
-    
+// define a set of options, in this case it gives a margin to the object or a threshold of visibility
     const card_observer_options = {
       rootMargin :"50px",
       //threshold : "0.1"
     }
+
+    //define a observer object that receives a function and the options
     const card_observer = new IntersectionObserver(animate_card_callback, card_observer_options)
 
+    //here I give each card an observer independently so each can trigger the function
     $(".card").each(function (index,item){
 
       card_observer.observe($(item)[0]);
     }
-      
     )
 
 
