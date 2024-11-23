@@ -5,6 +5,7 @@ $(function(){
 
 
 
+    $("#brand-text").velocity("headShake",{duration:1000});
     $("#landing-text_1").velocity("fadeInRight",{duration:600});
     $("#landing-text_2").velocity("fadeInRight",{duration:800});
     $("#landing-button").velocity("fadeInRight",{duration:1000});

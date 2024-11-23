@@ -39,11 +39,11 @@
 
 {% block extra_body %}
 {% if user.is_authenticated == False %}
-<div class="alert alert-info display-5 mx-3 mt-3" role="alert" style="hight:3rem;" id="alert_bottom"><span id="alert_bottom_text">
+<div class="alert alert-info display-5 mx-3 mt-3" role="alert" id="alert_bottom"><span id="alert_bottom_text">
     Sign up for free to get full access. <a class="alert-link" href="{% url 'account_signup' %}">Sign up here.</a></span>
   </div>
 {% else %}
-<div class="alert alert-secondary display-5 mx-3 mt-3" role="alert" style="hight:3rem;" id="alert_bottom"><span id="alert_bottom_text">
+<div class="alert alert-secondary display-5 mx-3 mt-3" role="alert" id="alert_bottom"><span id="alert_bottom_text">
     Become a Diver user <a class="alert-link" href="{% url 'accounts:edit_status' %}"> here.</a><span>
   </div>
 {% endif %}
