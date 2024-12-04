@@ -9,7 +9,7 @@ class PersonalStyle(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     created_at = models.DateTimeField(auto_now_add=True, editable=False)
     updated_at = models.DateTimeField(auto_now=True, editable=False)
-    user = models.ForeignKey(get_user_model(),blank=True,null=True,on_delete=models.PROTECT)
+    user = models.ForeignKey(get_user_model(),blank=True,null=True,on_delete=models.SET_NULL)
     follower_1 = models.IntegerField(default=50)
     propositive_1 = models.IntegerField(default=50)
     challenger_1 = models.IntegerField(default=50)
@@ -114,7 +114,7 @@ class Components(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     created_at = models.DateTimeField(auto_now_add=True, editable=False)
     updated_at = models.DateTimeField(auto_now=True, editable=False)
-    user = models.ForeignKey(get_user_model(),on_delete=models.PROTECT)
+    user = models.ForeignKey(get_user_model(),on_delete=models.SET_NULL,null=True,blank=True)
     
     #Subjective
     body = models.IntegerField(default=0)
@@ -196,7 +196,7 @@ class BigTraditions(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     created_at = models.DateTimeField(auto_now_add=True, editable=False)
     updated_at = models.DateTimeField(auto_now=True, editable=False)
-    user = models.ForeignKey(get_user_model(),on_delete=models.PROTECT)
+    user = models.ForeignKey(get_user_model(),on_delete=models.SET_NULL,blank=True,null=True)
 
     #Big five traditions
     hemeneutic = models.IntegerField(default=50)
