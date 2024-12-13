@@ -83,7 +83,39 @@
     <a class="badge bg-primary p-2 m-2" href={% url 'dive_app:new_shadow' %}>New Shadow</a>
     <a class="badge bg-primary p-2 m-2" href={% url 'dive_app:shadows_by_date' %}>Shadow list</a>
 
+  </div>
+</div>
 
+
+<!-- Assemble -->
+ 
+<div class="card mb-3 border-primary border-1 soft-blue"> 
+  <div class="card-body">
+
+  <h2 class='card-title'>Assemble a model</h2>
+
+  <ul class='list-group'>
+  {% for assemble in assembles %}
+    <li class='list-group-item warm-white'> 
+        <a class='t-burnt-yellow' href="{% url 'dive_app:assemble_item' assemble.pk %}">
+        {{assemble.title}}</a>: <small>{{assemble.date_added|date}} - "{{assemble.simple_words|truncatechars:60}}"</small>
+
+      </li>
+      
+  {% empty %}
+    <li class='list-group-item'> No entries have been added yet </li>
+  {% endfor %}
+    </ul>
+    </br>
+
+
+
+    <a class="badge bg-primary p-2 m-2" href={% url 'dive_app:new_assemble' %}>New assemble</a>
+    <a class="badge bg-primary p-2 m-2" href={% url 'dive_app:assemble_by_date' %}>assemble list</a>
+
+
+
+    <!--User not authernticated -->
     {% else %}
 
     <div class="card mb-3 mt-2 border-primary border-3 soft-green"> 

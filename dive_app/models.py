@@ -58,3 +58,34 @@ class Shadow(models.Model):
         if len(self.title) >= 50:
             elipsis = "..."
         return f"{self.title[:50]}{elipsis}"
+
+
+class AssembleModel(models.Model):
+    """A guided model assembly exercise"""
+    owner = models.ForeignKey(get_user_model(),on_delete=models.CASCADE)
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    date_added = models.DateTimeField(auto_now_add=True)
+
+    title = models.CharField(max_length=500, default=None)
+
+    position = models.TextField(default="",blank=True,null=True)
+    reality_assumptions = models.TextField(default="",blank=True,null=True)
+    change = models.TextField(default="",blank=True,null=True)
+    relational = models.TextField(default="",blank=True,null=True)
+    
+    ontology = models.TextField(default="",blank=True,null=True)
+    knowledge = models.TextField(default="",blank=True,null=True)
+    traditions = models.TextField(default="",blank=True,null=True)
+    components = models.TextField(default="",blank=True,null=True)
+    clients = models.TextField(default="",blank=True,null=True)
+    simple_words = models.TextField(default="",blank=True,null=True)
+
+    class Meta:
+        verbose_name_plural = 'AssembleModel'
+    
+    def __str__(self):
+        """return a string representation of the entry"""
+        elipsis = ""
+        if len(self.title) >= 50:
+            elipsis = "..."
+        return f"{self.title[:50]}{elipsis}"

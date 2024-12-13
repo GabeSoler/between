@@ -12,6 +12,31 @@
   </div></div>
 
 {% if user.is_authenticated%}
+
+<div class="card mb-3 border-primary border-1 soft-blue"> <!-- After questions -->
+  <div class="card-body">
+
+  <h2 class='card-title'>After session questions</h2>
+
+  <ul class='list-group'>
+  {% for question in questions %}
+    <li class='list-group-item warm-white'> 
+        <a class='link-secondary' href="{% url 'learning_logs:question_item' question.pk %}">
+        {{question.text}} </a>
+        <p class='list-inline-item'>: <small>{{question.date_added|date}}</small></p>
+      </li>
+  {% empty %}
+    <li class='list-group-item'> No questions have been added yet </li>
+  {% endfor %}
+    </ul>
+    </br>
+    <a class="badge bg-primary p-2 m-2" href={% url 'learning_logs:new_question' %}>Add new question</a></br>
+    <a class="badge bg-primary p-2 m-2" href={% url 'learning_logs:after_answer_date' %}>See the whole list</a></br>
+    </div>
+    </div>
+
+
+    
 <!--Topics-->
 <div class="card mb-3 border-primary border-1 soft-blue"> 
       <div class="card-body">
@@ -40,30 +65,8 @@
 
 
 
-<div class="card mb-3 border-primary border-1 soft-blue"> <!-- After questions -->
-  <div class="card-body">
 
-  <h2 class='card-title'>After session questions</h2>
-
-  <ul class='list-group'>
-  {% for question in questions %}
-    <li class='list-group-item warm-white'> 
-        <a class='link-secondary' href="{% url 'learning_logs:question_item' question.pk %}">
-        {{question.text}} </a>
-        <p class='list-inline-item'>: <small>{{question.date_added|date}}</small></p>
-      </li>
-  {% empty %}
-    <li class='list-group-item'> No topics have been added yet </li>
-  {% endfor %}
-    </ul>
-    </br>
-    <a class="badge bg-primary p-2 m-2" href={% url 'learning_logs:new_question' %}>Add new question</a></br>
-    <a class="badge bg-primary p-2 m-2" href={% url 'learning_logs:after_answer_date' %}>See the whole list</a></br>
-    </div>
-    </div>
-
-
-    {% else %}
+    {% else %} <!-- Not authenticated -->
 
     <div class="card mb-3 mt-2 border-primary border-3 soft-green"> 
       <div class="card-body">    

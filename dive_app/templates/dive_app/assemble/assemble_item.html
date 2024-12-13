@@ -1,0 +1,61 @@
+{% extends 'between_app/_base.html' %}
+{% block title%}{{assemble.title}}{%endblock title%}
+
+
+{% block content %}
+<div class="card mt-3 mb-3 p-3 cold-white">
+
+  <div class="card-header soft-blue display-6">
+{{assemble.title|title}}
+</div>
+
+<div class="card-body">
+  
+  <h6 class="card-subtitle mb-2 text-body-secondary">{{assemble.date_added|date}}
+    - <a href="{% url 'dive_app:edit_assemble' assemble.pk %}" class="card-link">Edit</a>
+  </h6>
+  
+  <h5 class="card-text ">Title:</h5>
+  <p  class="bg-white rounded border border-primary p-3"> {{assemble.title}} </P>
+    
+    <h5 class="card-text">My model in simple words:</h5>
+      <p class="bg-white rounded border p-3"> {{assemble.simple_words}}</p>
+
+      <h5 class="card-text">My position:</h5>
+        <p class="bg-white rounded border p-3"> {{assemble.position}} </p>
+      
+      <h5 class="card-text">My way of seeing the world:</h5>
+        <p class="bg-white rounded border p-3"> {{assemble.reality_assumptions}}</p>
+      
+      <h5 class="card-text">How I see change:</h5>
+        <p class="bg-white rounded border p-3"> {{assemble.change}}  </p>
+
+      <h5 class="card-text">How I see relationships:</h5>
+        <p class="bg-white rounded border p-3"> {{assemble.relational}}</p>
+
+      <h5 class="card-text">My ontological assumptions:</h5>
+        <p class="bg-white rounded border p-3"> {{assemble.ontology}}</p>
+
+      <h5 class="card-text">My way of seen learning and knowledge production:</h5>
+        <p class="bg-white rounded border p-3"> {{assemble.knowledge}}</p>
+
+      <h5 class="card-text">How I relate to tradition(s):</h5>
+        <p class="bg-white rounded border p-3"> {{assemble.traditions}}</p>
+
+      <h5 class="card-text">My closer component(s):</h5>
+        <p class="bg-white rounded border p-3"> {{assemble.components}}</p>
+
+      <h5 class="card-text">My client group:</h5>
+        <p class="bg-white rounded border p-3"> {{assemble.clients}}</p>
+
+
+
+      <a href="{% url 'dive_app:assemble_by_date' %}" class="card-link">Back to assemble by date</a>
+
+      <a href="{% url 'dive_app:index' %}" class="card-link">Back to Dive</a>
+
+    </div>
+  </div>
+
+
+{%endblock content%}

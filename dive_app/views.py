@@ -1,6 +1,6 @@
 from django.shortcuts import render,redirect
-from .models import Creation,Shadow
-from .forms import CreationForm,ShadowForm
+from .models import Creation,Shadow,AssembleModel
+from .forms import CreationForm,ShadowForm,AssembleForm
 from django.contrib.auth.decorators import login_required,permission_required
 from django.http import Http404
 from django.urls import reverse
@@ -19,7 +19,8 @@ def index(request):
         return render(request,'dive_app/index.html')
     creations = Creation.objects.filter(owner=request.user).order_by('-date_added')[:5]
     shadows = Shadow.objects.filter(owner=request.user).order_by('-date_added')[:5]
-    context = {'creations':creations,'shadows':shadows}
+    assembles = AssembleModel.objects.filter(owner=request.user).order_by('-date_added')[:5]
+    context = {'creations':creations,'shadows':shadows,"assembles":assembles}
     return render(request,'dive_app/index.html',context)
 
 
@@ -153,3 +154,69 @@ def edit_shadow(request,shadow_pk):
             return redirect('dive_app:shadow_item',shadow_pk)
     context = {'shadow':shadow,'form':form}
     return render(request,'dive_app/shadow/edit_shadow.html',context)
+
+
+#* Assemble's CRUD
+
+
+@login_required
+@permission_required('accounts.can_dive',login_url="/accounts/edit_status/")
+def assemble_item(request,assemble_pk):
+    """show an item of assemble"""
+    assembleItem = AssembleModel.objects.get(pk=assemble_pk)
+    check_owner(assembleItem.owner,request.user)
+    context = {'assemble':assembleItem}
+    return render(request,'dive_app/assemble/assemble_item.html',context)
+
+
+@login_required
+@permission_required('accounts.can_dive',login_url="/accounts/edit_status/")
+def assemble_by_date(request):
+    """show all answers by date"""
+    answers_by_date = AssembleModel.objects.filter(owner=request.user).order_by('-date_added')
+    context = {'answers':answers_by_date}
+    return render(request,'dive_app/assemble/assemble_by_date.html',context)
+
+@login_required
+@permission_required('accounts.can_dive',login_url="/accounts/edit_status/")
+def assemble_by_title(request):
+    """show all answers by question"""
+    answers_by_question = AssembleModel.objects.filter(owner=request.user).order_by('title','-date_added')
+    context = {'answers':answers_by_question}
+    return render(request,'dive_app/assemble/assemble_by_title.html',context)
+
+def new_assemble(request):
+    """add new question"""
+    if request.method !='POST':
+        #no data submitted; create a blank form
+        form = AssembleForm()
+    else:
+        #POST data submitted; process data
+        form = AssembleForm(data=request.POST)
+        if form.is_valid():
+            new = form.save(commit=False)
+            new.owner = request.user 
+            new.save()
+            return redirect('dive_app:index')
+    #display a blank or invalid form
+    context = {'form':form}
+    return render(request,'dive_app/assemble/new_assemble.html',context)
+
+
+@login_required
+@permission_required('accounts.can_dive',login_url="/accounts/edit_status/")
+def edit_assemble(request,assemble_pk):
+    """edit an existing entry"""
+    assemble = AssembleModel.objects.get(pk=assemble_pk)
+    check_owner(assemble.owner,request.user)
+    if request.method != 'POST':
+        #initial request;pre-fill form with the current entry
+        form = AssembleForm(instance=assemble)
+    else:
+        #POST data submitted; process data
+        form = AssembleForm(instance=assemble,data=request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('dive_app:assemble_item',assemble_pk)
+    context = {'assemble':assemble,'form':form}
+    return render(request,'dive_app/assemble/edit_assemble.html',context)

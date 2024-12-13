@@ -1,0 +1,38 @@
+
+{% extends 'between_app/_base.html' %}
+
+{% block content %}
+
+<div class="card mt-3 mb-3 p-3 cold-white">
+  <div class="card-header soft-blue display-6">
+    <i class="bi bi-shadows"></i> Assemble List (by date)
+  </div>
+
+  <div class="card-body">
+
+  <a href="{%url 'dive_app:new_shadow'%}"
+  class="card-link"><small>Add new Assemble entry</small></a>
+  <a href="{%url 'dive_app:shadows_by_title'%}"
+  class="card-link"><small>Order By title</small></a>
+
+
+<ul class="list-group border">
+  {% for answer in answers%}
+    <li class="list-group-item"><a href="{%url 'dive_app:assemble_item' answer.pk %}">
+      {{answer.title|title}}</a> <small>- {{answer.date_added|date:'M d,Y H:i'}}</small>
+
+    </li>
+
+    {% empty %}
+    <li>There are no entries for this topic yet. </li>
+    {% endfor %}
+  </ul>
+
+  <a href="{% url 'dive_app:assemble_by_date' %}" class="card-link">Back to Assemble list</a>
+  <a href="{% url 'dive_app:index' %}" class="card-link">Back to Dive</a>
+
+</div></div>
+
+
+
+{% endblock content %}

@@ -1,5 +1,5 @@
 from django import forms 
-from .models import Creation,Shadow
+from .models import Creation,Shadow,AssembleModel
 
 
 
@@ -42,5 +42,36 @@ class ShadowForm(forms.ModelForm):
                    'text_trauma_history':forms.Textarea(attrs={'cols':80}),
                    'text_trauma_triggers':forms.Textarea(attrs={'cols':80}),
                    'text_care_plan':forms.Textarea(attrs={'cols':80}),
+                    }
+
+
+class AssembleForm(forms.ModelForm):
+    class Meta:
+        model = AssembleModel
+        fields = ["position","reality_assumptions","change","relational","ontology","knowledge","traditions","components","clients","simple_words","title",]
+        labels = {
+    "position":"Write how do you feel about your personal position's test.",
+    "clients":"Who do you want to work with and how it connects with what you have written above?",
+    "reality_assumptions":"Write a spontaneously what do your feel more relevant about your world right now.",
+    "change":"Write spontaneity what do you feel makes you and others change.",
+    "relational":"Write spontaneously what are your feelings and thoughts about relationships.",
+    "ontology":"In a more philosophical way, what do think about what is reality (See Big Traditions for inspiration)?",
+    "knowledge":"In a more philosophical way, what is your best way of producing knowledge?",
+    "traditions":"Have a moment to think of what psychotherapeutic discourse is more align with you (or you are struggling with).",
+    "components":"Write the components you are more drown into and what do you think about them.",
+    "simple_words":"Write in simple words, how you work coherently and how to frame it in a theoretical model.",
+    "title":"Give a title to this reflection to find it later.",
+        }
+        widgets = {
+    "position":forms.Textarea(attrs={'cols':80}),
+    "reality_assumptions":forms.Textarea(attrs={'cols':80}),
+    "change":forms.Textarea(attrs={'cols':80}),
+    "relational":forms.Textarea(attrs={'cols':80}),
+    "ontology":forms.Textarea(attrs={'cols':80}),
+    "knowledge":forms.Textarea(attrs={'cols':80}),
+    "traditions":forms.Textarea(attrs={'cols':80}),
+    "components":forms.Textarea(attrs={'cols':80}),
+    "clients":forms.Textarea(attrs={'cols':80}),
+    "simple_words":forms.Textarea(attrs={'cols':80}),
                     }
 
