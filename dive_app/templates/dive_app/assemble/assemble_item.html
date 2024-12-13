@@ -14,10 +14,7 @@
   <h6 class="card-subtitle mb-2 text-body-secondary">{{assemble.date_added|date}}
     - <a href="{% url 'dive_app:edit_assemble' assemble.pk %}" class="card-link">Edit</a>
   </h6>
-  
-  <h5 class="card-text ">Title:</h5>
-  <p  class="bg-white rounded border border-primary p-3"> {{assemble.title}} </P>
-    
+   
     <h5 class="card-text">My model in simple words:</h5>
       <p class="bg-white rounded border p-3"> {{assemble.simple_words}}</p>
 
