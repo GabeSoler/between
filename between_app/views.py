@@ -1,7 +1,7 @@
 from django.shortcuts import render,redirect
 from .models import PersonalStyle, Components,BigTraditions,PersonalStyleGroup
 from django.views.generic import TemplateView
-from .forms import StyleForm,ComponentsForm,BigTradForm,SendEmailForm
+from .forms import StyleForm,ComponentsForm,BigTradForm,StyleFormClient
 from django.contrib.auth import get_user_model
 from django.contrib.auth.decorators import login_required
 from .content import Content
@@ -78,15 +78,16 @@ def take_profile_test(request):
 def take_profile_test_client(request):
     if request.method !='POST':
         #no data submitted; create a blank form
-        form = StyleForm()
+        form = StyleFormClient()
     else:
         #POST data submitted; process data
-        form = StyleForm(data=request.POST)
+        form = StyleFormClient(data=request.POST)
         if form.is_valid():
             new_form = form.save(commit=False)
             pk = new_form.pk
             if request.user.is_authenticated:
                 user = request.user
+                new_form.therapist = False
                 new_form.user = user
             new_form.save()
             return redirect('between_app:results',pk)
