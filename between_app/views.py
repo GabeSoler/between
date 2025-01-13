@@ -93,7 +93,7 @@ def take_profile_test_client(request):
             return redirect('between_app:results',pk)
     #display a blank or invalid form
     context = {'form':form}
-    return render(request,'between_app/personal_style/profile_test.html',context)
+    return render(request,'between_app/personal_style/profile_test_client.html',context)
 
 
 

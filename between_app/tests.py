@@ -78,6 +78,15 @@ class PersonalStyleTests(TestCase):
         self.assertTemplateUsed(response, 'between_app/personal_style/profile_test.html')
     
     
+    def test_take_profile_test_client(self):
+        response = self.client.get(reverse('between_app:profile_test_client'), follow=True)
+        no_response = self.client.get('between/123')
+        self.assertEqual(response.status_code,200)
+        self.assertEqual(no_response.status_code,404)
+        self.assertContains(response, "Profile Test Client")
+        self.assertTemplateUsed(response, 'between_app/personal_style/profile_test_client.html')
+    
+    
     def test_style_detail_view(self):
         self.client.login(username = 'usertest',
             email = 'test@test.com',
