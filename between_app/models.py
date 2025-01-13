@@ -192,7 +192,9 @@ class Components(models.Model):
             }
         }
         return results
-
+    def __str__(self):
+        new_name = f"{self.user}:{self.updated_at}"
+        return new_name
 
 class BigTraditions(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
@@ -220,7 +222,9 @@ class BigTraditions(models.Model):
                 'participatory':self.participatory,
             }
         return results
-    
+    def __str__(self):
+        new_name = f"{self.user}:{self.updated_at}"
+        return new_name
 
 #Content fixtures
 
