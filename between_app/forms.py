@@ -33,12 +33,35 @@ class StyleForm(forms.ModelForm):
                   "propositive_1":"Propositive: I prefer to propose things in the session, offering activities or exercises.",
                   "challenger_1":"Challenger: I prefer to point to things that may be hidden or conflictive.",
                   "acceptant_1":"Acceptant: I prefer to create an space of acceptance of everything that comes from the other.",
-                  "intensive_1":"Intensive: I prefer spaces of intensity, where metaphores, and dream-like experiences are the focus.",
+                  "intensive_1":"Intensive: I prefer spaces of intensity, where metaphors, and dream-like experiences are the focus.",
                   "extensive_1":"Extensive: I prefer the extensive world, where things can be measured, touched and clearly percived.",
                   "divider_1":"Divider: I prefer to divide conflicts into pieces, analyse and fragment to see more clearly.",
                   "containment_1":"Containment: I prefer to hold complexity and multiplicity to help processes to take the shape they need.",
                   "becoming_1":"Becoming: I prefer to allow life to guide me as I move through new emergent processes.",
                   "development_1":"Development: I prefer to find coherence and organise things into levels of complexity.",
+                  "individuation_1":"Individuation: I prefer to follow my own path, do discover things in my own way.",
+                  "belonging_1":"Belonging: I prefer to be part of a group or community, to share my talents with others and grow together."
+                  }
+
+class StyleFormClient(forms.ModelForm):
+    class Meta:
+        model= PersonalStyle
+        fields = ("follower_1","propositive_1","challenger_1",
+                  "acceptant_1","intensive_1","extensive_1",
+                  "divider_1","containment_1","becoming_1",
+                  "development_1","individuation_1","belonging_1")
+        widgets = applyWidget(fields,RangeBooted)
+
+        labels = {"follower_1":"Follower: I prefer someone who follows me, by listening actively and giving me space to express myself.",
+                  "propositive_1":"Propositive: I prefer someone who proposes things to me, offering activities or exercises.",
+                  "challenger_1":"Challenger: I prefer someone who challenges me so I can discover hidden or conflictive parts I do not see.",
+                  "acceptant_1":"Acceptant: I prefer to be in a space of acceptance of everything that comes from me.",
+                  "intensive_1":"Intensive: I prefer spaces of intensity, where metaphors, and dream-like experiences are the focus.",
+                  "extensive_1":"Extensive: I prefer the extensive world, where things can be measured, touched and clearly perceived.",
+                  "divider_1":"Divider: I prefer to divide conflicts into pieces, analyse and fragment to see more clearly.",
+                  "containment_1":"Containment: I prefer to hold complexity and multiplicity to help processes to take the shape they need.",
+                  "becoming_1":"Becoming: I prefer to allow life to guide me as I move through new emergent processes.",
+                  "development_1":"Development: I prefer to find coherence and organize things into levels of complexity.",
                   "individuation_1":"Individuation: I prefer to follow my own path, do discover things in my own way.",
                   "belonging_1":"Belonging: I prefer to be part of a group or community, to share my talents with others and grow together."
                   }

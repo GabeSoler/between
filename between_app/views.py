@@ -75,6 +75,25 @@ def take_profile_test(request):
     context = {'form':form}
     return render(request,'between_app/personal_style/profile_test.html',context)
 
+def take_profile_test_client(request):
+    if request.method !='POST':
+        #no data submitted; create a blank form
+        form = StyleForm()
+    else:
+        #POST data submitted; process data
+        form = StyleForm(data=request.POST)
+        if form.is_valid():
+            new_form = form.save(commit=False)
+            pk = new_form.pk
+            if request.user.is_authenticated:
+                user = request.user
+                new_form.user = user
+            new_form.save()
+            return redirect('between_app:results',pk)
+    #display a blank or invalid form
+    context = {'form':form}
+    return render(request,'between_app/personal_style/profile_test.html',context)
+
 
 
 def style_detail(request,pk):

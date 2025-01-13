@@ -27,7 +27,7 @@ urlpatterns = [
     path("about/", views.flatpage, {"url": "/about/"}, name="about"),#To add custom url of flat pages
 
     #adding a site map
-    path("sitemap.xml",sitemap,
+    path("sitemap.xml/",sitemap,
         {"sitemaps":sitemaps},
         name="django.contrib.sitemaps.views.sitemap",
         ),

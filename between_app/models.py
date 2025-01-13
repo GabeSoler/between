@@ -23,6 +23,8 @@ class PersonalStyle(models.Model):
     individuation_1 = models.IntegerField(default=50)
     belonging_1 = models.IntegerField(default=50)
 
+    therapist = models.BooleanField(default=True)
+
     @property
     def calPosition(self):
         #Therapeutic Positions
