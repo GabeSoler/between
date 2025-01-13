@@ -41,7 +41,7 @@
   <div class="card-body">
     <h4 class="card-title">Profile Test</h4>
     
-    <form action="{% url 'between_app:profile_test' %}" method='post'>
+    <form action="{% url 'between_app:profile_test_client' %}" method='post'>
       {% csrf_token %}
       {% bootstrap_form form %}
       {% bootstrap_button button_type='submit' content='Submit Profile' %}
