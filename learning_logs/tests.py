@@ -63,7 +63,7 @@ class TestTopic(TestCase):
         self.setup()
         response = self.client.get(f'/learning/new_entry/{self.topic.id}/')
         self.assertEqual(response.status_code,200)
-        self.assertContains(response,"Add new entry")
+        self.assertContains(response,"Add New Entry")
         self.assertTemplateUsed(response,'learning_logs/topic/new_entry.html')
 
     def test_edit_entry_rendering(self):

@@ -23,7 +23,9 @@
   <p class="card-title">Then if you like it add it as a title of your journal.</p>
 
   <div id='questionWidget'>
+    <div class="card p-2 my-2 border-primary bg-primary-subtle">
     <p class='card-text' id='textDisplay'><i>Get a question pressing bellow</i></p>
+    </div>
     {% bootstrap_button class='btn button-primary' id='getQuestion' onclick='printQuestion()' content='Get New Questions' %}    
     {% bootstrap_button class='btn button-primary' id='addTopic' onclick='inputQuestion()' content='Add as Title' %}
   </div>
