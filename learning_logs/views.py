@@ -17,7 +17,8 @@ def index(request):
         return render(request,'learning_logs/index.html')
     form_topic = TopicForm()
     form_question = AfterForm()
-    context = {'form_topic':form_topic,'form_question':form_question}
+    topics = Topic.objects.filter(owner=request.user).order_by('date_added')[:3]
+    context = {'form_topic':form_topic,'form_question':form_question,'topics':topics}
     return render(request,'learning_logs/index.html',context)
 
 #Topic's CRUD
@@ -50,7 +51,7 @@ def new_topic(request):
             new = form.save(commit=False)
             new.owner = request.user 
             new.save()
-            return redirect('learning_logs:topics')
+            return redirect('learning_logs:new_entry',new.pk)
     #display a blank or invalid form
     context = {'form':form}
     return render(request,'learning_logs/topic/new_topic.html',context)
@@ -69,7 +70,7 @@ def new_entry(request,topic_pk):
             new_entry = form.save(commit=False)
             new_entry.topic = topic
             new_entry.save()
-            return redirect('learning_logs:topics')
+            return redirect('learning_logs:topic',topic.pk)
     #display blank or invalid form
     context={'topic':topic,'form':form}
     return render(request,'learning_logs/topic/new_entry.html',context)

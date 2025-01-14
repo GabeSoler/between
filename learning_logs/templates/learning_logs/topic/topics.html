@@ -2,46 +2,30 @@
 
 {% block content %}
 
-<div class="card">
-  <div class="card-header">Topics:</div>
+<div class="card mt-2 mb-3 cold-white">
+  <div class="card-header display-6 soft-blue">Topics:</div>
   <div class="card-body">
-    <ul>
+    <ul class="list-group">
       {% for topic in topics %}
-        <li> 
+        <li class="list-group-item bg-bright"> 
             <a href="{% url 'learning_logs:topic' topic.pk %}">
-            {{topic.text}} </a></li>
+            {{topic.text}} </a> &nbsp;
+            <a class='link-secondary' href="{% url 'learning_logs:new_entry' topic.pk %}">
+              <i class="bi bi-plus-square-fill text-primary fs-5"></i></a>
             </li>
       {% empty %}
         <li> No topics have been added yet </li>
       {% endfor %}
     
     </ul>  </div>
-    <a href="{% url 'learning_logs:new_topic'%}">Add a new topic</a>
 
-
+<div class="card-footer">
+<a href="{% url 'learning_logs:new_topic'%}"
+  class="card-link">Add a new topic</a>
 <a href="{% url 'learning_logs:index' %}" class="card-link">Back to Journaling</a>
-
+</div>
 </div>
 
-
-<ul>
-  {% for topic in topics %}
-    <li> 
-        <a href="{% url 'learning_logs:topic' topic.pk %}">
-        {{topic.text}} </a></li>
-        </li>
-  {% empty %}
-    <li> No topics have been added yet </li>
-  {% endfor %}
-
-</ul>
-
-<a href="{% url 'learning_logs:new_topic'%}">Add a new topic</a>
-
-
-<a href="{% url 'learning_logs:index' %}" class="card-link">Back to Journaling</a>
-
-</br></br>
 
 
 {% endblock content %}

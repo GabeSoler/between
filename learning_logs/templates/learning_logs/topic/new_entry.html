@@ -1,14 +1,15 @@
 {% extends 'between_app/_base.html' %}
 {% block title %}New Entry{%endblock title%}
-{%block page_header%}
-    <a href= "{%url 'learning_logs:topic' topic.pk %}">{{topic|title}}</a>
-{% endblock page_header%}
 
 {% block content%}
 {% load django_bootstrap5 %}
 
-
-    <p>Add new entry </p>
+<div class="card mt-2 mb-3 cold-white">
+    <div class="card-header display-6 soft-blue">Add to '{{topic|title}}'
+    </div>
+    <a class="card-link ms-3" href= "{%url 'learning_logs:topic' topic.pk %}">back to topic</a>
+    <div class="card-body">
+    <p class="fs-5">Add New Entry:</p>
 <form action="{%url 'learning_logs:new_entry' topic.pk %}" method='post'>
     {%csrf_token%}
     {% bootstrap_form form %}

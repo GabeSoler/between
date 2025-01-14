@@ -2,31 +2,30 @@
 
 {% block content %}
 
-  <p>Topic: {{topic.text}} </p>
+<div class="card cold-white mt-3 mb-4">
 
-  <p>Entries </p>
-  <p>
-    <a href="{%url 'learning_logs:new_entry' topic.pk %}">Add new entry</a>
-  </p>
+  <div class="card-header fs-3 soft-blue">Topic: '{{topic.text|title}}'</div>
 
-  <ul>
-    {% for entry in entries%}
-      <li>
-        <p>{{entry.date_added|date:'M d,Y H:i'}} </p>
-        <p>{{entry.text|linebreaks}}</p>
-        <p><a href="{%url 'learning_logs:new_entry' entry.pk %}">
-          Edit entry</a></p>
-      </li>
-
-      {% empty %}
-      <li>There are no entries for this topic yet. </li>
-    </ul>
-    {% endfor %}
-
+  <div class="card-body">
     <a href="{% url 'learning_logs:topics' %}" class="card-link">Back to Topic list</a>
-    <a href="{% url 'learning_logs:index' %}" class="card-link">Back to Journaling</a>
+    <a href="{% url 'learning_logs:index' %}" class="card-link">Back to my Journal</a>
     
-    </br></br>
-
+    <ul class="list-group p-2">
+      {% for entry in entries%}
+      <li class="list-group-item bg-bright">
+        {{entry.date_added|date:'M d,Y H:i'}}
+        <a href="{%url 'learning_logs:new_entry' entry.pk %}">
+          Edit entry</a></br>
+          {{entry.text|linebreaks}}
+        </li>
+        
+        {% empty %}
+        <li class="list-group-item bg-bright">There are no entries for this topic yet. </li>
+        {% endfor %}
+      </ul>
+      <a
+        class="btn btn-primary ms-2"
+        href="{%url 'learning_logs:new_entry' topic.pk %}">Add new entry
+      </a>
+  </div>
 {% endblock content %}
-  </ul>
