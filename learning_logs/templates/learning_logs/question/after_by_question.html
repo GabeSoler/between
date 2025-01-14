@@ -22,15 +22,17 @@
           </li>
           
           {% empty %}
-          <li>There are no questions yet. </li>
+          <li class="list-group-item">There are no questions yet. </li>
+          {% endfor %}
         </ul>
-        {% endfor %}
-        <a href="{%url 'learning_logs:new_question'%}">Add new reflexion</a>
+        <a   class="btn btn-primary mt-2"
+        href="{%url 'learning_logs:new_question'%}">Add new reflexion</a>
   </div></div>
   <div class="card-footer">
-    <a href="{% url 'learning_logs:after_answer_date' %}" class="card-link">Back to Questions list</a>
+    <a href="{% url 'learning_logs:after_answer_date' %}" class="card-link">By Date</a>
     <a href="{% url 'learning_logs:index' %}" class="card-link">Back to Journaling</a>
   </div>
 </div>
   
 {% endblock content %}
+

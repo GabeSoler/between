@@ -8,7 +8,7 @@
 <div class="card mt-2 mb-3 cold-white">
   <div class="card-header display-6 soft-blue">After Session Questions List:</div>
   <div class="card-body">
-  <div class="card-text"><a href="{%url 'learning_logs:new_question'%}">Add new reflexion</a></div>
+  <div class="card-text"><a href="{%url 'learning_logs:new_question'%}">Add new question</a></div>
 
     <ul class="list-group">
       {% for answer in answers%}
@@ -24,9 +24,13 @@
         </li>
     
         {% empty %}
-        <li>There are no entries for this topic yet. </li>
+        <li class="list-group-item">There are no entries for this topic yet. </li>
         {% endfor %}
       </ul>
+      <a   class="btn btn-primary mt-2"
+      href="{%url 'learning_logs:new_question'%}">Add new reflexion</a>
+
+
       <div class="card-footer">
       <a href="{% url 'learning_logs:after_answer_question' %}" class="card-link">By Question</a>
       <a href="{% url 'learning_logs:index' %}" class="card-link">Back to Journaling</a>
