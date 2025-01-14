@@ -1,4 +1,5 @@
 {% extends 'between_app/_base.html' %}
+{% load django_bootstrap5 %}
 
 {% block content %}
 {% load static %}
@@ -13,69 +14,125 @@
 
 {% if user.is_authenticated%}
 
-<div class="card mb-3 border-primary border-1 soft-blue"> <!-- After questions -->
-  <div class="card-body">
-
-  <h2 class='card-title'>After session questions</h2>
-
-  <ul class='list-group'>
-  {% for question in questions %}
-    <li class='list-group-item warm-white'> 
-        <a class='link-secondary' href="{% url 'learning_logs:question_item' question.pk %}">
-        {{question.text}} </a>
-        <p class='list-inline-item'>: <small>{{question.date_added|date}}</small></p>
-      </li>
-  {% empty %}
-    <li class='list-group-item'> No questions have been added yet </li>
-  {% endfor %}
-    </ul>
-    </br>
-    <a class="badge bg-primary p-2 m-2" href={% url 'learning_logs:new_question' %}>Add new question</a></br>
-    <a class="badge bg-primary p-2 m-2" href={% url 'learning_logs:after_answer_date' %}>See the whole list</a></br>
-    </div>
-    </div>
-
-
-    
-<!--Topics-->
-<div class="card mb-3 border-primary border-1 soft-blue"> 
-      <div class="card-body">
-
-  <h2 class='card-title'>Topics</h2>
-
-  <ul class='list-group'>
-  {% for topic in topics %}
-    <li class='list-group-item warm-white'> 
-        <a class='link-secondary' href="{% url 'learning_logs:topic' topic.pk %}">
-        {{topic.text}} </a>
-        <p class='list-inline-item'>: <small>{{topic.date_added|date}}</small></p>
-      </li>
-  {% empty %}
-    <li class='list-group-item'> No topics have been added yet </li>
-  {% endfor %}
-  <a class='link-secondary' href="{% url 'learning_logs:topics'%}">See all Topics</a>
-
-  </ul>
-  </br>
-  <a class="badge bg-primary p-2 m-2" href={% url 'learning_logs:new_topic' %}>Add a new topic</a></br>
-  <a class="badge bg-primary p-2 m-2" href={% url 'learning_logs:after_answer_date' %}>See the whole list</a></br>
-
-  </div>
-  </div>
-
-
-
-
-    {% else %} <!-- Not authenticated -->
-
-    <div class="card mb-3 mt-2 border-primary border-3 soft-green"> 
-      <div class="card-body">    
-    <p class='card-text'>After Signing In, you will find a sumary of your different Journal entries.</p>
-      </div></div>
-<div class="alert alert-success" role="alert">
-  Please Sign In before exploring the Journal section so it is personalised for you. <a href="{% url 'account_login' %}">Sign In</a>
+<div class="card cold-white mb-3 p-2">
+  <div class="card-header soft-blue">
+  <div class="card-title display-6">Create an After Session Entry:</div>
 </div>
-    {% endif%}
-    </div>
-    </div>   
+<div class="card-body">
+  <p class="card-title fs-5"> Press the button to get an after session prompt.</p>
+  <p class="card-title">Then if you like it add it as a title of your journal.</p>
+
+  <div id='questionWidget'>
+    <p class='card-text' id='textDisplay'><i>Get a question pressing bellow</i></p>
+    {% bootstrap_button class='btn button-primary' id='getQuestion' onclick='printQuestion()' content='Get New Questions' %}    
+    {% bootstrap_button class='btn button-primary' id='addTopic' onclick='inputQuestion()' content='Add as Title' %}
+  </div>
+    </div> 
+      <form action="{% url 'learning_logs:new_question' %}" method='post'>
+    {% csrf_token %}
+    {% bootstrap_form form_question %}
+    {% bootstrap_button button_type='submit' content='Create Question Entry' %}
+  </form>
+  <a href="{% url 'learning_logs:after_answer_date' %}" class="card-link p-2">After Session List</a>
+</div>
+
+
+
+
+<!--Topics-->
+<div class="card cold-white">
+  <div class="card-header soft-blue">
+  <div class="card-title display-6">New Topic</div>
+</div>
+
+<div class="card-body">
+  <div class="card-title fs-5">Add here a new Topic.</div>
+  <p class="card-subtitle">Then you can add insights to it that will be saved by date.</p>
+
+  <form action="{% url 'learning_logs:new_topic' %}" method='post'>
+    {% csrf_token %}
+    {% bootstrap_form form_topic %}
+    {% bootstrap_button button_type='submit' content='New Topic' %}
+  </form>
+
+<a href="{% url 'learning_logs:topics' %}" class="card-link">Back to Topic list</a>
+<a href="{% url 'learning_logs:index' %}" class="card-link">Back to Journaling</a>
+
+</div>
+</div>
+
+
+
+
+{% else %} <!-- Not authenticated -->
+
+<div class="card mb-3 mt-2 border-primary border-3 soft-green"> 
+  <div class="card-body">    
+    <p class='card-text'>After Signing In, you will find a sumary of your different Journal entries.</p>
+  </div></div>
+  <div class="alert alert-success" role="alert">
+    Please Sign In before exploring the Journal section so it is personalised for you. <a href="{% url 'account_login' %}">Sign In</a>
+  </div>
+  {% endif%}
+</div>
+</div>   
+
+
+<script>
+
+
+
+    // Create array constant
+const afterQuestions = [
+"Do you have a different sense of feeling, as if something moved inside? Try to feel it with more detail in your body and write down any associations and sensations.",
+"Is there something in the session that reminded you of somebody in your life, past or present? It may be worth writing about this person and what aspect calls the memory.",
+"Was there a moment in the relationship that was particularly intense? Could you write it in detail?",
+"Did something in the relationship that made you feel frustrated? Could you write down the situation?",
+"Did you feel you embodied a role in the session, maybe a child part of yourself, a wise part, or any role that may have emerged? Could you describe how it felt and at which moment it came up?",
+"Is there someone in your life you would like to have at your side after the session? Can you imagine them and see how the image feels in your body?",
+"Do you have a new thought or new idea after your session? Can you write it down and think what it means in your life? ",
+"Did something unexpected come to your attention during the session, like an image, thought, or feeling? Can you describe it?",
+"How does your body feel? How is your belly, your chest, your breathing? Try noticing it with more detail, and explore if there are textures, temperatures, or colours while you explore.",
+"Were there moments of silence in the session? How did you feel? Would it be helpful to write it down?",
+"Was there something worth registering for in the future? It may be just a phrase or even a gesture at the right moment. See how writing it makes you feel.",
+"Did you feel like needing a hug or some comfort during the session? When did it happen? Could you describe the situation in your mind or use images or words?",
+"Did something of the session remind you of your family? Maybe only one person? Could you write about them and describe how they make you feel?",
+"Have you thought about a relationship from the past at some point of the session? Try to bring images of your past associated with this relationship and register how it makes you feel in your body.",
+"Did you realise something about what makes you and your journey unique? Things that make you singular? Try to write down these insights and see how it makes you feel to have them in front of you.",
+"Do you have the impulse to do something, act, or take steps towards something? Could you express in writing?",
+"Do you feel like changing something in your life or context? Can you think of a ‘baby step’ towards it? And a ‘baby step’ towards the ‘baby step’?",
+"Do you feel you have realised something, like an insight, a feeling, or a new sense? Can you write it down and see how you feel when you see it in front of you?",
+"Was something particularly difficult to say or feel? Can you come back to it in your mind and see how it feels? Could you write it down or express it in the form of art?",
+"Is there a question lingering after the session? Can you write is and see what can you answer of it and see how it feels?",
+"Was there a moment where you reflected on your context (relationships, work, home)? Are there things stressing you or causing you discomfort? Could you write them down and see how do you feel as you do?",
+"Was there a moment where you felt recognised in session? Can you picture that moment in your mind and see how it feels in your body? Could you describe it by writing it down?",
+"Did you have a memory coming up during the session? Can you hold it in your mind for a bit longer? How does it feel in your body? Is there anything else coming up?",
+"Did you mention or think something positive about yourself or others during the session? If so, could you write down those positive thoughts and see how you respond to them?",
+"Did you feel that some of the thoughts you brought to the session no longer made sense? Could you write down how this changed your mindset?",
+];
+
+// Create object with a div id
+var questionDiv = document.getElementById("textDisplay").firstChild;
+const inputDiv = document.getElementById("id_question");
+const input_question = document.getElementById("id_text");
+
+
+// Create a function that calls a random element of the array
+function getAfterQuestions() {
+  var randomIndex = Math.floor(Math.random() * afterQuestions.length);
+  return afterQuestions[randomIndex];
+}
+
+// Create a function that prints the element inside the div object
+function printQuestion() {
+  questionDiv.textContent = getAfterQuestions();
+}
+
+function inputQuestion() {
+    inputDiv.value = questionDiv.textContent;
+  }
+
+  input_question.rows = 2;
+
+</script>
 {% endblock content%}

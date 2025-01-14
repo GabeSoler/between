@@ -15,9 +15,9 @@ def index(request):
     """show all topics"""
     if not request.user.is_authenticated:
         return render(request,'learning_logs/index.html')
-    topics = Topic.objects.filter(owner=request.user).order_by('date_added')[:3]
-    questions = AfterJournal.objects.filter(owner=request.user).order_by('date_added')[:3]
-    context = {'topics':topics,'questions':questions}
+    form_topic = TopicForm()
+    form_question = AfterForm()
+    context = {'form_topic':form_topic,'form_question':form_question}
     return render(request,'learning_logs/index.html',context)
 
 #Topic's CRUD
