@@ -41,6 +41,7 @@ def topic(request, topic_pk):
 
 def new_topic(request):
     """add new topic"""
+    topics = Topic.objects.filter(owner=request.user).order_by('date_added')
     if request.method !='POST':
         #no data submitted; create a blank form
         form = TopicForm()
@@ -53,7 +54,7 @@ def new_topic(request):
             new.save()
             return redirect('learning_logs:new_entry',new.pk)
     #display a blank or invalid form
-    context = {'form':form}
+    context = {'form':form,"topics":topics}
     return render(request,'learning_logs/topic/new_topic.html',context)
 
 @login_required

@@ -10,7 +10,10 @@
         <li class="list-group-item bg-bright"> 
             <a href="{% url 'learning_logs:topic' topic.pk %}">
             {{topic.text}} </a> &nbsp;
-            <a class='link-secondary' href="{% url 'learning_logs:new_entry' topic.pk %}">
+            <a class='link-secondary' 
+            data-bs-toggle="tooltip" data-bs-title="Add Topic"
+            data-bs-custom-class="custom-tooltip"    
+            href="{% url 'learning_logs:new_entry' topic.pk %}">
               <i class="bi bi-plus-square-fill text-primary fs-5"></i></a>
             </li>
       {% empty %}

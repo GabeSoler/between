@@ -38,3 +38,10 @@
 .posText {
     position:relative;
 }
+
+
+.custom-tooltip {
+    --bs-tooltip-bg: var(--bs-gray-900);
+    --bs-tooltip-color: var(--bs-gray-500);
+  }
+  

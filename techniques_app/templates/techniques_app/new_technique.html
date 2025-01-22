@@ -2,13 +2,17 @@
 
 {% block title %}New Technique{% endblock title %}
 
-{% block page_header%}
-<h2>New Technique:</h2>
-{% endblock page_header %}
 
 {% load django_bootstrap5 %}
-
 {%block content%}
+
+<div class='card mb-3 border-2 border-primary mt-3 mb-3'>
+    <div class="card-header bg-primary-subtle border-bottom border-primary">
+    <div class='card-title display-6'>Add new technique</div>
+    </div>
+    <div class='card-body soft-green '>
+
+
 <form action="{%url 'techniques_app:new_technique' %}" method='post'>
     {%csrf_token %}
     {% bootstrap_form form %}
@@ -16,4 +20,7 @@
     
 </form>
 
+
+</div>
+</div>
 {%endblock content%}

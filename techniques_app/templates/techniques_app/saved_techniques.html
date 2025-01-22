@@ -5,9 +5,13 @@
 
 {%block content%}
 
-<h2 class='mt-3'>Saved Techniques:</h2>
+<div class='card mb-3 border-2 border-primary mt-3 mb-3'>
+        <div class="card-header bg-primary-subtle border-bottom border-primary">
+        <div class='card-title display-6'>Saved Techniques:</div>
+        </div>
+        <div class='card-body soft-green '>
+    
 
-<div class='card bt-2' style="max-width: 800px;">
 <ul class='list-group border-bottom pb-2 mb-4 list-group-flash'>
 {%for tech in tech_saved %}
         <li class='list-group-item boder-1'><a class='link-secondary' href="{%url 'techniques_app:technique' tech.pk %}">{{tech.component|title}}</a>: {{tech.name|title}} <a href={%url 'techniques_app:delete_saved_technique' tech.pk %}>remove</a></li>
@@ -18,5 +22,6 @@
 {% if user.is_authenticated %}
  <a href="{%url 'techniques_app:techniques_long_community' %}" class='m-3 mt-1'>See more community techniques</a>
 {% endif %}
+</div>
 </div>
 {%endblock content%}

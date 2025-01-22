@@ -78,6 +78,15 @@
                   <a class='nav-link t-burnt-yellow {% if request.path|url_section:1 == '/dive/' %}active{% endif %}' 
                         href="{% url 'dive_app:index' %}">
                       Diver</a></li>
+                <li class="nav-item">
+                  <a class="nav-link fw-light" href='/about/'>About</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link fw-light" href='https://www.gabrielsoler.co.uk/' target="_blank">
+                    Therapy
+                  <i class="bi bi-box-arrow-in-up-right"></i></a>
+                </li>
+  
             </ul><!-- End of links on left side of nvbar -->
             <!-- Account related links-->
             {% if user.is_authenticated %}
@@ -132,27 +141,51 @@
     
 </main>
 <footer>
-</br></br>
-    <nav class="navbar navbar-expand-lg navbar-light bg-primary fixed-bottom">
-        <div class="container-fluid">
-          <a class="navbar-brand" href={% url "between_app:index" %}>Home</a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarText">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0 ">
+    <nav class="nav bg-primary fixed-bottom">
+      <ul class="nav nav-justified justify-content-center nav nav-pills px-3">
+            <li class="nav-item">
+              <a class="nav-link fw-light link-secondary fs-3 {% if request.path == '/' %}active{% endif %}" 
+              data-bs-toggle="tooltip" data-bs-title="Home"
+              data-bs-custom-class="custom-tooltip"
+              href={% url "between_app:index" %}>
+            <i class="bi bi-house-fill"></i></a>
+            </li>
+              <!--Add Question -->
               <li class="nav-item">
-                <a class="nav-link fw-light" aria-current="page" href="mailto:creatherapy.app@gmail.com">Email</a>
+                <a class="nav-link fw-light link-secondary fs-3 {% if request.path == '/learning/new_question/' %}active{% endif %}" 
+                data-bs-toggle="tooltip" data-bs-title="Add Question"
+                data-bs-custom-class="custom-tooltip"
+                href="{% url "learning_logs:new_question" %}">
+                  <i class="bi bi-patch-question-fill"></i>
+                  </a>
               </li>
+              <!--Add Topic -->
               <li class="nav-item">
-                <a class="nav-link fw-light" href='/about/'>About</a>
+                <a class="nav-link fw-light link-secondary fs-3 {% if request.path == '/learning/new_topic/' %}active{% endif %}" 
+                data-bs-toggle="tooltip" data-bs-title="Add Topic"
+                data-bs-custom-class="custom-tooltip"
+                href="{% url "learning_logs:new_topic" %}">
+                  <i class="bi bi-lightbulb-fill"></i></a>
               </li>
+              <!-- Add Technique -->
               <li class="nav-item">
-                <a class="nav-link fw-light" href='https://www.gabrielsoler.co.uk/'>Therapy</a>
+                <a class="nav-link fw-light link-secondary fs-3 {% if request.path == '/techniques/new_technique/' %}active{% endif %}" 
+                data-bs-toggle="tooltip" data-bs-title="Add Technique"
+                data-bs-custom-class="custom-tooltip"
+                href="{% url "techniques_app:new_technique" %}">
+                  <i class="bi bi-gear-wide-connected"></i></a>
+              </li>
+              <!--Profile Test-->
+              <li class="nav-item">
+                <a class="nav-link fw-light link-secondary fs-3 {% if request.path == '/tests/profile_test/' %}active{% endif %}" 
+                data-bs-toggle="tooltip" data-bs-title="Add Profile Test"
+                data-bs-custom-class="custom-tooltip"
+                href="{% url "between_app:profile_test" %}">
+                  <i class="bi bi-person-vcard-fill"></i>                </a>
               </li>
             </ul>
-            <span class="navbar-text fw-light">
-              All content was created and developed by Dr Gabriel Soler.
+            <span class="navbar-text fw-light d-none d-md-block ms-5">
+              By Dr Gabriel Soler.
             </span>
           </div>
         </div>
@@ -161,5 +194,9 @@
 
 </footer>
 </body>
+<script>
+const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
+const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
+</script>
 </html>
 

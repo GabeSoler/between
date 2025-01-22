@@ -7,16 +7,15 @@ New Topic
 {%block content%}
 
 
-<div class="card cold-white">
+<!--Topics-->
+<div class="card cold-white mb-5">
   <div class="card-header soft-blue">
-  <div class="card-title display-6">New Topic</div>
+  <div class="card-title display-6">Learning Topics</div> <!--immediate access to create a topic-->
 </div>
 
 <div class="card-body">
   <div class="card-title fs-5">Add here a new Topic.</div>
-  <p class="card-subtitle">Then you can add insights to it that will be saved by date.</p>
-
-  {% if user.is_authenticated %}
+  <p class="card-subtitle">Then you can add insights to it.</p>
 
   <form action="{% url 'learning_logs:new_topic' %}" method='post'>
     {% csrf_token %}
@@ -24,14 +23,24 @@ New Topic
     {% bootstrap_button button_type='submit' content='New Topic' %}
   </form>
 
-{% else %}
-<div class="alert alert-success" role="alert">
-  Please Sign In before creating a new entry, so we can save it. <a href="{% url 'account_login' %}">Sign In</a>
-</div>
-{% endif %}
 
-<a href="{% url 'learning_logs:topics' %}" class="card-link">Back to Topic list</a>
-<a href="{% url 'learning_logs:index' %}" class="card-link">Back to Journaling</a>
+  <div class="card m-2">
+  {% for topic in topics %} <!-- added a list of topics to access directly-->
+    <li class='list-group-item warm-white'> 
+        <a class='link-secondary' href="{% url 'learning_logs:topic' topic.pk %}">
+        {{topic.text}}</a>
+        &nbsp; <a class='link-secondary' 
+        data-bs-toggle="tooltip" data-bs-title="Add Topic"
+        data-bs-custom-class="custom-tooltip"
+        href="{% url 'learning_logs:new_entry' topic.pk %}">
+          <i class="bi bi-plus-square-fill text-primary"></i> </a>
+      </li>
+  {% empty %}
+    <li class='list-group-item'> No topics have been added yet </li>
+  {% endfor %}
+    </div>
+
+    <a href="{% url 'learning_logs:index' %}" class="card-link">Back to Journaling</a>
 
 </div>
 </div>

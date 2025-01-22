@@ -4,11 +4,12 @@
 
 
 <div class="card mt-2 mb-3 cold-white">
-    <div class="card-header display-6 soft-blue"><a href="{% url 'learning_logs:question_item' question.pk%}">{{question}}</a></div>
+    <div class="card-header display-6 soft-blue">
+    <div class="card-title display-6">Edit: '{{question}}'</div></div>
     <div class="card-body">
-    <div class="card-title display-6">Edit Entry</div>
+        <a href="{% url 'learning_logs:question_item' question.pk%}">See: '{{question}}'</a>
 
-    <div class="card-text"><a href="{%url 'learning_logs:new_question'%}">Add new reflexion</a></div>
+    <div class="card-text"><a href="{%url 'learning_logs:new_question'%}">New Question</a></div>
   
 
 

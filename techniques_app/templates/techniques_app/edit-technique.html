@@ -2,24 +2,26 @@
 
 {% block title %}Technique{% endblock title %}
 {% load django_bootstrap5 %}
-{% block page_header %}{{technique.name|title}}
-{% endblock page_header %}
 
 
 {%block content%}
 
-<a href="{%url 'techniques_app:technique' technique.pk %}"> <h2>Name: {{technique}}</h2></a>
+<div class='card mb-3 border-2 border-primary mt-3 mb-3'>
+    <div class="card-header bg-primary-subtle border-bottom border-primary">
+    <div class='card-title display-6'>Edit: {{technique.name|title}}</div>
+    </div>
 
-<a href="{%url 'techniques_app:techniques_short_community' technique.component.pk %}"><p>Component: {{technique.component}}</p></a>
+    <div class='card-body soft-green '>
 
+    <a class="card-link" href="{%url 'techniques_app:technique' technique.pk %}">Back to:'{{technique|title}}'</a>
 
-<p>Edit your Technique</p>
+    <a class="card-link" href="{%url 'techniques_app:techniques_short_community' technique.component.pk %}">Back to: '{{technique.component|title}}'</a>
 
-<form action="{%url 'techniques_app:edit_technique' technique.pk %}" method='post'>
+<form class="border border-primary rounded boder-1 m-2 p-2" action="{%url 'techniques_app:edit_technique' technique.pk %}" method='post'>
     {% csrf_token %}
     {% bootstrap_form form %}
     {% bootstrap_button button_type='submit' content='Edit Technique'%} 
 </form>
-
-
+</div>
+</div>
 {%endblock content%}

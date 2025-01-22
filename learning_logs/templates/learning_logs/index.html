@@ -63,7 +63,10 @@
     <li class='list-group-item warm-white'> 
         <a class='link-secondary' href="{% url 'learning_logs:topic' topic.pk %}">
         {{topic.text}}</a>
-        &nbsp; <a class='link-secondary' href="{% url 'learning_logs:new_entry' topic.pk %}">
+        &nbsp; <a class='link-secondary' 
+        data-bs-toggle="tooltip" data-bs-title="Add Topic"
+        data-bs-custom-class="custom-tooltip"
+        href="{% url 'learning_logs:new_entry' topic.pk %}">
           <i class="bi bi-plus-square-fill text-primary"></i> </a>
       </li>
   {% empty %}
