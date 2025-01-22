@@ -17,13 +17,21 @@ New Topic
   <div class="card-title fs-5">Add here a new Topic.</div>
   <p class="card-subtitle">Then you can add insights to it.</p>
 
+  {% if user.is_authenticated %}
   <form action="{% url 'learning_logs:new_topic' %}" method='post'>
     {% csrf_token %}
     {% bootstrap_form form %}
     {% bootstrap_button button_type='submit' content='New Topic' %}
   </form>
+{% else%}
+<div
+  class="alert alert-info"
+  role="alert"
+>
+  <strong>Sign in</strong> To add topics
+</div>
 
-
+{% endif %}
   <div class="card m-2">
   {% for topic in topics %} <!-- added a list of topics to access directly-->
     <li class='list-group-item warm-white'> 

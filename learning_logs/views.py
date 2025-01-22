@@ -41,7 +41,10 @@ def topic(request, topic_pk):
 
 def new_topic(request):
     """add new topic"""
-    topics = Topic.objects.filter(owner=request.user).order_by('date_added')
+    try:
+        topics = Topic.objects.filter(owner=request.user).order_by('date_added')
+    except:
+        topics = None
     if request.method !='POST':
         #no data submitted; create a blank form
         form = TopicForm()
