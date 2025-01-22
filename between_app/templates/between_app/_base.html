@@ -83,7 +83,7 @@
                 </li>
                 <li class="nav-item">
                   <a class="nav-link fw-light" href='https://www.gabrielsoler.co.uk/' target="_blank">
-                    Therapy
+                    Mentorship
                   <i class="bi bi-box-arrow-in-up-right"></i></a>
                 </li>
   
@@ -96,11 +96,22 @@
 
             <!--Account with person icon-->
                 <a href="{% url 'accounts:account_profile' %}"
-                   class="btn text-success"><i class="bi bi-person-circle fs-5"></i></a>
+                class="btn text-success"
+                data-bs-toggle="tooltip" data-bs-title="Account"
+                data-bs-custom-class="custom-tooltip"
+                data-bs-placement="bottom"
+                >
+                <i class="bi bi-person-circle fs-5"></i></a>
             {% endif %}
 
             <!--Log out, with exit icon-->
-            <a href="{% url 'account_logout' %}" class="btn text-warning"><i class="bi bi-box-arrow-right fs-5"></i></a>
+            <a href="{% url 'account_logout' %}" 
+            class="btn text-warning"
+              data-bs-toggle="tooltip" data-bs-title="Log Out"
+              data-bs-custom-class="custom-tooltip"
+              data-bs-placement="bottom"
+              >
+              <i class="bi bi-box-arrow-right fs-5"></i></a>
         {% else %}
             <a href="{% url 'account_login' %}?next={{request.path}}" class="btn me-1 btn-outline-light">Sign In</a>
             {% url 'account_signup' as signup_url %}
@@ -140,53 +151,69 @@
     {% endblock extra_body %}
     
 </main>
-<footer>
-    <nav class="nav bg-primary fixed-bottom">
-      <ul class="nav nav-justified justify-content-center nav nav-underline px-3">
+<footer class="bg-primary">
+      <ul class="nav nav-underline px-3 bg-primary fixed-bottom nav-justified">
             <li class="nav-item">
-              <a class="nav-link fw-light link-secondary fs-3 {% if request.path == '/' %}active{% endif %}" 
+              <a class="nav-link fw-light link-secondary fs-4 {% if request.path == '/' %}active{% endif %}" 
               data-bs-toggle="tooltip" data-bs-title="Home"
               data-bs-custom-class="custom-tooltip"
-              href={% url "between_app:index" %}>
-            <i class="bi bi-house-fill"></i></a>
+              href="{% url "between_app:index" %}">
+            <i class="bi bi-house-fill"></i>
+          <span class="d-none d-md-inline fs-5">
+            Home
+          </span>
+          </a>
             </li>
               <!--Add Question -->
               <li class="nav-item">
-                <a class="nav-link fw-light link-secondary fs-3 {% if request.path == '/learning/new_question/' %}active{% endif %}" 
+                <a class="nav-link fw-light link-secondary fs-4 {% if request.path == '/learning/new_question/' %}active{% endif %}" 
                 data-bs-toggle="tooltip" data-bs-title="Add Question"
                 data-bs-custom-class="custom-tooltip"
                 href="{% url "learning_logs:new_question" %}">
                   <i class="bi bi-patch-question-fill"></i>
+                  <span class="d-none d-md-inline fs-5">
+                  Question
+                  </span>
+
                   </a>
               </li>
               <!--Add Topic -->
               <li class="nav-item">
-                <a class="nav-link fw-light link-secondary fs-3 {% if request.path == '/learning/new_topic/' %}active{% endif %}" 
+                <a class="nav-link fw-light link-secondary fs-4 {% if request.path == '/learning/new_topic/' %}active{% endif %}" 
                 data-bs-toggle="tooltip" data-bs-title="Add Topic"
                 data-bs-custom-class="custom-tooltip"
                 href="{% url "learning_logs:new_topic" %}">
-                  <i class="bi bi-lightbulb-fill"></i></a>
+                  <i class="bi bi-lightbulb-fill"></i>
+                <span class="d-none d-md-inline fs-5">
+                  Topic
+                  </span>
+            </a>
               </li>
               <!-- Add Technique -->
               <li class="nav-item">
-                <a class="nav-link fw-light link-secondary fs-3 {% if request.path == '/techniques/new_technique/' %}active{% endif %}" 
+                <a class="nav-link fw-light link-secondary fs-4 {% if request.path == '/techniques/new_technique/' %}active{% endif %}" 
                 data-bs-toggle="tooltip" data-bs-title="Add Technique"
                 data-bs-custom-class="custom-tooltip"
                 href="{% url "techniques_app:new_technique" %}">
-                  <i class="bi bi-gear-wide-connected"></i></a>
+                  <i class="bi bi-gear-wide-connected"></i>
+                <span class="d-none d-md-inline fs-5">
+                  Technique
+                  </span>
+            </a>
               </li>
               <!--Profile Test-->
               <li class="nav-item">
-                <a class="nav-link fw-light link-secondary fs-3 {% if request.path == '/tests/profile_test/' %}active{% endif %}" 
+                <a class="nav-link fw-light link-secondary fs-4 {% if request.path == '/tests/profile_test/' %}active{% endif %}" 
                 data-bs-toggle="tooltip" data-bs-title="Add Profile Test"
                 data-bs-custom-class="custom-tooltip"
                 href="{% url "between_app:profile_test" %}">
-                  <i class="bi bi-person-vcard-fill"></i>                </a>
+                  <i class="bi bi-person-vcard-fill"></i>
+                <span class="d-none d-md-inline fs-5">
+                  Profile
+                  </span>
+                            </a>
               </li>
             </ul>
-            <span class="navbar-text fw-light d-none d-md-block ms-5">
-              By Dr Gabriel Soler.
-            </span>
           </div>
         </div>
       </nav>
