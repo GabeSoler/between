@@ -11,15 +11,15 @@
                 <div class="card-title display-6">Components List:</div>
                 <p class="card-text">Explore Techniques written by others and share yours.</p>
 
-                <div
-                        class="alert alert-info"
-                        role="alert"
-                >
+                {% if user.is_authenticated == False %}
+                <div class="alert alert-info"
+                        role="alert">
                         <strong>Sign in</strong> to see the techniques
                 </div>
+                {% endif %}
                 
-<a class="card-link" href="{% url 'techniques_app:techniques_long_community'%}">All Techniques</a>
-<a class="card-link" href="{% url 'techniques_app:index'%}">My Repository</a>
+<a class="badge bg-primary p-3 m-2" href="{% url 'techniques_app:techniques_long_community'%}">See Full List</a>
+<a class="badge bg-primary p-3 m-2" href="{% url 'techniques_app:index'%}">My Repository</a>
         </div>
 
         <div class="card-body">

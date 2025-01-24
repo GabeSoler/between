@@ -14,7 +14,6 @@
 
         
         <p class='lead'>This is a space save, share and learn about therapeutic techniques.</p>
-        <p class='card-text'>You can opt to share and see the insight of others.</p>
         
         {% if user.is_authenticated%}
         {% if not perms.accounts.can_dive %}
@@ -32,8 +31,8 @@
                <strong>Still not a Diver?</strong> Press any section to activate a full access.
            </div>
            {% endif%}
-        <a class="badge bg-primary p-2 m-2" href={% url 'techniques_app:saved_techniques' %}>My Saved Techniques </a>
-        <a class="badge bg-primary p-2 m-2" href={% url 'techniques_app:components_list' %}>Comunity Techniques</a>
+        <a class="badge bg-primary p-3 m-2" href={% url 'techniques_app:saved_techniques' %}>My Saved</a>
+        <a class="badge bg-primary p-3 m-2" href={% url 'techniques_app:components_list' %}>Comunity</a>
         {% endif%}
     </div>
     </div>
@@ -43,14 +42,14 @@
 
 <div class='card border-primary border-2 soft-green rounded pb-3'>
     <div class="card-heading bg-primary-subtle">
-    <div class='card-title fs-4 mt-3 ms-3'>My Techniques list</div>
+    <div class='card-title fs-4 mt-3 ms-3'>My Techniques list:</div>
     </div>
     <div class="card-body">
     <a class="badge bg-primary p-2 m-2" href={% url 'techniques_app:new_technique' %}>Add a new technique </a>
 
 
     <!-- List of techniques -->
-<ul class='list-group list-group-flush'>
+<ul class='list-group list-group-flush rounded'>
 {%for tech in techniques %}
         <li class='list-group-item warm-white'>
             <a class='t-burnt-yellow'href="{%url 'techniques_app:technique' tech.pk %}">{{tech|title}}</a> 
@@ -64,7 +63,7 @@
 
 {%else%} <!-- Text for non sign users -->
 
-<div class='card border-primary border-2 soft-green p-2'>
+<div class='card border-primary border-2 soft-green p-3'>
 <div class="card-title fs-5">A list of your techniques</div>
 <div class="card-title">After Signing In you will see here a list of your techniques and links to explore and save the community repository.</div>
 </div>
