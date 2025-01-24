@@ -130,7 +130,7 @@
 
 <!-- Main section -->
 
-<main>
+<main class="mb-5">
 
       {% block body %}
       {% block intro %}
@@ -155,6 +155,8 @@
     {% endblock extra_body %}
     
 </main>
+</br>
+<!--Fixed footer nav -->
 <footer class="bg-primary">
       <ul class="nav nav-underline px-3 bg-primary fixed-bottom nav-justified">
             <li class="nav-item">
@@ -171,7 +173,7 @@
               <!--Add Question -->
               <li class="nav-item">
                 <a class="nav-link fw-light link-secondary fs-4" 
-                data-bs-toggle="tooltip" data-bs-title="Go To Theory"
+                data-bs-toggle="tooltip" data-bs-title="Go To Theory Page"
                 data-bs-custom-class="custom-tooltip"
                 href="https://theory.crea-therapy.com/"
                 target="_blank">
@@ -185,7 +187,7 @@
               <!--Add Topic -->
               <li class="nav-item">
                 <a class="nav-link fw-light link-secondary fs-4 {% if request.path == '/learning/' %}active{% endif %}" 
-                data-bs-toggle="tooltip" data-bs-title="Visit Journal"
+                data-bs-toggle="tooltip" data-bs-title="My Journal"
                 data-bs-custom-class="custom-tooltip"
                 href="{% url "learning_logs:index" %}">
                 <i class="bi bi-pen-fill"></i>
