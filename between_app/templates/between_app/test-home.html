@@ -18,8 +18,8 @@
 <div class="card mb-3 border-primary border-1 soft-blue">
       <div class="card-body">
   <h2 class="card-title">Profile:</h2>
-  <p class="card-text">Therapeutic Profiles is a project to help therapist and clients to find their unique needs, having names to organise the complexities of human beings.</p>
-  <p class="card-text">They will help you to recognise your unique style and positions towards helping others and yourself.</p>
+  <p class="card-text">Therapeutic Profiles aims to help therapist and clients to find their unique needs.</p>
+  <p class="card-text">They will help you to recognize your unique style and positions towards helping others and yourself.</p>
   <a class="badge bg-primary p-2 m-2" href={% url 'between_app:profile_test' %}>Take the test </a></br>
 
   {% if cont_position.group %} <!-- if we have some resoults to show -->
@@ -65,8 +65,8 @@
       <p clas='card-text'>Similarity is usually good when starting or when we are more fragile. On the other hand, complements (therapist having areas clients miss or dislike) are better for growth, and to challenge oneself.</p>
       
       <!--list button-->
-      <a class="badge bg-primary p-2 m-2" href={% url 'between_app:components_list' %}>Your tests </a>
-      <a class="badge bg-primary p-2 m-2" href={% url 'between_app:components_test' %}>Take Components test</a>
+      <a class="badge bg-primary p-2 m-2" href={% url 'between_app:components_list' %}>Previous Entries</a>
+      <a class="badge bg-primary p-2 m-2" href={% url 'between_app:components_test' %}>Fill Out Profile</a>
 
   <!--Components results in bars-->
   {% if components.results.subjective  %}
@@ -121,13 +121,13 @@
 
 
 <!--Big traditions Section-->
-<div class="card mb-3 border-primary border-1 soft-blue">
+<div class="card mb-5 border-primary border-1 soft-blue">
   <div class="card-body">
   <h2 class="card-title">Big Traditions</h2>
   <p class="card-text">These are the main philosophical traditions behind the psychotherapy. We find sometimes mixes of them, and sub-groups, but they define clear paths relevant today.</p>
   <p class="card-text">This test will help you to recognise your afiliation with some reality assumptions.</p>
-  <a class="badge bg-primary p-2 m-2" href={% url 'between_app:traditions_list' %}>Your tests </a>
-  <a class="badge bg-primary p-2 m-2" href={% url 'between_app:traditions_test' %}>Big traditions test </a>
+  <a class="badge bg-primary p-2 m-2" href={% url 'between_app:traditions_list' %}>Previous Entries</a>
+  <a class="badge bg-primary p-2 m-2" href={% url 'between_app:traditions_test' %}>Fill Out Profile</a>
   {% if BigTrad.results %}
   <!--Big traditions results loop-->
   {% for name,result in BigTrad.results.items %}
@@ -140,6 +140,7 @@
  {% endif%}
   </div>
 </div>
+</br>
   <!--end traditions card-->
 
 
@@ -148,7 +149,7 @@
 
 {% else %} <!-- No authenticated section -->
             <!--no signed up card-->
-<div class="card mb-3 border-primary border-3 soft-green">
+<div class="card mb-5 border-primary border-3 soft-green">
     <div class="card-body">
 <h2 class="card-title">Take the Personal Style test</h2>
 <p class='card-text'>You can take the test and then sign up or login, and still will be saved (only test with that functionality).</p>

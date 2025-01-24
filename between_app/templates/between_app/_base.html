@@ -58,33 +58,37 @@
         <div class='collapse navbar-collapse' id='navbarCollapse'>
             <ul class='navbar-nav me-auto mb2 mb-md-0'> <!-- 'me' refers to left, and 'ms' to right -->
                 <li class='nav-item'>
-                    <a class='nav-link t-burnt-yellow {% if request.path|url_section:1 == '/tests/' %}active{% endif %}' 
-                    aria-current="page"      
+                    <a class='nav-link t-burnt-yellow {% if request.path == '/tests/' %}active{% endif %}' 
+                    {% if request.path == '/tests/' %}aria-current="page" {% endif %}     
                     href="{% url 'between_app:test_home' %}">
                         My Tests</a></li>
                 <li class='nav-item'>
-                    <a class='nav-link t-burnt-yellow {% if request.path|url_section:1 == '/learning/' %}active{% endif %}' 
+                    <a class='nav-link t-burnt-yellow {% if request.path == '/learning/' %}active{% endif %}' 
+                    {% if request.path == '/learning/' %}aria-current="page" {% endif %}
                           href="{% url 'learning_logs:index' %}">
                         My Journal</a></li>
                 <li class='nav-item'>
-                    <a class='nav-link t-burnt-yellow' 
-                          href="https://theory.crea-therapy.com/" target="_blank">
-                        CreaTheory <i class="bi bi-box-arrow-in-up-right"></i></a></li>
-                <li class='nav-item'>
-                  <a class='nav-link t-burnt-yellow {% if request.path|url_section:1 == '/techniques/' %}active{% endif %}' 
+                  <a class='nav-link t-burnt-yellow {% if request.path == '/techniques/' %}active{% endif %}'
+                    {% if request.path == '/techniques/' %}aria-current="page" {% endif %}
                         href="{% url 'techniques_app:index' %}">
-                      Techniques</a></li>
+                      My Techniques</a></li>
                 <li class='nav-item'>
-                  <a class='nav-link t-burnt-yellow {% if request.path|url_section:1 == '/dive/' %}active{% endif %}' 
+                  <a class='nav-link t-burnt-yellow {% if request.path == '/diver/' %}active{% endif %}' 
+                  {% if request.path == '/diver/' %}aria-current="page" {% endif %}
                         href="{% url 'dive_app:index' %}">
                       Diver</a></li>
-                <li class="nav-item">
-                  <a class="nav-link fw-light" href='/about/'>About</a>
-                </li>
+                      <li class='nav-item'>
+                        <a class='nav-link t-burnt-yellow' 
+                        href="https://theory.crea-therapy.com/" target="_blank">
+                        CreaTheory <i class="bi bi-box-arrow-in-up-right"></i></a>
+                      </li>
                 <li class="nav-item">
                   <a class="nav-link fw-light" href='https://www.gabrielsoler.co.uk/' target="_blank">
                     Mentorship
                   <i class="bi bi-box-arrow-in-up-right"></i></a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link fw-light" href='/about/'>About</a>
                 </li>
   
             </ul><!-- End of links on left side of nvbar -->
@@ -166,47 +170,48 @@
             </li>
               <!--Add Question -->
               <li class="nav-item">
-                <a class="nav-link fw-light link-secondary fs-4 {% if request.path == '/learning/new_question/' %}active{% endif %}" 
-                data-bs-toggle="tooltip" data-bs-title="Add Question"
+                <a class="nav-link fw-light link-secondary fs-4" 
+                data-bs-toggle="tooltip" data-bs-title="Go To Theory"
                 data-bs-custom-class="custom-tooltip"
-                href="{% url "learning_logs:new_question" %}">
+                href="https://theory.crea-therapy.com/"
+                target="_blank">
                   <i class="bi bi-patch-question-fill"></i>
                   <span class="d-none d-md-inline fs-5">
-                  Question
+                  Learn
                   </span>
 
                   </a>
               </li>
               <!--Add Topic -->
               <li class="nav-item">
-                <a class="nav-link fw-light link-secondary fs-4 {% if request.path == '/learning/new_topic/' %}active{% endif %}" 
-                data-bs-toggle="tooltip" data-bs-title="Add Topic"
+                <a class="nav-link fw-light link-secondary fs-4 {% if request.path == '/learning/' %}active{% endif %}" 
+                data-bs-toggle="tooltip" data-bs-title="Visit Journal"
                 data-bs-custom-class="custom-tooltip"
-                href="{% url "learning_logs:new_topic" %}">
-                  <i class="bi bi-lightbulb-fill"></i>
+                href="{% url "learning_logs:index" %}">
+                <i class="bi bi-pen-fill"></i>
                 <span class="d-none d-md-inline fs-5">
-                  Topic
+                  Journal
                   </span>
             </a>
               </li>
               <!-- Add Technique -->
               <li class="nav-item">
-                <a class="nav-link fw-light link-secondary fs-4 {% if request.path == '/techniques/new_technique/' %}active{% endif %}" 
-                data-bs-toggle="tooltip" data-bs-title="Add Technique"
+                <a class="nav-link fw-light link-secondary fs-4 {% if request.path == '/techniques/components_list/' %}active{% endif %}" 
+                data-bs-toggle="tooltip" data-bs-title="Read Techniques"
                 data-bs-custom-class="custom-tooltip"
-                href="{% url "techniques_app:new_technique" %}">
-                  <i class="bi bi-gear-wide-connected"></i>
+                href="{% url "techniques_app:components_list" %}">
+                <i class="bi bi-lightbulb-fill"></i>
                 <span class="d-none d-md-inline fs-5">
-                  Technique
+                  Techniques
                   </span>
             </a>
               </li>
               <!--Profile Test-->
               <li class="nav-item">
-                <a class="nav-link fw-light link-secondary fs-4 {% if request.path == '/tests/profile_test/' %}active{% endif %}" 
-                data-bs-toggle="tooltip" data-bs-title="Add Profile Test"
+                <a class="nav-link fw-light link-secondary fs-4 {% if request.path == "/tests/" %}active{% endif %}" 
+                data-bs-toggle="tooltip" data-bs-title="My Profile"
                 data-bs-custom-class="custom-tooltip"
-                href="{% url "between_app:profile_test" %}">
+                href="{% url "between_app:test_home" %}">
                   <i class="bi bi-person-vcard-fill"></i>
                 <span class="d-none d-md-inline fs-5">
                   Profile

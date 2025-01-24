@@ -32,13 +32,16 @@ New Topic
 </div>
 
 {% endif %}
-  <div class="card m-2">
+<div class="card bg-primary-subtle mt-3">
+<div class"card-header">Your Topics</div>
+<ul class="list-group">
   {% for topic in topics %} <!-- added a list of topics to access directly-->
-    <li class='list-group-item warm-white'> 
+
+    <li class='list-group-item warm-white p-2'> 
         <a class='link-secondary' href="{% url 'learning_logs:topic' topic.pk %}">
         {{topic.text}}</a>
         &nbsp; <a class='link-secondary' 
-        data-bs-toggle="tooltip" data-bs-title="Add Topic"
+        data-bs-toggle="tooltip" data-bs-title="Add Entry"
         data-bs-custom-class="custom-tooltip"
         href="{% url 'learning_logs:new_entry' topic.pk %}">
           <i class="bi bi-plus-square-fill text-primary"></i> </a>
@@ -46,6 +49,7 @@ New Topic
   {% empty %}
     <li class='list-group-item'> No topics have been added yet </li>
   {% endfor %}
+    </ul>
     </div>
 
     <a href="{% url 'learning_logs:index' %}" class="card-link">Back to Journaling</a>

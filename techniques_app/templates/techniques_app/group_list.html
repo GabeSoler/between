@@ -5,11 +5,12 @@
 
 {%block content%}
 <!--main card-->
-<div class="card my-3 pb-2 border border-primary">
+<div class="card my-3 pb-2 border border-primary mb-5">
         <!-- card header -->
         <div class="card-header bg-primary-subtle border border-primary border-3">
                 <div class="card-title display-6">Components List:</div>
-<a href="{% url 'techniques_app:techniques_long_community'%}">See them all</a>
+<a class="card-link" href="{% url 'techniques_app:techniques_long_community'%}">All Techniques</a>
+<a class="card-link" href="{% url 'techniques_app:index'%}">My Repository</a>
         </div>
 
         <div class="card-body">
@@ -71,4 +72,5 @@
 </div>
 
 </div>
+</br>
 {%endblock content%}

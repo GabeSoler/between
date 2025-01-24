@@ -10,11 +10,14 @@
 <h2 class='card-title'>Journal Space</h2>
 
 <p class='card-text'>The Journal space helps you keep track of your reflections and deepen your understanding of therapy.</p>
+<p class='card-text'>The Journal you can use it as you explore the theory at: <a class="link-info"
+  href="https://theory.crea-therapy.com/" target="_blank"
+  >Crea-Theory</a></p>
   </div></div>
 
 {% if user.is_authenticated%}
 
-<div class="card cold-white mb-3 p-2">
+<div class="card cold-white mb-3">
   <div class="card-header soft-blue">
   <div class="card-title display-6">Create an After Session Entry:</div>
 </div>
@@ -22,6 +25,7 @@
   <p class="card-title fs-5"> Press the button to get an after session prompt.</p>
   <p class="card-title">Then if you like it add it as a title of your journal.</p>
 
+  <!--Generate Question widget-->
   <div id='questionWidget'>
     <div class="card p-2 my-2 border-primary bg-primary-subtle">
     <p class='card-text' id='textDisplay'><i>Get a question pressing bellow</i></p>
@@ -29,13 +33,16 @@
     {% bootstrap_button class='btn button-primary' id='getQuestion' onclick='printQuestion()' content='Get New Questions' %}    
     {% bootstrap_button class='btn button-primary' id='addTopic' onclick='inputQuestion()' content='Add as Title' %}
   </div>
-    </div> 
+    </div>
+    <!--Question Form Widget-->
+    <div class="card-body">
       <form action="{% url 'learning_logs:new_question' %}" method='post'>
     {% csrf_token %}
     {% bootstrap_form form_question %}
     {% bootstrap_button button_type='submit' content='Create Question Entry' %}
   </form>
   <a href="{% url 'learning_logs:after_answer_date' %}" class="card-link p-2">After Session List</a>
+</div>
 </div>
 
 
@@ -58,13 +65,15 @@
   </form>
 
 
-  <div class="card m-2">
-  {% for topic in topics %} <!-- added a list of topics to access directly-->
-    <li class='list-group-item warm-white'> 
+  <div class="card bg-primary-subtle mt-3">
+    <div class"card-header">Your Last Topics</div>
+    <ul class="link-group warm-white">
+      {% for topic in topics %} <!-- added a list of topics to access directly-->
+    <li class='list-group-item '> 
         <a class='link-secondary' href="{% url 'learning_logs:topic' topic.pk %}">
         {{topic.text}}</a>
         &nbsp; <a class='link-secondary' 
-        data-bs-toggle="tooltip" data-bs-title="Add Topic"
+        data-bs-toggle="tooltip" data-bs-title="Add Entry"
         data-bs-custom-class="custom-tooltip"
         href="{% url 'learning_logs:new_entry' topic.pk %}">
           <i class="bi bi-plus-square-fill text-primary"></i> </a>
@@ -72,6 +81,7 @@
   {% empty %}
     <li class='list-group-item'> No topics have been added yet </li>
   {% endfor %}
+    </ul>
     </div>
 <a href="{% url 'learning_logs:topics' %}" class="card-link">Topic list</a>
 
@@ -93,7 +103,7 @@
   {% endif%}
 </div>
 </div>   
-
+</br>
 
 <script>
 

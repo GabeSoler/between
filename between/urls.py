@@ -19,7 +19,7 @@ urlpatterns = [
 
     path('learning/',include('learning_logs.urls')),
     path('techniques/',include('techniques_app.urls')),
-    path('dive/',include('dive_app.urls')),
+    path('diver/',include('dive_app.urls')),
     path('',include('between_app.urls')),
     
     #flat pages config
