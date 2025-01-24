@@ -26,8 +26,6 @@ def saved_techniques_view(request):
 
 
 
-@login_required
-@permission_required('accounts.can_dive',login_url="/accounts/edit_status/")
 def group_list_community_view(request): #Components list to organise the techniques
     subjective = Component.objects.filter(group='subj')
     extended = Component.objects.filter(group='ext')
