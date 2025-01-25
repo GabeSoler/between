@@ -101,7 +101,7 @@ class HomePageTest(StaticLiveServerTestCase):
         username = self.selenium.find_element(By.ID,"id_username")
         actions = ActionChains(self.selenium)
         actions.move_to_element(username)
-        actions.send_keys("testinguser")        
+        actions.send_keys("test_user")        
         password1 = self.selenium.find_element(By.ID,"id_password1")
         actions.move_to_element(password1)
         actions.send_keys("BLA&%%user234")
