@@ -9,7 +9,7 @@
   <div class="card-body"><small>
     <a href="{%url 'dive_app:new_assemble'%}" 
     class="card-link">New assemble</a>
-    <a href="{%url 'dive_app:assembles_by_date'%}"
+    <a href="{%url 'dive_app:assemble_by_date'%}"
     class="card-link">By Date</a></small>
   
   <ul class="list-group mb-2 mt-2">
@@ -22,7 +22,7 @@
       {% endfor %}
     </ul>
 
-  <a href="{% url 'dive_app:assembles_by_date' %}" class="card-link">Back to assemble list</a>
+  <a href="{% url 'dive_app:assemble_by_date' %}" class="card-link">Back to assemble list</a>
   <a href="{% url 'dive_app:index' %}" class="card-link">Back to Journaling</a>
 
   </div> </div>

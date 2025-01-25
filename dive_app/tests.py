@@ -2,7 +2,7 @@ from django.test import TestCase
 from django.test import TestCase,Client
 from django.urls import reverse
 from django.contrib.auth import get_user_model
-from .models import Creation,Shadow
+from .models import Creation,Shadow,AssembleModel
 from accounts.models import UserStatus
 
 #todo Test and review Shadow
@@ -236,3 +236,109 @@ class TestShadow(TestCase):
         response = self.client.post(f'/diver/edit_shadow/{self.shadow.pk}/',self.shadow_data)
         self.assertRedirects(response,
                 f'/diver/shadow/{self.shadow.pk}/',302)
+
+
+#* Testing Assemble a model
+
+class TestAssembleModel(TestCase):
+
+    @classmethod
+    def setUpTestData(cls):    
+        cls.user = get_user_model().objects.create_user(
+            username = 'usertest',
+            email = 'test@test.com',
+            password = 'test123',
+        )
+        cls.assemble = AssembleModel.objects.create(
+            #id = "74dc3d3f-5cd6-4660-9709-763a95a9ab3a",
+            owner = cls.user,
+            title = "some content",
+            position = "some content",
+            reality_assumptions = "some content",
+            change = "some content",
+            relational = "some content",
+            ontology = "some content",
+            knowledge = "some content",
+            traditions = "some content",
+            components = "some content",
+            clients = "some content",
+            simple_words = "some content",
+        )
+        cls.user_status = UserStatus.objects.create(
+            user=cls.user,
+            therapist=False,
+            diver=False,
+        )
+
+        cls.user_status_data = {'therapist':True,'diver':True}
+
+        cls.assemble_data = {
+            "title":"some content",
+            "position":"some content",
+            "reality_assumptions":"some content",
+            "change":"some content",
+            "relational":"some content",
+            "ontology":"some content",
+            "knowledge":"some content",
+            "traditions":"some content",
+            "components":"some content",
+            "clients":"some content",
+            "simple_words":"some content"
+        }
+
+    def setup(self,add_perm=True):
+        self.client.login(username = 'usertest',
+            password = 'test123')
+        if add_perm:
+            self.client.post(reverse('accounts:edit_status'),self.user_status_data,follow=True)
+
+
+    def test_assemble_by_date_rendering(self):
+        self.setup()
+        response = self.client.get(reverse('dive_app:assemble_by_date'))
+        self.assertEqual(response.status_code,200)
+        self.assertContains(response,self.assemble.title.title())
+        self.assertTemplateUsed(response,'dive_app/assemble/assemble_by_date.html') 
+
+    def test_assemble_by_title_rendering(self):
+        self.setup()
+        response = self.client.get(reverse('dive_app:assemble_by_title'))
+        self.assertEqual(response.status_code,200)
+        self.assertContains(response,self.assemble.title.title())
+        self.assertTemplateUsed(response,'dive_app/assemble/assemble_by_title.html')
+
+
+    def test_assemble_item_rendering(self):
+        self.setup()
+        response = self.client.get(f'/diver/assemble/{self.assemble.pk}/')
+        self.assertEqual(response.status_code,200)
+        self.assertContains(response,self.assemble.title)
+        self.assertTemplateUsed(response,'dive_app/assemble/assemble_item.html')
+
+
+    def test_new_assemble_rendering(self):
+        self.setup()
+        response = self.client.get(f'/diver/new_assemble/')
+        self.assertEqual(response.status_code,200)
+        self.assertContains(response,"Assemble Model: Exercise")
+        self.assertTemplateUsed(response,'dive_app/assemble/new_assemble.html')
+
+
+    def test_edit_assemble_rendering(self):
+        self.setup()
+        response = self.client.get(f'/diver/edit_assemble/{self.assemble.pk}/')
+        self.assertEqual(response.status_code,200)
+        self.assertContains(response,"Edit Assemble")
+        self.assertTemplateUsed(response,'dive_app/assemble/edit_assemble.html')
+
+    def test_new_assemble_post(self):
+        self.setup()
+        response = self.client.post('/diver/new_assemble/',self.assemble_data)
+        self.assertRedirects(response,
+                reverse('dive_app:index'),302)
+        
+    def test_edit_assemble_post(self):
+        self.setup()
+        response = self.client.post(f'/diver/edit_assemble/{self.assemble.pk}/',self.assemble_data)
+        self.assertRedirects(response,
+                f'/diver/assemble/{self.assemble.pk}/',302)
