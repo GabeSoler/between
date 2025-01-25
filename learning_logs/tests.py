@@ -123,13 +123,13 @@ class TestAfterJournal(TestCase):
         self.setup()
         response = self.client.get(f'/learning/new_question/')
         self.assertEqual(response.status_code,200)
-        self.assertContains(response,"Create an After Session Entry:")
+        self.assertContains(response,"Journal a Question:")
         self.assertTemplateUsed(response,'learning_logs/question/create_Question.html')
 
     def test_edit_entry_rendering(self):
         self.setup()
         response = self.client.get(f'/learning/edit_question/{self.after_journal.id}/')
         self.assertEqual(response.status_code,200)
-        self.assertContains(response,"Edit Entry")
+        self.assertContains(response,self.after_journal)
         self.assertTemplateUsed(response,'learning_logs/question/edit_Question.html')
 

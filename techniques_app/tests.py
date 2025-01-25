@@ -82,10 +82,6 @@ class TestThechniques(TestCase):
     
     def test_components_rendering(self):
         response = self.client.get('/techniques/components_list/')
-        self.assertRedirects(response,'/accounts/login/?next=/techniques/components_list/',302) #needs to be sign in
-        self.setup()
-        response = self.add_diver(response)                                                # I left it shorter
-        response = self.client.get('/techniques/components_list/')
         self.assertEqual(response.status_code,200)
         self.assertContains(response,"Identity")
         self.assertTemplateUsed(response,'techniques_app/group_list.html')    

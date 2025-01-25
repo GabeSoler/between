@@ -69,23 +69,23 @@ class TestCreation(TestCase):
 
     def test_creation_item_renderig(self): # Now I check for three things with one function
         self.setup()
-        response = f'/dive/creation/{self.creation.id}/'
+        response = f'/diver/creation/{self.creation.id}/'
         contains = self.creation.title
         template = 'dive_app/creating/creation_item.html'
         self.rendering_checks(response,contains,template)
   
     def test_creation_item_permissions(self): #checks for redirects for permissions
-        response = self.client.get(f'/dive/creation/{self.creation.id}/')
-        self.assertRedirects(response,f'/accounts/login/?next=/dive/creation/{self.creation.pk}/',302) #needs to be sign in
+        response = self.client.get(f'/diver/creation/{self.creation.id}/')
+        self.assertRedirects(response,f'/accounts/login/?next=/diver/creation/{self.creation.pk}/',302) #needs to be sign in
         self.setup(add_perm=False)
-        response = self.client.get(f'/dive/creation/{self.creation.id}/')
-        self.assertRedirects(response,f'/accounts/edit_status/?next=/dive/creation/{self.creation.pk}/',302) #needs to have permissions
+        response = self.client.get(f'/diver/creation/{self.creation.id}/')
+        self.assertRedirects(response,f'/accounts/edit_status/?next=/diver/creation/{self.creation.pk}/',302) #needs to have permissions
   
     def test_creation_item_next(self): # Tests the next brings you back to a post
         self.setup(add_perm=False)
-        response = self.client.post(f'/accounts/edit_status/?next=/dive/creation/{self.creation.pk}/',
+        response = self.client.post(f'/accounts/edit_status/?next=/diver/creation/{self.creation.pk}/',
                     self.user_status_data)
-        self.assertRedirects(response,f'/dive/creation/{self.creation.pk}/',302) #needs to have permissions
+        self.assertRedirects(response,f'/diver/creation/{self.creation.pk}/',302) #needs to have permissions
   
     def test_creations_by_date_date_rendering(self):
         self.setup()
@@ -103,29 +103,29 @@ class TestCreation(TestCase):
    
     def test_new_creation_rendering(self):
         self.setup()
-        response = self.client.get('/dive/new_creation/')
+        response = self.client.get('/diver/new_creation/')
         self.assertEqual(response.status_code,200)
         self.assertContains(response,"A guided creative reflection:")
         self.assertTemplateUsed(response,'dive_app/creating/create_reflection.html')
 
     def test_edit_creation_rendering(self):
         self.setup()
-        response = self.client.get(f'/dive/edit_creation/{self.creation.pk}/')
+        response = self.client.get(f'/diver/edit_creation/{self.creation.pk}/')
         self.assertEqual(response.status_code,200)
         self.assertContains(response,"Edit Creation")
         self.assertTemplateUsed(response,'dive_app/creating/edit_creation.html')
 
     def test_new_creation_post(self):
         self.setup()
-        response = self.client.post('/dive/new_creation/',self.creation_data)
+        response = self.client.post('/diver/new_creation/',self.creation_data)
         self.assertRedirects(response,
                 reverse('dive_app:index'),302)
         
     def test_edit_creation_post(self):
         self.setup()
-        response = self.client.post(f'/dive/edit_creation/{self.creation.pk}/',self.creation_data)
+        response = self.client.post(f'/diver/edit_creation/{self.creation.pk}/',self.creation_data)
         self.assertRedirects(response,
-                f'/dive/creation/{self.creation.pk}/',302)
+                f'/diver/creation/{self.creation.pk}/',302)
         
  
 
@@ -204,7 +204,7 @@ class TestShadow(TestCase):
 
     def test_shadow_item_rendering(self):
         self.setup()
-        response = self.client.get(f'/dive/shadow/{self.shadow.pk}/')
+        response = self.client.get(f'/diver/shadow/{self.shadow.pk}/')
         self.assertEqual(response.status_code,200)
         self.assertContains(response,self.shadow.title)
         self.assertTemplateUsed(response,'dive_app/shadow/shadow_item.html')
@@ -212,7 +212,7 @@ class TestShadow(TestCase):
 
     def test_new_shadow_rendering(self):
         self.setup()
-        response = self.client.get(f'/dive/new_shadow/')
+        response = self.client.get(f'/diver/new_shadow/')
         self.assertEqual(response.status_code,200)
         self.assertContains(response,"Shadow Reflections")
         self.assertTemplateUsed(response,'dive_app/shadow/new_shadow.html')
@@ -220,19 +220,19 @@ class TestShadow(TestCase):
 
     def test_edit_shadow_rendering(self):
         self.setup()
-        response = self.client.get(f'/dive/edit_shadow/{self.shadow.pk}/')
+        response = self.client.get(f'/diver/edit_shadow/{self.shadow.pk}/')
         self.assertEqual(response.status_code,200)
         self.assertContains(response,"Edit Shadow")
         self.assertTemplateUsed(response,'dive_app/shadow/edit_shadow.html')
 
     def test_new_shadow_post(self):
         self.setup()
-        response = self.client.post('/dive/new_shadow/',self.shadow_data)
+        response = self.client.post('/diver/new_shadow/',self.shadow_data)
         self.assertRedirects(response,
                 reverse('dive_app:index'),302)
         
     def test_edit_shadow_post(self):
         self.setup()
-        response = self.client.post(f'/dive/edit_shadow/{self.shadow.pk}/',self.shadow_data)
+        response = self.client.post(f'/diver/edit_shadow/{self.shadow.pk}/',self.shadow_data)
         self.assertRedirects(response,
-                f'/dive/shadow/{self.shadow.pk}/',302)
+                f'/diver/shadow/{self.shadow.pk}/',302)
