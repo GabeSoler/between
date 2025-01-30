@@ -63,6 +63,7 @@ INSTALLED_APPS = [
     #* Django apps added
     'django.contrib.flatpages', #for flat pages
     'django.contrib.sites',
+    'django.contrib.sitemaps', # sitemaps
 
     #* Defoult apps
     'django.contrib.admin',
@@ -71,6 +72,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles', #for statics
+
 ]
 
 MIDDLEWARE = [
@@ -82,7 +84,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'allauth.account.middleware.AccountMiddleware' #allauth middleware
+    'allauth.account.middleware.AccountMiddleware', #allauth middleware
 ]
 
 ROOT_URLCONF = 'between.urls'
