@@ -274,8 +274,9 @@ ACCOUNT_SIGNUP_FORM_HONEYPOT_FIELD = 'phone_number'
 #* Debug Tool bar
 
 TESTING = "test" in sys.argv
+HTMX_TEST = True
 
-if not TESTING and DEBUG==True:
+if not TESTING and DEBUG==True and HTMX_TEST == False:
     INSTALLED_APPS = [
         *INSTALLED_APPS,
         "debug_toolbar",
