@@ -291,14 +291,9 @@ INTERNAL_IPS = [
 
 # Sentry
 if IS_HEROKU_APP: # I am separating configurations to slow the rates depending of the app. 
-    if 'DATABASE_URL' in os.environ: # heroku main deployment
-        dsn_conf=config('SENTRY_DSN')
-        traces_sample_rate_conf=1.0
-        profiles_sample_rate_conf=1.0
-    else:    
-        dsn_conf=config('SENTRY_DSN') # heroku staging deployment
-        traces_sample_rate_conf=1.0
-        profiles_sample_rate_conf=1.0
+    dsn_conf=config('SENTRY_DSN')
+    traces_sample_rate_conf=1.0
+    profiles_sample_rate_conf=1.0
 
 
 if DEBUG == False:
