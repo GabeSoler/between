@@ -53,7 +53,7 @@ INSTALLED_APPS = [
 
     #* Third party apps
     'django_bootstrap5', #css framework
-    
+
     'allauth',
     'allauth.account', #authorisations
     #'allauth.socialaccount', #the social account sytem 
