@@ -60,6 +60,8 @@ INSTALLED_APPS = [
     #'allauth.socialaccount.providers.apple', #apple social account
     #'allauth.socialaccount.providers.google', #google social account
     'allauth.mfa',
+    "django.contrib.humanize",
+
 
     "whitenoise.runserver_nostatic", #white noise, static files manager
 
@@ -219,6 +221,11 @@ LOGIN_URL = 'account_login'
 AUTHENTICATION_LOGOUT_REDIRECT = 'between_app:index'
 AUTH_USER_MODEL = 'accounts.CustomUser'
 
+MFA_TOTP_ISSUER = 'Crea-Therapy'
+
+MFA_SUPPORTED_TYPES = ["totp", "webauthn", "recovery_codes"]
+MFA_PASSKEY_LOGIN_ENABLED = True
+
 
 #config of bootstrap5, I added a theme called 'sandstone' from bootswatch
 BOOTSTRAP5 = {
@@ -279,6 +286,8 @@ ACCOUNT_SIGNUP_FORM_HONEYPOT_FIELD = 'phone_number'
 TESTING = "test" in sys.argv
 
 if not TESTING and DEBUG:
+    MFA_WEBAUTHN_ALLOW_INSECURE_ORIGIN = True # passkey for local development allauth
+
     INSTALLED_APPS = [
         *INSTALLED_APPS,
         "debug_toolbar",
