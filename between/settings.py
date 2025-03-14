@@ -53,11 +53,14 @@ INSTALLED_APPS = [
 
     #* Third party apps
     'django_bootstrap5', #css framework
+    
     'allauth',
     'allauth.account', #authorisations
-    'allauth.socialaccount', #the social account sytem 
+    #'allauth.socialaccount', #the social account sytem 
     #'allauth.socialaccount.providers.apple', #apple social account
-    'allauth.socialaccount.providers.google', #google social account
+    #'allauth.socialaccount.providers.google', #google social account
+    'allauth.mfa',
+
     "whitenoise.runserver_nostatic", #white noise, static files manager
 
     #* Django apps added
