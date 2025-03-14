@@ -14,10 +14,20 @@ class PSAdmin(admin.ModelAdmin):  # inlines: other models inside
 		]
 	list_display = ('section','updated_at')
 
-admin.site.register(PersonalStyle)
-admin.site.register(Components)
+class PersonalStyleAdmin(admin.ModelAdmin):
+   	list_display = ('created_at','user')
+	   
+class ComponentsAdmin(admin.ModelAdmin):
+   	list_display = ('created_at','user')
+	   
+class BigTradAdmin(admin.ModelAdmin):
+   	list_display = ('created_at','user')
+
+
+admin.site.register(PersonalStyle,PersonalStyleAdmin)
+admin.site.register(Components,ComponentsAdmin)
 admin.site.register(PersonalStyleSection,PSAdmin)
-admin.site.register(BigTraditions)
+admin.site.register(BigTraditions,BigTradAdmin)
 
 
 
