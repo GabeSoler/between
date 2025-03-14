@@ -274,9 +274,8 @@ ACCOUNT_SIGNUP_FORM_HONEYPOT_FIELD = 'phone_number'
 #* Debug Tool bar
 
 TESTING = "test" in sys.argv
-HTMX_TEST = True
 
-if not TESTING and DEBUG==True and HTMX_TEST == False:
+if not TESTING and DEBUG:
     INSTALLED_APPS = [
         *INSTALLED_APPS,
         "debug_toolbar",
@@ -297,7 +296,7 @@ if IS_HEROKU_APP: # I am separating configurations to slow the rates depending o
     profiles_sample_rate_conf=1.0
 
 
-if DEBUG == False:
+if not DEBUG:
     sentry_sdk.init(
         dsn=dsn_conf,
         # Set traces_sample_rate to 1.0 to capture 100%
