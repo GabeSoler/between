@@ -20,7 +20,7 @@
   <h2 class="card-title">Profile:</h2>
   <p class="card-text">Therapeutic Profiles aims to help therapist and clients to find their unique needs.</p>
   <p class="card-text">They will help you to recognize your unique style and positions towards helping others and yourself.</p>
-  <a class="badge bg-primary p-2 m-2" href={% url 'between_app:profile_test' %}>Take the test </a></br>
+  <a class="badge bg-primary p-2 m-2" href={% url 'between_app:profile_test' %}>Take the Test</a></br>
 
   {% if cont_position.group %} <!-- if we have some resoults to show -->
       <div class="card-body soft-green rounded">
@@ -66,7 +66,7 @@
       
       <!--list button-->
       <a class="badge bg-primary p-2 m-2" href={% url 'between_app:components_list' %}>Previous Entries</a>
-      <a class="badge bg-primary p-2 m-2" href={% url 'between_app:components_test' %}>Fill Out Profile</a>
+      <a class="badge bg-primary p-2 m-2" href={% url 'between_app:components_test' %}>Take the Test</a>
 
   <!--Components results in bars-->
   {% if components.results.subjective  %}
@@ -127,7 +127,7 @@
   <p class="card-text">These are the main philosophical traditions behind the psychotherapy. We find sometimes mixes of them, and sub-groups, but they define clear paths relevant today.</p>
   <p class="card-text">This test will help you to recognise your afiliation with some reality assumptions.</p>
   <a class="badge bg-primary p-2 m-2" href={% url 'between_app:traditions_list' %}>Previous Entries</a>
-  <a class="badge bg-primary p-2 m-2" href={% url 'between_app:traditions_test' %}>Fill Out Profile</a>
+  <a class="badge bg-primary p-2 m-2" href={% url 'between_app:traditions_test' %}>Take the Test</a>
   {% if BigTrad.results %}
   <!--Big traditions results loop-->
   {% for name,result in BigTrad.results.items %}

@@ -30,9 +30,6 @@
         👉 This test aims to help you reflect on your positions. It does not have algorithms behind (only adds two sliders). You can come back and move the sliders to find what feels right.
     </div>
 
-<div class="card bg-light-subtle">
-  <div class="card-body">
-    <h4 class="card-title">Profile Test</h4>
     
     <form action="{% url 'between_app:profile_test' %}" method='post'>
       {% csrf_token %}
@@ -47,9 +44,6 @@
       {% bootstrap_button button_type='submit' content='Submit Profile' %}
     </form>
     
-    
   </div>
-  </div>
-</div>
 </div>
 {% endblock content %}
