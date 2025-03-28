@@ -119,35 +119,35 @@ class Components(models.Model):
     user = models.ForeignKey(get_user_model(),on_delete=models.SET_NULL,null=True,blank=True)
     
     #Subjective
-    body = models.IntegerField(default=0)
-    feelings = models.IntegerField(default=0)
-    expression = models.IntegerField(default=0)
-    thoughts = models.IntegerField(default=0)
-    narrative = models.IntegerField(default=0)
+    body = models.IntegerField(default=0,help_text="Training until the center, forward is expertise")
+    feelings = models.IntegerField(default=0,help_text="Training until the center, forward is expertise")
+    expression = models.IntegerField(default=0,help_text="Training until the center, forward is expertise")
+    thoughts = models.IntegerField(default=0,help_text="Training until the center, forward is expertise")
+    narrative = models.IntegerField(default=0,help_text="Training until the center, forward is expertise")
     #extended awareness
-    dreaming = models.IntegerField(default=0)
-    re_prog = models.IntegerField(default=0)
-    subliminal = models.IntegerField(default=0)
-    subparts = models.IntegerField(default=0)
-    spiritual = models.IntegerField(default=0)
+    dreaming = models.IntegerField(default=0,help_text="Training until the center, forward is expertise")
+    re_prog = models.IntegerField(default=0,help_text="Training until the center, forward is expertise")
+    subliminal = models.IntegerField(default=0,help_text="Training until the center, forward is expertise")
+    subparts = models.IntegerField(default=0,help_text="Training until the center, forward is expertise")
+    spiritual = models.IntegerField(default=0,help_text="Training until the center, forward is expertise")
     #Context work
-    relational = models.IntegerField(default=0)
-    systems = models.IntegerField(default=0)
-    setup = models.IntegerField(default=0)
-    transOb = models.IntegerField(default=0)
-    family = models.IntegerField(default=0)
+    relational = models.IntegerField(default=0,help_text="Training until the center, forward is expertise")
+    systems = models.IntegerField(default=0,help_text="Training until the center, forward is expertise")
+    setup = models.IntegerField(default=0,help_text="Training until the center, forward is expertise")
+    transOb = models.IntegerField(default=0,help_text="Training until the center, forward is expertise")
+    family = models.IntegerField(default=0,help_text="Training until the center, forward is expertise")
     #Culture
-    antropology = models.IntegerField(default=0)
-    arts = models.IntegerField(default=0)
-    politics = models.IntegerField(default=0)
-    philosophy = models.IntegerField(default=0)
-    worldview = models.IntegerField(default=0)
+    antropology = models.IntegerField(default=0,help_text="Training until the center, forward is expertise")
+    arts = models.IntegerField(default=0,help_text="Training until the center, forward is expertise")
+    politics = models.IntegerField(default=0,help_text="Training until the center, forward is expertise")
+    philosophy = models.IntegerField(default=0,help_text="Training until the center, forward is expertise")
+    worldview = models.IntegerField(default=0,help_text="Training until the center, forward is expertise")
     #identity
-    individuation = models.IntegerField(default=0)
-    sex_gender = models.IntegerField(default=0)
-    values = models.IntegerField(default=0)
-    belonging = models.IntegerField(default=0)
-    roles = models.IntegerField(default=0)
+    individuation = models.IntegerField(default=0,help_text="Training until the center, forward is expertise")
+    sex_gender = models.IntegerField(default=0,help_text="Training until the center, forward is expertise")
+    values = models.IntegerField(default=0,help_text="Training until the center, forward is expertise")
+    belonging = models.IntegerField(default=0,help_text="Training until the center, forward is expertise")
+    roles = models.IntegerField(default=0,help_text="Training until the center, forward is expertise")
 
     @property
     def results(self):
@@ -203,13 +203,13 @@ class BigTraditions(models.Model):
     user = models.ForeignKey(get_user_model(),on_delete=models.SET_NULL,blank=True,null=True)
 
     #Big five traditions
-    hemeneutic = models.IntegerField(default=50)
-    phenomenological = models.IntegerField(default=50)
-    cybernetic = models.IntegerField(default=50)
-    spiritual = models.IntegerField(default=50)
-    scientific = models.IntegerField(default=50)
-    constructive = models.IntegerField(default=50)
-    participatory = models.IntegerField(default=50)
+    hemeneutic = models.IntegerField(default=50,help_text="Move right for support of the statement, and left for disagreement")
+    phenomenological = models.IntegerField(default=50,help_text="Move right for support of the statement, and left for disagreement")
+    cybernetic = models.IntegerField(default=50,help_text="Move right for support of the statement, and left for disagreement")
+    spiritual = models.IntegerField(default=50,help_text="Move right for support of the statement, and left for disagreement")
+    scientific = models.IntegerField(default=50,help_text="Move right for support of the statement, and left for disagreement")
+    constructive = models.IntegerField(default=50,help_text="Move right for support of the statement, and left for disagreement")
+    participatory = models.IntegerField(default=50,help_text="Move right for support of the statement, and left for disagreement")
     @property
     def results(self):
         results = {
