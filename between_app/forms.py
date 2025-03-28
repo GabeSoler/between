@@ -13,7 +13,7 @@ class RangeBooted(Input):
     def get_context(self, name, value, attrs):
         ctx = super().get_context(name, value, attrs)
         ctx['widget']['type'] = "range"
-        ctx['widget']['attrs']['class'] = "form-range bg-secondary rounded shadow w-75 p-2"
+        ctx['widget']['attrs']['class'] = "form-range rounded w-75 p-1"
         ctx['widget']['attrs']['min'] = "0"
         ctx['widget']['attrs']['max'] = "100"
         ctx['widget']['attrs']['step'] = "2"
