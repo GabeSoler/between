@@ -7,34 +7,54 @@ Components Test
 
 {%block content%}
 
-<div class="card cold-white">
+<div class="card cold-white p-3">
   <div class="card-header soft-blue">
-  <div class="card-title display-6">Components Test</div>
-</div>
-  <div class="card-body">
-<p class="card-title"> Please slide an approximation of how much you identify with these areas of work</p>
-<p class="card-title">As a reference:</p>
-<ul class="list-group">
-  <li class="list-group-item"><b>Curious:</b> a few ideas about a topic or model up to 20%</li>
-  <li class="list-group-item"><b>Student:</b> Learning a model through study and practice, up to 40%</li>
-  <li class="list-group-item"><b>Qualified:</b> Able to do client work ethically with a model, up to 60%</li>
-  <li class="list-group-item"><b>Master:</b> Able to work flexible, creatively and connecting with other ideas, up to 90%</li>
-  <li class="list-group-item"><b>PhD:</b> Able to connect with the broad field, and to propose new ideas on the topic, up to 100%</li>
-</ul>
-</div>
-</div>
+      <div class="card-title display-6">Components Test</div>
+      </div>
+  
+    <div class="card-body">
+      <p class="card-title"> Please slide an approximation of how much you identify with these areas of work</p>
+      <p class="card-title">As a reference:</p>
+      <ul class="list-group">
+        <li class="list-group-item"><b>Curious:</b> a few ideas about a topic or model up to 20%</li>
+        <li class="list-group-item"><b>Student:</b> Learning a model through study and practice, up to 40%</li>
+        <li class="list-group-item"><b>Qualified:</b> Able to do client work ethically with a model, up to 60%</li>
+        <li class="list-group-item"><b>Master:</b> Able to work flexible, creatively and connecting with other ideas, up to 90%</li>
+        <li class="list-group-item"><b>PhD:</b> Able to connect with the broad field, and to propose new ideas on the topic, up to 100%</li>
+      </ul>
+    </div>
+
 {% if user.is_authenticated %}
-<p>How much do you use the following for your therapeutic work?(if a client, you could use to see which one would you like)</p>
+
+  <h4 class="card-title m-3">
+    How much do you use, or would your use, the following areas for your therapeutic work?</br>
+    <small>(If a client, you feel would benefit from)</small>
+  </h5>
+  
+  
   <div class="card bg-active p-2 mb-3">
-  <form action="{% url 'between_app:components_test' %}" method='post'>
-    {% csrf_token %}
-    {% bootstrap_form form %}
-    {% bootstrap_button button_type='submit' content='Submit Profile' %}
-  </form></div>
-{% else %}
+  
+  
+    <form action="{% url 'between_app:profile_test' %}" method='post'>
+      {% csrf_token %}
+      {% for field in form %}
+
+      <div class="card my-3 bg-primary-subtle text-primary">
+        <div class="card-body">
+          {% bootstrap_field field %}
+        </div>
+      </div>
+      {% endfor %}
+      {% bootstrap_button button_type='submit' content='Submit Profile' %}
+    </form>
+    
+
+
+
+  {% else %}
 <div class="alert alert-success" role="alert">
   Please Sign In before taking the test so we can save your results <a href="{% url 'account_login' %}">Sign In</a>
 </div>
     {% endif%}
-
+</div>
 {% endblock content %}
