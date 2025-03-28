@@ -26,6 +26,8 @@ urlpatterns = [
     path("articles/", include("django.contrib.flatpages.urls")), #group of flat pages, access by 
     path("about/", views.flatpage, {"url": "/about/"}, name="about"),#To add custom url of flat pages
 
+    path("__reload__/", include("django_browser_reload.urls")), # for reload
+
     #adding a site map
     path("sitemap.xml/",
          sitemap,

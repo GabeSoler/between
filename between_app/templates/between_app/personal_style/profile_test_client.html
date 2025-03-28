@@ -22,14 +22,6 @@
   <p>It is composed of questions regarding some preferences that add up to shape a profile connected with therapeutic traditions. It can help you find the type of therapist you may be looking for.</p>
     <p>You can review previous tests and see your scores to have a more nuanced sense.</p>
   <p>The idea is for it to be flexible, and for it to be representative of yourself (let me know if it does not). I hope it can help you as a mirror that keeps track of your process.</p>
-  <p>As a reference you can use the bellow numbers.</p>
-    <ul>
-      <li>Bellow 40% is disagreement</li>
-      <li>Between 40% and 60% its neutral</li>
-      <li>Between 60% and 80% its a clear preference</li>
-      <li>Between 80% and 100% its your preferred view</li>
-    </ul>
-
 <div
   class="alert alert-info"
   role="alert"
@@ -41,11 +33,19 @@
   <div class="card-body">
     <h4 class="card-title">Profile Test</h4>
     
-    <form action="{% url 'between_app:profile_test_client' %}" method='post'>
+    <form action="{% url 'between_app:profile_test' %}" method='post'>
       {% csrf_token %}
-      {% bootstrap_form form %}
+      {% for field in form %}
+
+      <div class="card my-3 bg-primary-subtle text-primary">
+        <div class="card-body">
+          {% bootstrap_field field %}
+        </div>
+      </div>
+      {% endfor %}
       {% bootstrap_button button_type='submit' content='Submit Profile' %}
     </form>
+    
     
   </div>
   </div>

@@ -21,14 +21,6 @@
   <p>This is a little test to help you reflect about your preferred positions at the time of working with people.</p>
   <p>It is composed of questions regarding your practice that add up to shape a profile. You can review previous tests and see your scores to have a more nuanced sense.</p>
   <p>The idea is for it to be flexible, and for it to be representative of yourself. I hope it can help you as a mirror that keeps track of your process.</p>
-  <p>As a reference you can use the bellow numbers.</p>
-    <ul>
-      <li>Bellow 40% is disagreement</li>
-      <li>Between 40% and 60% its neutral</li>
-      <li>Between 60% and 80% its a clear preference</li>
-      <li>Between 80% and 100% its your preferred view</li>
-    </ul>
-
 <div
   class="alert alert-info"
   role="alert"
@@ -42,7 +34,14 @@
     
     <form action="{% url 'between_app:profile_test' %}" method='post'>
       {% csrf_token %}
-      {% bootstrap_form form %}
+      {% for field in form %}
+
+      <div class="card my-3 bg-primary-subtle text-primary">
+        <div class="card-body">
+          {% bootstrap_field field %}
+        </div>
+      </div>
+      {% endfor %}
       {% bootstrap_button button_type='submit' content='Submit Profile' %}
     </form>
     

@@ -53,6 +53,8 @@ INSTALLED_APPS = [
 
     #* Third party apps
     'django_bootstrap5', #css framework
+    "django_browser_reload", # for automatic reload after save
+
 
     'allauth',
     'allauth.account', #authorisations
@@ -90,6 +92,8 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'allauth.account.middleware.AccountMiddleware', #allauth middleware
+    "django_browser_reload.middleware.BrowserReloadMiddleware", # reload middleware
+
 ]
 
 ROOT_URLCONF = 'between.urls'

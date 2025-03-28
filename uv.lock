@@ -36,6 +36,7 @@ dependencies = [
     { name = "django" },
     { name = "django-allauth", extra = ["mfa"] },
     { name = "django-bootstrap5" },
+    { name = "django-browser-reload" },
     { name = "django-debug-toolbar" },
     { name = "gunicorn" },
     { name = "h11" },
@@ -78,10 +79,11 @@ requires-dist = [
     { name = "cryptography", specifier = "==44.0.2" },
     { name = "dj-database-url", specifier = "==2.3.0" },
     { name = "django", specifier = "==5.1.5" },
-    { name = "django-allauth", specifier = "==65.5.0" },
+    { name = "django-allauth", specifier = "==65.6.0" },
     { name = "django-allauth", extras = ["mfa"] },
     { name = "django-bootstrap5", specifier = "==25.1" },
-    { name = "django-debug-toolbar", specifier = "==5.0.1" },
+    { name = "django-browser-reload", specifier = ">=1.18.0" },
+    { name = "django-debug-toolbar", specifier = "==5.1.0" },
     { name = "gunicorn", specifier = "==23.0.0" },
     { name = "h11", specifier = "==0.14.0" },
     { name = "idna", specifier = "==3.10" },
@@ -97,9 +99,9 @@ requires-dist = [
     { name = "pyyaml", specifier = "==6.0.2" },
     { name = "requests", specifier = "==2.32.3" },
     { name = "requests-oauthlib", specifier = "==2.0.0" },
-    { name = "resend", specifier = "==2.6.0" },
-    { name = "selenium", specifier = "==4.29.0" },
-    { name = "sentry-sdk", specifier = "==2.22.0" },
+    { name = "resend", specifier = "==2.7.0" },
+    { name = "selenium", specifier = "==4.30.0" },
+    { name = "sentry-sdk", specifier = "==2.24.1" },
     { name = "sniffio", specifier = "==1.3.1" },
     { name = "sortedcontainers", specifier = "==2.4.0" },
     { name = "sqlparse", specifier = "==0.5.3" },
@@ -300,13 +302,13 @@ wheels = [
 
 [[package]]
 name = "django-allauth"
-version = "65.5.0"
+version = "65.6.0"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "asgiref" },
     { name = "django" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/66/f8/b58f84c29bcbca3798939279a98e2423e6e53a38c29e3fed7700ff3d6984/django_allauth-65.5.0.tar.gz", hash = "sha256:1a564fd2f5413054559078c2b7146796b517c1e7a38c6312e9de7c9bb708325d", size = 1624216 }
+sdist = { url = "https://files.pythonhosted.org/packages/25/3f/25d987ca34daf10762bbc38034e7576e259ae6058779b495210b81bcd55b/django_allauth-65.6.0.tar.gz", hash = "sha256:8058298a55c7232f06fd1397a2858498d10d0e710cc4d0db364923f5c75a5748", size = 1640092 }
 
 [package.optional-dependencies]
 mfa = [
@@ -327,16 +329,29 @@ wheels = [
 ]
 
 [[package]]
+name = "django-browser-reload"
+version = "1.18.0"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "asgiref" },
+    { name = "django" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/3b/41/84eaa4f2b7f764e56e01c4ee49aa12bdea30ae50fd0d3ef7c2690b0c4ec2/django_browser_reload-1.18.0.tar.gz", hash = "sha256:c5f0b134723cbf2a0dc9ae1ee1d38e42db28fe23c74cdee613ba3ef286d04735", size = 14319 }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/e4/9d/1322dc4bce4982d1eadd3a62802c996ae0303aad13d9ad88c1d35025f73d/django_browser_reload-1.18.0-py3-none-any.whl", hash = "sha256:ed4cc2fb83c3bf6c30b54107a1a6736c0b896e62e4eba666d81005b9f2ecf6f8", size = 12230 },
+]
+
+[[package]]
 name = "django-debug-toolbar"
-version = "5.0.1"
+version = "5.1.0"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "django" },
     { name = "sqlparse" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/93/f6/022cffde1ec6daf3d1418d03a69ddc4f760151f75664dcc9fd2167b2997f/django_debug_toolbar-5.0.1.tar.gz", hash = "sha256:296f6f18a80710e84fbb8361538ae5ec522a75ebe9ab67db34bcf1026cbeb420", size = 295982 }
+sdist = { url = "https://files.pythonhosted.org/packages/5b/6b/41281bf3f9939713010f24f46a033a74cf90599f52f09aaa8b0b118692b7/django_debug_toolbar-5.1.0.tar.gz", hash = "sha256:8a3b9da4aeab8d384a366e20304bd939a451f0242523c5b7b402248ad474eed2", size = 294567 }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/36/f7/3b406dc871d88c938d2bd967e65acf725b46c4e7c9add6a1f1bbaff9bdcf/django_debug_toolbar-5.0.1-py3-none-any.whl", hash = "sha256:7456cc2e951db37dab335686db7803c4a0ecb6736d120705f6668db9548bf49f", size = 260038 },
+    { url = "https://files.pythonhosted.org/packages/62/ce/39831ce0a946979fdf19c32e6dcd1754a70e3280815aa7a377f61d5e021c/django_debug_toolbar-5.1.0-py3-none-any.whl", hash = "sha256:c0591e338ee9603bdfce5aebf8d18ca7341fdbb69595e2b0b34869be5857180e", size = 261531 },
 ]
 
 [[package]]
@@ -564,20 +579,20 @@ wheels = [
 
 [[package]]
 name = "resend"
-version = "2.6.0"
+version = "2.7.0"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "requests" },
     { name = "typing-extensions" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/46/ff/f4235a93533cb04199ab50ef250afa514ada55a4a4b86e32e0c763931926/resend-2.6.0.tar.gz", hash = "sha256:e714210b761febd02a067a1ee00106b6aeb79c0a6dda80b58588b089550f0184", size = 13120 }
+sdist = { url = "https://files.pythonhosted.org/packages/b5/49/7f5000d5e0ed6d238b55c49706c49a3733a38d81164c236bc6438aa988a8/resend-2.7.0.tar.gz", hash = "sha256:b419cd9125a0c180bb8e60453ee524e04cb1d067b14ad63ae53ee2e3886ead02", size = 13285 }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/ca/67/c8b10fa620303affa2240e7f45221a3c103a2e7d4f96dd8b9da4ec6cc84a/resend-2.6.0-py2.py3-none-any.whl", hash = "sha256:53f21fdee6ef18b2c90319b79b38fee048b6d47336283c0a1818bebcaf93c401", size = 19635 },
+    { url = "https://files.pythonhosted.org/packages/af/3f/23a2f98a53f7d9f940458d9c7e4abf823f1c268eee379a8a97beb360bbaf/resend-2.7.0-py2.py3-none-any.whl", hash = "sha256:104b34d3781b42593299633839e709e88056949e62fbcc915a937f5aad0678b2", size = 19819 },
 ]
 
 [[package]]
 name = "selenium"
-version = "4.29.0"
+version = "4.30.0"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "certifi" },
@@ -587,22 +602,22 @@ dependencies = [
     { name = "urllib3", extra = ["socks"] },
     { name = "websocket-client" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/1c/ab/09de87ef66a10a7d40417d4e93449eb892154d2dc6385187aa9298a2c09d/selenium-4.29.0.tar.gz", hash = "sha256:3a62f7ec33e669364a6c0562a701deb69745b569c50d55f1a912bf8eb33358ba", size = 985717 }
+sdist = { url = "https://files.pythonhosted.org/packages/70/f8/12e5c86f5d4b26758151a2145cb0909d2b811a3ac846b645dd7c63023543/selenium-4.30.0.tar.gz", hash = "sha256:16ab890fc7cb21a01e1b1e9a0fbaa9445fe30837eabc66e90b3bacf12138126a", size = 859424 }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/2f/a6/fc66ea71ec0769f72abdf15cb9ec9269517abe68a160839383ddff7478f1/selenium-4.29.0-py3-none-any.whl", hash = "sha256:ce5d26f1ddc1111641113653af33694c13947dd36c2df09cdd33f554351d372e", size = 9536642 },
+    { url = "https://files.pythonhosted.org/packages/79/cb/6e9c6f9072eb09d0f0cdfc52e33ad6583a6bd5232a322fccdd378104c6e0/selenium-4.30.0-py3-none-any.whl", hash = "sha256:90bcd3be86a1762100a093b33e5e4530b328226da94208caadb15ce13243dffd", size = 9353816 },
 ]
 
 [[package]]
 name = "sentry-sdk"
-version = "2.22.0"
+version = "2.24.1"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "certifi" },
     { name = "urllib3" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/81/b6/662988ecd2345bf6c3a5c306a9a3590852742eff91d0a78a143398b816f3/sentry_sdk-2.22.0.tar.gz", hash = "sha256:b4bf43bb38f547c84b2eadcefbe389b36ef75f3f38253d7a74d6b928c07ae944", size = 303539 }
+sdist = { url = "https://files.pythonhosted.org/packages/f1/ef/4847dcd63e3f3c451cf701a825d21200f1322d46ac97586d5c90a13dfea1/sentry_sdk-2.24.1.tar.gz", hash = "sha256:8ba3c29990fa48865b908b3b9dc5ae7fa7e72407c7c9e91303e5206b32d7b8b1", size = 318124 }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/12/7f/0e4459173e9671ba5f75a48dda2442bcc48a12c79e54e5789381c8c6a9bc/sentry_sdk-2.22.0-py2.py3-none-any.whl", hash = "sha256:3d791d631a6c97aad4da7074081a57073126c69487560c6f8bffcf586461de66", size = 325815 },
+    { url = "https://files.pythonhosted.org/packages/65/95/91137ffe7a5956496155af5ffbe45ee4ddfa795a569136147e766abd14b1/sentry_sdk-2.24.1-py2.py3-none-any.whl", hash = "sha256:36baa6a1128b9d98d2adc5e9b2f887eff0a6af558fc2b96ed51919042413556d", size = 336945 },
 ]
 
 [[package]]
