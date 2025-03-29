@@ -3,10 +3,21 @@
 {% block title %}
 {{ flatpage.title }}
 {% endblock title %}
-{% block page_header%}
-{{ flatpage.title }}
-{% endblock page_header%}
+
 
 {%block content%}
-{{ flatpage.content }}
-{% endblock content%}
+<div class="card bg-primary-subtle mt-2">
+    <div class="card-header soft-blue">
+        <h1 class"card-title">{{ flatpage.title }}</h1>
+    </div>
+    
+    <div class="card-body">
+        {{ flatpage.content }}
+    </div>
+    
+    <div class="card-footer">
+        Visit my <a href="https://www.gabrielsoler.co.uk/" target="_blank">Therapist Site</a> or my 
+        <a href="https://gabesoler.github.io" target="_blank">Github Site</a>
+    </div>
+</div>
+    {% endblock content%}
