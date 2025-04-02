@@ -20,7 +20,7 @@ format = ('bg-primary text-success',
         )
 #Start classes with caps
 class index_View(TemplateView):
-    template_name = 'between_app/index.html'
+    template_name = 'index.html'
 
         
 def test_home(request):

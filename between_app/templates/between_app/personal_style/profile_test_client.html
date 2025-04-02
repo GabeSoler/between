@@ -1,4 +1,4 @@
-{%extends 'between_app/_base.html'%}
+{%extends '_base.html'%}
 {% load django_bootstrap5 %}
 {% block title %}Profiles Test Client{% endblock title%}
 {% load url_utils %}
@@ -43,7 +43,7 @@
       {% endfor %}
       {% bootstrap_button button_type='submit' content='Submit Profile' %}
     </form>
-    
+
   </div>
 </div>
 {% endblock content %}
