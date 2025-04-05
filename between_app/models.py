@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth import get_user_model
 from django.urls import reverse
 import uuid
+from django.utils.functional import cached_property
 
 
 class PersonalStyle(models.Model):
@@ -25,7 +26,7 @@ class PersonalStyle(models.Model):
 
     therapist = models.BooleanField(default=True)
 
-    @property
+    @cached_property
     def calPosition(self):
         #Therapeutic Positions
         compassionate = self.follower_1 + self.acceptant_1
@@ -38,7 +39,7 @@ class PersonalStyle(models.Model):
                                  'changer':changer/2}
         return therapeuticPositions
     
-    @property
+    @cached_property
     def calPath(self):
         #Paths
         dreamer = self.intensive_1 + self.containment_1
@@ -51,7 +52,7 @@ class PersonalStyle(models.Model):
                              'explorer':explorer/2}
         return therapeutic_paths
     
-    @property
+    @cached_property
     def calTradition(self):
         #Person vs tradition relaionship
         artist = self.becoming_1 + self.individuation_1
@@ -64,7 +65,7 @@ class PersonalStyle(models.Model):
                                   'coach':coach/2}
         return tradition_relationship
  
-    @property
+    @cached_property
     def calProfile(self):
         #calculating max scores (not working)
         position = dict(self.calPosition)
@@ -78,7 +79,7 @@ class PersonalStyle(models.Model):
                         'main_tradition':main_tradRel}
         return profile_dict
     
-    @property
+    @cached_property
     def raw(self):
         position = {
             'follower':self.follower_1,
@@ -149,7 +150,7 @@ class Components(models.Model):
     belonging = models.IntegerField(default=0,help_text="Training until the center, forward expertise")
     roles = models.IntegerField(default=0,help_text="Training until the center, forward expertise")
 
-    @property
+    @cached_property
     def results(self):
         results = {
             'subjective':{
@@ -210,7 +211,7 @@ class BigTraditions(models.Model):
     scientific = models.IntegerField(default=50,help_text="Move right for support of the statement, and left for disagreement")
     constructive = models.IntegerField(default=50,help_text="Move right for support of the statement, and left for disagreement")
     participatory = models.IntegerField(default=50,help_text="Move right for support of the statement, and left for disagreement")
-    @property
+    @cached_property
     def results(self):
         results = {
                 'hemeneutic':self.hemeneutic,
