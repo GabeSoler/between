@@ -157,6 +157,14 @@ else:
             }
         }
 
+# moving to a cache in the database
+CACHES = {
+    "default": {
+        "BACKEND": "django.core.cache.backends.db.DatabaseCache",
+        "LOCATION": "my_cache_table",
+    }
+}
+
 
 
 # Password validation
@@ -224,6 +232,7 @@ LOGOUT_REDIRECT_URL = 'between_app:index'
 LOGIN_URL = 'account_login'
 AUTHENTICATION_LOGOUT_REDIRECT = 'between_app:index'
 AUTH_USER_MODEL = 'accounts.CustomUser'
+ACCOUNT_LOGIN_BY_CODE_ENABLED = True
 
 MFA_TOTP_ISSUER = 'Crea-Therapy'
 
@@ -239,14 +248,14 @@ BOOTSTRAP5 = {
     # ("https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css"),
     # or a dict with keys `url`, `integrity` and `crossorigin` like the default value below.
     "css_url": {
-        "url": "https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css",
+        "url": "https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css",
         "integrity": "sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx",
         "crossorigin": "anonymous",
     },
 
     # The complete URL to the Bootstrap bundle JavaScript file.
     "javascript_url": {
-        "url": "https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js",
+        "url": "https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js",
         "integrity": "sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa",
         "crossorigin": "anonymous",
     },
