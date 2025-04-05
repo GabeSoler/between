@@ -25,6 +25,7 @@ urlpatterns = [
     #flat pages config
     path("articles/", include("django.contrib.flatpages.urls")), #group of flat pages, access by 
     path("about/", views.flatpage, {"url": "/about/"}, name="about"),#To add custom url of flat pages
+    path("data-policy/", views.flatpage, {"url": "/data-policy/"}, name="data_policy"),#To add custom url of flat pages
 
     path("__reload__/", include("django_browser_reload.urls")), # for dj reload app
     path('robots.txt', TemplateView.as_view(template_name="robots.txt", content_type='text/plain')), #robots txt
