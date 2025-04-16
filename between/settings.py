@@ -149,11 +149,11 @@ else:
         DATABASES = {
             'default': {
                 'ENGINE': 'django.db.backends.postgresql',
-                'NAME': config('NAME'),
-                'USER': config('USER'),
+                'NAME': config('POSTGRESS_NAME'),
+                'USER': config('POSTGRESS_USER'),
                 'PASSWORD': config('POSTGRESS_KEY'),
-                'HOST': config('HOST'),
-                'PORT': config('PORT'),
+                'HOST': config('POSTGRESS_HOST'),
+                'PORT': config('POSTGRESS_PORT'),
             }
         }
 
