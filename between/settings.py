@@ -38,7 +38,7 @@ TEMPLATE_DEBUG = DEBUG
 if IS_HEROKU_APP:
     ALLOWED_HOSTS = ["*"]
 else:
-    ALLOWED_HOSTS = [".localhost", "127.0.0.1", "[::1]", "0.0.0.0","1.1.1.1","8080",config("HOST_URL",default=""),"crea-therapy.com"]
+    ALLOWED_HOSTS = [".localhost", "127.0.0.1", "[::1]", "0.0.0.0","1.1.1.1","8080",config("HOST_URL",default=""),"www.crea-therapy.com"]
 
 
 # Application definition
