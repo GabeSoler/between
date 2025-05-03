@@ -7,6 +7,7 @@ from django.http import Http404
 from .forms import UserStatusForm,CommunityProfileForm,DeleteAccountForm
 from django.contrib.contenttypes.models import ContentType
 from django.contrib.auth.models import Permission
+from django.contrib import messages
 
 
 @login_required
@@ -92,6 +93,8 @@ def delete_account_view(request):
             if form.cleaned_data['confirm'] == True:
                 user.delete()
                 return redirect('between_app:index')
+            else:
+                messages.warning(request,"Account not deleted! Extra confirmation required") 
     context = {'form':form}
     return render(request,'profile/delete.html',context)
 
