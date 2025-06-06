@@ -19,7 +19,7 @@ format = ('bg-primary text-success',
         'bg-dark text-light',
         )
 #Start classes with caps
-class index_View(TemplateView):
+class IndexView(TemplateView):
     template_name = 'index.html'
 
         
@@ -28,7 +28,7 @@ def test_home(request):
     if request.user.is_authenticated:
         try: 
             style_detail = PersonalStyle.objects.filter(user=request.user).latest('updated_at')
-            results = style_detail.calProfile
+            results = style_detail.cal_profile
             cont_position = PersonalStyleGroup.objects.get(group=results['main_position'])
             cont_path = PersonalStyleGroup.objects.get(group=results['main_path'])
             cont_tradition = PersonalStyleGroup.objects.get(group=results['main_tradition'])
@@ -109,7 +109,7 @@ def ps_results(request,pk):
     if user.is_authenticated and style_detail.user != user:
         style_detail.user = user
         style_detail.save()
-    results = style_detail.calProfile
+    results = style_detail.cal_profile
     cont_position = PersonalStyleGroup.objects.get(group=results['main_position'])
     cont_path = PersonalStyleGroup.objects.get(group=results['main_path'])
     cont_tradition = PersonalStyleGroup.objects.get(group=results['main_tradition'])

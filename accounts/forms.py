@@ -1,8 +1,9 @@
 
-from django.contrib.auth import get_user_model
-from django.contrib.auth.forms import UserCreationForm,UserChangeForm
 from .models import CommunityProfile,UserStatus,DeleteAccount
 from django import forms
+from allauth.account.forms import SignupForm
+from accounts.widgets.turnstile import TurnstileField
+from decouple import config
 
 
 class CommunityProfileForm(forms.ModelForm):
@@ -42,4 +43,17 @@ class DeleteAccountForm(forms.ModelForm):
             'reason':forms.RadioSelect,
             'confirm':forms.CheckboxInput,
         }
-        
+
+
+class MyCustomSignupForm(SignupForm):
+    turnstile_field = TurnstileField(secret_key=config('TURNSTILE_SECRET_KEY'),site_key=config('TURNSTILE_SITE_KEY'))
+    def save(self, request):
+
+        # Ensure you call the parent class's save.
+        # .save() returns a User object.
+        user = super().save(request)
+
+        # Add your own processing here.
+
+        # You must return the original result.
+        return user

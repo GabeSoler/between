@@ -7,7 +7,7 @@ app_name = 'between_app'
 
 urlpatterns = [
     #page for the whole site
-    path('',views.index_View.as_view(),name='index'),
+    path('', views.IndexView.as_view(), name='index'),
 
  #home for all the tests
     path('tests/',views.test_home,name='test_home'),

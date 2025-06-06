@@ -10,7 +10,7 @@
 </br>
 <!--calculations by positions-->
 <h3>Therapeutic Positions: Scores</h3>
-{% for name,result in results.calPosition.items %}
+{% for name,result in results.cal_position.items %}
   <div class="progress"><!--Start of subjective section-->
     <div class="progress-bar progress-bar-striped {{format.0 }}" role="progressbar" style="width: {{result}}%" aria-valuenow="{{result}}" aria-valuemin="0" aria-valuemax="100">{{name}}-{{result}}%</div>
   </div>
@@ -18,7 +18,7 @@
 
 <!--calculations by paths-->
 <h3>Therapeutic Paths: Scores</h3>
-{% for name,result in results.calPath.items %}
+{% for name,result in results.cal_path.items %}
   <div class="progress"><!--Start of subjective section-->
     <div class="progress-bar progress-bar-striped {{format.1 }}" role="progressbar" style="width: {{result}}%" aria-valuenow="{{result}}" aria-valuemin="0" aria-valuemax="100">{{name}}-{{result}}%</div>
   </div>
@@ -26,7 +26,7 @@
 
 <!--calculations by traditions-->
 <h3>Relationship with the Tradition: Scores</h3>
-{% for name,result in results.calTradition.items %}
+{% for name,result in results.cal_tradition.items %}
   <div class="progress"><!--Start of subjective section-->
     <div class="progress-bar progress-bar-striped {{format.2 }}" role="progressbar" style="width: {{result}}%" aria-valuenow="{{result}}" aria-valuemin="0" aria-valuemax="100">{{name}}-{{result}}%</div>
   </div>

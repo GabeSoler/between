@@ -27,7 +27,7 @@ class PersonalStyle(models.Model):
     therapist = models.BooleanField(default=True)
 
     @cached_property
-    def calPosition(self):
+    def cal_position(self):
         #Therapeutic Positions
         compassionate = self.follower_1 + self.acceptant_1
         inquisitive = self.follower_1 + self.challenger_1
@@ -40,7 +40,7 @@ class PersonalStyle(models.Model):
         return therapeuticPositions
     
     @cached_property
-    def calPath(self):
+    def cal_path(self):
         #Paths
         dreamer = self.intensive_1 + self.containment_1
         sage = self.intensive_1 + self.divider_1
@@ -53,7 +53,7 @@ class PersonalStyle(models.Model):
         return therapeutic_paths
     
     @cached_property
-    def calTradition(self):
+    def cal_tradition(self):
         #Person vs tradition relaionship
         artist = self.becoming_1 + self.individuation_1
         warrior = self.development_1 + self.individuation_1
@@ -66,17 +66,17 @@ class PersonalStyle(models.Model):
         return tradition_relationship
  
     @cached_property
-    def calProfile(self):
+    def cal_profile(self):
         #calculating max scores (not working)
-        position = dict(self.calPosition)
-        path = dict(self.calPath)
-        tradRel = dict(self.calTradition)
+        position = dict(self.cal_position)
+        path = dict(self.cal_path)
+        trad_rel = dict(self.cal_tradition)
         main_position = max(position, key=lambda x: position[x])
         main_path = max(path, key=lambda x:path[x])
-        main_tradRel = max(tradRel, key=lambda x:tradRel[x])
+        main_trad_rel = max(trad_rel, key=lambda x:trad_rel[x])
         profile_dict = {'main_position':main_position,
                         'main_path':main_path,
-                        'main_tradition':main_tradRel}
+                        'main_tradition':main_trad_rel}
         return profile_dict
     
     @cached_property
