@@ -4,33 +4,19 @@ import requests
 from urllib.parse import urlencode
 from urllib.error import HTTPError
 import json
-from between.settings import DEBUG
 
 class TurnstileWidget(Widget):
-
-    def __init__(self, site_key):
+    def __init__(self, site_key,attrs=None):
         super().__init__()
         self.site_key = site_key
-        self.attrs = {"class":"cf-turnstile",'data-sitekey':self.site_key}
-
-    
-    def get_context(self, name, value, attrs):
-        return {
-            "turnstile": {
-                "name": name,
-                "is_hidden": self.is_hidden,
-                "value": self.format_value(value),
-                "attrs": self.build_attrs(self.attrs, attrs),
-                "template_name":'turnstile/turnstile.html',
-            },
-        }
+        self.attrs = attrs or dict()
+        self.attrs['class'] = "cf-turnstile"
+        self.attrs['data-sitekey'] = self.site_key
+        self.template_name = 'turnstile/turnstile.html'
 
     def value_from_datadict(self, data, files, name):
         return data.get('cf-turnstile-response')
 
-    @property
-    def is_hidden(self):
-        return self.input_type == "hidden" if DEBUG == False else ""
 
 
 class TurnstileField(Field):
@@ -39,14 +25,12 @@ class TurnstileField(Field):
         'invalid_turnstile': 'Turnstile could not be verified.',
         'required': 'Please prove you are a human.',
     }
-
-    def __init__(self, secret_key, site_key, help_text=None, disabled=False):
-        super().__init__(help_text=help_text, disabled=disabled)
+    def __init__(self, secret_key, site_key, disabled=False):
+        super().__init__(disabled=disabled)
         self.secret_key = secret_key
         self.site_key = site_key
         self.required=True
-        self.label=""
-        self.help_text = help_text
+        self.label="Turnstile"
         self.disabled = disabled
         widget = TurnstileWidget(site_key)
         widget.is_required = self.required
