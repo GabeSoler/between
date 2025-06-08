@@ -24,7 +24,7 @@ class TurnstileWidget(CheckboxInput):
        context['attrs']['key'] = self.site_key
        return context
 
-
+#todo find out the right place of the key and erase the rest, make async the check, and test.
 class TurnstileField(Field):
     default_error_messages = {
         'error_turnstile': 'Turnstile could not be verified.',

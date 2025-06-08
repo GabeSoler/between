@@ -31,7 +31,7 @@ else:
                      HOST_URL,"www.crea-therapy.com","crea-therapy.com"]
 
 CSRF_TRUSTED_ORIGINS = [
-     "http://www"+HOST_URL,
+     "https://www"+HOST_URL,
      "https://www.crea-therapy.com",
      "https://crea-therapy.com"
 ]
