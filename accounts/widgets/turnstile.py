@@ -1,17 +1,28 @@
-from django.forms import Widget,Field
-from django.forms.widgets import RadioSelect
+from django.forms import Field
+from django.forms.widgets import CheckboxInput
 from django.core.exceptions import ValidationError
 import requests
 from urllib.parse import urlencode
 from urllib.error import HTTPError
 import json
-from django.template.loader import render_to_string
 
-class TurnstileWidget(RadioSelect):
+
+class TurnstileWidget(CheckboxInput):
+    template_name = 'accounts/widgets/turnstile.html'
+    def __init__(self, site_key,attrs=None):
+        self.site_key = site_key
+        super().__init__(attrs=attrs)
 
     def value_from_datadict(self, data, files, name):
         return data.get('cf-turnstile-response')
 
+
+    def get_context(self, name, value, attrs):
+       context = super().get_context(name, value, attrs)
+       context['widget']['key'] = self.site_key
+       context['key'] = self.site_key
+       context['attrs']['key'] = self.site_key
+       return context
 
 
 class TurnstileField(Field):
@@ -23,14 +34,12 @@ class TurnstileField(Field):
     def __init__(self, secret_key, site_key):
         self.secret_key = secret_key
         self.site_key = site_key
-        self.label="Turnstile"
-        self.localize=False,
-        self.widget = TurnstileWidget(attrs={"class":"cf-turnstile","data-sitekey":self.site_key})
-        super().__init__(widget=self.widget,label=self.label)
+        self.widget = TurnstileWidget(site_key=site_key,attrs={'key':self.site_key})
+        super().__init__()
 
 
     def validate(self,value):
-        self.super().validate(value)
+        super().validate(value)
         post_data = urlencode({
             'secret': self.secret_key,
             'response': value,
@@ -44,4 +53,7 @@ class TurnstileField(Field):
 
         if not response_data['success']:
             raise ValidationError(self.error_messages['invalid_turnstile'], code='invalid_turnstile')
+
+    def super(self):
+        pass
 

@@ -1,5 +1,13 @@
 {% load allauth %}
-{% if attrs.type == "checkbox" or attrs.type == "radio" %}
+
+{#    additions for turnstile #}
+{% if attrs.name == 'turnstile_field' %}
+<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+<div data-sitekey="{{attrs.key}}" class="cf-turnstile" id="{{ attrs.id }}" name="{{ attrs.name }}">
+</div>
+{# end turnstile #}
+
+{% elif attrs.type == "checkbox" or attrs.type == "radio" %}
     <div class="form-check mb-3">
         <input {% if attrs.required %}required{% endif %}
                name="{{ attrs.name }}"
@@ -39,6 +47,8 @@
            id="{{ attrs.id }}"
            {% if attrs.value is not None %}value="{{ attrs.value }}"{% endif %}
            type="hidden">
+
+
 {% else %}
     <div class="{% if attrs.unlabeled %}form-floating{% endif %} mb-3">
         {% if not attrs.unlabeled %}
