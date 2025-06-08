@@ -26,8 +26,7 @@ class TurnstileField(Field):
         self.label="Turnstile"
         self.localize=False,
         self.widget = TurnstileWidget(attrs={"class":"cf-turnstile","data-sitekey":self.site_key})
-        super().__init__(widget=self.widget,label=self.label,
-                         )
+        super().__init__(widget=self.widget,label=self.label)
 
 
     def validate(self,value):
