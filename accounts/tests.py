@@ -5,7 +5,6 @@ from .forms import CommunityProfileForm,UserStatusForm,DeleteAccountForm
 
 from allauth.account.models import EmailAddress
 
-# Create your tests here.
 
 
 class SignupPageTest(TestCase):
@@ -19,6 +18,7 @@ class SignupPageTest(TestCase):
     def test_signup_template(self):
         self.assertEqual(self.response.status_code,200) #I did not add template check as it is third party
         self.assertContains(self.response,'Sign Up')    #only checking it works well
+        #self.assertContains(self.response,'"https://challenges.cloudflare.com/turnstile/v0/api.js"')    #only checking it works well
         self.assertNotContains(self.response,'Hi there, i should not be here')
 
     def test_signup_model(self):

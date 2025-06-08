@@ -1,9 +1,7 @@
 """Views from Accounts creation Learning Logs"""
 from django.shortcuts import render,redirect
-from .models import CommunityProfile, UserStatus,DeleteAccount
+from .models import CommunityProfile, UserStatus
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth import get_user_model
-from django.http import Http404
 from .forms import UserStatusForm,CommunityProfileForm,DeleteAccountForm
 from django.contrib.contenttypes.models import ContentType
 from django.contrib.auth.models import Permission

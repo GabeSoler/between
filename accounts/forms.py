@@ -48,12 +48,9 @@ class DeleteAccountForm(forms.ModelForm):
 class MyCustomSignupForm(SignupForm):
     turnstile_field = TurnstileField(secret_key=config('TURNSTILE_SECRET_KEY'),site_key=config('TURNSTILE_SITE_KEY'))
     def save(self, request):
-
-        # Ensure you call the parent class's save.
-        # .save() returns a User object.
         user = super().save(request)
 
-        # Add your own processing here.
+        # Add add here creation of base calendar and tenant?
 
         # You must return the original result.
         return user
