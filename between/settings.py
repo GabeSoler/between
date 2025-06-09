@@ -22,16 +22,13 @@ IS_HEROKU_APP = "DYNO" in os.environ and not "CI" in os.environ
 DEBUG = config('DEBUG', default=False, cast=bool)
 TEMPLATE_DEBUG = DEBUG
 
-HOST_URL = config("HOST_URL",default="")
+HOST_URL = config("HOST_URL")
 
-if IS_HEROKU_APP:
-    ALLOWED_HOSTS = ["*"]
-else:
-    ALLOWED_HOSTS = [".localhost", "127.0.0.1", "[::1]", "0.0.0.0","1.1.1.1","8080",
+ALLOWED_HOSTS = [".localhost", "127.0.0.1", "[::1]", "0.0.0.0","1.1.1.1","8080",
                      HOST_URL,"www.crea-therapy.com","crea-therapy.com"]
 
 CSRF_TRUSTED_ORIGINS = [
-     "https://www"+HOST_URL,
+     "https://"+HOST_URL,
      "https://www.crea-therapy.com",
      "https://crea-therapy.com"
 ]
