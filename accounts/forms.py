@@ -1,7 +1,7 @@
 
 from .models import CommunityProfile,UserStatus,DeleteAccount
 from django import forms
-from allauth.account.forms import SignupForm
+from allauth.account.forms import SignupForm,LoginForm
 from accounts.widgets.turnstile import TurnstileField
 from decouple import config
 
@@ -47,10 +47,7 @@ class DeleteAccountForm(forms.ModelForm):
 
 class MyCustomSignupForm(SignupForm):
     turnstile_field = TurnstileField(secret_key=config('TURNSTILE_SECRET_KEY'),site_key=config('TURNSTILE_SITE_KEY'))
-    def save(self, request):
-        user = super().save(request)
 
-        # Add add here creation of base calendar and tenant?
+class MyCustomLoginForm(LoginForm):
+    turnstile_field = TurnstileField(secret_key=config('TURNSTILE_SECRET_KEY'),site_key=config('TURNSTILE_SITE_KEY'))
 
-        # You must return the original result.
-        return user

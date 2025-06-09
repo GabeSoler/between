@@ -260,7 +260,8 @@ AUTHENTICATION_BACKENDS = [
 
 ACCOUNT_SIGNUP_FORM_HONEYPOT_FIELD = 'phone_number'
 
-ACCOUNT_FORMS = {'signup': 'accounts.forms.MyCustomSignupForm'}
+ACCOUNT_FORMS = {'signup': 'accounts.forms.MyCustomSignupForm',
+                 'login': 'accounts.forms.MyCustomLoginForm'}
 
 #* Debug Tool bar
 
