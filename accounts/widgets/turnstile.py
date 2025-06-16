@@ -29,13 +29,13 @@ class TurnstileField(Field):
         super().__init__()
 
 
-    async def validate(self,value):
+    def validate(self,value):
         super().validate(value)
         post_data = {
             'secret': self.secret_key,
             'response': value,
         }
-        response_data = await self._try_turnstile(post_data)
+        response_data = self._try_turnstile(post_data)
         if not response_data['success']:
             raise ValidationError(self.error_messages['invalid_turnstile'], code='invalid_turnstile')
 
