@@ -245,6 +245,8 @@ EMAIL_HOST_PASSWORD = RESEND_API_KEY
 DEFAULT_FROM_EMAIL = 'gabriel@crea-therapy.com'
 
 
+
+
 #* Django All auth config
 SITE_ID = 1
 AUTHENTICATION_BACKENDS = [
@@ -258,6 +260,8 @@ ACCOUNT_SIGNUP_FORM_HONEYPOT_FIELD = 'phone_number'
 
 ACCOUNT_FORMS = {'signup': 'accounts.forms.MyCustomSignupForm',
                  'login': 'accounts.forms.MyCustomLoginForm'}
+
+ACCOUNT_EMAIL_UNKNOWN_ACCOUNTS = False
 
 #* Debug Tool bar
 

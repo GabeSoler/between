@@ -44,10 +44,16 @@ class DeleteAccountForm(forms.ModelForm):
             'confirm':forms.CheckboxInput,
         }
 
+import sys
 
 class MyCustomSignupForm(SignupForm):
-    turnstile_field = TurnstileField(secret_key=config('TURNSTILE_SECRET_KEY'),site_key=config('TURNSTILE_SITE_KEY'))
+    if 'test' in sys.argv: # I am sending a different form when in testing, to avoid conflicts
+        turnstile_field = forms.CharField(max_length=8,required=False)
+    else:
+        turnstile_field = TurnstileField(secret_key=config('TURNSTILE_SECRET_KEY'),site_key=config('TURNSTILE_SITE_KEY'))
 
 class MyCustomLoginForm(LoginForm):
-    turnstile_field = TurnstileField(secret_key=config('TURNSTILE_SECRET_KEY'),site_key=config('TURNSTILE_SITE_KEY'))
-
+    if 'test' in sys.argv:
+        turnstile_field = forms.CharField(max_length=8,required=False)
+    else:
+        turnstile_field = TurnstileField(secret_key=config('TURNSTILE_SECRET_KEY'),site_key=config('TURNSTILE_SITE_KEY'))

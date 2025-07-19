@@ -2,7 +2,6 @@ from django.forms import Field
 from django.forms.widgets import TextInput
 from django.core.exceptions import ValidationError
 import requests
-from urllib.parse import urlencode
 from urllib.error import HTTPError
 import json
 
@@ -35,7 +34,9 @@ class TurnstileField(Field):
             'secret': self.secret_key,
             'response': value,
         }
+
         response_data = self._try_turnstile(post_data)
+
         if not response_data['success']:
             raise ValidationError(self.error_messages['invalid_turnstile'], code='invalid_turnstile')
 

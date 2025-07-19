@@ -72,13 +72,13 @@ class ProfileLinkUserAutenticate(TestCase):
     def test_login_after_test(self):
         self.client.logout()
         response = self.client.post('/tests/profile_test/',self.data, follow=True)
-        next = response.request['PATH_INFO']
+        next = response.request['PATH_INFO'] # come back to results
         response = self.client.post(
                 self.next_link(next,"account_login"),
-                self.login_data,follow=True
+                self.login_data,follow=False
                 )
         self.assertRedirects(
-            response,next, fetch_redirect_response=False
+            response,next
             )
         response = self.client.get(reverse('between_app:profiles_list'))
         self.assertContains(response,"@usertest's Therapist Profile")
@@ -90,7 +90,7 @@ class ProfileLinkUserAutenticate(TestCase):
                 self.login_data,
                 )
         self.assertRedirects(
-            response,'/', fetch_redirect_response=False
+            response,'/'
             )
         response = self.client.post('/tests/profile_test/',self.data,follow=True)
         response = self.client.get(reverse('between_app:profiles_list'))
