@@ -1,0 +1,13 @@
+services:
+  web:
+    build: .
+    ports:
+      - "3000:3000"
+    env_file:
+      - between/.env.dk
+    environment:
+      DJANGO_SETTINGS_MODULE: between.settings
+    volumes:
+      - .:/app
+    command: uv run python3 manage.py runserver 0.0.0.0:3000
+
