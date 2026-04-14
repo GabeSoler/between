@@ -13,6 +13,7 @@ class DeckVersion(models.Model):
 class CardType(models.Model):
     name = models.CharField(max_length=100)
     description = models.TextField(blank=True)
+    bg_color = models.CharField(max_length=100)
 
     def __str__(self):
         return self.name
@@ -21,10 +22,11 @@ class CardType(models.Model):
 
 class Card(models.Model):
     deck_version = models.ForeignKey(DeckVersion, on_delete=models.CASCADE)
-    name = models.CharField(max_length=100)
+    name = models.CharField(max_length=100,blank=True)
     text = models.TextField(blank=True)
+    alt_text = models.TextField(blank=True)
     card_type = models.ForeignKey(CardType, null=True, on_delete=models.SET_NULL)
-    image = models.ImageField(upload_to='images/')
+    image = models.ImageField(upload_to='images/',blank=True)
 
     def __str__(self):
         return self.name

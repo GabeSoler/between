@@ -1,0 +1,238 @@
+# questions cards
+- model: cards_app.Card
+  fields:
+    id: 0
+    deck_version: 1
+    name: v1
+    text: ¡Do you have a new thought or a new idea after your session?
+          Can you do a process action about what it means in your life?
+          right
+    card_type: 1
+    image:
+  description: Represents a questions card.
+
+- model: cards_app.Card
+  fields:
+    id: 1
+    deck_version: 1
+    name: v1
+    text: Did something unexpected
+          come to your attention during the session, like an image, thought, or feeling?
+          Can you describe it?
+    card_type: 1
+    image:
+  description: Represents a questions card.
+
+- model: cards_app.Card
+  fields:
+    id: 2
+    deck_version: 1
+    name: v1
+    text: How does your body feel?
+          How is your belly, your chest, your breathing? Try noticing it with more detail, and see if there are textures.
+          right edge temperatures, or colours
+    card_type: 1
+    image:
+  description: Represents a questions card.
+
+- model: cards_app.Card
+  fields:
+    id: 2
+    deck_version: 1
+    name: v1
+    text: How does your body feel?
+          How is your belly, your chest, your breathing? Try noticing it with more detail, and see if there are textures.
+          right edge temperatures, or colours
+    card_type: 1
+    image:
+  description: Represents a questions card.
+
+- model: cards_app.Card
+  fields:
+    id: 3
+    deck_version: 1
+    name: v1
+    text: Were there moments of silence in the session? 
+          How did you feel? Would it be helpful to use the action cards to explore it more? 
+          How would it feel to bring it to the next session?
+    card_type: 1
+    image:
+  description: Represents a questions card.
+
+- model: cards_app.Card
+  fields:
+    id: 4
+    deck_version: 1
+    name: v1
+    text: Did your therapist say or do anything worth noting for the future? 
+          It may be just a phrase or even a gesture at the right moment. 
+          See how saying it out loud or writing it makes you feel.
+    card_type: 1
+    image:
+  description: Represents a questions card.
+
+- model: cards_app.Card
+  fields:
+    id: 5
+    deck_version: 1
+    name: v1
+    text: Did you feel like needing a hug or some comfort during the session?
+          When did it happen? 
+          Could you describe the situation in your mind or use images or words?
+    card_type: 1
+    image:
+  description: Represents a questions card.
+
+- model: cards_app.Card
+  fields:
+    id: 6
+    deck_version: 1
+    name: v1
+    text: Did something in the session remind you of your family
+          Maybe only one person? Coul you write about them and
+          register how it makes you feel?
+    card_type: 1
+    image:
+  description: Represents a questions card.
+
+- model: cards_app.Card
+  fields:
+    id: 7
+    deck_version: 1
+    name: v1
+    text: Have you thought about a relationship between the present and the past? 
+          Try to bring images of vour past associated with 
+          this relationship and register how it makes vou feel in your body.
+    card_type: 1
+    image:
+  description: Represents a questions card.
+
+- model: cards_app.Card
+  fields:
+    id: 8
+    deck_version: 1
+    name: v1
+    text: Did you realise something about what makes you and your journey unique? 
+          What things that make you singular are worth registering? Try to write
+          down these insights and see how it makes you feel.
+    card_type: 1
+    image:
+  description: Represents a questions card.
+
+- model: cards_app.Card
+  fields:
+    id: 9
+    deck_version: 1
+    name: v1
+    text: Do you have the impulse to do something, act, or take steps towards something? 
+          Could you express it in the form of art, writing, drawing, or dancing?
+    card_type: 1
+    image:
+  description: Represents a questions card.
+
+- model: cards_app.Card
+  fields:
+    id: 10
+    deck_version: 1
+    name: v1
+    text: Do you feel like changing something in your life or context? 
+          Can you think of a baby step towards it? And a baby step
+          towards the baby step?
+    card_type: 1
+    image:
+  description: Represents a questions card.
+
+- model: cards_app.Card
+  fields:
+    id: 11
+    deck_version: 1
+    name: v1
+    text: Do you feel you have realised something, like an insight, a feeling, or a new sense? 
+          Can you use a process card and see how you feel when you see it finished?
+    card_type: 1
+    image:
+  description: Represents a questions card.
+
+- model: cards_app.Card
+  fields:
+    id: 12
+    deck_version: 1
+    name: v1
+    text: Was something challenging to say or feel? 
+          Can you come back to it in your mind and see how it feels? 
+          Could you write it down or express
+          it in the form of art?
+    card_type: 1
+    image:
+  description: Represents a questions card.
+
+- model: cards_app.Card
+  fields:
+    id: 13
+    deck_version: 1
+    name: v1
+    text: Is there a question lingering after the session? 
+          Something that may be worth bringing to the next one or recording for yourself?
+    card_type: 1
+    image:
+  description: Represents a questions card.
+
+- model: cards_app.Card
+  fields:
+    id: 14
+    deck_version: 1
+    name: v1
+    text: Was there a moment where you reflected on your context (relationships, work, home)?
+          Are there things stressing you or causing you discomfort?
+          Could you use a process action card to explore it?
+    card_type: 1
+    image:
+  description: Represents a questions card.
+
+
+- model: cards_app.Card
+  fields:
+    id: 15
+    deck_version: 1
+    name: v1
+    text: Did you have a memory come up in the session? 
+          Can you hold it in your mind tor a bit longer? 
+          How does it feel in your body? Is there anything else coming up?
+    card_type: 1
+    image:
+  description: Represents a questions card.
+
+- model: cards_app.Card
+  fields:
+    id: 16
+    deck_version: 1
+    name: v1
+    text: Did you mention something positive about yourself or others during the session?
+          Could you write down or do some other art 
+          with those positive thoughts and see how you respond to them?
+    card_type: 1
+    image:
+  description: Represents a questions card.
+
+- model: cards_app.Card
+  fields:
+    id: 17
+    deck_version: 1
+    name: v1
+    text: Did you feel that some of the thoughts you brought to the session no longer made sense? 
+          Could you write down how this changes your mindset?
+    card_type: 1
+    image:
+  description: Represents a questions card.
+
+- model: cards_app.Card
+  fields:
+    id: 18
+    deck_version: 1
+    name: v1
+    text: Was there a moment when you felt recognised by your therapist? 
+          Can you picture that moment in your mind and feel it in your body? 
+          Could you describe it in writing?
+    card_type: 1
+    image:
+  description: Represents a questions card.

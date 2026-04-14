@@ -1,0 +1,164 @@
+# needs cards
+
+- model: cards_app.Card
+  fields:
+    id: 19
+    deck_version: 1
+    name: Some Silence
+    text: I feel like I need a space with no intrusive noises to feel calmer and clearer.
+    card_type: 4
+    image:
+  description: Represents needs card.
+
+- model: cards_app.Card
+  fields:
+    id: 20
+    deck_version: 1
+    name: A Hug
+    text: I feel like I need someone's arms around me to hold some of what weighs on me.
+    alt_text: I can wrap myself in blankets.
+    card_type: 4
+    image:
+  description: Represents needs card.
+
+- model: cards_app.Card
+  fields:
+    id: 21
+    deck_version: 1
+    name: A Cuddle
+    text: I feel like I need someone to cuddle me so / can feel warm and contained.
+    alt_text: I can get into bed with pillows.
+    card_type: 4
+    image:
+  description: Represents needs card.
+
+- model: cards_app.Card
+  fields:
+    id: 22
+    deck_version: 1
+    name: A Good chat
+    text: I feel like I need someone to talk to about everything on my mind
+    alt_text: I can say it out loud and see how it feels.
+    card_type: 4
+    image:
+  description: Represents needs card.
+
+- model: cards_app.Card
+  fields:
+    id: 23
+    deck_version: 1
+    name: A Borrowed brain
+    text: I feel like I need someone's brain to help me organise my thoughts.
+    alt_text: I can write it down and analyse it after a moment.
+    card_type: 4
+    image:
+  description: Represents needs card.
+
+- model: cards_app.Card
+  fields:
+    id: 24
+    deck_version: 1
+    name: Some Distractions
+    text: I feel like I need to do things that help me not think or feel anything too intense right now.
+    alt_text:
+    card_type: 4
+    image:
+  description: Represents needs card.
+
+- model: cards_app.Card
+  fields:
+    id: 25
+    deck_version: 1
+    name: Some Fun time
+    text: I feel like / need to do something fun that can lift my spirit for a while.
+    alt_text:
+    card_type: 4
+    image:
+  description: Represents needs card.
+
+- model: cards_app.Card
+  fields:
+    id: 26
+    deck_version: 1
+    name: Some Artsy Time
+    text: I feel like doing something artistic, like singing, painting, drawing or dancing.
+    alt_text:
+    card_type: 4
+    image:
+  description: Represents needs card.
+
+- model: cards_app.Card
+  fields:
+    id: 27
+    deck_version: 1
+    name: Lots of Space
+    text: I feel like I need distance from others to feel secure in myself.
+    alt_text:
+    card_type: 4
+    image:
+  description: Represents needs card.
+
+- model: cards_app.Card
+  fields:
+    id: 28
+    deck_version: 1
+    name: Some Nature time
+    text: I feel like I need to be surrounded by nature to decompress.
+    alt_text:
+    card_type: 4
+    image:
+  description: Represents needs card.
+
+- model: cards_app.Card
+  fields:
+    id: 29
+    deck_version: 1
+    name: Some Cuteness
+    text: I feel like I need to be close to cute things to feel close to my core.
+    alt_text:
+    card_type: 4
+    image:
+  description: Represents needs card.
+
+- model: cards_app.Card
+  fields:
+    id: 30
+    deck_version: 1
+    name: Some Mindless Time
+    text: I feel like I need time off from my mind by doing something that does not require effort.
+    alt_text:
+    card_type: 4
+    image:
+  description: Represents needs card.
+
+- model: cards_app.Card
+  fields:
+    id: 31
+    deck_version: 1
+    name: A Good treat
+    text: I feel like I need a treat. something nice for myself.
+    alt_text:
+    card_type: 4
+    image:
+  description: Represents needs card.
+
+- model: cards_app.Card
+  fields:
+    id: 32
+    deck_version: 1
+    name: Some Comfort Food
+    text: I miss food that feels homey and nice.
+    alt_text:
+    card_type: 4
+    image:
+  description: Represents needs card.
+
+- model: cards_app.Card
+  fields:
+    id: 33
+    deck_version: 1
+    name: Space but close
+    text: I feel like I need someone who is caring but also gives me space to process my emotions.
+    card_type: 4
+    image:
+  description: Represents needs card.

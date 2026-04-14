@@ -1,0 +1,47 @@
+# cards.yaml
+- model: cards_app.DeckVersion
+  fields:
+    id: 1
+    name: v1
+  description: Defines a specific version or deck within the application.
+
+- model: cards_app.CardType
+  fields:
+    id: 0
+    name: Questions
+    description: Questions for after session
+    bg_color: red
+  description: Defines Question card.
+
+- model: cards_app.CardType
+  fields:
+    id: 2
+    name: Actions
+    description: Questions for after session
+    bg_color: red
+  description: Defines Action Card.
+
+- model: cards_app.CardType
+  fields:
+    id: 3
+    name: Voices
+    description: Questions for after session
+    bg_color: red
+  description: Defines Voices Card.
+
+- model: cards_app.CardType
+  fields:
+    id: 4
+    name: Needs
+    description: Questions for after session
+    bg_color: red
+  description: Defines Needs CArd.
+
+- model: cards_app.CardType
+  fields:
+    id: 5
+    name: Care
+    description: Questions for after session
+    bg_color: red
+  description: Defines Self care card.
+

@@ -1,0 +1,22 @@
+- model: cards_app.Card
+  fields:
+    id: 63
+    deck_version: 1
+    name: Breathe
+    text: And notice your breathing's rhythm; try to be intentional and relax with each breath out.
+    alt_text:
+    card_type: 5
+    image:
+  description: Represents Care card.
+
+- model: cards_app.Card
+  fields:
+    id: 64
+    deck_version: 1
+    name: Feel
+    text: Your body and the affects moving through it.
+          Try to identify its textures colours, movements and tensions.
+    alt_text:
+    card_type: 5
+    image:
+  description: Represents Care card.
