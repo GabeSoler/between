@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'accounts.apps.AccountsConfig',
     'techniques_app',
     'dive_app',
+    'cards_app',
 
     #* Third party apps
     'django_bootstrap5', #css framework
