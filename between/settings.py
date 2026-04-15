@@ -264,21 +264,6 @@ ACCOUNT_FORMS = {'signup': 'accounts.forms.MyCustomSignupForm',
 
 ACCOUNT_EMAIL_UNKNOWN_ACCOUNTS = False
 
-#* Debug Tool bar
-
-TESTING = "test" in sys.argv
-
-if not TESTING and DEBUG:
-    MFA_WEBAUTHN_ALLOW_INSECURE_ORIGIN = True # passkey for local development allauth
-
-    INSTALLED_APPS = [
-        *INSTALLED_APPS,
-        "debug_toolbar",
-    ]
-    MIDDLEWARE = [
-        "debug_toolbar.middleware.DebugToolbarMiddleware",
-        *MIDDLEWARE,
-    ]
 
 INTERNAL_IPS = [
     "127.0.0.1",
