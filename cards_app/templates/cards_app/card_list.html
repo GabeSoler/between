@@ -4,7 +4,17 @@
 {% block content %}
 
     {% for card in cards %}
-    {{ card }}
+        <div class="card my-2" style="background-color: {{ card.card_type.bg_color }}">
+            <div class="card-header">
+                {{ card.name }}
+            </div>
+            <div class="card-body">
+                {{ card.text }}
+            </div>
+            <div class="card-footer">
+                {{ card.alt_text }}
+            </div>
+        </div>
     {% endfor %}
 
 
