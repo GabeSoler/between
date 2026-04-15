@@ -21,7 +21,8 @@ urlpatterns = [
     path('techniques/',include('techniques_app.urls')),
     path('diver/',include('dive_app.urls')),
     path('',include('between_app.urls')),
-    
+    path('',include('cards_app.urls')),
+
     #flat pages config
     path("articles/", include("django.contrib.flatpages.urls")), #group of flat pages, access by 
     path("about/", views.flatpage, {"url": "/about/"}, name="about"),#To add custom url of flat pages
