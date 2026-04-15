@@ -15,9 +15,9 @@ class DeckVersionAdmin(admin.ModelAdmin):
     list_filter = ('name',)
 
 class CardAdmin(admin.ModelAdmin):
-    list_display = ('name',)
-    search_fields = ('name',)
-    list_filter = ('name','deck_version','card_type')
+    list_display = ('name','card_type','deck_version')
+    search_fields = ('name','description',)
+    list_filter = ('deck_version','card_type')
 
 
 admin.site.register(CardType,CardTypeAdmin)

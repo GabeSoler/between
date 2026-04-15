@@ -7,7 +7,7 @@
     deck_version: 1
     name: Carer
     text: I am ready to be there for someone's needs.
-    alt_text:
+    alt_text: ''
     card_type: 3
     image:
   description: Represents voices card.
@@ -18,7 +18,7 @@
     deck_version: 1
     name: Leader
     text: With my eyes on the epiphany, I am trying to bring people with me.
-    alt_text:
+    alt_text: ''
     card_type: 3
     image:
   description: Represents voices card.
@@ -29,7 +29,7 @@
     deck_version: 1
     name: Ruler
     text: There are perfect rules that can organise the world's mess.
-    alt_text:
+    alt_text: ''
     card_type: 3
     image:
   description: Represents voices card.
@@ -41,7 +41,7 @@
     deck_version: 1
     name: Wise
     text: There is a balance and a timing for everything.
-    alt_text:
+    alt_text: ''
     card_type: 3
     image:
   description: Represents voices card.
@@ -52,7 +52,7 @@
     deck_version: 1
     name: Impulsive
     text: I feel the need to act before thinking comes.
-    alt_text:
+    alt_text: ''
     card_type: 3
     image:
   description: Represents voices card.
@@ -63,7 +63,7 @@
     deck_version: 1
     name: Logical
     text: I will find the answer as I understand all the pieces.
-    alt_text:
+    alt_text: ''
     card_type: 3
     image:
   description: Represents voices card.
@@ -74,7 +74,7 @@
     deck_version: 1
     name: Intuition
     text: Answers come to me as I listen to myself.
-    alt_text:
+    alt_text: ''
     card_type: 3
     image:
   description: Represents voices card.
@@ -85,7 +85,7 @@
     deck_version: 1
     name: Explorer
     text: I want to feel new places and find new truths.
-    alt_text:
+    alt_text: ''
     card_type: 3
     image:
   description: Represents voices card.
@@ -96,7 +96,7 @@
     deck_version: 1
     name: Creature
     text: I am a creature of nature, and I dont want to be tamed.
-    alt_text:
+    alt_text: ''
     card_type: 3
     image:
   description: Represents voices card.
@@ -107,7 +107,7 @@
     deck_version: 1
     name: Cheeky
     text: I feel like doing something fun and letting go of the boundaries.
-    alt_text:
+    alt_text: ''
     card_type: 3
     image:
   description: Represents voices card.
@@ -118,7 +118,7 @@
     deck_version: 1
     name: Fighter
     text: If I put in a bit more effort, I can make it.
-    alt_text:
+    alt_text: ''
     card_type: 3
     image:
   description: Represents voices card.
@@ -129,7 +129,7 @@
     deck_version: 1
     name: Rebel
     text: I do not respond to any rule or authority.
-    alt_text:
+    alt_text: ''
     card_type: 3
     image:
   description: Represents voices card.
@@ -140,7 +140,7 @@
     deck_version: 1
     name: Grounded
     text: I prefer to feel my feet and do one step at a time.
-    alt_text:
+    alt_text: ''
     card_type: 3
     image:
   description: Represents voices card.
@@ -151,7 +151,7 @@
     deck_version: 1
     name: Tantrum
     text: I want it now! (And I still won't be happy)
-    alt_text:
+    alt_text: ''
     card_type: 3
     image:
   description: Represents voices card.
@@ -162,7 +162,7 @@
     deck_version: 1
     name: Fear
     text: I feel everything is just too big, and I would prefer just to hide.
-    alt_text:
+    alt_text: ''
     card_type: 3
     image:
   description: Represents voices card.
@@ -173,7 +173,7 @@
     deck_version: 1
     name: Changer
     text: I feel the need of the new, the moving forward, the progress.
-    alt_text:
+    alt_text: ''
     card_type: 3
     image:
   description: Represents voices card.
@@ -184,7 +184,7 @@
     deck_version: 1
     name: Flow
     text: Just let it go; things fall into place naturally.
-    alt_text:
+    alt_text: ''
     card_type: 3
     image:
   description: Represents voices card.
@@ -195,7 +195,7 @@
     deck_version: 1
     name: Flow
     text: Just let it go; things fall into place naturally.
-    alt_text:
+    alt_text: ''
     card_type: 3
     image:
   description: Represents voices card.
@@ -206,7 +206,7 @@
     deck_version: 1
     name: Child
     text: I like to play and I need care.
-    alt_text:
+    alt_text: ''
     card_type: 3
     image:
   description: Represents voices card.

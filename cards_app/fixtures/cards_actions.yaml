@@ -5,7 +5,7 @@
     deck_version: 1
     name: Draw
     text: Move the pencil in response to your body's movements and affects. Try many times.
-    alt_text:
+    alt_text: ''
     card_type: 2
     image:
   description: Represents Actions card.
@@ -16,7 +16,7 @@
     deck_version: 1
     name: Paint
     text: Feel the pulses inside and start by letting your body guide the paint. Trust in the lavers as vou do so.
-    alt_text:
+    alt_text: ''
     card_type: 2
     image:
   description: Represents Actions card.
@@ -28,7 +28,7 @@
     deck_version: 1
     name: Dance
     text: Listen to the rhythms in your body and slowly allow yourselt to follow them.
-    alt_text:
+    alt_text: ''
     card_type: 2
     image:
   description: Represents Actions card.
@@ -39,7 +39,7 @@
     deck_version: 1
     name: Write
     text: Let words come out wihout censorship on paper, allowing them to flow like a soft stream of water.
-    alt_text:
+    alt_text: ''
     card_type: 2
     image:
   description: Represents Actions card.
@@ -50,7 +50,7 @@
     deck_version: 1
     name: Sing
     text: Breathe in and let your voice come out, allow the sound and your affect to guide you into melodies or lyrics.
-    alt_text:
+    alt_text: ''
     card_type: 2
     image:
   description: Represents Actions card.
@@ -61,7 +61,7 @@
     deck_version: 1
     name: Play an Instrument
     text: Listen to what comes from your fingers, maybe a few notes or a chord, and try to build on it. following what vou feel.
-    alt_text:
+    alt_text: ''
     card_type: 2
     image:
   description: Represents Actions card.
@@ -73,7 +73,7 @@
     name: Embody
     text: Feel your body and its affects; try to find how emotion moves inside your tissues and muscles; 
           stretch softly and self massage if you can.
-    alt_text:
+    alt_text: ''
     card_type: 2
     image:
   description: Represents Actions card.
@@ -86,7 +86,7 @@
     text: Take your things and step outside. 
           Focus on the air coming in and the soles of your feet, 
           let your feelings be the background.
-    alt_text:
+    alt_text: ''
     card_type: 2
     image:
   description: Represents Actions card.
@@ -98,7 +98,7 @@
     name: Self Date
     text: Think of a cool date, and take yourself out. 
           Spend some time thinking or writing about what you are feeling in this new space.
-    alt_text:
+    alt_text: ''
     card_type: 2
     image:
   description: Represents Actions card.
@@ -111,7 +111,7 @@
     text: Grab your phone and press record. 
           Make your thoughts come out loud and unfiltered.  
           Then take a moment and see how it feels to listen to it.
-    alt_text:
+    alt_text: ''
     card_type: 2
     image:
   description: Represents Actions card.
@@ -123,7 +123,7 @@
     name: Analyse
     text: Write your feelings and thoughts on a big paper or whiteboard. 
           Try to see the components and their connections.
-    alt_text:
+    alt_text: ''
     card_type: 2
     image:
   description: Represents Actions card.
@@ -135,7 +135,7 @@
     name: Synthesise
     text: Try to see the pattern that connects your mental states. 
           Is there a common taste, texture and/or colour between your feelings?
-    alt_text:
+    alt_text: ''
     card_type: 2
     image:
   description: Represents Actions card.
