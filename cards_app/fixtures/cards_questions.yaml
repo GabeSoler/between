@@ -2,6 +2,8 @@
 - model: cards_app.Card
   fields:
     id: 0
+    created: 2026-04-15T10:24:43.367Z
+    modified: 2026-04-15T10:24:43.377Z
     deck_version: 1
     name: ''
     text: ¡Do you have a new thought or a new idea after your session?
@@ -14,6 +16,8 @@
 - model: cards_app.Card
   fields:
     id: 1
+    created: 2026-04-15T10:24:43.367Z
+    modified: 2026-04-15T10:24:43.377Z
     deck_version: 1
     name: ''
     text: Did something unexpected
@@ -26,6 +30,8 @@
 - model: cards_app.Card
   fields:
     id: 2
+    created: 2026-04-15T10:24:43.367Z
+    modified: 2026-04-15T10:24:43.377Z
     deck_version: 1
     name: ''
     text: How does your body feel?
@@ -38,6 +44,8 @@
 - model: cards_app.Card
   fields:
     id: 2
+    created: 2026-04-15T10:24:43.367Z
+    modified: 2026-04-15T10:24:43.377Z
     deck_version: 1
     name: ''
     text: How does your body feel?
@@ -50,6 +58,8 @@
 - model: cards_app.Card
   fields:
     id: 3
+    created: 2026-04-15T10:24:43.367Z
+    modified: 2026-04-15T10:24:43.377Z
     deck_version: 1
     name: ''
     text: Were there moments of silence in the session? 
@@ -62,6 +72,8 @@
 - model: cards_app.Card
   fields:
     id: 4
+    created: 2026-04-15T10:24:43.367Z
+    modified: 2026-04-15T10:24:43.377Z
     deck_version: 1
     name: ''
     text: Did your therapist say or do anything worth noting for the future? 
@@ -74,6 +86,8 @@
 - model: cards_app.Card
   fields:
     id: 5
+    created: 2026-04-15T10:24:43.367Z
+    modified: 2026-04-15T10:24:43.377Z
     deck_version: 1
     name: ''
     text: Did you feel like needing a hug or some comfort during the session?
@@ -86,6 +100,8 @@
 - model: cards_app.Card
   fields:
     id: 6
+    created: 2026-04-15T10:24:43.367Z
+    modified: 2026-04-15T10:24:43.377Z
     deck_version: 1
     name: ''
     text: Did something in the session remind you of your family
@@ -98,6 +114,8 @@
 - model: cards_app.Card
   fields:
     id: 7
+    created: 2026-04-15T10:24:43.367Z
+    modified: 2026-04-15T10:24:43.377Z
     deck_version: 1
     name: ''
     text: Have you thought about a relationship between the present and the past? 
@@ -110,6 +128,8 @@
 - model: cards_app.Card
   fields:
     id: 8
+    created: 2026-04-15T10:24:43.367Z
+    modified: 2026-04-15T10:24:43.377Z
     deck_version: 1
     name: ''
     text: Did you realise something about what makes you and your journey unique? 
@@ -122,6 +142,8 @@
 - model: cards_app.Card
   fields:
     id: 9
+    created: 2026-04-15T10:24:43.367Z
+    modified: 2026-04-15T10:24:43.377Z
     deck_version: 1
     name: ''
     text: Do you have the impulse to do something, act, or take steps towards something? 
@@ -133,6 +155,8 @@
 - model: cards_app.Card
   fields:
     id: 10
+    created: 2026-04-15T10:24:43.367Z
+    modified: 2026-04-15T10:24:43.377Z
     deck_version: 1
     name: ''
     text: Do you feel like changing something in your life or context? 
@@ -145,6 +169,8 @@
 - model: cards_app.Card
   fields:
     id: 11
+    created: 2026-04-15T10:24:43.367Z
+    modified: 2026-04-15T10:24:43.377Z
     deck_version: 1
     name: ''
     text: Do you feel you have realised something, like an insight, a feeling, or a new sense? 
@@ -156,6 +182,8 @@
 - model: cards_app.Card
   fields:
     id: 12
+    created: 2026-04-15T10:24:43.367Z
+    modified: 2026-04-15T10:24:43.377Z
     deck_version: 1
     name: ''
     text: Was something challenging to say or feel? 
@@ -169,6 +197,8 @@
 - model: cards_app.Card
   fields:
     id: 13
+    created: 2026-04-15T10:24:43.367Z
+    modified: 2026-04-15T10:24:43.377Z
     deck_version: 1
     name: ''
     text: Is there a question lingering after the session? 
@@ -180,6 +210,8 @@
 - model: cards_app.Card
   fields:
     id: 14
+    created: 2026-04-15T10:24:43.367Z
+    modified: 2026-04-15T10:24:43.377Z
     deck_version: 1
     name: ''
     text: Was there a moment where you reflected on your context (relationships, work, home)?
@@ -193,6 +225,8 @@
 - model: cards_app.Card
   fields:
     id: 15
+    created: 2026-04-15T10:24:43.367Z
+    modified: 2026-04-15T10:24:43.377Z
     deck_version: 1
     name: ''
     text: Did you have a memory come up in the session? 
@@ -205,6 +239,8 @@
 - model: cards_app.Card
   fields:
     id: 16
+    created: 2026-04-15T10:24:43.367Z
+    modified: 2026-04-15T10:24:43.377Z
     deck_version: 1
     name: ''
     text: Did you mention something positive about yourself or others during the session?
@@ -217,6 +253,8 @@
 - model: cards_app.Card
   fields:
     id: 17
+    created: 2026-04-15T10:24:43.367Z
+    modified: 2026-04-15T10:24:43.377Z
     deck_version: 1
     name: ''
     text: Did you feel that some of the thoughts you brought to the session no longer made sense? 
@@ -228,6 +266,8 @@
 - model: cards_app.Card
   fields:
     id: 18
+    created: 2026-04-15T10:24:43.367Z
+    modified: 2026-04-15T10:24:43.377Z
     deck_version: 1
     name: ''
     text: Was there a moment when you felt recognised by your therapist? 

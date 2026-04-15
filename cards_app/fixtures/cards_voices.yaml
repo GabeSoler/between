@@ -4,6 +4,8 @@
 - model: cards_app.Card
   fields:
     id: 34
+    created: 2026-04-15T10:24:43.367Z
+    modified: 2026-04-15T10:24:43.377Z
     deck_version: 1
     name: Carer
     text: I am ready to be there for someone's needs.
@@ -15,6 +17,8 @@
 - model: cards_app.Card
   fields:
     id: 35
+    created: 2026-04-15T10:24:43.367Z
+    modified: 2026-04-15T10:24:43.377Z
     deck_version: 1
     name: Leader
     text: With my eyes on the epiphany, I am trying to bring people with me.
@@ -26,6 +30,8 @@
 - model: cards_app.Card
   fields:
     id: 36
+    created: 2026-04-15T10:24:43.367Z
+    modified: 2026-04-15T10:24:43.377Z
     deck_version: 1
     name: Ruler
     text: There are perfect rules that can organise the world's mess.
@@ -38,6 +44,8 @@
 - model: cards_app.Card
   fields:
     id: 37
+    created: 2026-04-15T10:24:43.367Z
+    modified: 2026-04-15T10:24:43.377Z
     deck_version: 1
     name: Wise
     text: There is a balance and a timing for everything.
@@ -49,6 +57,8 @@
 - model: cards_app.Card
   fields:
     id: 38
+    created: 2026-04-15T10:24:43.367Z
+    modified: 2026-04-15T10:24:43.377Z
     deck_version: 1
     name: Impulsive
     text: I feel the need to act before thinking comes.
@@ -60,6 +70,8 @@
 - model: cards_app.Card
   fields:
     id: 39
+    created: 2026-04-15T10:24:43.367Z
+    modified: 2026-04-15T10:24:43.377Z
     deck_version: 1
     name: Logical
     text: I will find the answer as I understand all the pieces.
@@ -71,6 +83,8 @@
 - model: cards_app.Card
   fields:
     id: 40
+    created: 2026-04-15T10:24:43.367Z
+    modified: 2026-04-15T10:24:43.377Z
     deck_version: 1
     name: Intuition
     text: Answers come to me as I listen to myself.
@@ -82,6 +96,8 @@
 - model: cards_app.Card
   fields:
     id: 41
+    created: 2026-04-15T10:24:43.367Z
+    modified: 2026-04-15T10:24:43.377Z
     deck_version: 1
     name: Explorer
     text: I want to feel new places and find new truths.
@@ -93,6 +109,8 @@
 - model: cards_app.Card
   fields:
     id: 41
+    created: 2026-04-15T10:24:43.367Z
+    modified: 2026-04-15T10:24:43.377Z
     deck_version: 1
     name: Creature
     text: I am a creature of nature, and I dont want to be tamed.
@@ -104,6 +122,8 @@
 - model: cards_app.Card
   fields:
     id: 42
+    created: 2026-04-15T10:24:43.367Z
+    modified: 2026-04-15T10:24:43.377Z
     deck_version: 1
     name: Cheeky
     text: I feel like doing something fun and letting go of the boundaries.
@@ -115,6 +135,8 @@
 - model: cards_app.Card
   fields:
     id: 43
+    created: 2026-04-15T10:24:43.367Z
+    modified: 2026-04-15T10:24:43.377Z
     deck_version: 1
     name: Fighter
     text: If I put in a bit more effort, I can make it.
@@ -126,6 +148,8 @@
 - model: cards_app.Card
   fields:
     id: 44
+    created: 2026-04-15T10:24:43.367Z
+    modified: 2026-04-15T10:24:43.377Z
     deck_version: 1
     name: Rebel
     text: I do not respond to any rule or authority.
@@ -137,6 +161,8 @@
 - model: cards_app.Card
   fields:
     id: 45
+    created: 2026-04-15T10:24:43.367Z
+    modified: 2026-04-15T10:24:43.377Z
     deck_version: 1
     name: Grounded
     text: I prefer to feel my feet and do one step at a time.
@@ -148,6 +174,8 @@
 - model: cards_app.Card
   fields:
     id: 46
+    created: 2026-04-15T10:24:43.367Z
+    modified: 2026-04-15T10:24:43.377Z
     deck_version: 1
     name: Tantrum
     text: I want it now! (And I still won't be happy)
@@ -159,6 +187,8 @@
 - model: cards_app.Card
   fields:
     id: 47
+    created: 2026-04-15T10:24:43.367Z
+    modified: 2026-04-15T10:24:43.377Z
     deck_version: 1
     name: Fear
     text: I feel everything is just too big, and I would prefer just to hide.
@@ -170,6 +200,8 @@
 - model: cards_app.Card
   fields:
     id: 48
+    created: 2026-04-15T10:24:43.367Z
+    modified: 2026-04-15T10:24:43.377Z
     deck_version: 1
     name: Changer
     text: I feel the need of the new, the moving forward, the progress.
@@ -181,6 +213,8 @@
 - model: cards_app.Card
   fields:
     id: 49
+    created: 2026-04-15T10:24:43.367Z
+    modified: 2026-04-15T10:24:43.377Z
     deck_version: 1
     name: Flow
     text: Just let it go; things fall into place naturally.
@@ -192,6 +226,8 @@
 - model: cards_app.Card
   fields:
     id: 49
+    created: 2026-04-15T10:24:43.367Z
+    modified: 2026-04-15T10:24:43.377Z
     deck_version: 1
     name: Flow
     text: Just let it go; things fall into place naturally.
@@ -203,6 +239,8 @@
 - model: cards_app.Card
   fields:
     id: 50
+    created: 2026-04-15T10:24:43.367Z
+    modified: 2026-04-15T10:24:43.377Z
     deck_version: 1
     name: Child
     text: I like to play and I need care.
