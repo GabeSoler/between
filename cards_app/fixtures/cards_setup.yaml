@@ -10,7 +10,7 @@
     id: 0
     name: Questions
     description: Questions for after session
-    bg_color: red
+    bg_color: rgb(238,197,99)
   description: Defines Question card.
 
 - model: cards_app.CardType
@@ -18,7 +18,7 @@
     id: 2
     name: Actions
     description: Questions for after session
-    bg_color: red
+    bg_color: rgb(222,112,131)
   description: Defines Action Card.
 
 - model: cards_app.CardType
@@ -26,7 +26,7 @@
     id: 3
     name: Voices
     description: Questions for after session
-    bg_color: red
+    bg_color: rgb(242,164,129)
   description: Defines Voices Card.
 
 - model: cards_app.CardType
@@ -34,7 +34,7 @@
     id: 4
     name: Needs
     description: Questions for after session
-    bg_color: red
+    bg_color: rgb(182,212,179)
   description: Defines Needs CArd.
 
 - model: cards_app.CardType
@@ -42,6 +42,6 @@
     id: 5
     name: Care
     description: Questions for after session
-    bg_color: red
+    bg_color: rgb(140,182,220)
   description: Defines Self care card.
 
