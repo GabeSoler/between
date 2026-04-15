@@ -21,6 +21,8 @@ class CardType(models.Model):
         return f"CardType:{self.name}"
 
 class Card(models.Model):
+    created = models.DateTimeField(auto_now_add=True)
+    modified = models.DateTimeField(auto_now=True)
     deck_version = models.ForeignKey(DeckVersion, on_delete=models.CASCADE)
     name = models.CharField(max_length=100,blank=True)
     text = models.TextField(blank=True)
