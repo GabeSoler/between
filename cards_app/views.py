@@ -1,5 +1,3 @@
-from multiprocessing import context
-
 from django.shortcuts import render
 from .models import Card,CardType
 from django.contrib.auth.decorators import login_required
@@ -20,6 +18,6 @@ def select_card_type__view(request,type_pk=None):
         template = 'cards_app/hx_card.html' # this card has an extra link
         context = {'card':random_card,'type':type_pk}
         return render(request,template,context)
-    card_type = CardType.objects.all()
+    card_type = CardType.objects.all().order_by('name')
     context = {'types':card_type}
     return render(request,template,context)
