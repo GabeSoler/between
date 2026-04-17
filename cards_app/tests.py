@@ -1,9 +1,14 @@
+from django.contrib.auth import get_user_model
 from django.test import TestCase
 from .models import DeckVersion,CardType,Card
 # Create your tests here.
 
 class DeckTest(TestCase):
     def setUp(self):
+        self.user = get_user_model().objects.create_user(
+            username="test_user",
+            password="testtest"
+        )
         pass
     def tearDown(self):
         pass
@@ -31,3 +36,12 @@ class DeckTest(TestCase):
         self.assertEqual(cards.count(), 1)
         self.assertEqual(cards.first().name, card.name)
 
+
+    def test_select_deck(self):
+        self.force_login(self.user)
+        response = self.client.get('cards/deck-select')
+        self.assertEqual(response.status_code,200)
+
+    def test_card_display(self):
+        response = self.client.get('cards/deck-select')
+        self.assertEqual(response.status_code,200)

@@ -1,0 +1,31 @@
+{% extends '_base.html' %}
+
+
+{% block content %}
+<div class="row row-cols-1 row-cols-md-2 g-4 mt-3">
+    {% for card in types %}
+        <div class="col" id="card-wrap-{{ card.pk }}">
+
+        <div class="card my-2"
+             style="background-color: {{ card.bg_color }};
+                     height:12rem;"
+            hx-get="{% url 'cards_app:select_card_type' %}"
+            hx-target="#card-wrap-{{ card.pk }}">
+            <div class="card-header fw-bold">
+                {{ card.name }}
+            </div>
+            <div class="card-body">
+                {{ card.description }}
+            </div>
+            <div class="card-footer">
+            </div>
+        </div>
+                </div>
+
+    {% endfor %}
+</div>
+
+
+
+
+{% endblock content %}
