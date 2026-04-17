@@ -4,27 +4,31 @@
 {% block content %}
 <div class="row row-cols-1 row-cols-md-2 g-4 mt-3">
     {% for card in types %}
-        <div class="col" id="card-wrap-{{ card.pk }}">
+    <div class="col" id="card-wrap-{{ card.pk }}">
 
+        {% partialdef card-partial inline %}
         <div class="card my-2"
-             style="background-color: {{ card.bg_color }};
+             style="background-color:{{ card.bg_color }};
                      height:12rem;"
-            hx-get="{% url 'cards_app:select_card_type' %}"
+            hx-get="{% url 'cards_app:select_card_type' card.pk %}"
             hx-target="#card-wrap-{{ card.pk }}">
+
             <div class="card-header fw-bold">
                 {{ card.name }}
             </div>
-            <div class="card-body">
+            <div class="card-body fst-italic">
                 {{ card.description }}
             </div>
             <div class="card-footer">
             </div>
         </div>
-                </div>
+        {% endpartialdef card-partial %}
+    </div>
 
     {% endfor %}
 </div>
 
+    <a href="{% url 'cards_app:card_list' %}">See all cards</a>
 
 
 

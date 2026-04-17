@@ -1,0 +1,19 @@
+<div class="card my-2"
+     style="background-color: {{ card.card_type.bg_color }};
+             height:12rem;">
+    <div class="card-header fw-bold">
+        {{ card.name }}
+        <span class="float-end">
+            <i class="bi bi-arrow-clockwise"
+            hx-get="{% url 'cards_app:select_card_type' type %}"
+            hx-target="#card-wrap-{{ type }}"
+            ></i>
+        </span>
+    </div>
+    <div class="card-body">
+        {{ card.text }}
+    </div>
+    <div class="card-footer">
+        {{ card.alt_text }}
+    </div>
+</div>
