@@ -22,6 +22,7 @@ urlpatterns = [
     path('diver/',include('dive_app.urls')),
     path('',include('between_app.urls')),
     path('cards',include('cards_app.urls')),
+    path('companion',include('companion_app.urls')),
 
     #flat pages config
     path("articles/", include("django.contrib.flatpages.urls")), #group of flat pages, access by 

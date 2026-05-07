@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'techniques_app',
     'dive_app',
     'cards_app',
+    'companion_app',
 
     #* Third party apps
     'django_bootstrap5', #css framework
