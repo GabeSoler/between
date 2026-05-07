@@ -3,7 +3,6 @@
 
 {% block content %}
     <a href="{% url 'cards_app:select_card_type' %}">Back to Cards Home</a>
-<div class="row row-cols-1 row-cols-md-2 g-4 mt-3">
     {% for card in cards %}
     <div class="col" id="card-wrap-{{ card.pk }}">
 
