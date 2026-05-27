@@ -214,9 +214,7 @@ BOOTSTRAP5 = {
     # ("https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css"),
     # or a dict with keys `url`, `integrity` and `crossorigin` like the default value below.
     "css_url": {
-        "url": "https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css",
-        "integrity": "sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7",
-        "crossorigin": "anonymous",
+        "url": "https://bootswatch.com/5/sandstone/bootstrap.css",
     },
 
     # The complete URL to the Bootstrap bundle JavaScript file.
@@ -225,9 +223,6 @@ BOOTSTRAP5 = {
         "integrity": "sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq",
         "crossorigin": "anonymous",
     },
-
-    # The complete URL to the Bootstrap CSS theme file (None means no theme).
-    "theme_url": "https://bootswatch.com/5/sandstone/bootstrap.css",
 }
 
 #REsend configuration and email back ends
@@ -300,3 +295,12 @@ LOGGING = {
         "level": "WARNING",
     },
 }
+
+if DEBUG:
+    SECURE_SSL_REDIRECT = True
+    SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+    SECURE_HSTS_INCLUDE_SUBDOMAINS = True
+    SESSION_COOKIE_SECURE = True
+    CSRF_COOKIE_SECURE = True
+    SECURE_HSTS_PRELOAD = True
+    SECURE_HSTS_SECONDS = 300
