@@ -6,3 +6,5 @@ db.sqlite3
 .DS_Store
 /between/settings.ini
 credentials.json
+
+.idea/
