@@ -75,3 +75,11 @@ playwright:
 link:
     adb reverse tcp:3000 tcp:3000
     adb usb
+
+#run checks
+check *arg:
+    uv run manage.py check {{arg}}
+
+#run checks production
+checkp:
+    uv run manage.py check --deploy --settings between.settings
