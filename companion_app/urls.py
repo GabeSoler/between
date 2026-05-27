@@ -2,7 +2,7 @@ from django.urls import path
 
 from . import views
 
-app_name = 'learning_logs'
+app_name = 'companion_app'
 
 urlpatterns = [
     #Home page
