@@ -23,7 +23,12 @@ TEMPLATE_DEBUG = DEBUG
 
 HOST_URL = config("HOST_URL")
 
-ALLOWED_HOSTS = [".localhost", "127.0.0.1", "[::1]", "0.0.0.0","1.1.1.1","8080",
+ALLOWED_HOSTS = [".localhost",
+                 "127.0.0.1", "[::1]",
+                 "0.0.0.0","1.1.1.1",
+                 "8080",
+                 "8000",
+                 "3000",
                      HOST_URL,"www.crea-therapy.com","crea-therapy.com"]
 
 CSRF_TRUSTED_ORIGINS = [

@@ -1,6 +1,6 @@
 # default with just
 play:
-    uv run manage.py runserver 0.0.0.0:3000
+    uv run manage.py runserver 0.0.0.0:8000
 
 #start testing
 test *arg:
