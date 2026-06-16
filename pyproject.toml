@@ -20,3 +20,8 @@ dependencies = [
     "sentry-sdk==3.0.0a1",
     "whitenoise==6.12.0",
 ]
+
+[dependency-groups]
+dev = [
+    "ipython>=9.14.1",
+]

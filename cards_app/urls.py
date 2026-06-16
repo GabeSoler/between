@@ -1,12 +1,11 @@
 from django.urls import path
-from .views import *
 
-app_name = 'cards_app'
+from .views import card_list, select_card_type_view
+
+app_name = "cards_app"
 
 urlpatterns = [
-    path('card-list', card_list, name='card_list'),
-    path('', select_card_type__view, name='select_card_type'),
-    path('<int:type_pk>', select_card_type__view, name='select_card_type'),
+    path("card-list", card_list, name="card_list"),
+    path("", select_card_type_view, name="select_card_type"),
+    path("<int:type_pk>", select_card_type_view, name="select_card_type"),
 ]
-
-
