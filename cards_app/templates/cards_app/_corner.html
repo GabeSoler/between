@@ -1,0 +1,18 @@
+
+        <div class="card position-fixed top-0 start-0"
+             style="background-color:{{ card.bg_color }};
+                     height:12rem;
+          border-radius: {% if corner.br %}7{% endif %}0% {%if corner.br %}0%{%endif%} {%if corner.tr %}7{%endif%}0% {%if corner.tr%}7{%endif%}0%;
+                    card-shape:bevel;
+  "
+            hx-get="{% url 'cards_app:game_card_type' card.pk %}"
+            hx-target="#card-wrap-{{ card.pk }}">
+
+            <div class="card-header fw-bold">
+                {{ card.name }}
+            </div>
+            <div class="fst-italic">
+                {{ card.description }}
+            </div>
+        </div>
+

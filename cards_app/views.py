@@ -27,3 +27,15 @@ def select_card_type_view(request, type_pk=None):
     context = {"types": card_type}
     return render(request, template, context)
 
+
+def card_game_view(request, type_pk=None):
+    template = "cards_app/card_game.html"
+    if request.htmx:
+        card_group = Card.objects.filter(card_type=type_pk)
+        random_card = random.choice(card_group)
+        template = "cards_app/hx_card.html"  # this card has an extra link
+        context = {"card": random_card, "type": type_pk}
+        return render(request, template, context)
+    card_type = CardType.objects.all().order_by("name")
+    types = {object.name.lower(): object for object in card_type}
+    return render(request, template, types)
