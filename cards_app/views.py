@@ -33,7 +33,7 @@ def card_game_view(request, type_pk=None):
     if request.htmx:
         card_group = Card.objects.filter(card_type=type_pk)
         random_card = random.choice(card_group)
-        template = "cards_app/hx_card.html"  # this card has an extra link
+        template = "cards_app/_card.html"  # this card has an extra link
         context = {"card": random_card, "type": type_pk}
         return render(request, template, context)
     card_type = CardType.objects.all().order_by("name")
