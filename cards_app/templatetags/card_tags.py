@@ -6,4 +6,4 @@ register = template.Library()
 
 @register.simple_tag
 def corner_card(card, corner: str):
-    render_to_string("cards_app/_corner.html", {"card": card, "corner": corner})
+    return render_to_string("cards_app/_corner.html", {"card": card, "corner": corner})

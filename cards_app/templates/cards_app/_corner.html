@@ -1,18 +1,39 @@
 
-        <div class="card position-fixed top-0 start-0"
-             style="background-color:{{ card.bg_color }};
-                     height:12rem;
-          border-radius: {% if corner.br %}7{% endif %}0% {%if corner.br %}0%{%endif%} {%if corner.tr %}7{%endif%}0% {%if corner.tr%}7{%endif%}0%;
-                    card-shape:bevel;
-  "
-            hx-get="{% url 'cards_app:game_card_type' card.pk %}"
-            hx-target="#card-wrap-{{ card.pk }}">
+<div class="card position-absolute
+            {% if corner == 'br' %}bottom-0 end-0{% endif %}
+            {%if corner == 'bl' %}bottom-0 start-0{%endif%}
+            {%if corner == 'tr' %}top-0 end-0{%endif%}
+            {%if corner == 'tl' %}top-0 start-0{%endif%};
+           "
+     style="background-color:{{ card.bg_color }};
+            height:12rem;
+            border-radius:
+            {% if corner == 'br' %}7{% endif %}0%
+            {% if corner == 'bl' %}7{% endif %}0%
+            {% if corner == 'tl' %}7{% endif %}0%
+            {% if corner == 'tr' %}7{% endif %}0%
+            ;
+            corner-shape:bevel;
+           "
+     hx-get="{% url 'cards_app:game_card_type' card.pk %}"
+     hx-target="#card-wrap-{{ card.pk }}">
 
-            <div class="card-header fw-bold">
-                {{ card.name }}
-            </div>
-            <div class="fst-italic">
-                {{ card.description }}
-            </div>
-        </div>
+  {% if corner == 'tr' or corner == 'tl' %}
+    <div class="card-header fw-bold">
+      {{ card.name }}
+    </div>
+  {% endif %}
+
+  <div class="card-body fst-italic small mt-auto"
+       style="vertical-align:text-bottom;"
+  >
+    {{ card.description }}
+  </div>
+
+  {% if corner == 'br' or corner == 'bl' %}
+    <div class="card-footer fw-bold bottom-0">
+      {{ card.name }}
+    </div>
+  {% endif %}
+</div>
 

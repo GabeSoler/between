@@ -2,25 +2,11 @@
 {% load card_tags %}
 
 {% block content %}
-  <div class="card position-fixed top-0 start-0"
-       style="background-color:{{ questions.bg_color }};
-              height:12rem;
-              border-radius: 0 0 70% 0;
-              corner-shape:bevel;
-             "
-       hx-get="{% url 'cards_app:game_card_type' questions.pk %}"
-       hx-target="#card-wrap-{{ questions.pk }}">
 
-    <div class="card-header fw-bold">
-      {{ questions.name }}
-    </div>
-    <div class="fst-italic">
-      {{ questions.description }}
-    </div>
-  </div>
+  {% corner_card card=voices corner='br' %}
+  {% corner_card card=voices corner='tl' %}
 
-  {% corner_card questions 'br' %}
-
-
+  {% corner_card card=needs corner='tr' %}
+  {% corner_card card=actions corner='bl' %}
 
 {% endblock content %}
