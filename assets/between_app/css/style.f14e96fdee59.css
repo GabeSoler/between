@@ -1,0 +1,40 @@
+
+
+.soft-blue {
+    background-color: rgb(166, 213, 225);
+}
+.soft-green {
+    background-color: rgb(187, 231, 217);
+}
+
+.warm-white {
+    background-color: rgb(253, 254, 251);
+}
+
+.cold-white{
+    background-color: rgb(236, 242, 244);
+}
+.soft-orange {
+    background-color: rgb(252, 223, 174);
+}
+
+.t-burnt-yellow {
+    color: rgb(171, 159, 127)
+}
+
+.t-bright-yellow {
+    color: rgb(250, 229, 171)
+}
+
+.posImage {
+    max-height: 15em;
+    max-width: fit-content;
+    float: left;
+    position:relative;
+    right:0;
+    margin-right:1em;
+}
+
+.posText {
+    position:relative;
+}
