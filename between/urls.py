@@ -17,11 +17,12 @@ urlpatterns = (
     [
         path(config("ADMIN_URL"), admin.site.urls),
         path("accounts/", include("allauth.urls")),
+        path("", include("base.urls")),
         path("accounts/", include("accounts.urls")),
         path("learning/", include("learning_logs.urls")),
         path("techniques/", include("techniques_app.urls")),
         path("diver/", include("dive_app.urls")),
-        path("", include("between_app.urls")),
+        path("profiles/", include("between_app.urls")),
         path("cards/", include("cards_app.urls")),
         path("companion", include("companion_app.urls")),
         # flat pages config

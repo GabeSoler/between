@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+    <meta charset='utf-8'>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{%block title%}CreaTherapy{%endblock title%}</title>
+
+    {% load django_bootstrap5 %}
+    {% load url_utils %}
+    {% bootstrap_css %}
+    {% bootstrap_javascript %}
+    {% load allauth %}
+    {% load static %}
+    <link rel="stylesheet" href="{% static "between_app/css/style.css" %}" defer >
+
+    <!--font icons bootstrap css-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" defer>
+<!--Google Fonts-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Edu+AU+VIC+WA+NT+Hand:wght@400..700&display=swap&text=CreaTherapy" rel="stylesheet">
+
+<!--favicons-->
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static "between_app/favicon_io/apple-touch-icon.png"%}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static "between_app/favicon_io/favicon-32x32.png"%}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static "between_app/favicon_io/favicon-16x16.png"%}">
+    <link rel="manifest" href="{% static 'between_app/favicon_io/site.webmanifest' %}">
+
+    <!--JQuery and velocity-->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous" ></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/velocity/2.0.6/velocity.min.js" ></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/velocity/2.0.6/velocity.ui.min.js" ></script>
+
+    <!-- Htmx -->
+    <script src="https://unpkg.com/htmx.org@2.0.4" defer ></script>
+
+</head>
+
+<body class='bg-light' hx-boost="True">
+<nav class="navbar navbar-expand-lg bg-primary sticky-top start-0" data-bs-theme="dark" id="top-nav-bar">
+    <div class='container-fluid'>
+    
+        <a class='navbar-brand t-bright-yellow' href="{% url 'between_app:index' %}"  
+            style="font-family:'Edu AU VIC WA NT Hand',verdana,san-serif;" id="brand-text">
+          <img
+          src="{% static "between_app/favicon_io/favicon-32x32.png"%}"
+          class="img-fluid rounded mb-2"
+          alt=""
+          
+        />  
+          CreaTherapy v1.0</a>
+
+        <button class='navbar-toggler' type='button' data-bs-toggle='collapse'
+        data-bs-target='#navbarCollapse' aria-controls='navbarCollapse'
+        aria-expanded='false' aria-label='Toggle navigation'>
+        <span class='navbar-toggler-icon'></span>
+        </button>
+        
+        <!-- collapsable part of the Navegation Bar -->
+        <div class='collapse navbar-collapse' id='navbarCollapse'>
+            <ul class='navbar-nav me-auto mb2 mb-md-0'> <!-- 'me' refers to left, and 'ms' to right -->
+                <li class='nav-item'>
+                    <a class='nav-link t-burnt-yellow {% if request.path == '/tests/' %}active{% endif %}' 
+                    {% if request.path == '/tests/' %}aria-current="page" {% endif %}     
+                    href="{% url 'between_app:test_home' %}">
+                        My Tests</a></li>
+                <li class='nav-item'>
+                    <a class='nav-link t-burnt-yellow {% if request.path == '/learning/' %}active{% endif %}' 
+                    {% if request.path == '/learning/' %}aria-current="page" {% endif %}
+                          href="{% url 'learning_logs:index' %}">
+                        My Journal</a></li>
+                <li class='nav-item'>
+                  <a class='nav-link t-burnt-yellow {% if request.path == '/techniques/' %}active{% endif %}'
+                    {% if request.path == '/techniques/' %}aria-current="page" {% endif %}
+                        href="{% url 'techniques_app:index' %}">
+                      My Techniques</a></li>
+                <li class='nav-item'>
+                  <a class='nav-link t-burnt-yellow {% if request.path == '/diver/' %}active{% endif %}' 
+                  {% if request.path == '/diver/' %}aria-current="page" {% endif %}
+                        href="{% url 'dive_app:index' %}">
+                      Diver</a></li>
+                      <li class='nav-item'>
+                        <a class='nav-link t-burnt-yellow' 
+                        href="https://theory.crea-therapy.com/" target="_blank">
+                        CreaTheory <i class="bi bi-box-arrow-in-up-right"></i></a>
+                      </li>
+                <li class="nav-item">
+                  <a class="nav-link fw-light" href='https://www.gabrielsoler.co.uk/' target="_blank">
+                    Mentorship
+                  <i class="bi bi-box-arrow-in-up-right"></i></a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link fw-light" href='/about/'>About</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link fw-light" href='/data-policy/'>Data Policy</a>
+                </li>
+  
+            </ul><!-- End of links on left side of nvbar -->
+            <!-- Account related links-->
+            {% if user.is_authenticated %}
+            {% url 'account_email' as email_url %}
+            {% url 'socialaccount_connections' as socialaccount_url %}
+            {% if email_url or socialaccount_url %}
+
+            <!--Account with person icon-->
+                <a href="{% url 'accounts:account_profile' %}"
+                class="btn text-success"
+                data-bs-toggle="tooltip" data-bs-title="Account"
+                data-bs-custom-class="custom-tooltip"
+                data-bs-placement="bottom"
+                >
+                <i class="bi bi-person-circle fs-5"></i></a>
+            {% endif %}
+
+            <!--Log out, with exit icon-->
+            <a href="{% url 'account_logout' %}" 
+            class="btn text-warning"
+              data-bs-toggle="tooltip" data-bs-title="Log Out"
+              data-bs-custom-class="custom-tooltip"
+              data-bs-placement="bottom"
+              >
+              <i class="bi bi-box-arrow-right fs-5"></i></a>
+        {% else %}
+            <a href="{% url 'account_login' %}?next={{request.path}}" class="btn me-1 btn-outline-light">Sign In</a>
+            {% url 'account_signup' as signup_url %}
+            {% if signup_url %}
+                <a href="{{ signup_url }}?next={{request.path}}" class="btn btn-outline-success">Sign Up</a>
+            {% endif %}
+        {% endif %}
+               <!-- End of account related links -->
+         </div> <!-- Closes collapsible parts of navbar -->
+    </div><!-- closes navbar container-->
+</nav><!-- end of navbar -->
+
+<!-- Main section -->
+
+<main class="mb-5">
+
+      {% block body %}
+      {% block intro %}
+<!-- display messages of authentication. not in index (not sure why)-->
+      {% if messages %}
+      {% for message in messages %}
+          {% element alert level=message.tags %}
+              {% slot message %}
+                  {{ message }}
+              {% endslot %}
+          {% endelement %}
+      {% endfor %}
+  {% endif %}
+<!-- end messages-->
+
+      {% endblock intro %}
+    <div class="container-fluid mx-auto col-12 col-lg-10">
+        {% block content %} {% endblock content %}      
+    </div>
+    {% endblock body %}
+    {% block extra_body %}
+    {% endblock extra_body %}
+    
+  </main>
+</br>
+<!--Fixed footer nav -->
+<footer class="bg-primary">
+  <ul class="nav nav-underline px-3 bg-primary fixed-bottom nav-justified">
+    <li class="nav-item">
+      <a class="nav-link fw-light link-secondary fs-4 {% if request.path == '/' %}active{% endif %}" 
+      data-bs-toggle="tooltip" data-bs-title="Home"
+      data-bs-custom-class="custom-tooltip"
+      href="{% url "between_app:index" %}">
+      <i class="bi bi-house-fill"></i>
+      <span class="d-none d-md-inline fs-5">
+        Home
+      </span>
+    </a>
+  </li>
+    <!--Profile Test-->
+    <li class="nav-item">
+      <a class="nav-link fw-light link-secondary fs-4 {% if request.path == "/tests/" %}active{% endif %}" 
+      data-bs-toggle="tooltip" data-bs-title="My Profile"
+      data-bs-custom-class="custom-tooltip"
+      href="{% url "between_app:test_home" %}">
+        <i class="bi bi-person-vcard-fill"></i>
+      <span class="d-none d-md-inline fs-5">
+        Profile
+        </span>
+      </a>
+    </li>
+    <!--Add Topic -->
+    <li class="nav-item">
+      <a class="nav-link fw-light link-secondary fs-4 {% if request.path == '/learning/' %}active{% endif %}" 
+      data-bs-toggle="tooltip" data-bs-title="My Journal"
+      data-bs-custom-class="custom-tooltip"
+      href="{% url "learning_logs:index" %}">
+      <i class="bi bi-pen-fill"></i>
+      <span class="d-none d-md-inline fs-5">
+        Journal
+        </span>
+  </a>
+    </li>
+    <!-- Add Technique -->
+    <li class="nav-item">
+      <a class="nav-link fw-light link-secondary fs-4 {% if request.path == '/techniques/components_list/' %}active{% endif %}" 
+      data-bs-toggle="tooltip" data-bs-title="Read Techniques"
+      data-bs-custom-class="custom-tooltip"
+      href="{% url "techniques_app:components_list" %}">
+      <i class="bi bi-lightbulb-fill"></i>
+      <span class="d-none d-md-inline fs-5">
+        Techniques
+        </span>
+  </a>
+    </li>
+
+    <!--Theory page -->
+    <li class="nav-item">
+      <a class="nav-link fw-light link-secondary fs-4" 
+      data-bs-toggle="tooltip" data-bs-title="Go To Theory Page"
+      data-bs-custom-class="custom-tooltip"
+      href="https://theory.crea-therapy.com/"
+      target="_blank">
+      <i class="bi bi-patch-question-fill"></i>
+      <span class="d-none d-md-inline fs-5">
+        Learn
+      </span>
+      
+    </a>
+  </li>
+  </ul>
+
+
+          </div>
+        </div>
+      </nav>
+
+
+</footer>
+</body>
+    <!--a script django block to add js files per page-->
+    <script src="{%block page_script%}{% endblock page_script%}"></script>
+<script>
+const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
+const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
+</script>
+</html>
+
