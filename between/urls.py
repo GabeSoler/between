@@ -2,7 +2,6 @@ from decouple import config
 from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
-from django.contrib.flatpages import views
 from django.contrib.sitemaps.views import sitemap
 from django.urls import include, path
 from django.views.generic.base import TemplateView
@@ -25,12 +24,6 @@ urlpatterns = (
         path("profiles/", include("between_app.urls")),
         path("cards/", include("cards_app.urls")),
         path("companion", include("companion_app.urls")),
-        # flat pages config
-        path("articles/", include("django.contrib.flatpages.urls")),  # group of flat pages, access by
-        path("about/", views.flatpage, {"url": "/about/"}, name="about"),  # To add custom url of flat pages
-        path(
-            "data-policy/", views.flatpage, {"url": "/data-policy/"}, name="data_policy"
-        ),  # To add custom url of flat pages
         path("__reload__/", include("django_browser_reload.urls")),  # for dj reload app
         path(
             "robots.txt", TemplateView.as_view(template_name="robots.txt", content_type="text/plain")
