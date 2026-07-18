@@ -84,6 +84,7 @@ MIDDLEWARE = [
     "allauth.account.middleware.AccountMiddleware",  # allauth middleware
     "django_browser_reload.middleware.BrowserReloadMiddleware",  # reload middleware
     "django_htmx.middleware.HtmxMiddleware",  # django htmx
+    "between.middleware.SubdomainMiddleware",  # subdomain middleware by Me
 ]
 
 ROOT_URLCONF = "between.urls"
@@ -99,6 +100,7 @@ TEMPLATES = [
                 "django.template.context_processors.request",
                 "django.contrib.auth.context_processors.auth",
                 "django.contrib.messages.context_processors.messages",
+                "between.context_processors.dynamic_base",  # my context processor to change the base template by subdomain
             ],
         },
     },
