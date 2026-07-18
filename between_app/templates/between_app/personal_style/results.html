@@ -1,4 +1,4 @@
-{% extends '_base.html' %}
+{% extends BASE_TEMPLATE %}
 
 {% block title%}Results{% endblock title %}
 
@@ -8,83 +8,122 @@
 {% block content %}
 
 
-<div class="card mt-3 mb-4">
+  <div class="card mt-3 mb-4">
 
-    <div class="card-header display-6 bg-primary-subtle">Results:</div>
+    <div class="card-header display-6 bg-primary-subtle">Your Profile</div>
 
     <div class"card-body m-2">
 
-        <div class="card-body m-2"> <!-- intro -->
-<h3 class="card-title">Therapeutic Styles:</h3>
-<p class="card-text">It is a system of care and interest, you can use it to see your own values and positions around therapy.</p>
-<p class="card-text">I do not see it as something that defines you, but as some prominent traits on a particular moment.</p>
-<p class="card-text">Use this as a tool to explore your attractions and rejections of different therapeutic approaches and see your own evolution.</p>
-<a class="link" href={% url 'between_app:style_detail' pk %}>Numeric Scores</a>
-    </div>
+
+      <div class="accordion body m-3" id="mainPosition"> <!-- Position Card -->
+        <div class="accordion-item">
+          <div class="row">
+            <div class="col">
+              <img src="{% static position.image %}" class='img-thumbnail posImage'>
+            </div>
+            <div class="col">
+              <p class="accordion-text posText"><h5 class="fw-bold">Your Main position is:</small></h5>
+              <h2 class="accordion-title text-primary display-6 my-4">{{position.group|title}}</h2>
+
+            </div>
+            <div class="col">
+              <button class="accordion-button"
+                      type="button"
+                      data-bs-toggle="collapse"
+                      data-bs-target="#collapseOne"
+                      aria-expanded="false"
+                      aria-controls="collapseOne">
+                Despcription
+              </button>
+              <div class="accordion-body cold-white collapse " id="collapseOne" data-bs-parent="#mainPosition">
+                <p class="accordion-text posText"><b>Description</b>:{{position.description}}</p>
+                <p class="accordion-text posText"><b>Shadow</b>:{{position.shadow}}</p>
+                <p class="accordion-text posText"><b>Traditions</b>:{{position.traditions}}</p>
+                <p class="accordion-text posText"><b>Authors</b>:{{position.authors}}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
 
 
+      <div class="accordion body m-3" id="mainPath"> <!-- Path Card -->
+        <div class="accordion-item">
+          <div class="row">
+            <div class="col">
+              <img src="{% static path.image %}" class='img-thumbnail posImage'>
+            </div>
+            <div class="col">
+              <p class="accordion-text posText"><h5 class="fw-bold">Your Main path is:</small></h5>
+              <h2 class="accordion-title text-primary display-6 my-4">{{path.group|title}}</h2>
 
-<div class="card body m-3"> <!-- Position Card -->
-    <div class="card-header bg-primary-subtle">
-        <H2>Main Position</H2></div>
-
-        <div class="card-body cold-white">
-        <h2 class="card-title text-primary ms-3 display-6">{{position.group|title}}</h2>
-    <image src="{% static position.image %}" class='card-img-right posImage'>
-    <p class="card-text posText"><b>Description</b>:{{position.description}}</p>
-    <p class="card-text posText"><b>Shadow</b>:{{position.shadow}}</p>
-    <p class="card-text posText"><b>Traditions</b>:{{position.traditions}}</p>
-    <p class="card-text posText"><b>Authors</b>:{{position.authors}}</p>
-    </div>
-</div>
-</div>
-
-
-
-<div class="card body m-3"> <!-- Path Card -->
-    <div class="card-header bg-primary-subtle">
-        <H2>Main Path</H2></div>
-
-        <div class="card-body cold-white">
-            <h2 class="card-title text-primary ms-3 display-6">{{path.group|title}}</h2>
-    <image src="{% static path.image %}" class='card-img-right posImage'>
-    <p class="card-text posText"><b>Description</b>:{{path.description}}</p>
-    <p class="card-text posText"><b>Shadow</b>:{{path.shadow}}</p>
-    <p class="card-text posText"><b>Traditions</b>:{{path.traditions}}</p>
-    <p class="card-text posText"><b>Authors</b>:{{path.authors}}</p>
-    </div></div>
-
-
-    <div class="card body m-3"> <!-- Tradition Card -->
-        <div class="card-header bg-primary-subtle">
-    <H2>Main Tradition/Individuation</H2></div>
-
-    <div class="card-body cold-white">
-        <h2 class="card-title text-primary ms-3 display-6">{{tradition.group|title}}</h2>
-    <image src="{% static tradition.image %}" class='card-img-right posImage'>
-    <p class="card-text posText"><b>Description</b>:{{tradition.description}}</p>
-    <p class="card-text posText"><b>Shadow</b>:{{tradition.shadow}}</p>
-    <p class="card-text posText"><b>Traditions</b>:{{tradition.traditions}}</p>
-    <p class="card-text posText"><b>Authors</b>:{{tradition.authors}}</p>
-    </div></div>
-   
-</div>
-</div>
+            </div>
+            <div class="col">
+              <button class="accordion-button"
+                      type="button"
+                      data-bs-toggle="collapse"
+                      data-bs-target="#collapseTwo"
+                      aria-expanded="false"
+                      aria-controls="collapseTwo">
+                Despcription
+              </button>
+              <div class="accordion-body cold-white collapse " id="collapseTwo" data-bs-parent="#mainpath">
+                <p class="accordion-text posText"><b>Description</b>:{{path.description}}</p>
+                <p class="accordion-text posText"><b>Shadow</b>:{{path.shadow}}</p>
+                <p class="accordion-text posText"><b>Traditions</b>:{{path.traditions}}</p>
+                <p class="accordion-text posText"><b>Authors</b>:{{path.authors}}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
 
 
-{% if user.is_authenticated == False %}
-<div
-class="alert alert-info col-10 mx-auto"
-role="alert"
->
-<h4 class="alert-heading">❗ Save Test</h4>
-<p class="mb-0">Please link it to your account by logging from here.
-    <a class="link" href="{% url 'account_signup' %}?next={{request.path}}" id="signup-link">Sign up</a> |
-    <a class="link" href="{% url 'account_login' %}?next={{request.path}}" id="signup-link">Sign in</a>
-</p>
-</div>
+      <div class="accordion body m-3" id="mainTradition"> <!-- Tradition Card -->
+        <div class="accordion-item">
+          <div class="row">
+            <div class="col">
+              <img src="{% static tradition.image %}" class='img-thumbnail posImage'>
+            </div>
+            <div class="col">
+              <p class="accordion-text posText"><h5 class="fw-bold">You see Tradition from:</small></h5>
+              <h2 class="accordion-title text-primary display-6 my-4">{{tradition.group|title}}</h2>
 
-{% endif %}
+            </div>
+            <div class="col">
+              <button class="accordion-button"
+                      type="button"
+                      data-bs-toggle="collapse"
+                      data-bs-target="#collapseThree"
+                      aria-expanded="false"
+                      aria-controls="collapseThree">
+                Despcription
+              </button>
+              <div class="accordion-body cold-white collapse " id="collapseThree" data-bs-parent="#mainTradition">
+                <p class="accordion-text posText"><b>Description</b>:{{tradition.description}}</p>
+                <p class="accordion-text posText"><b>Shadow</b>:{{tradition.shadow}}</p>
+                <p class="accordion-text posText"><b>Traditions</b>:{{tradition.traditions}}</p>
+                <p class="accordion-text posText"><b>Authors</b>:{{tradition.authors}}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      {% if user.is_authenticated == False %}
+        <div
+          class="alert alert-info col-10 mx-auto"
+          role="alert"
+        >
+          <h4 class="alert-heading">❗ Save Test</h4>
+          <p class="mb-0">Please link it to your account by logging from here.
+            <a class="link" href="{% url 'account_signup' %}?next={{request.path}}" id="signup-link">Sign up</a> |
+            <a class="link" href="{% url 'account_login' %}?next={{request.path}}" id="signup-link">Sign in</a>
+          </p>
+        </div>
+
+      {% endif %}
 
 
 {% endblock content%}

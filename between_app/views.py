@@ -33,17 +33,17 @@ def test_home(request):
             cont_path = PersonalStyleGroup.objects.get(group=results["main_path"])
             cont_tradition = PersonalStyleGroup.objects.get(group=results["main_tradition"])
         except Exception as e:
-            logger.Info(f"Styles db error: {e}")
+            logger.info(f"Styles db error: {e}")
             cont_position, cont_path, cont_tradition = None, None, None
         try:
             bigTrad = BigTraditions.objects.filter(user=request.user).latest("updated_at")
         except Exception as e:
-            logger.Info(f"Big Traditions db error: {e}")
+            logger.info(f"Big Traditions db error: {e}")
             bigTrad = None
         try:
             components = Components.objects.filter(user=request.user).latest("updated_at")
         except Exception as e:
-            logger.Info(f"Big Components db error: {e}")
+            logger.info(f"Big Components db error: {e}")
             components = None
         context = {
             "cont_position": cont_position,
@@ -63,6 +63,10 @@ def positions_list_view(request):
     style_list = PersonalStyle.objects.filter(user=request.user).order_by("-updated_at")
     context = {"style_list": style_list}
     return render(request, "between_app/personal_style/positions_list.html", context)
+
+
+def chose_profile_type(request):
+    return
 
 
 def take_profile_test(request):
