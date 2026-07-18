@@ -5,7 +5,7 @@ from django.urls import include, path
 
 from .views import index
 
-app_name = "between_app"
+app_name = "base_app"
 
 urlpatterns = [
     # page for the whole site
