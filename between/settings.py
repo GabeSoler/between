@@ -189,10 +189,10 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 # My settings
 
-LOGIN_REDIRECT_URL = "between_app:index"
-LOGOUT_REDIRECT_URL = "between_app:index"
+LOGIN_REDIRECT_URL = "base_app:index"
+LOGOUT_REDIRECT_URL = "base_app:index"
 LOGIN_URL = "account_login"
-AUTHENTICATION_LOGOUT_REDIRECT = "between_app:index"
+AUTHENTICATION_LOGOUT_REDIRECT = "base_app:index"
 AUTH_USER_MODEL = "accounts.CustomUser"
 ACCOUNT_LOGIN_BY_CODE_ENABLED = True
 
