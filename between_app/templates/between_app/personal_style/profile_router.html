@@ -1,0 +1,31 @@
+{% extends BASE_TEMPLATE %}
+
+{% block title%}Profile Router{% endblock title %}
+
+{% load static %}
+{% load django_bootstrap5 %}
+
+{% block content %}
+
+<div class="d-flex justify-content-center align-items-center" style="height: 80vh;">
+  <div class="card p-4 text-center">
+    <h2 class="card-title mb-4 border-bottom">Choose Your Path</h2>
+<div class="card-body">
+
+<div class="row">
+  <div class="col-md-6 mb-3 border-end">
+    <h3 class="card-title">Who am I am as a therapist?</h3>
+  </div>
+  <div class="col-md-6 mb-3">
+    <h3 class="card-title">How I imagine my therapist?</h3>
+  </div>
+</div>
+<div class="row mt-4">
+  <div class="col-md-6 mb-3">
+    <a href="{% url 'between_app:profile_test' %}" class="btn btn-primary p-3 my-auto btn-lg w-100">Therapist</a>
+  </div>
+
+  <div class="col-md-6 mb-3">
+    <a href="{% url 'between_app:profile_test_client' %}" class="btn btn-warning p-3 my-auto btn-lg w-100">Client  </a>
+  </div>
+{% endblock content %}
