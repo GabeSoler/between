@@ -1,39 +1,42 @@
-
+# Therapists (is_for_therapist: true)
 - model : between_app.PersonalStyleGroup
   pk : 0
   fields:
     updated_at : "2024-05-28 11:14:07.738883+00:00"
-    section :  0
+    section : 0
     group : compassionate
     image : between_app/images/compasionate.jpg
-    description : The Compassionate position make us feel close to other's feelings and suffering giving lots of space to express other people's experience. In this position we follow the rhytm of the other person avoiging interruptions
-    shadow : When we polarise into it we may have difficulties with setting boundaries which means that we tend to put others before ourselves.
-    traditions : Person Centred Focusing Relational Psychoanalisis.
-    authors : 'Rogers Jung Stolorow Orange'
+    description : "The Compassionate position makes us feel close to others' feelings and suffering, giving plenty of space to express their experience. In this position, we follow the rhythm of the other person, avoiding interruptions."
+    shadow : "When we polarize into it, we may have difficulty setting boundaries, which means we tend to put others before ourselves."
+    traditions : "Person-Centred Focusing, Relational Psychoanalysis"
+    authors : "Rogers, Jung, Stolorow, Orange"
+    is_for_therapist : true
 
 - model : between_app.PersonalStyleGroup
   pk : 1
   fields:
     updated_at : "2024-05-28 11:14:07.738883+00:00"
-    section :  0
+    section : 0
     group : playful
     image : between_app/images/playful.jpg
-    description : The Playful position invite us to create activities that can mobilise emotions so we can process them.
-    shadow : When we polarise into it we may have problems with enactments risking our unconcious to engangle and bring forth primitive dynamics.
-    traditions : Gestalt Psychodrama Play Therapy Art therapies.
-    authors : Perls Moreno Winnicott
+    description : "The Playful position invites us to create activities that can mobilize emotions so we can process them."
+    shadow : "When we polarize into it, we may struggle with enactments, risking that our unconscious becomes entangled and brings forth primitive dynamics."
+    traditions : "Gestalt, Psychodrama, Play Therapy, Art Therapies"
+    authors : "Perls, Moreno, Winnicott"
+    is_for_therapist : true
 
 - model : between_app.PersonalStyleGroup
   pk : 2
   fields:
     updated_at : "2024-05-28 11:14:07.738883+00:00"
-    section :  0
+    section : 0
     group : inquisitive
     image : between_app/images/inquisitive.jpg
-    description : The Inquisitive position invite us to analyse and collect information to find clues of deeper conflicts and underlying dynamics.
-    shadow : When we polarise into it we may find ourselves over-thinking and detached from the present emotional dynamic.
-    traditions : Traditional Psychoanalysis Lacanian psychoanalysis Jungian analysis.
-    authors : Freud Klein Bion Kernberg
+    description : "The Inquisitive position invites us to analyze and collect information to find clues of deeper conflicts and underlying dynamics."
+    shadow : "When we polarize into it, we may find ourselves overthinking and detached from the present emotional dynamic."
+    traditions : "Traditional Psychoanalysis, Lacanian Psychoanalysis, Jungian Analysis"
+    authors : "Freud, Klein, Bion, Kernberg"
+    is_for_therapist : true
 
 - model : between_app.PersonalStyleGroup
   pk : 3
@@ -42,61 +45,64 @@
     section : 0
     group : changer
     image : between_app/images/changer.jpg
-    description : The Changer position invite us to encurage change in our clients by directly finding solutions new behaviours or exercises.
-    shadow : When we polarise into it we may become controlling not giving enough space for the other to express their deeper feelings.
-    traditions : Cognitive Behavioural Integrative approaches
-    authors : Beck Elis
+    description : "The Changer position invites us to encourage change in our clients by directly finding solutions, new behaviors, or exercises."
+    shadow : "When we polarize into it, we may become controlling, not giving enough space for the other person to express their deeper feelings."
+    traditions : "Cognitive Behavioral, Integrative Approaches"
+    authors : "Beck, Ellis"
+    is_for_therapist : true
 
-#path
 - model : between_app.PersonalStyleGroup
   pk : 4
   fields:
     updated_at : "2024-05-28 11:14:07.738883+00:00"
-    section :  1
+    section : 1
     group : dreamer
     image : between_app/images/dreamer.jpg
-    description : The Dreamer path is an invitation towards the magic of poetry metaphor art and daydreaming. People in this path feels deeply and believes dream brings deeper truths.
-    shadow : When we polarise into it we may find ourselves forgeting the concrete world over fantasy.
-    traditions : Jungian analysis Psychoanalysis.
-    authors : Jung
+    description : "The Dreamer path is an invitation towards the magic of poetry, metaphor, art, and daydreaming. People on this path feel deeply and believe dreams bring deeper truths."
+    shadow : "When we polarize into it, we may find ourselves forgetting the concrete world in favor of fantasy."
+    traditions : "Jungian Analysis, Psychoanalysis"
+    authors : "Jung"
+    is_for_therapist : true
 
 - model : between_app.PersonalStyleGroup
   pk : 5
   fields:
     updated_at : "2024-05-28 11:14:07.738883+00:00"
-    section :  1
+    section : 1
     group : sage
     image : between_app/images/sage.jpg
-    description : The Sage path invite us to analyse things in their components and to create more encompasing models that help us clarify our minds and the big problems of existence.
-    shadow : When we polarise into it we may become obsessed with concepts and with the need to categorise every inch of human experience clauding our mind to the beauty of life.
-    traditions : Integral approach Integrative approaches.
-    authors : Wilber Kegan
+    description : "The Sage path invites us to analyze things into their components and to create more encompassing models that help us clarify our minds and the big problems of existence."
+    shadow : "When we polarize into it, we may become obsessed with concepts and with the need to categorize every inch of human experience, clouding our mind to the beauty of life."
+    traditions : "Integral Approach, Integrative Approaches"
+    authors : "Wilber, Kegan"
+    is_for_therapist : true
 
 - model : between_app.PersonalStyleGroup
   pk : 6
   fields:
     updated_at : "2024-05-28 11:14:07.738883+00:00"
-    section :  1
+    section : 1
     group : carer
     image : between_app/images/carer.jpg
-    description : The Carer path is an invitation towards closeness to otherness by an appreciation of life and the movements of nature.
-    shadow : When we polarise into it we may become too close to care for others forgeting to care for ouselves we become submisive.
-    traditions : Person Centred Focusing Relational Psychoanalisis.
-    authors : Rogers Orange
+    description : "The Carer path is an invitation towards closeness to others through an appreciation of life and the movements of nature."
+    shadow : "When we polarize into it, we may become so focused on caring for others that we forget to care for ourselves, risking submissiveness."
+    traditions : "Person-Centred Focusing, Relational Psychoanalysis"
+    authors : "Rogers, Orange"
+    is_for_therapist : true
 
 - model : between_app.PersonalStyleGroup
   pk : 7
   fields:
     updated_at : "2024-05-28 11:14:07.738883+00:00"
-    section :  1
+    section : 1
     group : explorer
     image : between_app/images/explorer.jpg
-    description : The Explorer path is an invitation to keep our curiosity for novelty for new tecniques and solutions and to not stop looking for something better.
-    shadow : When we polarise into it we may become extremely passionate of our serch and we may lose the natural balance risking manic defenses.
-    traditions : Evidence Based Cognitive Behavioural
-    authors : Skinner Beck ElisRogers Wilber Opazo  
+    description : "The Explorer path is an invitation to keep our curiosity for novelty, new techniques, and solutions, never stopping our search for something better."
+    shadow : "When we polarize into it, we may become extremely passionate about our search and lose our natural balance, risking manic defenses."
+    traditions : "Evidence-Based, Cognitive Behavioral"
+    authors : "Skinner, Beck, Ellis, Rogers, Wilber, Opazo"
+    is_for_therapist : true
 
-    #tradition
 - model : between_app.PersonalStyleGroup
   pk : 8
   fields:
@@ -104,11 +110,12 @@
     section : 2
     group : artist
     image : between_app/images/artist.jpg
-    description : The Artist has a self deepening approach focussing more in their own feelings and experiences aiming to explore the deepths of the soul.
-    shadow : When we polarise into it we may have difficulties with stopping our delightful practices risking addiction and fixation.
-    traditions : Jungian analysis Psychoanalysis(Bion Klain Winnicott) Psychodelic treatements holotropic breathing.
-    authors : Jung Winnicott Perls
-        
+    description : "The Artist has a self-deepening approach, focusing more on their own feelings and experiences, aiming to explore the depths of the soul."
+    shadow : "When we polarize into it, we may find it difficult to stop our self-exploration practices, risking addiction and fixation."
+    traditions : "Jungian Analysis, Psychoanalysis (Bion, Klein, Winnicott), Psychedelic Treatments, Holotropic Breathing"
+    authors : "Jung, Winnicott, Perls"
+    is_for_therapist : true
+
 - model : between_app.PersonalStyleGroup
   pk : 9
   fields:
@@ -116,10 +123,11 @@
     section : 2
     group : warrior
     image : between_app/images/warrior.jpg
-    description : The Warrior has a self development approach aiming to help by becoming stronger achieving higher concepts and techniques.
-    shadow : When we polarise into it we risk to develop a tunel vision towards our fight and projects not able to see around anymore.
-    traditions : Cognitive Behavioural Gestalt
-    authors : Beck Ellis Perls Wilber
+    description : "The Warrior has a self-development approach, aiming to help by becoming stronger and achieving higher concepts and techniques."
+    shadow : "When we polarize into it, we risk developing tunnel vision towards our goals and projects, becoming unable to see the wider perspective."
+    traditions : "Cognitive Behavioral, Gestalt"
+    authors : "Beck, Ellis, Perls, Wilber"
+    is_for_therapist : true
 
 - model : between_app.PersonalStyleGroup
   pk : 10
@@ -128,10 +136,11 @@
     section : 2
     group : leader
     image : between_app/images/leader.jpg
-    description : The Leader has a group approach where they want to find an inspiration that may take them and others to a better place.
-    shadow : When we polarise into it we may become too embedded in our group ideals and develop a cult like behaviour rejecting external opinions.
-    traditions : Confesional therapies
-    authors : Freud when making seven rings
+    description : "The Leader has a group approach, seeking to find an inspiration that can guide themselves and others to a better place."
+    shadow : "When we polarize into it, we may become too embedded in our group ideals and develop a cult-like behavior that rejects external opinions."
+    traditions : "Confessional Therapies"
+    authors : "Freud (Secret Committee)"
+    is_for_therapist : true
 
 - model : between_app.PersonalStyleGroup
   pk : 11
@@ -140,9 +149,165 @@
     section : 2
     group : coach
     image : between_app/images/coach.jpg
-    description : The Coach position works with a team and aims for its perfecting by following clear techniques and strategies.
-    shadow : When we polarise into it we may create a relatiionship where one dominates over the rest because they may 'know more'.
-    traditions : Cognitive Behavioural.
-    authors : Beck Ellis Opazo Wilber 
-    
-    
+    description : "The Coach position works with a team and aims for its perfection by following clear techniques and strategies."
+    shadow : "When we polarize into it, we may create a relationship where one dominates over the rest under the guise of 'knowing more'."
+    traditions : "Cognitive Behavioral"
+    authors : "Beck, Ellis, Opazo, Wilber"
+    is_for_therapist : true
+
+# Clients (is_for_therapist: false)
+- model : between_app.PersonalStyleGroup
+  pk : 12
+  fields:
+    updated_at : "2024-05-28 11:14:07.738883+00:00"
+    section : 0
+    group : compassionate
+    image : between_app/images/compasionate.jpg
+    description : "The Compassionate position makes us feel close to others' feelings and suffering, giving plenty of space to express their experience. In this position, we follow the rhythm of the other person, avoiding interruptions."
+    shadow : "When we polarize into it, we may have difficulty setting boundaries, which means we tend to put others before ourselves."
+    traditions : "Person-Centred Focusing, Relational Psychoanalysis"
+    authors : "Rogers, Jung, Stolorow, Orange"
+    is_for_therapist : false
+
+- model : between_app.PersonalStyleGroup
+  pk : 13
+  fields:
+    updated_at : "2024-05-28 11:14:07.738883+00:00"
+    section : 0
+    group : playful
+    image : between_app/images/playful.jpg
+    description : "The Playful position invites us to create activities that can mobilize emotions so we can process them."
+    shadow : "When we polarize into it, we may struggle with enactments, risking that our unconscious becomes entangled and brings forth primitive dynamics."
+    traditions : "Gestalt, Psychodrama, Play Therapy, Art Therapies"
+    authors : "Perls, Moreno, Winnicott"
+    is_for_therapist : false
+
+- model : between_app.PersonalStyleGroup
+  pk : 14
+  fields:
+    updated_at : "2024-05-28 11:14:07.738883+00:00"
+    section : 0
+    group : inquisitive
+    image : between_app/images/inquisitive.jpg
+    description : "The Inquisitive position invites us to analyze and collect information to find clues of deeper conflicts and underlying dynamics."
+    shadow : "When we polarize into it, we may find ourselves overthinking and detached from the present emotional dynamic."
+    traditions : "Traditional Psychoanalysis, Lacanian Psychoanalysis, Jungian Analysis"
+    authors : "Freud, Klein, Bion, Kernberg"
+    is_for_therapist : false
+
+- model : between_app.PersonalStyleGroup
+  pk : 15
+  fields:
+    updated_at : "2024-05-28 11:14:07.738883+00:00"
+    section : 0
+    group : changer
+    image : between_app/images/changer.jpg
+    description : "The Changer position invites us to encourage change in our clients by directly finding solutions, new behaviors, or exercises."
+    shadow : "When we polarize into it, we may become controlling, not giving enough space for the other person to express their deeper feelings."
+    traditions : "Cognitive Behavioral, Integrative Approaches"
+    authors : "Beck, Ellis"
+    is_for_therapist : false
+
+- model : between_app.PersonalStyleGroup
+  pk : 16
+  fields:
+    updated_at : "2024-05-28 11:14:07.738883+00:00"
+    section : 1
+    group : dreamer
+    image : between_app/images/dreamer.jpg
+    description : "The Dreamer path is an invitation towards the magic of poetry, metaphor, art, and daydreaming. People on this path feel deeply and believe dreams bring deeper truths."
+    shadow : "When we polarize into it, we may find ourselves forgetting the concrete world in favor of fantasy."
+    traditions : "Jungian Analysis, Psychoanalysis"
+    authors : "Jung"
+    is_for_therapist : false
+
+- model : between_app.PersonalStyleGroup
+  pk : 17
+  fields:
+    updated_at : "2024-05-28 11:14:07.738883+00:00"
+    section : 1
+    group : sage
+    image : between_app/images/sage.jpg
+    description : "The Sage path invites us to analyze things into their components and to create more encompassing models that help us clarify our minds and the big problems of existence."
+    shadow : "When we polarize into it, we may become obsessed with concepts and with the need to categorize every inch of human experience, clouding our mind to the beauty of life."
+    traditions : "Integral Approach, Integrative Approaches"
+    authors : "Wilber, Kegan"
+    is_for_therapist : false
+
+- model : between_app.PersonalStyleGroup
+  pk : 18
+  fields:
+    updated_at : "2024-05-28 11:14:07.738883+00:00"
+    section : 1
+    group : carer
+    image : between_app/images/carer.jpg
+    description : "The Carer path is an invitation towards closeness to others through an appreciation of life and the movements of nature."
+    shadow : "When we polarize into it, we may become so focused on caring for others that we forget to care for ourselves, risking submissiveness."
+    traditions : "Person-Centred Focusing, Relational Psychoanalysis"
+    authors : "Rogers, Orange"
+    is_for_therapist : false
+
+- model : between_app.PersonalStyleGroup
+  pk : 19
+  fields:
+    updated_at : "2024-05-28 11:14:07.738883+00:00"
+    section : 1
+    group : explorer
+    image : between_app/images/explorer.jpg
+    description : "The Explorer path is an invitation to keep our curiosity for novelty, new techniques, and solutions, never stopping our search for something better."
+    shadow : "When we polarize into it, we may become extremely passionate about our search and lose our natural balance, risking manic defenses."
+    traditions : "Evidence-Based, Cognitive Behavioral"
+    authors : "Skinner, Beck, Ellis, Rogers, Wilber, Opazo"
+    is_for_therapist : false
+
+- model : between_app.PersonalStyleGroup
+  pk : 20
+  fields:
+    updated_at : "2024-05-28 11:14:07.738883+00:00"
+    section : 2
+    group : artist
+    image : between_app/images/artist.jpg
+    description : "The Artist has a self-deepening approach, focusing more on their own feelings and experiences, aiming to explore the depths of the soul."
+    shadow : "When we polarize into it, we may find it difficult to stop our self-exploration practices, risking addiction and fixation."
+    traditions : "Jungian Analysis, Psychoanalysis (Bion, Klein, Winnicott), Psychedelic Treatments, Holotropic Breathing"
+    authors : "Jung, Winnicott, Perls"
+    is_for_therapist : false
+
+- model : between_app.PersonalStyleGroup
+  pk : 21
+  fields:
+    updated_at : "2024-05-28 11:14:07.738883+00:00"
+    section : 2
+    group : warrior
+    image : between_app/images/warrior.jpg
+    description : "The Warrior has a self-development approach, aiming to help by becoming stronger and achieving higher concepts and techniques."
+    shadow : "When we polarize into it, we risk developing tunnel vision towards our goals and projects, becoming unable to see the wider perspective."
+    traditions : "Cognitive Behavioral, Gestalt"
+    authors : "Beck, Ellis, Perls, Wilber"
+    is_for_therapist : false
+
+- model : between_app.PersonalStyleGroup
+  pk : 22
+  fields:
+    updated_at : "2024-05-28 11:14:07.738883+00:00"
+    section : 2
+    group : leader
+    image : between_app/images/leader.jpg
+    description : "The Leader has a group approach, seeking to find an inspiration that can guide themselves and others to a better place."
+    shadow : "When we polarize into it, we may become too embedded in our group ideals and develop a cult-like behavior that rejects external opinions."
+    traditions : "Confessional Therapies"
+    authors : "Freud (Secret Committee)"
+    is_for_therapist : false
+
+- model : between_app.PersonalStyleGroup
+  pk : 23
+  fields:
+    updated_at : "2024-05-28 11:14:07.738883+00:00"
+    section : 2
+    group : coach
+    image : between_app/images/coach.jpg
+    description : "The Coach position works with a team and aims for its perfection by following clear techniques and strategies."
+    shadow : "When we polarize into it, we may create a relationship where one dominates over the rest under the guise of 'knowing more'."
+    traditions : "Cognitive Behavioral"
+    authors : "Beck, Ellis, Opazo, Wilber"
+    is_for_therapist : false
