@@ -29,9 +29,9 @@ def test_home(request):
         try:
             style_detail = PersonalStyle.objects.filter(user=request.user).latest("updated_at")
             results = style_detail.cal_profile
-            cont_position = PersonalStyleGroup.objects.get(group=results["main_position"])
-            cont_path = PersonalStyleGroup.objects.get(group=results["main_path"])
-            cont_tradition = PersonalStyleGroup.objects.get(group=results["main_tradition"])
+            cont_position = PersonalStyleGroup.objects.get(group=results["main_position"], is_for_therapist=style_detail.therapist)
+            cont_path = PersonalStyleGroup.objects.get(group=results["main_path"], is_for_therapist=style_detail.therapist)
+            cont_tradition = PersonalStyleGroup.objects.get(group=results["main_tradition"], is_for_therapist=style_detail.therapist)
         except Exception as e:
             logger.info(f"Styles db error: {e}")
             cont_position, cont_path, cont_tradition = None, None, None
@@ -66,7 +66,7 @@ def positions_list_view(request):
 
 
 def chose_profile_type(request):
-    return
+    return render(request, "between_app/personal_style/profile_router.html")
 
 
 def take_profile_test(request):
@@ -81,11 +81,12 @@ def take_profile_test(request):
             pk = new_form.pk
             if request.user.is_authenticated:
                 user = request.user
+                new_form.therapist = True
                 new_form.user = user
             new_form.save()
             return redirect("between_app:results", pk)
     # display a blank or invalid form
-    context = {"form": form}
+    context = {"form": form, "therapist": True}
     return render(request, "between_app/personal_style/profile_test.html", context)
 
 
@@ -106,8 +107,8 @@ def take_profile_test_client(request):
             new_form.save()
             return redirect("between_app:results", pk)
     # display a blank or invalid form
-    context = {"form": form}
-    return render(request, "between_app/personal_style/profile_test_client.html", context)
+    context = {"form": form, "therapist": False}
+    return render(request, "between_app/personal_style/profile_test.html", context)
 
 
 def style_detail(request, pk):
@@ -124,16 +125,16 @@ def ps_results(request, pk):
         style_detail.user = user
         style_detail.save()
     results = style_detail.cal_profile
-    cont_position = PersonalStyleGroup.objects.get(group=results["main_position"])
-    cont_path = PersonalStyleGroup.objects.get(group=results["main_path"])
-    cont_tradition = PersonalStyleGroup.objects.get(group=results["main_tradition"])
+    cont_position = PersonalStyleGroup.objects.get(group=results["main_position"], is_for_therapist=style_detail.therapist)
+    cont_path = PersonalStyleGroup.objects.get(group=results["main_path"], is_for_therapist=style_detail.therapist)
+    cont_tradition = PersonalStyleGroup.objects.get(group=results["main_tradition"], is_for_therapist=style_detail.therapist)
     context = {
         "results": style_detail,
         "position": cont_position,
         "path": cont_path,
         "tradition": cont_tradition,
         "pk": pk,
-        "format": format,
+        "therapist": style_detail.therapist,
     }
     return render(request, "between_app/personal_style/results.html", context)
 
