@@ -8,25 +8,24 @@ app_name = "between_app"
 
 urlpatterns = [
     # home for all the profile results
-    path("tests/", views.test_home, name="test_home"),
+    path("home/", views.test_home, name="test_home"),
     # therapeutic positions
-    path("", views.style_detail, name="profiles"),
-    path("tests/style_detail/<uuid:pk>/", views.style_detail, name="style_detail"),
-    path("tests/style_list/", views.positions_list_view, name="profiles_list"),
-    path("tests/profile_test/", views.take_profile_test, name="profile_test"),
-    path("tests/profile_test_client/", views.take_profile_test_client, name="profile_test_client"),
-    path("tests/content_1/", views.positions_content_view, name="content_1"),
-    path("tests/results/<uuid:pk>/", views.ps_results, name="results"),
+    path("", views.chose_profile_type, name="profile_router"),
+    path("style_detail/<uuid:pk>/", views.style_detail, name="style_detail"),
+    path("style_list/", views.positions_list_view, name="profiles_list"),
+    path("profile_test/", views.take_profile_test, name="profile_test"),
+    path("profile_test_client/", views.take_profile_test_client, name="profile_test_client"),
+    path("content_1/", views.positions_content_view, name="content_1"),
+    path("results/<uuid:pk>/", views.ps_results, name="results"),
     # Compnents
-    path("tests/components_test/", views.take_components, name="components_test"),
-    path("tests/components_list/", views.components_list, name="components_list"),
-    path("tests/components_detail/<uuid:pk>/", views.components_detail, name="components_detail"),
+    path("components_test/", views.take_components, name="components_test"),
+    path("components_list/", views.components_list, name="components_list"),
+    path("components_detail/<uuid:pk>/", views.components_detail, name="components_detail"),
     # Traditions
-    path("tests/traditions_test/", views.big_trad_test, name="traditions_test"),
-    path("tests/traditions_list/", views.big_trad_list, name="traditions_list"),
-    path("tests/traditions_detail/<uuid:pk>/", views.big_trad_detail, name="traditions_detail"),
+    path("traditions_test/", views.big_trad_test, name="traditions_test"),
+    path("traditions_list/", views.big_trad_list, name="traditions_list"),
+    path("traditions_detail/<uuid:pk>/", views.big_trad_detail, name="traditions_detail"),
     # content
     path("content/", views.positions_content_view, name="content"),
-    path("tests/results/<uuid:pk>/", views.ps_results, name="results"),
+    path("results/<uuid:pk>/", views.ps_results, name="results"),
 ]
-
