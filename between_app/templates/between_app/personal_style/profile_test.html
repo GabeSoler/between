@@ -8,14 +8,26 @@
 
   <div class="card mt-0 mb-4 cold-white">
 
-    <div class="card-header display-6 soft-blue border-primary p-3">Profile Test</div>
-    <h3 class="display-6 mx-auto text-center p-4">Answer the following questions to find out your personal style</h3>
+    <div class="card-header display-6 soft-blue border-primary p-3">Therapeutic Profiles</div>
+    <h3 class="display-6 mx-auto text-center p-4">
+      {% if therapist %}
+        What therapist I am?
+      {% else %}
+        What therapist I want?
+      {% endif %}
+    </h3>
 
-    <form action="{% url 'between_app:profile_test' %}" method='post'
-          class="mx-auto"
-          _="init set $position to 1
-             log $position
-             end"
+    <form
+      {% if therapist %}
+        action="{% url 'between_app:profile_test' %}"
+      {% else %}
+        action="{% url 'between_app:profile_test_client' %}"
+      {% endif %}
+      method='post'
+      class="mx-auto"
+      _="init set $position to 1
+         log $position
+         end"
     >
       {% csrf_token %}
       {% for field in form %}
