@@ -10,7 +10,7 @@
 
   <div class="card mt-3 mb-4">
 
-    <div class="card-header display-6 bg-primary-subtle">Your Profile</div>
+    <div class="card-header display-6 bg-primary-subtle">Results:</div>
 
     <div class"card-body m-2">
 
@@ -22,7 +22,13 @@
               <img src="{% static position.image %}" class='img-thumbnail posImage'>
             </div>
             <div class="col">
-              <p class="accordion-text posText"><h5 class="fw-bold">Your Main position is:</small></h5>
+              <p class="accordion-text posText"><h5 class="fw-bold">
+                {% if therapist %}
+                  Your Main position is:
+                {% else %}
+                  Your Therapist position:
+                {% endif %}
+              </small></h5>
               <h2 class="accordion-title text-primary display-6 my-4">{{position.group|title}}</h2>
 
             </div>
@@ -54,7 +60,13 @@
               <img src="{% static path.image %}" class='img-thumbnail posImage'>
             </div>
             <div class="col">
-              <p class="accordion-text posText"><h5 class="fw-bold">Your Main path is:</small></h5>
+              <p class="accordion-text posText"><h5 class="fw-bold">
+                {% if therapist %}
+                  Your Main path is:
+                {% else %}
+                  Your Therapist style:
+                {% endif %}
+              </small></h>
               <h2 class="accordion-title text-primary display-6 my-4">{{path.group|title}}</h2>
 
             </div>
@@ -86,7 +98,13 @@
               <img src="{% static tradition.image %}" class='img-thumbnail posImage'>
             </div>
             <div class="col">
-              <p class="accordion-text posText"><h5 class="fw-bold">You see Tradition from:</small></h5>
+              <p class="accordion-text posText"><h5 class="fw-bold">
+                {% if therapist %}
+                  Your Main Tradition is:
+                {% else %}
+                  Your Therapist Attitude:
+                {% endif %}
+              </small></h5>
               <h2 class="accordion-title text-primary display-6 my-4">{{tradition.group|title}}</h2>
 
             </div>
@@ -111,7 +129,7 @@
       </div>
 
 
-      {% if user.is_authenticated == False %}
+      {% if user.is_authenticated == False and BASE_TEMPLATE == '_base.html' %}
         <div
           class="alert alert-info col-10 mx-auto"
           role="alert"
@@ -125,5 +143,11 @@
 
       {% endif %}
 
+      {% if BASE_TEMPLATE == '_base_clean.html' %}
+        <div class="col-10 mx-auto">
+          <a href='mailto:admin@crea-therapy.com' class="btn btn-primary float-end">Get in contact</a>
 
-{% endblock content%}
+          <a href='https://crea-therapy.com/ class="btn btn-primary float-end">Check CreaTherapy</a>
+                   </div>
+               {% endif %}
+         {% endblock content%}
