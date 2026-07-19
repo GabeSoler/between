@@ -1,164 +1,255 @@
 {% extends '_base.html' %}
-{%block title%}CreaTest Home{%endblock title %}
+{% block title %}CreaTest Home{% endblock title %}
 
 {% block content %}
-{% load static %}
+  {% load static %}
 
 <!--Title card-->
-<div class="card mb-3 mt-2 border-primary border-3 soft-green">
-<div class="card-body">
-  <h2 class="card-title">Therapist Style</h2>
-    <p class='card-text'>Here you can see your latest results and have an overview of your profile.</p>
-  </div>
-</div>
-
-    {% if user.is_authenticated %} <!-- Authenticated section -->
-
- <!--Personal Profile-->   
-<div class="card mb-3 border-primary border-1 soft-blue">
-      <div class="card-body">
-  <h2 class="card-title">Profile:</h2>
-  <p class="card-text">Therapeutic Profiles aims to help therapist and clients to find their unique needs.</p>
-  <p class="card-text">They will help you to recognize your unique style and positions towards helping others and yourself.</p>
-  <a class="badge bg-primary p-2 m-2" href={% url 'between_app:profile_test' %}>Take the Test</a></br>
-
-  {% if cont_position.group %} <!-- if we have some resoults to show -->
-      <div class="card-body soft-green rounded">
-      <h2 class="card-title">Your current personal Profile:</h2>
-      <div class='row'>
-        <div class='col'>
-          <image src="{% static cont_position.image %}" class='img-thumbnail border-2 border-primary rounded-circle' style='max-height:6em;'>
-          <p class="card-text posText">{{cont_position.group|title}}</p>
-          </div>
-      <div class='col'>
-        <image src="{% static cont_path.image %}" class='img-thumbnail border-2 border-primary rounded-circle' style='max-height:6em;'>
-        <p class="card-text posText">{{cont_path.group|title}}</p>
-      </div>
-
-      <div class='col'>
-        <image src="{% static cont_tradition.image %}" class='img-thumbnail border-2 border-primary rounded-circle' style='max-height:6em;'>
-      <p class="card-text posText">{{cont_tradition.group|title}}</p>
+  <div class="card mb-3 mt-2 border-primary border-3 soft-green">
+    <div class="card-body">
+      <h2 class="card-title">Therapist Style</h2>
+      <p class='card-text'>Here you can see your latest results and have an overview of your profile.</p>
     </div>
-  </div><!--end row-->
-  </div><!--end card-body -->
-      {% else %}
-    <p>Here you will see your results</p>
-      {% endif%} <!-- end if resoults -->
-
-  <a class="badge bg-primary p-2 m-2" href="https://theory.crea-therapy.com/Profiles/" target="_blank">Read the theory</a>
-  <a class="badge bg-primary p-2 m-2" href={% url 'between_app:profiles_list' %}>See your tests </a></br>
-
-  </div>
   </div>
 
+  {% if user.is_authenticated %} <!-- Authenticated section -->
+
+<!--Personal Profile-->   
+    <div class="card mb-3 border-primary border-1 soft-blue">
+      <div class="card-body">
+        <h2 class="card-title">Profile:</h2>
+        <p class="card-text">Therapeutic Profiles aims to help therapist and clients to find their unique needs.</p>
+        <p class="card-text">They will help you to recognize your unique style and positions towards helping others and yourself.</p>
+        <a class="badge bg-primary p-2 m-2" href="{% url 'between_app:profile_router' %}">Take the Test</a><br>
+
+        {% if cont_position.group %} <!-- if we have some results to show -->
+          <div class="card-body soft-green rounded">
+            <h2 class="card-title">Your current personal Profile:</h2>
+            <div class='row'>
+              <div class='col'>
+                <img src="{% static cont_position.image %}" class='img-thumbnail border-2 border-primary rounded-circle' style='max-height:6em;' alt="Position">
+                <p class="card-text posText">{{cont_position.group|title}}</p>
+              </div>
+              <div class='col'>
+                <img src="{% static cont_path.image %}" class='img-thumbnail border-2 border-primary rounded-circle' style='max-height:6em;' alt="Path">
+                <p class="card-text posText">{{cont_path.group|title}}</p>
+              </div>
+              <div class='col'>
+                <img src="{% static cont_tradition.image %}" class='img-thumbnail border-2 border-primary rounded-circle' style='max-height:6em;' alt="Tradition">
+                <p class="card-text posText">{{cont_tradition.group|title}}</p>
+              </div>
+            </div><!--end row-->
+          </div><!--end card-body -->
+        {% else %}
+          <p>Here you will see your results</p>
+        {% endif %} <!-- end if results -->
+
+        <a class="badge bg-primary p-2 m-2" href="https://theory.crea-therapy.com/Profiles/" target="_blank">Read the theory</a>
+        <a class="badge bg-primary p-2 m-2" href="{% url 'between_app:profiles_list' %}">See your tests </a><br>
+      </div>
+    </div>
 <!-- end personal profile -->
 
 
+<!-- Components Section -->
+    <div class="card mb-3 border-primary border-1 soft-blue">
+      <div class="card-body">
+        <h2 class='card-title'>Components</h2>
+        <p class='card-text'>Here you can see your structural breakdown across key domains.</p>
 
-<!-- Components bar section -->
-<div class="card mb-3 border-primary border-1 soft-blue"> 
-    <div class="card-body">
-    
-      <h2 class='card-title'>Components</h2>
-      <p clas='card-text'>Here you can use your graph to see what are your strong areas, and which ones you may want to develop.</p>
-      <p clas='card-text'>When constructing your profile for your clients  to see, its good to show what makes you unique, so clients with similar or complementary interest may reach to you.</p>
-      <p clas='card-text'>Similarity is usually good when starting or when we are more fragile. On the other hand, complements (therapist having areas clients miss or dislike) are better for growth, and to challenge oneself.</p>
-      
-      <!--list button-->
-      <a class="badge bg-primary p-2 m-2" href={% url 'between_app:components_list' %}>Previous Entries</a>
-      <a class="badge bg-primary p-2 m-2" href={% url 'between_app:components_test' %}>Take the Test</a>
+        <a class="badge bg-primary p-2 m-2" href="{% url 'between_app:components_list' %}">Previous Entries</a>
+        <a class="badge bg-primary p-2 m-2" href="{% url 'between_app:components_test' %}">Take the Test</a>
 
-  <!--Components results in bars-->
-  {% if components.results.subjective  %}
+        {% if components.results.subjective %}
+      <!-- 5-Column Grid Layout for small charts -->
+          <div class="row row-cols-1 row-cols-md-3 row-cols-lg-5 g-3 mt-3">
 
-  <!--Subjective loop-->
-  <h3>Subjective</h3>
-  {% for name,result in components.results.subjective.items %}
-    <div class="progress">
-      <div class="progress-bar progress-bar-striped {{format.0}}" role="progressbar" style="width: {{result}}%" aria-valuenow="{{result}}" aria-valuemin="0" aria-valuemax="100">{{name}}-{{result}}%</div>
+            <div class="col">
+              <div class="text-center fw-bold small">Subjective</div>
+              <div style="position: relative; height: 180px;"><canvas id="chartSubjective"></canvas></div>
+            </div>
+
+            <div class="col">
+              <div class="text-center fw-bold small">Extended Awareness</div>
+              <div style="position: relative; height: 180px;"><canvas id="chartExtended"></canvas></div>
+            </div>
+
+            <div class="col">
+              <div class="text-center fw-bold small">Context</div>
+              <div style="position: relative; height: 180px;"><canvas id="chartContext"></canvas></div>
+            </div>
+
+            <div class="col">
+              <div class="text-center fw-bold small">Culture</div>
+              <div style="position: relative; height: 180px;"><canvas id="chartCulture"></canvas></div>
+            </div>
+
+            <div class="col">
+              <div class="text-center fw-bold small">Identity</div>
+              <div style="position: relative; height: 180px;"><canvas id="chartIdentity"></canvas></div>
+            </div>
+
+          </div>
+        {% else %}
+          <p>Here you will see your results</p>
+        {% endif %}
+      </div>
     </div>
-  {% endfor %}
-  <!--end of subjective section-->
-
-  <!--Extended Awareness section loop-->
-  <h3>Extended Awareness</h3>
-    {% for name,result in components.results.extended.items %}
-    <div class="progress">
-      <div class="progress-bar progress-bar-striped {{format.1}}" role="progressbar" style="width: {{result}}%" aria-valuenow="{{result}}" aria-valuemin="0" aria-valuemax="100">{{name}}-{{result}}%</div>
-    </div>
-  {% endfor %}
-
-  <!--Context section loop-->
-  <h3>Context</h3>
-    {% for name,result in components.results.context.items %}
-    <div class="progress">
-      <div class="progress-bar progress-bar-striped {{format.2}}" role="progressbar" style="width: {{result}}%" aria-valuenow="{{result}}" aria-valuemin="0" aria-valuemax="100">{{name}}-{{result}}%</div>
-    </div>
-  {% endfor %}
-
-  <!--Culture section loop-->
-  <h3>Culture</h3>
-    {% for name,result in components.results.culture.items %}
-    <div class="progress">
-      <div class="progress-bar progress-bar-striped {{format.3}}" role="progressbar" style="width: {{result}}%" aria-valuenow="{{result}}" aria-valuemin="0" aria-valuemax="100">{{name}}-{{result}}%</div>
-    </div>
-  {% endfor %}
-
-  <!--Identity section loop-->
-  <h3>Identity</h3>
-    {% for name,result in components.results.identity.items %}
-    <div class="progress">
-      <div class="progress-bar progress-bar-striped {{format.4}}" role="progressbar" style="width: {{result}}%" aria-valuenow="{{result}}" aria-valuemin="0" aria-valuemax="100">{{name}}-{{result}}%</div>
-    </div>
-  {% endfor %}
-
-  {% else %}
-    <p>Here you will see your results</p>
-   {% endif%}
-  </div>
-</div>
-  <!--end of Components-->
-
+<!--end Components card-->
 
 <!--Big traditions Section-->
-<div class="card mb-5 border-primary border-1 soft-blue">
-  <div class="card-body">
-  <h2 class="card-title">Big Traditions</h2>
-  <p class="card-text">These are the main philosophical traditions behind the psychotherapy. We find sometimes mixes of them, and sub-groups, but they define clear paths relevant today.</p>
-  <p class="card-text">This test will help you to recognise your afiliation with some reality assumptions.</p>
-  <a class="badge bg-primary p-2 m-2" href={% url 'between_app:traditions_list' %}>Previous Entries</a>
-  <a class="badge bg-primary p-2 m-2" href={% url 'between_app:traditions_test' %}>Take the Test</a>
-  {% if BigTrad.results %}
-  <!--Big traditions results loop-->
-  {% for name,result in BigTrad.results.items %}
-    <div class="progress">
-      <div class="progress-bar {% cycle format.0 format.1 format.2 format.3 format.4 format.5 format.6 format.7%}" role="progressbar" style="width: {{result}}%" aria-valuenow="{{result}}" aria-valuemin="1" aria-valuemax="100">{{name}}-{{result}}%</div>
+    <div class="card mb-5 border-primary border-1 soft-blue">
+      <div class="card-body">
+        <h2 class="card-title">Big Traditions</h2>
+        <p class="card-text">These are the main philosophical traditions behind the psychotherapy. We find sometimes mixes of them, and sub-groups, but they define clear paths relevant today.</p>
+        <p class="card-text">This test will help you to recognise your afiliation with some reality assumptions.</p>
+        <a class="badge bg-primary p-2 m-2" href="{% url 'between_app:traditions_list' %}">Previous Entries</a>
+        <a class="badge bg-primary p-2 m-2" href="{% url 'between_app:traditions_test' %}">Take the Test</a>
+
+        {% if BigTrad.results %}
+      <!-- Traditions Spiderweb Container -->
+          <div class="mx-auto mt-4" style="max-width: 600px; position: relative; height: 400px;">
+            <canvas id="traditionsRadarChart"></canvas>
+          </div>
+        {% else %}
+          <p>Here you will see your results</p>
+        {% endif %}
+      </div>
     </div>
-    {% endfor %}
-  {% else %}
-  <p>Here you will see your results</p>
- {% endif%}
-  </div>
-</div>
-  <!--end traditions card-->
+<!--end traditions card-->
+
+  {% else %} <!-- No authenticated section -->
+    <div class="card mb-2 border-primary border-3 soft-green">
+      <div class="card-body">
+        <h2 class="card-title">Take the Personal Style test</h2>
+        <p class='card-text'>You can take the test and then sign up or login, and still will be saved (only test with that functionality).</p>
+        <p class='card-text'>After Signing In, this page will show a summary of your last tests. You always can access a list of all your previous tests.</p>
+        <a class="badge bg-primary p-2 m-2" href="{% url 'between_app:profile_test' %}">Take the Profile test </a><br>
+      </div>
+    </div>
+    <div class="alert alert-success" role="alert">
+      Please Sign In to see your tests summary <a href="{% url 'account_login' %}">Sign In</a>
+    </div>
+  {% endif %}
+
+<!-- Load Chart.js CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      {% if user.is_authenticated and components.results.subjective %}
+
+    // Helper function to keep script light and repeatable
+        function createMiniRadar(canvasId, labels, data, color) {
+          const ctx = document.getElementById(canvasId).getContext('2d');
+          new Chart(ctx, {
+            type: 'radar',
+            data: {
+              labels: labels,
+              datasets: [{
+                data: data,
+                backgroundColor: color.replace('1)', '0.15)'),
+                borderColor: color,
+                borderWidth: 2,
+                pointBackgroundColor: color,
+                pointRadius: 3
+              }]
+            },
+            options: {
+              responsive: true,
+              maintainAspectRatio: false,
+              plugins: { legend: { display: false } }, // Hide redundant dataset labels
+              scales: {
+                r: {
+                  ticks: { display: false }, // Hides numerical scale text to save space
+                  suggestedMin: 0,
+                  suggestedMax: 100
+                }
+              }
+            }
+          });
+        }
+
+    // 1. Subjective
+        const subLabels = []; const subData = [];
+        {% for name, result in components.results.subjective.items %}
+          subLabels.push("{{ name|escapejs }}"); subData.push({{ result }});
+        {% endfor %}
+        createMiniRadar('chartSubjective', subLabels, subData, 'rgba(13, 110, 253, 1)');
+
+    // 2. Extended
+        const extLabels = []; const extData = [];
+        {% for name, result in components.results.extended.items %}
+          extLabels.push("{{ name|escapejs }}"); extData.push({{ result }});
+        {% endfor %}
+        createMiniRadar('chartExtended', extLabels, extData, 'rgba(25, 135, 84, 1)');
+
+    // 3. Context
+        const conLabels = []; const conData = [];
+        {% for name, result in components.results.context.items %}
+          conLabels.push("{{ name|escapejs }}"); conData.push({{ result }});
+        {% endfor %}
+        createMiniRadar('chartContext', conLabels, conData, 'rgba(255, 193, 7, 1)');
+
+    // 4. Culture
+        const culLabels = []; const culData = [];
+        {% for name, result in components.results.culture.items %}
+          culLabels.push("{{ name|escapejs }}"); culData.push({{ result }});
+        {% endfor %}
+        createMiniRadar('chartCulture', culLabels, culData, 'rgba(220, 53, 69, 1)');
+
+    // 5. Identity
+        const idLabels = []; const idData = [];
+        {% for name, result in components.results.identity.items %}
+          idLabels.push("{{ name|escapejs }}"); idData.push({{ result }});
+        {% endfor %}
+        createMiniRadar('chartIdentity', idLabels, idData, 'rgba(111, 66, 193, 1)');
+
+      {% endif %}
 
 
 
+      {% if user.is_authenticated and BigTrad.results %}
+    // 2. Traditions Radar Chart
+        const traditionsLabels = [];
+        const traditionsData = [];
 
+        {% for name, result in BigTrad.results.items %}
+          traditionsLabels.push("{{ name|escapejs }}");
+          traditionsData.push({{ result }});
+        {% endfor %}
 
-{% else %} <!-- No authenticated section -->
-            <!--no signed up card-->
-<div class="card mb-2 border-primary border-3 soft-green">
-    <div class="card-body">
-<h2 class="card-title">Take the Personal Style test</h2>
-<p class='card-text'>You can take the test and then sign up or login, and still will be saved (only test with that functionality).</p>
-<p class='card-text'>After Signing In, this page will show a summary of your last tests. You always can access a list of all your previous tests.</p>
-<a class="badge bg-primary p-2 m-2" href={% url 'between_app:profile_test' %}>Take the Profile test </a></br>
-</div></div>
-<div class="alert alert-success" role="alert">
-  Please Sign In to see your tests sumary <a href="{% url 'account_login' %}">Sign In</a>
-</div>
-{% endif %}
+        const ctxTraditions = document.getElementById('traditionsRadarChart').getContext('2d');
+        new Chart(ctxTraditions, {
+          type: 'radar',
+          data: {
+            labels: traditionsLabels,
+            datasets: [{
+              label: 'Philosophical Traditions',
+              data: traditionsData,
+              backgroundColor: 'rgba(25, 135, 84, 0.2)', // Success Bootstrap Color tint
+              borderColor: 'rgba(25, 135, 84, 1)',
+              borderWidth: 2,
+              pointBackgroundColor: 'rgba(25, 135, 84, 1)',
+              pointBorderColor: '#fff',
+              pointHoverBackgroundColor: '#fff',
+              pointHoverBorderColor: 'rgba(25, 135, 84, 1)'
+            }]
+          },
+          options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            scales: {
+              r: {
+                angleLines: { display: true },
+                suggestedMin: 0,
+                suggestedMax: 100
+              }
+            }
+          }
+        });
+      {% endif %}
+    });
+  </script>
 
-
-  {% endblock content%}
+{% endblock content %}
