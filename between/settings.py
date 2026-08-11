@@ -209,12 +209,12 @@ BOOTSTRAP5 = {
     # ("https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css"),
     # or a dict with keys `url`, `integrity` and `crossorigin` like the default value below.
     "css_url": {
-        "url": "https://bootswatch.com/5/sandstone/bootstrap.css",
+        "url": "/" + STATIC_URL + "css/crea-therapy.css",
     },
     # The complete URL to the Bootstrap bundle JavaScript file.
     "javascript_url": {
-        "url": "https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js",
-        "integrity": "sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq",
+        "url": "https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js",
+        "integrity": "sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI",
         "crossorigin": "anonymous",
     },
 }
