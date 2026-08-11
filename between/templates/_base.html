@@ -1,11 +1,17 @@
 {% extends '_base_clean.html'%}
 {% load static %}
 {% load django_bootstrap5 %}
+
+{% load allauth %}
+
+
 {% block body %}
 
-  {% load allauth %}
-  <body class='bg-light' hx-boost="True">
-    <nav class="navbar navbar-expand-lg bg-primary sticky-top start-0" data-bs-theme="dark" id="top-nav-bar">
+  <body class="bg-light" hx-boost="True"
+        style="background-image:linear-gradient(var(--bs-primary) 5%,var(--bs-dark) 100%);">
+    <nav class="navbar navbar-expand-lg bg-primary sticky-top start-0"
+         data-bs-theme="dark"
+         id="top-nav-bar">
       <div class='container-fluid'>
 
         <a class='navbar-brand t-bright-yellow' href="{% url 'base_app:index' %}"
@@ -24,7 +30,7 @@
           <span class='navbar-toggler-icon'></span>
         </button>
 
-        <!-- collapsable part of the Navegation Bar -->
+              <!-- collapsable part of the Navegation Bar -->
         <div class='collapse navbar-collapse' id='navbarCollapse'>
           <ul class='navbar-nav me-auto mb2 mb-md-0'> <!-- 'me' refers to left, and 'ms' to right -->
             <li class='nav-item'>
@@ -65,13 +71,13 @@
             </li>
 
           </ul><!-- End of links on left side of nvbar -->
-            <!-- Account related links-->
+                                                                            <!-- Account related links-->
           {% if user.is_authenticated %}
             {% url 'account_email' as email_url %}
             {% url 'socialaccount_connections' as socialaccount_url %}
             {% if email_url or socialaccount_url %}
 
-            <!--Account with person icon-->
+                                                                                <!--Account with person icon-->
               <a href="{% url 'accounts:account_profile' %}"
                  class="btn text-success"
                  data-bs-toggle="tooltip" data-bs-title="Account"
@@ -81,7 +87,7 @@
                 <i class="bi bi-person-circle fs-5"></i></a>
             {% endif %}
 
-            <!--Log out, with exit icon-->
+                                                                                   <!--Log out, with exit icon-->
             <a href="{% url 'account_logout' %}"
                class="btn text-warning"
                data-bs-toggle="tooltip" data-bs-title="Log Out"
@@ -96,38 +102,39 @@
               <a href="{{ signup_url }}?next={{request.path}}" class="btn btn-outline-success">Sign Up</a>
             {% endif %}
           {% endif %}
-               <!-- End of account related links -->
+                                                                                                                                                                                                            <!-- End of account related links -->
         </div> <!-- Closes collapsible parts of navbar -->
       </div><!-- closes navbar container-->
     </nav><!-- end of navbar -->
 
-<!-- Main section -->
+                                                                                                                                                                                                            <!-- Main section -->
+    {% block main %}
+      <main class="mb-5">
 
-    <main class="mb-5">
+        {% block intro %}
+                                                                                                                                      <!-- display messages of authentication. not in index (not sure why)-->
+          {% if messages %}
+            {% for message in messages %}
+              {% element alert level=message.tags %}
+                {% slot message %}
+                  {{ message }}
+                {% endslot %}
+              {% endelement %}
+            {% endfor %}
+          {% endif %}
+                                                                                                                                      <!-- end messages-->
 
-      {% block intro %}
-<!-- display messages of authentication. not in index (not sure why)-->
-        {% if messages %}
-          {% for message in messages %}
-            {% element alert level=message.tags %}
-              {% slot message %}
-                {{ message }}
-              {% endslot %}
-            {% endelement %}
-          {% endfor %}
-        {% endif %}
-<!-- end messages-->
+        {% endblock intro %}
+        <div class="container-fluid mx-auto col-12 col-lg-10">
+          {% block content %} {% endblock content %}
+        </div>
+        {% block extra_body %}
+        {% endblock extra_body %}
 
-      {% endblock intro %}
-      <div class="container-fluid mx-auto col-12 col-lg-10">
-        {% block content %} {% endblock content %}
-      </div>
-      {% block extra_body %}
-      {% endblock extra_body %}
-
-    </main>
+      </main>
+    {% endblock main %}
     </br>
-<!--Fixed footer nav -->
+                                                                                               <!--Fixed footer nav -->
     <footer class="bg-primary">
       <ul class="nav nav-underline px-3 bg-primary fixed-bottom nav-justified">
         <li class="nav-item">
@@ -141,7 +148,7 @@
             </span>
           </a>
         </li>
-    <!--Profile Test-->
+                                                                                            <!--Profile Test-->
         <li class="nav-item">
           <a class="nav-link fw-light link-secondary fs-4 {% if request.path == "/tests/" %}active{% endif %}"
              data-bs-toggle="tooltip" data-bs-title="My Profile"
@@ -153,7 +160,7 @@
             </span>
           </a>
         </li>
-    <!--Add Topic -->
+                                                                                                   <!--Add Topic -->
         <li class="nav-item">
           <a class="nav-link fw-light link-secondary fs-4 {% if request.path == '/learning/' %}active{% endif %}"
              data-bs-toggle="tooltip" data-bs-title="My Journal"
@@ -165,7 +172,7 @@
             </span>
           </a>
         </li>
-    <!-- Add Technique -->
+                                                                                          <!-- Add Technique -->
         <li class="nav-item">
           <a class="nav-link fw-light link-secondary fs-4 {% if request.path == '/techniques/components_list/' %}active{% endif %}"
              data-bs-toggle="tooltip" data-bs-title="Read Techniques"
@@ -178,7 +185,7 @@
           </a>
         </li>
 
-    <!--Theory page -->
+                                                                                                <!--Theory page -->
         <li class="nav-item">
           <a class="nav-link fw-light link-secondary fs-4"
              data-bs-toggle="tooltip" data-bs-title="Go To Theory Page"

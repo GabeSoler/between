@@ -6,51 +6,52 @@
 
 {% block intro %}
 
-<div class="cover-container ms-0 d-flex mx-auto flex-column mb-2"
-    style="background-image:url({% static 'between_app/images/cover-crea.svg' %});
-    background-position:50% 25%;
-    background-attachment:fixed;
-    background-size:cover;
-    height:80vh;
-    width:100vw;
-    min-height:400px;
-    z-index:10;"
-    id="cover">
-  
+  <div class="cover-container ms-0 d-flex mx-auto flex-column mb-2"
+       style="background-image:linear-gradient(transparent 1%, black 100%),url({% static 'between_app/images/cover-crea.svg' %});
+              background-position:50% 25%;
+              background-attachment:fixed;
+              background-size:cover;
+              height:80vh;
+              width:100vw;
+              min-height:400px;
+              z-index:10;"
+       id="cover">
+
     <div class="px-3 ms-4 my-auto">
-    {% if user.is_authenticated %}
+      {% if user.is_authenticated %}
     <!--Wellcomes the authenticated user and gives two options:tests or theory-->
-    <h1 class="t-bright-yellow" id="landing-text_1">Welcome back, {{user.username}}!</h1>
-    <p class="text-light lead" id="landing-text_2">
-      <i class="bi bi-brush-fill"></i> Keep exploring and playing!</br>
-      <i class="bi bi-book-fill"></i>  Explore more at the <a class="link fs-6" href="https://theory.crea-therapy.com/" target="_blank">Theory Site</a>
-      </p>
+        <h1 class="t-bright-yellow" id="landing-text_1">Welcome back, {{user.username}}!</h1>
+        <p class="text-light lead" id="landing-text_2">
+          <i class="bi bi-brush-fill"></i> Keep exploring and playing!</br>
+          <i class="bi bi-book-fill"></i>  Explore more at the <a class="link fs-6" href="https://theory.crea-therapy.com/" target="_blank">Theory Site</a>
+        </p>
         <a href="{% url 'between_app:test_home' %}" class="btn btn-lg btn-primary fw-bold" id="landing-button">See your tests</a>
 
-    {% else %}
+      {% else %}
     <!--Wellcomes the user and gives a test option-->
-    <h1 class="t-bright-yellow" id="landing-text_1">Your Journey your Knowledge</h1>
-    <p class="text-light lead" id="landing-text_2">
-      <i class="bi bi-brush-fill lead"></i> A creative and modular approach to psychotherapy.</br>
-      <i class="bi bi-book-fill"></i>  Explore more at the <a class="link fs-6" href="https://theory.crea-therapy.com/" target="_blank">Theory Site</a>
-      </p>
-        <p class="lead">
-          <a href="{% url 'between_app:profile_test' %}" class="btn btn-lg btn-primary fw-bold" id="landing-button">Take a Test</a>
-    {% endif %}
-    </p>
-  </div>
-  
- 
+        <h1 class="t-bright-yellow" id="landing-text_1">Your Journey your Knowledge</h1>
+        <p class="text-light lead" id="landing-text_2">
+          <i class="bi bi-brush-fill lead"></i> A creative and modular approach to psychotherapy.</br>
+          <i class="bi bi-book-fill"></i>  Explore more at the <a class="link fs-6" href="https://theory.crea-therapy.com/" target="_blank">Theory Site</a>
+        </p>
+        <div class="card col-10 col-sm-6 col-lg-3 bg-transparent border-secondary border-2 p-3" id="landing-card">
+          <h5>Find your therapist style:</h5>
+          <a href="{% url 'between_app:profile_router' %}" class="btn btn-lg btn-primary fw-bold" id="landing-button">Take a Test</a>
+        </div>
+      {% endif %}
+    </div>
+
+
     <div class="mt-auto text-white-50">
-      <p class="d-inline" id="my_site_link">Check out <a href="https://www.gabrielsoler.co.uk/" target="_blank">Author's Site</a></p>
+      <p class="d-inline" id="my_site_link">Created By  <a href="https://www.gabrielsoler.co.uk/" target="_blank">Gabriel Soler</a></p>
       <a href="#intro-card"><i class="bi bi-arrow-down-short mb-2 text-light position-absolute start-50 fs-4"></i></a>
 
     </div>
   </div>
 
-    {% endblock intro %}
+{% endblock intro %}
 {% block content%}
-    
+
 {%endblock content %}
 
 
