@@ -6,16 +6,16 @@
 
 {%block content%}
 
-  <div class="card mt-0 mb-4 cold-white">
+  <div class="card my-4 cold-white">
 
-    <div class="card-header display-6 soft-blue border-primary p-3">Therapeutic Profiles</div>
-    <h3 class="display-6 mx-auto text-center p-4">
+    <div class="card-header display-6 bg-secondary-subtle border-primary p-3">Therapeutic Profiles</div>
+    <h4 class="mx-auto my-4 text-center ">
       {% if therapist %}
-        What therapist I am?
+        What kind of therapist I am?
       {% else %}
-        What therapist I want?
+        What kind therapist I look for?
       {% endif %}
-    </h3>
+    </h4>
 
     <form
       {% if therapist %}
@@ -27,13 +27,18 @@
       class="mx-auto"
       _="init set $position to 1
          log $position
+         end
+         on change
+         set $value to target.value
+         log $value
          end"
     >
       {% csrf_token %}
       {% for field in form %}
 
-        <div class="card my-3 bg-primary-subtle text-primary aling-items-center"
-             style="width: 75vw;height: 13rem;"
+        <div class="card my-3 mx-auto  text-primary aling-items-center col-12 col-md-10"
+             id="card-{{forloop.counter}}"
+             style="width: 75vw;"
              _="init
                 hide me
                 end
@@ -45,6 +50,8 @@
                 end">
           <div class="card-body">{{forloop.counter}}.
             {% bootstrap_field field %}
+          </div>
+          <div class=" mx-auto my-2" style="width: 4em;">
           </div>
         </div>
       {% endfor %}
@@ -62,6 +69,20 @@
 
     </form>
 
+    <p class="mx-auto text-primary"
+       _="when $value changes
+          if $value is between 1 and 40
+          set :d to 'It doesn\'t apply'
+          else
+          if $value is between 41 and 69
+          set :d to 'Maybe it applies'
+          else
+          set :d to 'Yes it applies'
+          end
+          end
+          put :d into me
+          end">Maybe it applies
+    </p>
     <div class="d-flex justify-content-center my-3">
       <button class="btn btn-primary float-start"
               type="button"

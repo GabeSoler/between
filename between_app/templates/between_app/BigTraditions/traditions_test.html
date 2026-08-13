@@ -2,55 +2,104 @@
 {% load django_bootstrap5 %}
 
 {% block title%}
-Traditions Test
+  Traditions Test
 {% endblock title%}
 
 {%block content%}
 
-<div class="card cold-white">
-  <div class="card-header soft-blue">
-  <div class="card-title display-6">Traditions Test</div>
-</div>
-  <div class="card-body">
-<p class="card-text">This test its to help you analyze your assumptions regarding reality and how learn and act upon the world.</p>
-<p class="card-text">Through the 20th century there emerged a few strong contenders, which have been continue to evolve and be relevant in our society</p>
-<p class="card-text">Therapy is also affected by this, and we see different movements associated with them</p>
-<p class="card-text">Try to imagine that:</p>
-<ul class="list-group">
-  <li class="list-group-item">Bellow 40% is disagreement</li>
-  <li class="list-group-item">Between 40% and 60% its neutral</li>
-  <li class="list-group-item">Between 60% and 80% its a clear preference</li>
-  <li class="list-group-item">Between 80% and 100% its your preferred view</li>
-</ul>
-
-{% if user.is_authenticated %}
-  
-<form action="{% url 'between_app:traditions_test' %}" method='post'>
-  {% csrf_token %}
-  {% for field in form %}
-
-  <div class="card my-3 bg-primary-subtle text-primary">
-    <div class="card-body">
-      {% bootstrap_field field %}
+  <div class="card my-4 cold-white">
+    <div class="card-header soft-blue">
+      <div class="card-title display-6">Traditions Test</div>
     </div>
+    {% if user.is_authenticated %}
+
+      <form action="{% url 'between_app:traditions_test' %}" method='post'
+            _="init set $position to 1
+               log $position
+               on change
+               set $value to target.value
+               log $value
+               end"
+      >
+        {% csrf_token %}
+        {% for field in form %}
+
+          <div class="card my-3 mx-auto text-primary aling-items-center col-12 col-md-10"
+               _="init
+                  hide me
+                  end
+                  when $position changes
+                  if it is {{forloop.counter}}
+                  show me
+                  else
+                  hide me
+                  end">
+            <div class="card-body">{{forloop.counter}}.
+              {% bootstrap_field field %}
+            </div>
+          </div>
+        {% endfor %}
+        <button type="submit" class="btn btn-primary float-end"
+                _="init
+                   hide me
+                   end
+                   when $position changes
+                   if it is 7
+                   show me
+                   else
+                   hide me
+                   end">Submit</button>
+
+      </form>
+
+      <p class="mx-auto text-primary"
+         _="when $value changes
+            if $value is between 1 and 40
+            set :d to 'Disagree'
+            else
+            if $value is between 41 and 69
+            set :d to 'Either way'
+            else
+            set :d to 'Agree'
+            end
+            end
+            put :d into me
+            end">Either way
+      </p>
+
+
+      <div class="d-flex justify-content-center my-3">
+        <button class="btn btn-primary float-start"
+                type="button"
+                _="on click decrement $position
+                   if $position < 1
+                   set $position to 1
+                   log $position
+                   end">Back</button>
+
+        <span class="mx-3" _="when $position changes
+                              put $position + '/7' into me
+                             ">1/7</span>
+        <button class="btn btn-primary float-start"
+                type="button"
+                _="on click increment $position
+                   if $position > 7
+                   set $position to 7
+                   log $position
+                   end">Next</button>
+      </div>
+
+
+    {% else %}
+      <div class="alert alert-success" role="alert">
+        Please Sign In before taking the test so we can save your results <a href="{% url 'account_login' %}">Sign In</a>
+      </div>
+    {% endif %}
+
   </div>
-  {% endfor %}
-  {% bootstrap_button button_type='submit' content='Submit Profile' %}
-</form>
 
-
-
-
-  {% else %}
-<div class="alert alert-success" role="alert">
-  Please Sign In before taking the test so we can save your results <a href="{% url 'account_login' %}">Sign In</a>
-</div>
-{% endif %}
-
-</div>
-
-</div>
-</div>
-</br>
-</br>
+  </div>
+  </div>
+  </br>
+  </br>
 {% endblock content %}

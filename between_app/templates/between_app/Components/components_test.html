@@ -2,57 +2,105 @@
 {% load django_bootstrap5 %}
 
 {% block title%}
-Components Test
+  Components Test
 {% endblock title%}
 
 {%block content%}
 
-<div class="card cold-white p-3">
-  <div class="card-header soft-blue">
+  <div class="card my-4 cold-white">
+    <div class="card-header soft-blue">
       <div class="card-title display-6">Components Test</div>
-      </div>
-  
-    <div class="card-body">
-      <p class="card-title"> Please slide an approximation of how much you identify with these areas of work</p>
-      <p class="card-title">A possible reference:</p>
-      <ul class="list-group">
-        <li class="list-group-item"><b>Curious:</b> a few ideas about a topic or model up to 20%</li>
-        <li class="list-group-item"><b>Student:</b> Learning a model through study and practice, up to 40%</li>
-        <li class="list-group-item"><b>Qualified:</b> Able to do client work ethically with a model, up to 60%</li>
-        <li class="list-group-item"><b>Master:</b> Able to work flexible, creatively and connecting with other ideas, up to 90%</li>
-        <li class="list-group-item"><b>PhD:</b> Able to connect with the broad field, and to propose new ideas on the topic, up to 100%</li>
-      </ul>
     </div>
 
-{% if user.is_authenticated %}
+    {% if user.is_authenticated %}
 
-  <h4 class="card-title m-3">
-    How much do you use, or would your use, the following areas for your therapeutic work?</br>
-    <small>(Or: how much would benefit from this areas?)</small>
-  </h5>
-  
-  
-  
-    <form action="{% url 'between_app:components_test' %}" method='post'>
-      {% csrf_token %}
-      {% for field in form %}
+      <h4 class="card-title my-4 mx-auto">
+        How do you feel in this areas of theapeutic work?
+      </h5>
 
-      <div class="card my-3 bg-primary-subtle text-primary">
-        <div class="card-body">
-          {% bootstrap_field field %}
-        </div>
+
+
+      <form action="{% url 'between_app:components_test' %}" method='post'
+            _="init set $position to 1
+               log $position
+               on change
+               set $value to target.value
+               log $value
+               end">
+        {% csrf_token %}
+
+        {% for field in form %}
+
+          <div class="card my-3 mx-auto text-primary aling-items-center col-12 col-md-10"
+               _="init
+                  hide me
+                  end
+                  when $position changes
+                  if it is {{forloop.counter}}
+                  show me
+                  else
+                  hide me
+                  end">
+            <div class="card-body">{{forloop.counter}}.
+              {% bootstrap_field field %}
+            </div>
+          </div>
+        {% endfor %}
+
+        <button type="submit" class="btn btn-primary float-end"
+                _="init
+                   hide me
+                   end
+                   when $position changes
+                   if it is 25
+                   show me
+                   else
+                   hide me
+                   end">Submit</button>
+
+      </form>
+
+      <p class="mx-auto text-primary"
+         _="when $value changes
+            if $value is between 1 and 40
+            set :d to 'A few ideas'
+            else
+            if $value is between 41 and 69
+            set :d to 'Studying'
+            else
+            set :d to 'Proficient'
+            end
+            end
+            put :d into me
+            end">A few ideas
+      </p>
+
+      <div class="d-flex justify-content-center my-3">
+        <button class="btn btn-primary float-start"
+                type="button"
+                _="on click decrement $position
+                   if $position < 1
+                   set $position to 1
+                   log $position
+                   end">Back</button>
+
+        <span class="mx-3" _="when $position changes
+                              put $position + '/25' into me
+                             ">1/25</span>
+        <button class="btn btn-primary float-start"
+                type="button"
+                _="on click increment $position
+                   if $position > 25
+                   set $position to 25
+                   log $position
+                   end">Next</button>
       </div>
-      {% endfor %}
-      {% bootstrap_button button_type='submit' content='Submit Profile' %}
-    </form>
-    
 
-
-
-  {% else %}
-<div class="alert alert-success" role="alert">
-  Please Sign In before taking the test so we can save your results <a href="{% url 'account_login' %}">Sign In</a>
-</div>
+      </div>
+    {% else %}
+      <div class="alert alert-success" role="alert">
+        Please Sign In before taking the test so we can save your results <a href="{% url 'account_login' %}">Sign In</a>
+      </div>
     {% endif%}
-</div>
+  </div>
 {% endblock content %}
