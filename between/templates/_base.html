@@ -31,30 +31,30 @@
         </button>
 
               <!-- collapsable part of the Navegation Bar -->
-        <div class='collapse navbar-collapse' id='navbarCollapse'>
+        <div class='collapse navbar-collapse' id='navbarCollapse' data-bs-theme="dark">
           <ul class='navbar-nav me-auto mb2 mb-md-0'> <!-- 'me' refers to left, and 'ms' to right -->
             <li class='nav-item'>
-              <a class='nav-link t-burnt-yellow {% if request.path == '/tests/' %}active{% endif %}'
+              <a class='nav-link  {% if request.path == '/tests/' %}active{% endif %}'
                  {% if request.path == '/tests/' %}aria-current="page" {% endif %}
                  href="{% url 'between_app:test_home' %}">
                 My Tests</a></li>
             <li class='nav-item'>
-              <a class='nav-link t-burnt-yellow {% if request.path == '/learning/' %}active{% endif %}'
+              <a class='nav-link {% if request.path == '/learning/' %}active{% endif %}'
                  {% if request.path == '/learning/' %}aria-current="page" {% endif %}
                  href="{% url 'learning_logs:index' %}">
                 My Journal</a></li>
             <li class='nav-item'>
-              <a class='nav-link t-burnt-yellow {% if request.path == '/techniques/' %}active{% endif %}'
+              <a class='nav-link  {% if request.path == '/techniques/' %}active{% endif %}'
                  {% if request.path == '/techniques/' %}aria-current="page" {% endif %}
                  href="{% url 'techniques_app:index' %}">
                 My Techniques</a></li>
             <li class='nav-item'>
-              <a class='nav-link t-burnt-yellow {% if request.path == '/diver/' %}active{% endif %}'
+              <a class='nav-link  {% if request.path == '/diver/' %}active{% endif %}'
                  {% if request.path == '/diver/' %}aria-current="page" {% endif %}
                  href="{% url 'dive_app:index' %}">
                 Diver</a></li>
             <li class='nav-item'>
-              <a class='nav-link t-burnt-yellow'
+              <a class='nav-link'
                  href="https://theory.crea-therapy.com/" target="_blank">
                 CreaTheory <i class="bi bi-box-arrow-in-up-right"></i></a>
             </li>

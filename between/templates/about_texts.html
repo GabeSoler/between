@@ -1,57 +1,60 @@
-<div class="row">
-    <!--card one: Tests functions -->
-    <div class="col-md-6 ml-1 mt-1">
-        <div class="card shadow border-primary border-3 cold-white rounded  h-100">
-            <div class="card-body">
-                <h3 class="card-title">Profile tests</h3>
-                <p class="card-text">The profile tests help you track your changes as a therapis.</p>
-                <p class="card-text">
-                    <i class="bi bi-person-arms-up"></i><b>Personal Profile:</b> Your positions about care. <a href="{% url 'between_app:profile_test' %}">Try</a> (no sign in required).</p>
-                <p class="card-text">
-                    <i class="bi bi-bricks"></i><b> Components:</b> Clarify your areas of interest and expertise. <a href="{% url 'between_app:components_test' %}">Try.</a></p>
-                <p class="card-text">
-                    <i class="bi bi-map"></i> <b>Big Traditions:</b> Explore your philosophycal assumptions. <a href="{% url 'between_app:traditions_test' %}">Try.</a></p>
-            </div>
-        </div>
-    </div>
-    <!--card two: Journal functions-->
-    <div class="col-md-6 ml-1 mt-1">
-        <div class="card shadow border-primary border-3 cold-white rounded  h-100">
-            <div class="card-body">
-                <h3 class="card-title">Journal prompts</h3>
-                <p class="card-text">Create Topics and record your reflections.</p>
-                <p class="card-text">
-                    <i class="bi bi-highlighter"></i> <b>Learning Log:</b> create topics and log your insights. A space for you to narrate your learning and keep track of ideas. <a href="{% url 'learning_logs:new_topic' %}">Try.</a></p>
-                <p class="card-text">
-                    <i class="bi bi-patch-question"></i> <b>After Session questions:</b> a series of question to help you deeper your insight after a therapy session (delves in multiple modalities).  <a href="{% url 'learning_logs:new_question' %}">Try.</a></p>            </div>
-        </div>
-    </div>
-    <!--card three: Techniques functions-->
-    <div class="col-md-6 ml-1 mt-1">
-        <div class="card shadow border-primary border-3 cold-white rounded  h-100">
-            <div class="card-body">
-                <h3 class="card-title">Techniques Space</h3>
-                <p class="card-text">To help you record and share your insights in therapy. <a href="{% url 'techniques_app:index' %}">Visit.</a></p></p>
-                <p class="card-text">
-                    <i class="bi bi-box"></i> <b>Personal repository:</b> for you to keep and change over time.
-                    <p class="card-text">
-                        <i class="bi bi-boxes"></i> <b>Public repository:</b> to share and read other people's insights.
-                    </div>
-                </div>
-            </div>
-    <!-- Dive card -->
-            <div class="col-md-6 ml-1 mt-1">
-                <div class="card shadow border-primary border-3 cold-white rounded  h-100">
-                    <div class="card-body">
-                        <h3 class="card-title">Diver Space</h3>
-                        <p class="card-text">Dive into CreaTherapy approach to grow as a therapist. <a href="{% url 'dive_app:index' %}">Visit.</a></p></p>
-                        <p class="card-text">
-                            <i class="bi bi-brush"></i> <b>Creative prompt:</b> a step by step prompt for a creative process.
-                        <p class="card-text">
-                            <i class="bi bi-shadows"></i> <b>Shadow:</b> prompts to reflect on your triggers in therapy.
-                    </div>
-                </div>
-            </div>
 
+
+  <!-- Spotlight: The New Cards App -->
+<div class="col-12 col-lg-10 align-self-center mx-auto my-5">
+  <div class="card p-4 p-md-5">
+    <div class="row align-items-center g-4">
+        <!-- Visual Column -->
+      <div class="col-12 col-md-5 order-md-2">
+        <div class="card-stack-container">
+          <div class="stacked-card stacked-card-1">
+            <span>Needs</span>
+            <i class="bi bi-heart-pulse-fill fs-2 align-self-end"></i>
+          </div>
+          <div class="stacked-card stacked-card-2">
+            <span>Actions</span>
+            <i class="bi bi-lightning-charge-fill fs-2 align-self-end"></i>
+          </div>
+          <div class="stacked-card stacked-card-3">
+            <span>Voices</span>
+            <i class="bi bi-chat-quote-fill fs-2 align-self-end"></i>
+          </div>
         </div>
-        
+      </div>
+
+        <!-- Copy Column -->
+      <div class="col-12 col-md-7 order-md-1">
+        <span class="badge bg-primary bg-opacity-10 text-primary px-3 py-2 mb-3 rounded-pill fw-bold">New Release</span>
+        <h2 class="h1 text-gradient-purple fw-bold mb-3">Interactive Therapy Cards</h2>
+        <p class="text-muted mb-4 fs-5">
+          Shuffle, draw, and explore prompts, client needs, and therapeutic actions.
+        </p>
+        <a href="{% url 'cards_app:game_card_type' %}" class="btn btn-premium-indigo btn-lg">
+          <i class="bi bi-grid-3x3-gap-fill me-2"></i>Launch Cards Sandbox
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!--card one: Tests functions -->
+<div class="card shadow text-center border-primary border-3 rounded col-12 col-md-6 mx-auto my-3" id="tests-card">
+  <div class="card-body">
+    <h5 class="card-title">A mirror of youself:</h3>
+
+    <ul class="list-group list-group-flush text-start">
+      <li class="list-group-item">
+        <a href="{% url 'between_app:components_test' %}" class="card-link fs-3">
+          <i class="bi bi-bricks"></i>
+          Component:</a> <span>Interest and expertise.</span></br>
+      </li>
+      <li class="list-group-item">
+        <a href="{% url 'between_app:traditions_test' %}" class="card-link fs-3">
+          <i class="bi bi-bricks"></i>
+          Philosophy:</a> <span>Your core beliefs.</span></br>
+      </li>
+    </ul>
+  </div>
+</div>
+

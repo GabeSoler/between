@@ -8,38 +8,20 @@
 {%block content%}
 
 
-  <div class="card mb-3 shadow border-primary border-5 col-12 col-md-6 mx-auto" id="intro-card">
+  <div class="card my-3 shadow border-primary border-5 col-12 col-lg-10 mx-auto" id="intro-card">
     <div class="card-body cold-white rounded" id="welcomeText">
       <div class="col-lg-12 mx-auto">
-    <!--Two starting points depending on user authentication-->
-        {% if user.is_authenticated%}
-          <h2 class="card-titl">Hey, {{user.username}}!</h2>
-          <p class="card-tex">Welcome back!</p>
-          <p class="card-tex">Please explore the site and make it your own. All you do is being saved privately and you can come back to it any time.</p>
-        {% else %}
         <!-- Welcome text -->
-          <h2 class="card-titl text-center">A compatible model</h2>
-          <p class="card-text">
-            <i class="bi bi-play-fill"></i>This model does not compete with your current approach, instead tries to invite you to participate in the creation of a therapeutic style.
-            Read the theory in <a class="link-secondary" href="theory.crea-therapy.com/" target="_blank">CreaTheory.</a></p>
-          </div class"wrapper">
-        {%endif%}
-      </div>
+        <h1 class="card-titl text-center">A compatible model</h1>
+        <p class="card-text text-center fs-5">
+          CreaTherapy will help you follow your intuition and organise your learning.</p>
+        <p class="small text-center"> Read the theory in <a class="link-secondary" href="theory.crea-therapy.com/" target="_blank">CreaTheory.</a></p>
+      </div class"wrapper">
     </div>
+  </div>
   </div>
   {% include "about_texts.html" %}
 
 
 {%endblock content%}
 
-{% block extra_body %}
-  {% if user.is_authenticated == False %}
-    <div class="alert alert-info display-5 mx-3 mt-3" role="alert" id="alert_bottom"><span id="alert_bottom_text">
-      Sign up for free to get full access. <a class="alert-link" href="{% url 'account_signup' %}">Sign up here.</a></span>
-    </div>
-  {% else %}
-    <div class="alert alert-secondary display-5 mx-3 mt-3" role="alert" id="alert_bottom"><span id="alert_bottom_text">
-      Become a Diver user <a class="alert-link" href="{% url 'accounts:edit_status' %}"> here.</a><span>
-      </div>
-  {% endif %}
-{% endblock extra_body %}
