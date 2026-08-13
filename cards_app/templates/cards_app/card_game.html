@@ -1,4 +1,4 @@
-{% extends 'cards_app/_card_base.html' %}
+{% extends '_base_clean.html' %}
 {% load card_tags %}
 
 
@@ -10,15 +10,55 @@
   {% corner_card card=actions corner='bl' %}
 
   <div class="position-absolute start-50 top-0 translate-middle mt-5 align-items-center text-center">
-    <h2 class="text-light mx-auto">Therapy Cards</h2>
-    <h5 class="text-light mx-auto">To dive into your therapeutic process</h5>
+    <h2 class="text-primary mx-auto">Therapy Cards</h2>
   </div>
   <div class="start-50 top-50 mx-auto mt-5"
   >
-    <ul id="cardList" class="list-group overflow-auto"
+    <ul id="cardList" class="list-group overflow-auto reorder-list"
+        _="
+           on dragstart
+           set :dragged to closest <li/> to event.target
+           add .is-dragging to :dragged
+           on dragend
+           remove .is-dragging from :dragged
+           on dragover
+           halt the event
+           on drop
+           halt the event
+           set target to closest <li/> to event.target
+           if target and target is not :dragged
+           if event.offsetY > target.offsetHeight / 2
+           call target.after(:dragged)
+           else
+           call target.before(:dragged)
+           end
+           end
+          "
         style="max-height:90vh;"
     >
     </ul>
   </div>
 
+  <button class="btn btn-primary position-absolute bottom-50 end-0 translate-middle-x mb-5"
+          _="on click
+             tell <.bi-unlock-fill/>
+             remove closest <li/>
+             end">
+    <i class="bi bi-recycle"></i></button>
+
+  <div class="position-absolute bottom-50 end-75  mb-5 ms-5" id="instructions">
+    <button class="btn btn-outline-primary float-start" type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#instructionsList"
+            aria-expanded="false"
+            aria-controls="instructionsList">
+      ?</button>
+    <ul class="list-group list-group-numbered collapse" id="instructionsList">
+      <li class="list-group-item">Press the decks in the corners</li>
+      <li class="list-group-item">Lock cards that resonate with you</li>
+      <li class="list-group-item">Recycle space with button on the right</li>
+      <li class="list-group-item">Drag and drop to reorder</li>
+      <li class="list-group-item">Reflect or take action</li>
+    </ul>
+  </div>
 {% endblock content %}

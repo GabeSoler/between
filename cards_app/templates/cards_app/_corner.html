@@ -20,13 +20,13 @@
      hx-swap="beforeend">
 
   {% if corner == 'tr' or corner == 'tl' %}
-    <div class="card-header fw-bold">
+    <div class="card-header fw-bold border border-primary">
       {{ card.name }}
     </div>
   {% endif %}
 
-  <div class="card-body d-flex flex-column">
-    <p class="fst-italic small w-50
+  <div class="card-body d-flex flex-column ">
+    <p class="fst-italic small w-50 d-none d-md-flex
               {% if corner == 'br' or corner == 'bl' %} mt-auto {% endif %}
               {% if corner == 'br' or corner == 'tr' %}text-end align-self-end {% else %}text-start align-self-start{% endif %}
              ">
@@ -35,7 +35,7 @@
   </div>
 
   {% if corner == 'br' or corner == 'bl' %}
-    <div class="card-footer fw-bold bottom-0">
+    <div class="card-footer fw-bold bottom-0 border border-primary">
       {{ card.name }}
     </div>
   {% endif %}

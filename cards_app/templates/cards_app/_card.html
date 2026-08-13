@@ -1,15 +1,22 @@
 
-<li class="col-4 mx-auto " >
-<div class="card my-2 mx-auto"
-      style="background-color: {{ card.card_type.bg_color }};
-              height:12rem;">
+<li class="col-6 col-md-4 mx-auto " draggable="true">
+<div class="card my-2 mx-auto " 
+       style="background-color: {{ card.card_type.bg_color }};
+              min-height:12rem;">
     <div class="card-header fw-bold">
         {{ card.name }}
+  <div class="float-end">
+        <i class="btn btn-outline-dark btn-sm bi bi-unlock-fill"
+        _="on click 
+        toggle between .bi-unlock-fill and .bi-lock-fill
+        toggle between .btn-outline-primary and .btn-outline-dark"
+        ></i>
+      </div>
     </div>
-    <div class="card-body fst-italic">
+    <div class="card-body fst-italic small">
         {{ card.text }}
     </div>
-    <div class="card-footer">
+    <div class="card-footer small">
         {{ card.alt_text }}
     </div>
 </div>
