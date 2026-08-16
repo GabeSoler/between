@@ -3,25 +3,26 @@ name = "between"
 version = "0.1.0"
 description = "Add your description here"
 readme = "README.md"
-requires-python = ">=3.12"
+requires-python = ">=3.14"
 dependencies = [
-    "django==6.0.4",
-    "django-allauth==65.16.0",
-    "django-allauth[mfa]",
-    "django-bootstrap5==26.2",
-    "django-browser-reload>=1.18.0",
-    "django-htmx>=1.27.0",
-    "gunicorn==25.3.0",
-    "pillow==12.2.0",
-    "psycopg2==2.9.11",
-    "python-decouple==3.8",
-    "PyYAML==6.0.3",
-    "resend==2.28.0",
-    "sentry-sdk==3.0.0a1",
-    "whitenoise==6.12.0",
+  "django==6.1",
+  "django-allauth==65.19.0",
+  "django-allauth[mfa]",
+  "django-bootstrap5==26.2",
+  "django-browser-reload>=1.18.0",
+  "django-htmx>=1.29.0",
+  "gunicorn==26.0",
+  "pillow==12.3.0",
+  "psycopg2==2.9.12",
+  "python-decouple==3.8",
+  "PyYAML==6.0.3",
+  "resend==2.36.0",
+  "sentry-sdk==2.68",
+  "whitenoise==6.12.0",
 ]
 
 [dependency-groups]
-dev = [
-    "ipython>=9.14.1",
-]
+dev = ["ipython>=9.14.1"]
+
+[tool.uv.extra-build-dependencies]
+psycopg2 = ["ConfigParser"]
