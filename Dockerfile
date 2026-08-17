@@ -10,11 +10,11 @@ EXPOSE 3000
 # 3. Disable development dependencies
 # 4. Enable uv byte-code compilation
 ENV PYTHONUNBUFFERED=1 \
-    PORT=3000 \
-    UV_NO_DEV=1 \
-    UV_COMPILE_BYTECODE=1 \
-    UV_LINK_MODE=copy \
-    UV_MANAGED_PYTHON=1
+  PORT=3000 \
+  UV_NO_DEV=1 \
+  UV_COMPILE_BYTECODE=1 \
+  UV_LINK_MODE=copy \
+  UV_MANAGED_PYTHON=1
 
 # Use /app folder as a directory where the source code is stored.
 WORKDIR /app
@@ -28,15 +28,15 @@ RUN chown -R gsoler:gsoler /app
 
 # Install system packages required by Django and its dependencies.
 RUN apt-get update --yes --quiet && apt-get install --yes --quiet --no-install-recommends \
-    build-essential \
-    libpq-dev \
-    libmariadb-dev \
-    libjpeg62-turbo-dev \
-    zlib1g-dev \
-    libwebp-dev \
-    curl \
-    ca-certificates \
- && rm -rf /var/lib/apt/lists/*
+  build-essential \
+  libpq-dev \
+  libmariadb-dev \
+  libjpeg62-turbo-dev \
+  zlib1g-dev \
+  libwebp-dev \
+  curl \
+  ca-certificates \
+  && rm -rf /var/lib/apt/lists/*
 
 # Copy the dependency files first to leverage Docker caching.
 COPY --chown=gsoler:gsoler pyproject.toml uv.lock ./
@@ -56,4 +56,6 @@ COPY --chown=gsoler:gsoler . .
 # Runtime command that executes when "docker run" is called.
 #collect static is needed at the end, so gets the env variables made dynamically
 # It migrates the database and then starts Gunicorn.
-CMD ["sh", "-c", "uv run manage.py collectstatic --noinput --clear && uv run manage.py migrate --noinput --fake-initial && uv run gunicorn between.wsgi:application --bind 0.0.0.0:$PORT"]
+CMD ["sh", "-c", "uv run manage.py collectstatic --noinput --clear && \
+  uv run manage.py migrate --noinput --fake-initial && \
+  uv run gunicorn between.wsgi:application --bind 0.0.0.0:$PORT"]
