@@ -208,7 +208,7 @@ BOOTSTRAP5 = {
     # Note that a URL can be either a string
     # ("https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css"),
     # or a dict with keys `url`, `integrity` and `crossorigin` like the default value below.
-    "theme": "/" + STATIC_URL + "css/crea-therapy.css",
+    "theme_url": "/" + STATIC_URL + "css/crea-therapy.css",
     # The complete URL to the Bootstrap bundle JavaScript file.
     "javascript_url": {
         "url": "https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js",
