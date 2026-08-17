@@ -9,7 +9,7 @@
 
   <body class="bg-light" hx-boost="True"
         style="background-image:linear-gradient(var(--bs-primary) 5%,var(--bs-dark) 100%);">
-    <nav class="navbar navbar-expand-lg bg-primary sticky-top start-0 py-1"
+    <nav class="navbar navbar-expand-lg fixed-top bg-primarystart-0 py-1"
          data-bs-theme="dark"
          id="top-nav-bar">
       <div class='container-fluid'>
@@ -22,7 +22,8 @@
             alt=""
 
           />
-          CreaTherapy v1.0</a>
+          CreaTherapy v1.0
+        </a>
 
         <button class='navbar-toggler' type='button' data-bs-toggle='collapse'
                 data-bs-target='#navbarCollapse' aria-controls='navbarCollapse'
@@ -79,7 +80,7 @@
 
                                                                                 <!--Account with person icon-->
               <a href="{% url 'accounts:account_profile' %}"
-                 class="btn text-success"
+                 class="btn btn-outline-success me-1"
                  data-bs-toggle="tooltip" data-bs-title="Account"
                  data-bs-custom-class="custom-tooltip"
                  data-bs-placement="bottom"
@@ -89,7 +90,7 @@
 
                                                                                    <!--Log out, with exit icon-->
             <a href="{% url 'account_logout' %}"
-               class="btn text-warning"
+               class="btn btn-outline-warning"
                data-bs-toggle="tooltip" data-bs-title="Log Out"
                data-bs-custom-class="custom-tooltip"
                data-bs-placement="bottom"
