@@ -1,30 +1,30 @@
 {% extends '_base.html' %}
 
-
+{% block title %}Therapy Cards{% endblock %}
 {% block content %}
-    <a href="{% url 'cards_app:select_card_type' %}">Back to Cards Home</a>
-    {% for card in cards %}
+  <a href="{% url 'cards_app:select_card_type' %}">Back to Cards Home</a>
+  {% for card in cards %}
     <div class="col" id="card-wrap-{{ card.pk }}">
 
-        {% partialdef card-partial inline %}
+      {% partialdef card-partial inline %}
         <div class="card my-2"
              style="background-color: {{ card.card_type.bg_color }};
-                     height:12rem;">
-            <div class="card-header fw-bold">
-                {{ card.name }}
-            </div>
-            <div class="card-body fst-italic">
-                {{ card.text }}
-            </div>
-            <div class="card-footer">
-                {{ card.alt_text }}
-            </div>
+                    height:12rem;">
+          <div class="card-header fw-bold">
+            {{ card.name }}
+          </div>
+          <div class="card-body fst-italic">
+            {{ card.text }}
+          </div>
+          <div class="card-footer">
+            {{ card.alt_text }}
+          </div>
         </div>
-        {% endpartialdef card-partial %}
+      {% endpartialdef card-partial %}
     </div>
 
-    {% endfor %}
-</div>
+  {% endfor %}
+  </div>
 
 
 
