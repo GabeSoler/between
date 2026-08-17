@@ -58,4 +58,6 @@ COPY --chown=gsoler:gsoler . .
 # It migrates the database and then starts Gunicorn.
 CMD ["sh", "-c", "uv run manage.py collectstatic --noinput --clear && \
   uv run manage.py migrate --noinput --fake-initial && \
-  uv run gunicorn between.wsgi:application --bind 0.0.0.0:$PORT"]
+  uv run gunicorn between.wsgi:application \
+  --workers 4 \
+  --bind 0.0.0.0:$PORT"]
