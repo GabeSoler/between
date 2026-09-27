@@ -14,6 +14,7 @@
             {% if corner == 'tr' %}7{% endif %}0%
             ;
             corner-shape:bevel;
+            z-index:10;
            "
      hx-get="{% url 'cards_app:game_card_type' card.pk %}"
      hx-target="#cardList"
