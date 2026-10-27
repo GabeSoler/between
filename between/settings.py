@@ -48,14 +48,12 @@ INSTALLED_APPS = [
     "cards_app",
     "companion_app",
     # * Third party apps
+    "orbit",
     "django_bootstrap5",  # css framework
     "django_browser_reload",  # for automatic reload after save
     "django_htmx",
     "allauth",
     "allauth.account",  # authorisations
-    #'allauth.socialaccount', #the social account sytem
-    #'allauth.socialaccount.providers.apple', #apple social account
-    #'allauth.socialaccount.providers.google', #google social account
     "allauth.mfa",
     "django.contrib.humanize",
     "whitenoise.runserver_nostatic",  # white noise, static files manager
@@ -73,6 +71,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    "orbit.middleware.OrbitMiddleware",
     "django.middleware.security.SecurityMiddleware",
     "whitenoise.middleware.WhiteNoiseMiddleware",  # static files manager
     "django.contrib.sessions.middleware.SessionMiddleware",
@@ -100,7 +99,7 @@ TEMPLATES = [
                 "django.template.context_processors.request",
                 "django.contrib.auth.context_processors.auth",
                 "django.contrib.messages.context_processors.messages",
-                "between.context_processors.dynamic_base",  # my context processor to change the base template by subdomain
+                # "between.context_processors.dynamic_base",  # my context processor to change the base template by subdomain
             ],
         },
     },
@@ -287,3 +286,77 @@ if not DEBUG:
     CSRF_COOKIE_SECURE = True
     SECURE_HSTS_PRELOAD = True
     SECURE_HSTS_SECONDS = 300
+
+
+# settings.py
+
+ORBIT_CONFIG = {
+    # Core Settings
+    "ENABLED": True,
+    "AUTH_CHECK": lambda request: request.user.is_staff,
+    # Callable or path to function
+    "STORAGE_LIMIT": 1000,
+    # Recording Settings - Phase 1 (Core)
+    "RECORD_REQUESTS": True,
+    "RECORD_QUERIES": True,
+    "RECORD_LOGS": True,
+    "RECORD_EXCEPTIONS": True,
+    "RECORD_DUMPS": True,
+    # Recording Settings - Phase 2 (Extended)
+    "RECORD_COMMANDS": True,
+    "RECORD_CACHE": True,
+    "RECORD_MODELS": True,
+    "RECORD_HTTP_CLIENT": True,
+    "RECORD_MAIL": True,
+    "RECORD_SIGNALS": False,
+    # Recording Settings - Phase 3 (v0.5.0)
+    "RECORD_JOBS": False,  # Background jobs (Celery, Django-Q, RQ, APScheduler)
+    "RECORD_REDIS": False,  # Redis operations
+    "RECORD_GATES": False,  # Permission/Gate checks
+    # Recording Settings - Phase 4 (v0.6.0)
+    "RECORD_TRANSACTIONS": True,  # Database transaction blocks
+    "RECORD_STORAGE": True,  # File storage operations
+    # AI/LLM Watcher (v0.12.0+)
+    "RECORD_LLM": True,
+    "LLM_CAPTURE_CONTENT": False,
+    "LLM_CAPTURE_TOOL_CALL_ARGUMENTS": False,
+    "LLM_MAX_CONTENT_CHARS": 2000,
+    # MCP Server (v0.7.0+)
+    "MCP_ENABLED": False,
+    "MCP_INCLUDE_PAYLOADS": False,
+    "MCP_MAX_LIMIT": 100,
+    "MCP_MAX_PAYLOAD_CHARS": 12000,
+    # Storage Backend (v0.8.0+)
+    "STORAGE_BACKEND": "orbit.backends.database.DatabaseBackend",
+    "STORAGE_DB_ALIAS": "orbit",  # only used by DjangoDBBackend
+    # Query recording (v0.8.1+)
+    "BULK_CREATE_BATCH_SIZE": None,  # set to e.g. 500 to avoid MySQL max_allowed_packet errors
+    # Resilience
+    "WATCHER_FAIL_SILENTLY": True,  # failed watchers log errors but don't crash
+    # Performance Settings
+    "SLOW_QUERY_THRESHOLD_MS": 500,
+    # Path Filtering
+    "IGNORE_PATHS": [
+        "/orbit/",
+        "/static/",
+        "/media/",
+        "/admin/jsi18n/",
+        "/favicon.ico",
+    ],
+    # Security Settings
+    "HIDE_REQUEST_HEADERS": [
+        "Authorization",
+        "Cookie",
+        "X-CSRFToken",
+    ],
+    "HIDE_REQUEST_BODY_KEYS": [
+        "password",
+        "token",
+        "secret",
+        "api_key",
+        "apikey",
+        "access_token",
+        "refresh_token",
+    ],
+    "MAX_BODY_SIZE": 65536,
+}
