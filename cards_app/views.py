@@ -59,5 +59,5 @@ def cache_qs(queryset, timeout=300):
     model_label = queryset.model._meta.label
     sql, params = queryset.query.sql_with_params()
     cache_key = f"query_cache:{model_label}:{hashlib.md5(f'{sql}:{params}'.encode()).hexdigest()}"
-    list = cache.get_or_set(cache_key, lambda: list(queryset), timeout=300)
-    return list
+    return_list = cache.get_or_set(cache_key, lambda: list(queryset), timeout=300)
+    return return_list
