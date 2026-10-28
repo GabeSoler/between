@@ -73,7 +73,7 @@
   
 
   #cover::before {
-    background-image:url('/static/between_app/images/cover-crea.svg');
+    background-image:url("/static/between_app/images/cover-crea.f4e6245ffb64.svg");
     background-position: 50% 25%;
     background-attachment:fixed;
     background-size:cover;
