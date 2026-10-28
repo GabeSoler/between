@@ -4,8 +4,6 @@ import random
 from django.contrib.auth.decorators import login_required
 from django.core.cache import cache
 from django.shortcuts import render
-from django.views.decorators.cache import cache_control
-from django.views.decorators.vary import vary_on_headers
 
 from .models import Card, CardType
 
