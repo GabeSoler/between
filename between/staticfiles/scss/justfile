@@ -1,0 +1,3 @@
+watch:
+  sass --watch ./crea-therapy.scss ./crea-therapy.css
+

@@ -1,0 +1,162 @@
+// crea-therapy.scss
+// Custom Bootstrap 5 theme based on cover-crea.svg colors 
+//bla
+
+// 1. Include functions first
+@import "/Users/gsole/Documents/Web-Work/GabeSite_wagtail/node_modules/bootstrap/scss/functions";
+
+// 2. Brand colors from cover-crea.svg
+$crea-blue: #10506e;      // rgb(3,169,244) - Vibrant Sky/Ocean Blue
+$crea-cream: #f9f3f2;     // rgb(249,247,244) - Soft Sand/Off-White
+$crea-orange: #e28e39;    // rgb(226,142,57) - Warm Terracotta/Amber
+$crea-purple: #9b7fcb;    // rgb(155,127,203) - Calm Amethyst/Lavender
+$crea-lime: #ceba88;      // rgb(214,215,94) - Organic Pear/Lime
+$crea-white: #fefefe;     // rgb(254,254,254) - Crisp White
+$crea-black: #333357;     // Soft charcoal black for readability
+
+// Override default Bootstrap variables
+$white: $crea-white !default;
+$black: $crea-black !default;
+
+// Map bootstrap color names
+$blue:    $crea-blue !default;
+$purple:  $crea-purple !default;
+$orange:  #c08c5d  !default;
+$green:   #71d259 !default;
+$yellow:  $crea-lime !default;
+$red:     #8e533a !default;
+
+// Set theme colors
+$primary:       $crea-blue !default;
+$secondary:     $orange !default;
+$tertiary:      $crea-lime;
+$success:       $green !default;
+$info:          $crea-purple !default;
+$warning:       $crea-orange !default;
+$danger:        $red !default;
+$light:         $crea-cream !default;
+$dark:          $crea-black !default;
+
+$min-contrast-ratio: 1.8 !default;
+
+// Body & canvas styles
+$body-bg:                   $crea-cream !default;
+$body-color:                $crea-black !default;
+
+// Typography (using clean fonts)
+$font-family-sans-serif:      'Plus Jakarta Sans', Outfit, Inter, system-ui, -apple-system, sans-serif !default;
+$headings-font-family:        'Outfit', 'Plus Jakarta Sans', system-ui, sans-serif !default;
+
+$h1-font-size:                2.75rem !default;
+$h2-font-size:                2.25rem !default;
+$h3-font-size:                1.75rem !default;
+
+// Links
+$link-color:                $crea-blue !default;
+$link-hover-color:          darken($crea-blue, 15%) !default;
+
+// Component-specific overrides
+$input-bg:                          $crea-white !default;
+$input-color:                       $crea-black !default;
+$input-border-color:                #d8d6d0 !default;
+$input-focus-border-color:          $crea-purple !default;
+
+// dropdown
+$dropdown-bg:                       $crea-white !default;
+$dropdown-border-color:             #e8e6e0 !default;
+$dropdown-link-color:               $crea-black !default;
+$dropdown-link-hover-bg:            $crea-cream !default;
+
+  // cards
+$card-bg:                           $crea-white !default;
+$card-border-color:                 #e8e6e0 !default;
+$card-cap-bg:                       $crea-cream !default;
+
+
+  //lists
+$list-group-bg:                     $crea-white !default;
+$list-group-border-color:           #e8e6e0 !default;
+$list-group-hover-bg:               $crea-cream !default;
+
+
+  //table
+$table-color:                       $crea-black !default;
+$table-border-color:                #e8e6e0 !default;
+
+  // navbar
+
+$nav-link-color:                    lighten($primary,20%) !default;
+$nav-link-hover-color:               lighten($secondary,20%) !default;
+
+
+// Navbar
+$navbar-light-icon-color:           $secondary !default;
+$navbar-dark-icon-color:            $secondary !default;
+$navbar-dark-color:                $secondary !default;
+$navbar-dark-hover-color:          lighten($secondary,20%) !default;
+
+$navbar-padding-y:                  1rem !default;
+$navbar-light-color:                $secondary !default;
+$navbar-light-hover-color:          lighten($secondary,20%) !default;
+$navbar-light-active-color:         $light !default;
+$navbar-light-toggler-border-color: $secondary !default;
+$navbar-light-brand-color:          $primary !default;
+
+// 3. Include remainder of required Bootstrap stylesheets (including any separate color mode stylesheets)
+@import "/Users/gsole/Documents/Web-Work/GabeSite_wagtail/node_modules/bootstrap/scss/variables";
+@import "/Users/gsole/Documents/Web-Work/GabeSite_wagtail/node_modules/bootstrap/scss/variables-dark";
+
+// 4. Include any default map overrides here
+
+// 5. Include remainder of required parts
+@import "/Users/gsole/Documents/Web-Work/GabeSite_wagtail/node_modules/bootstrap/scss/maps";
+@import "/Users/gsole/Documents/Web-Work/GabeSite_wagtail/node_modules/bootstrap/scss/mixins";
+@import "/Users/gsole/Documents/Web-Work/GabeSite_wagtail/node_modules/bootstrap/scss/root";
+
+// 6. Optionally include any other parts as needed
+@import "/Users/gsole/Documents/Web-Work/GabeSite_wagtail/node_modules/bootstrap/scss/utilities";
+@import "/Users/gsole/Documents/Web-Work/GabeSite_wagtail/node_modules/bootstrap/scss/reboot";
+@import "/Users/gsole/Documents/Web-Work/GabeSite_wagtail/node_modules/bootstrap/scss/type";
+@import "/Users/gsole/Documents/Web-Work/GabeSite_wagtail/node_modules/bootstrap/scss/images";
+@import "/Users/gsole/Documents/Web-Work/GabeSite_wagtail/node_modules/bootstrap/scss/containers";
+@import "/Users/gsole/Documents/Web-Work/GabeSite_wagtail/node_modules/bootstrap/scss/grid";
+@import "/Users/gsole/Documents/Web-Work/GabeSite_wagtail/node_modules/bootstrap/scss/helpers";
+
+
+// Layout & components
+@import "/Users/gsole/Documents/Web-Work/GabeSite_wagtail/node_modules/bootstrap/scss/tables";
+@import "/Users/gsole/Documents/Web-Work/GabeSite_wagtail/node_modules/bootstrap/scss/forms";
+
+
+
+@import "/Users/gsole/Documents/Web-Work/GabeSite_wagtail/node_modules/bootstrap/scss/buttons";
+@import "/Users/gsole/Documents/Web-Work/GabeSite_wagtail/node_modules/bootstrap/scss/transitions";
+@import "/Users/gsole/Documents/Web-Work/GabeSite_wagtail/node_modules/bootstrap/scss/dropdown";
+@import "/Users/gsole/Documents/Web-Work/GabeSite_wagtail/node_modules/bootstrap/scss/button-group";
+@import "/Users/gsole/Documents/Web-Work/GabeSite_wagtail/node_modules/bootstrap/scss/nav";
+@import "/Users/gsole/Documents/Web-Work/GabeSite_wagtail/node_modules/bootstrap/scss/navbar";
+@import "/Users/gsole/Documents/Web-Work/GabeSite_wagtail/node_modules/bootstrap/scss/card";
+@import "/Users/gsole/Documents/Web-Work/GabeSite_wagtail/node_modules/bootstrap/scss/accordion";
+@import "/Users/gsole/Documents/Web-Work/GabeSite_wagtail/node_modules/bootstrap/scss/breadcrumb";
+@import "/Users/gsole/Documents/Web-Work/GabeSite_wagtail/node_modules/bootstrap/scss/pagination";
+@import "/Users/gsole/Documents/Web-Work/GabeSite_wagtail/node_modules/bootstrap/scss/badge";
+@import "/Users/gsole/Documents/Web-Work/GabeSite_wagtail/node_modules/bootstrap/scss/alert";
+@import "/Users/gsole/Documents/Web-Work/GabeSite_wagtail/node_modules/bootstrap/scss/progress";
+@import "/Users/gsole/Documents/Web-Work/GabeSite_wagtail/node_modules/bootstrap/scss/list-group";
+@import "/Users/gsole/Documents/Web-Work/GabeSite_wagtail/node_modules/bootstrap/scss/close";
+@import "/Users/gsole/Documents/Web-Work/GabeSite_wagtail/node_modules/bootstrap/scss/toasts";
+@import "/Users/gsole/Documents/Web-Work/GabeSite_wagtail/node_modules/bootstrap/scss/modal";
+@import "/Users/gsole/Documents/Web-Work/GabeSite_wagtail/node_modules/bootstrap/scss/tooltip";
+@import "/Users/gsole/Documents/Web-Work/GabeSite_wagtail/node_modules/bootstrap/scss/popover";
+@import "/Users/gsole/Documents/Web-Work/GabeSite_wagtail/node_modules/bootstrap/scss/carousel";
+@import "/Users/gsole/Documents/Web-Work/GabeSite_wagtail/node_modules/bootstrap/scss/spinners";
+@import "/Users/gsole/Documents/Web-Work/GabeSite_wagtail/node_modules/bootstrap/scss/offcanvas";
+@import "/Users/gsole/Documents/Web-Work/GabeSite_wagtail/node_modules/bootstrap/scss/placeholders";
+
+
+
+// 7. Optionally include utilities API last to generate classes based on the Sass map in `_utilities.scss`
+@import "/Users/gsole/Documents/Web-Work/GabeSite_wagtail/node_modules/bootstrap/scss/utilities/api";
+
+
+// 8. Add additional custom code here

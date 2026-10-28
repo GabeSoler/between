@@ -116,7 +116,7 @@
 }
 
 .gradient-title {
-  background: linear-gradient(135deg, #fae5ab 0%, #ffc107 50%, #ffffff 100%);
+  background: linear-gradient(135deg, var(--bs-crea-lime) 0%, var(--bs-secondary) 50%, #ffffff 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -126,7 +126,7 @@
 }
 
 .text-gradient-purple {
-  background: linear-gradient(135deg, #a855f7 0%, #6366f1 100%);
+  background: linear-gradient(135deg, var(--bs-dark) 10%, var(--bs-primary) 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -141,7 +141,7 @@
 
 /* Glassmorphism Cards */
 .glass-card-dark {
-  background: rgba(30, 41, 59, 0.65);
+  background: #1e293ba6;
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   border: 1px solid rgba(255, 255, 255, 0.12);
@@ -157,13 +157,13 @@
 }
 
 .glass-card-light {
-  background: rgba(255, 255, 255, 0.75);
+  background: var(--bs-light) ;
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(0, 0, 0, 0.08);
+  border: 3px solid var(--bs-secondary);
   border-radius: 20px;
   transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 10px 30px -10px var(--bs-gray-900);
 }
 
 .glass-card-light:hover {
@@ -174,7 +174,7 @@
 
 /* Premium Buttons */
 .btn-premium-gold {
-  background: linear-gradient(135deg, #fae5ab 0%, #ffc107 100%);
+  background: linear-gradient(135deg, var(--bs-light) 0%, var(--bs-secondary) 100%);
   border: none;
   color: #0f172a;
   font-weight: 600;
@@ -209,7 +209,7 @@
 }
 
 .btn-premium-indigo {
-  background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);
+  background: linear-gradient(135deg, var(--bs-primary) 0%, var(--bs-dark) 100%);
   border: none;
   color: #ffffff;
   font-weight: 600;
@@ -222,7 +222,7 @@
 .btn-premium-indigo:hover {
   transform: translateY(-2px);
   box-shadow: 0 8px 25px rgba(99, 102, 241, 0.5);
-  background: linear-gradient(135deg, #4f46e5 0%, #4338ca 100%);
+  background: linear-gradient(135deg, var(--bs-dark) 0%, var(--bs-primary) 100%);
   color: #ffffff;
 }
 
