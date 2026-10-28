@@ -33,8 +33,6 @@ def select_card_type_view(request, type_pk=None):
     return render(request, template, context)
 
 
-@cache_control(max_age=300)
-@vary_on_headers("HX-Request")
 def card_game_view(request, type_pk=None):
     """for the game view, selecting cards and displaying the card types
     adding cache control and vary, so the page can render quickly"""
