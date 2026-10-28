@@ -9,12 +9,12 @@
 
   <body class="bg-light" hx-boost="True"
         style="background-image:linear-gradient(var(--bs-primary) 5%,var(--bs-dark) 100%);">
-    <nav class="navbar navbar-expand-lg fixed-top bg-primarystart-0 py-1"
-         data-bs-theme="dark"
+    <nav class="navbar navbar-expand-lg fixed-top bg-dark start-0 py-1"
+         data-bs-theme="light"
          id="top-nav-bar">
       <div class='container-fluid'>
 
-        <a class='navbar-brand t-bright-yellow' href="{% url 'base_app:index' %}"
+        <a class="navbar-brand link-light" href="{% url 'base_app:index' %}"
            style="font-family:'Edu AU VIC WA NT Hand',verdana,san-serif;" id="brand-text">
           <img
             src="{% static "between_app/favicon_io/favicon-32x32.png"%}"
@@ -32,7 +32,7 @@
         </button>
 
               <!-- collapsable part of the Navegation Bar -->
-        <div class='collapse navbar-collapse' id='navbarCollapse' data-bs-theme="dark">
+        <div class='collapse navbar-collapse' id='navbarCollapse' data-bs-theme="light">
           <ul class='navbar-nav me-auto mb2 mb-md-0'> <!-- 'me' refers to left, and 'ms' to right -->
             <li class='nav-item'>
               <a class='nav-link  {% if request.path == '/tests/' %}active{% endif %}'

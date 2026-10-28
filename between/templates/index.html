@@ -1,27 +1,143 @@
-{% extends 'cover.html' %}
+{% extends '_base.html' %}
 {% load static %}
 {%block title%}CreaTherapy{%endblock title%}
 {% load django_bootstrap5%}
 
 {%block page_header%}{%endblock page_header%}
 
+{% block intro %}
+  {% include 'cover.html' %}
+{% endblock %}
+
 {%block content%}
 
 
-  <div class="card my-3 shadow border-primary border-5 col-12 col-lg-10 mx-auto" id="intro-card">
-    <div class="card-body cold-white rounded" id="welcomeText">
-      <div class="col-lg-12 mx-auto">
-        <!-- Welcome text -->
-        <h1 class="card-titl text-center">A compatible model</h1>
-        <p class="card-text text-center fs-5">
-          CreaTherapy will help you follow your intuition and organise your learning.</p>
-        <p class="small text-center"> Read the theory in <a class="link-secondary" href="theory.crea-therapy.com/" target="_blank">CreaTheory.</a></p>
-      </div class"wrapper">
+<!-- Main Content Area -->
+  <div class="row justify-content-center g-5 py-4">
+
+  <!-- Spotlight: The New Cards App -->
+    <div class="col-12 col-lg-10">
+      <div class="card glass-card-light p-4 p-md-5">
+        <div class="row align-items-center g-4">
+        <!-- Visual Column -->
+          <div class="col-12 col-md-5 order-md-2">
+            <div class="card-stack-container">
+              <div class="stacked-card stacked-card-1">
+                <span>Needs</span>
+                <i class="bi bi-heart-pulse-fill fs-2 align-self-end"></i>
+              </div>
+              <div class="stacked-card stacked-card-2">
+                <span>Actions</span>
+                <i class="bi bi-lightning-charge-fill fs-2 align-self-end"></i>
+              </div>
+              <div class="stacked-card stacked-card-3">
+                <span>Voices</span>
+                <i class="bi bi-chat-quote-fill fs-2 align-self-end"></i>
+              </div>
+            </div>
+          </div>
+
+        <!-- Copy Column -->
+          <div class="col-12 col-md-7 order-md-1">
+            <span class="badge bg-primary bg-opacity-10 text-primary px-3 py-2 mb-3 rounded-pill fw-bold">New Release</span>
+            <h2 class="h1 text-gradient-purple fw-bold mb-3">Interactive Therapy Cards</h2>
+            <p class="text-muted mb-4 fs-5">
+              A creative, tactile digital canvas. Shuffle, draw, and explore prompts, client needs, shadow reflections, and therapeutic actions in a highly modular sandbox.
+            </p>
+            <a href="{% url 'cards_app:game_card_type' %}" class="btn btn-premium-indigo btn-lg">
+              <i class="bi bi-grid-3x3-gap-fill me-2"></i>Launch Cards Sandbox
+            </a>
+          </div>
+        </div>
+      </div>
     </div>
-  </div>
-  </div>
-  {% include "about_texts.html" %}
 
+  <!-- Meta-Model Philosophy Banner -->
+    <div class="col-12 col-lg-10">
+      <div class="compatible-banner p-4 p-md-5 d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-4">
+        <div style="max-width: 600px;">
+          <h3 class="h4 fw-bold text-dark mb-2">A Compatible, Modular Meta-Model</h3>
+          <p class="text-muted mb-0">
+            CreaTherapy does not compete with your existing modality or training. Instead, it provides a flexible meta-framework compatible with any therapeutic style.
+          </p>
+        </div>
+        <div class="d-flex flex-wrap gap-3">
+          <a href="https://theory.crea-therapy.com/" target="_blank" class="btn btn-outline-dark rounded-pill fw-semibold px-4 py-2">
+            Read CreaTheory <i class="bi bi-box-arrow-up-right ms-1"></i>
+          </a>
+          <a href="https://www.gabrielsoler.co.uk/" target="_blank" class="btn btn-dark rounded-pill fw-semibold px-4 py-2">
+            Mentorship <i class="bi bi-arrow-up-right ms-1"></i>
+          </a>
+        </div>
+      </div>
+    </div>
 
+  <!-- Secondary Workspace Tools (In the Background) -->
+    <div class="col-12 col-lg-10 mt-5">
+      <hr class="border-secondary opacity-25 mb-5">
+
+      <div class="text-center mb-4">
+        <h3 class="display-6 text-uppercase tracking-wider text-secondary fw-bold">Additional Workspace Tools</h3>
+        <p class="small text-secondary">Keep track of your reflective practices and personal insights</p>
+      </div>
+
+      <div class="row g-4">
+      <!-- Journal prompts -->
+        <div class="col-12 col-md-4">
+          <div class="card minimal-card h-100 p-4">
+            <div class="card-body d-flex flex-column justify-content-between h-100">
+              <div>
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                  <h4 class="h5 fw-bold mb-0">Journal prompts</h4>
+                  <i class="bi bi-pen-fill minimal-card-icon"></i>
+                </div>
+                <p class="small text-muted mb-4">
+                  Reflect deeper after each session. Log your clinical insights and structure your therapeutic learning logs.
+                </p>
+              </div>
+              <a href="{% url 'learning_logs:index' %}" class="btn btn-sm btn-outline-secondary w-100 rounded-pill">Open Journal</a>
+            </div>
+          </div>
+        </div>
+
+      <!-- Techniques -->
+        <div class="col-12 col-md-4">
+          <div class="card minimal-card h-100 p-4">
+            <div class="card-body d-flex flex-column justify-content-between h-100">
+              <div>
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                  <h4 class="h5 fw-bold mb-0">Techniques Space</h4>
+                  <i class="bi bi-lightbulb-fill minimal-card-icon"></i>
+                </div>
+                <p class="small text-muted mb-4">
+                  A personal repository of therapeutic techniques. Share your ideas publicly or keep a private archive of methods.
+                </p>
+              </div>
+              <a href="{% url 'techniques_app:index' %}" class="btn btn-sm btn-outline-secondary w-100 rounded-pill">View Techniques</a>
+            </div>
+          </div>
+        </div>
+
+      <!-- Diver Space -->
+        <div class="col-12 col-md-4">
+          <div class="card minimal-card h-100 p-4">
+            <div class="card-body d-flex flex-column justify-content-between h-100">
+              <div>
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                  <h4 class="h5 fw-bold mb-0">Diver Space</h4>
+                  <i class="bi bi-compass-fill minimal-card-icon"></i>
+                </div>
+                <p class="small text-muted mb-4">
+                  Explore structured creative prompts and shadow prompts to reflect on your active triggers in therapy.
+                </p>
+              </div>
+              <a href="{% url 'dive_app:index' %}" class="btn btn-sm btn-outline-secondary w-100 rounded-pill">Explore Diver</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
 {%endblock content%}
 
