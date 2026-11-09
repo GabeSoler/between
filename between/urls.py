@@ -23,7 +23,8 @@ urlpatterns = (
         path("diver/", include("dive_app.urls")),
         path("profiles/", include("between_app.urls")),
         path("cards/", include("cards_app.urls")),
-        path("companion", include("companion_app.urls")),
+        path("companion/", include("companion_app.urls")),
+        path("stones/", include("stones_app.urls")),
         path("__reload__/", include("django_browser_reload.urls")),  # for dj reload app
         path(
             "robots.txt", TemplateView.as_view(template_name="robots.txt", content_type="text/plain")
