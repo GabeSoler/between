@@ -1,5 +1,4 @@
-FROM ghcr.io/astral-sh/uv:python3.14-trixie-slim
-
+FROM ghcr.io/astral-sh/uv:python3.14-trixie
 # Port used by this container to serve HTTP.
 EXPOSE 3000
 
