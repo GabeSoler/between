@@ -2,94 +2,7 @@
 {% load stone_tags %}
 
 {% block extra_head %}
-
-  <style>
-    .pebble {
-      width: 6rem;
-      height: 5rem;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: #ffffff;
-      font-weight: 500;
-      font-size: 0.9rem;
-      cursor: pointer;
-      transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.4s ease;
-      user-select: none;
-    }
-
-    .pebble:hover {
-      transform: scale(1.06) rotate(-2deg);
-    }
-
-        /* Pebble 1: Smooth River Stone */
-    .pebble-1 {
-            /* 8-value border-radius creates organic asymmetry */
-      border-radius: 55% 45% 40% 60% / 60% 40% 60% 40%;
-      background: linear-gradient(135deg, #a8a7a1 0%, #7d7c75 100%);
-      box-shadow:
-      inset -8px -8px 16px rgba(0,0,0,0.25),
-      inset 6px 6px 12px rgba(255,255,255,0.4),
-      0 12px 24px rgba(0,0,0,0.12);
-    }
-
-        /* Pebble 2: Soft Flat Oval */
-    .pebble-2 {
-      border-radius: 38% 62% 63% 37% / 41% 44% 56% 59%;
-      background: linear-gradient(145deg, #b5c0b8 0%, #839287 100%);
-      box-shadow:
-      inset -6px -8px 14px rgba(0,0,0,0.2),
-      inset 5px 6px 10px rgba(255,255,255,0.45),
-      0 10px 20px rgba(131, 146, 135, 0.25);
-    }
-
-        /* Pebble 3: Triangular/Shard Stone */
-    .pebble-3 {
-      border-radius: 70% 30% 52% 48% / 39% 65% 35% 61%;
-      background: linear-gradient(140deg, #d8b29c 0%, #a47b64 100%);
-      box-shadow:
-      inset -7px -7px 15px rgba(0,0,0,0.22),
-      inset 6px 5px 12px rgba(255,255,255,0.5),
-      0 12px 22px rgba(164, 123, 100, 0.25);
-    }
-
-        /* Pebble 4: Elongated Smooth Rock */
-    .pebble-4 {
-      width: 7rem;
-      height: 6rem;
-      border-radius: 43% 57% 33% 67% / 55% 36% 64% 45%;
-      background: linear-gradient(135deg, #70757a 0%, #464a4e 100%);
-      box-shadow:
-      inset -8px -6px 16px rgba(0,0,0,0.35),
-      inset 5px 6px 12px rgba(255,255,255,0.3),
-      0 12px 25px rgba(0,0,0,0.18);
-    }
-
-        /* Pebble 5: Round Beach Pebble */
-    .pebble-5 {
-      width: 6rem;
-      height: 6rem;
-      border-radius: 48% 52% 58% 42% / 42% 55% 45% 58%;
-      background: linear-gradient(150deg, #e4d5be 0%, #bca586 100%);
-      box-shadow:
-      inset -6px -8px 14px rgba(0,0,0,0.18),
-      inset 6px 6px 12px rgba(255,255,255,0.6),
-      0 10px 20px rgba(188, 165, 134, 0.3);
-      color: #4a3e2c;
-    }
-
-        /* Pebble 6: Organic Asymmetric Pebble */
-    .pebble-6 {
-      border-radius: 64% 36% 27% 73% / 70% 32% 68% 30%;
-      background: linear-gradient(130deg, #8ba89f 0%, #547269 100%);
-      box-shadow:
-      inset -8px -8px 16px rgba(0,0,0,0.25),
-      inset 5px 5px 10px rgba(255,255,255,0.4),
-      0 12px 22px rgba(84, 114, 105, 0.3);
-    }
-
-    }
-  </style>
+  {% include 'stones_app/_style-block.html' %}
 {% endblock %}
 
 {% block content %}
@@ -113,7 +26,7 @@
           log 'moved to ' + :dragged.style.top + :dragged.style.left
           end
          ">
-    <div class="position-relative mx-auto"
+    <div class="position-relative mx-auto p-2"
          style="height:100vh;
                 background: radial-gradient(circle,
                 #4d3c25 1%,
@@ -134,5 +47,6 @@
       {% stone 5 %}
       {% stone 6 %}
     </div>
+    {% include 'stones_app/_info.html' %}
   </div>
 {% endblock content %}
