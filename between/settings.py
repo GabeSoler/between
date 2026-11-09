@@ -41,6 +41,7 @@ CSRF_TRUSTED_ORIGINS = ["https://" + HOST_URL, "https://www.crea-therapy.com", "
 INSTALLED_APPS = [
     # * My apps
     "between_app",
+    "stones_app",
     "learning_logs",
     "accounts.apps.AccountsConfig",
     "techniques_app",
