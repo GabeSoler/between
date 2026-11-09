@@ -1,0 +1,17 @@
+
+      <!-- a stone shaped from html -->
+      <div class="btn stone pebble pebble-{{type_number}}" draggable="true"
+           _="
+              on dblclick
+              log 'doble'
+              toggle .d-none on first <input/> in me
+              focus  first <input/> in me
+             "
+      >
+        <input class="d-none" type="text" _="on change
+                                             put my value into next <span/>'s innerHTML
+                                             toggle .d-none">
+        <span>
+          stone
+        </span>
+      </div>
